@@ -1,0 +1,228 @@
+/*
+
+genlook (earth style)
+
+*/
+
+/* Common html tags ----> */
+
+a {
+	color: #D54E21;
+	text-decoration: none;
+}
+
+a:hover, .menu-item a:hover, #credits a:hover, #content a:hover {
+	color: #87CEFA;
+}
+
+#content .wp-caption a:hover, #nav_pages a:hover, #content .comment_tools a:hover {
+	color: #0080BC;
+}
+
+blockquote {
+	border-left:4px double #ffffff;
+	color: #f5deb3;
+}
+
+body {
+	color: #CCCCCC;
+	background: #080808 url(../images/earth/bg.jpg) left top no-repeat;
+}
+
+h2.posts_date {
+	border-bottom:1px solid #3f2715;
+	color:#d9bd8e;
+	font-size:0.9em;
+	padding-bottom:3px;
+	text-align:right;
+	width:105%;
+	margin-right: -5%;
+}
+
+pre {
+	border:1px solid #3f2715;
+	background-color:#110B07;
+}
+
+table {
+	background-color:transparent;
+	border:3px double #3f2715;
+}
+
+thead {
+	background-color:#3f2715;
+}
+
+tfoot {
+	background-color:#110B07;
+}
+
+th {
+	border: none;
+}
+
+fieldset {
+	border:1px solid #3f2715;
+}
+
+legend {
+	color: #D9BD8E;
+}
+
+/* <---- Common html tags */
+
+
+/* Post classes ----> */
+
+.post {
+	margin-bottom:2em;
+}
+
+.post ul li {
+	border-left:4px solid #3f2715;
+}
+
+.meta {
+	background-color:#3f2715;
+	color:#D9BD8E;
+	margin-top:4px;
+	padding:4px;
+	background-color:#333333;
+	border-style:solid none;
+	border-width:1px;
+}
+
+.comment_like .meta {
+	background-color: transparent;
+	border: none;
+}
+
+#content .storytitle a {
+	color: #ffffff;
+}
+
+#content .storytitle a:hover  {
+	color: #D54E21;
+}
+
+.sticky {
+	background:url("../images/earth/sticky.png") repeat scroll 0 0 transparent;
+	border:1px solid #f5deb3;
+	padding:5px;
+}
+
+/* <---- Post classes */
+
+
+/* Comment classes ----> */
+
+.comment:hover  {
+	border-top:1px solid #24160c;
+	border-right:1px solid #24160c;
+	border-bottom:1px solid #24160c;
+}
+
+.comment, .trackback , .pingback  {
+	background: transparent url('../images/earth/comfade.png') top left repeat-y;
+	border-top:1px solid transparent;
+	border-right:1px solid transparent;
+	border-bottom:1px solid transparent;
+}
+
+.bypostauthor {
+	background: transparent url('../images/earth/auth_comfade.png') top left repeat-y;
+}
+
+.comment {
+	border-left:3px solid #0083F2;
+}
+
+#commentlist li .avatar {
+	border:1px solid #3f2715;
+}
+
+.trackback , .pingback {
+	border-left:3px solid #0060AA;
+}
+
+.feedback {
+	color: #808080;
+	text-align: right;
+	clear: both;
+}
+
+.comment_tools {
+	background-color:#D9BD8F;
+	border:1px solid #FFFFFF;
+	color:#555555;
+}
+
+/* <---- Comment classes */
+
+
+/* Other classes ----> */
+
+#header {
+	color:#BBBBBB;
+	padding-left:50px;
+	text-shadow:3px 3px 6px #000000;
+}
+
+#header h1 {
+	margin: 0;
+	font-size:4em;
+}
+
+#header a {
+	color: #FFFFFF;
+}
+
+
+#content {
+	margin-bottom:0;
+	margin-left:25px;
+}
+
+#nav_pages {
+	padding-top: 10px;
+	border-top: 1px solid #3f2715;
+	color: #3f2715;
+	width:105%;
+}
+
+#nav_pages a {
+	background-color:#D9BD8F;
+	border:1px solid #FFFFFF;
+	padding: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	font-size:0.9em;
+}
+
+#credits {
+	border-top:1px solid;
+	clear:both;
+	color:#D9BD8E;
+	padding:4px 1% 90px 5%;
+	text-align:right;
+	width:94%;
+}
+
+.intr {
+	color: #cccccc;
+}
+
+/* <---- Other classes */
+
+
+/* Captions & aligment ----> */
+
+.wp-caption {
+	border: 3px solid #ffffff;
+	background-color: #D9BD8F;
+	color:#555555;
+}
+
+/* <---- Captions & aligment */

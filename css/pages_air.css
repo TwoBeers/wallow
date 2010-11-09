@@ -1,0 +1,26 @@
+/*
+
+pages (air style)
+
+*/
+
+/* Pages classes ----> */
+
+.menu-item a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.menu-item a:hover {
+	color: #d54e21;
+}
+
+#pages {
+	background: transparent url("../images/air/menu.png") left top repeat;
+}
+
+#mainmenu > li.menu-item {
+	border-right:1px solid #aaaaaa;
+}
+
+/* <---- Pages classes */

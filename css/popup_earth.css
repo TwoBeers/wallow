@@ -1,0 +1,45 @@
+/*
+
+popup (earth style)
+
+*/
+
+.sub-menu a, .fw_pul a {
+	color: #87CEFA;
+	text-decoration: none;
+}
+
+.sub-menu a:hover, .fw_pul a:hover {
+	color: #D54E21;
+}
+
+.footer_wig ul{
+	color: #cccccc;
+	padding: 10px;
+	border:3px solid #FFFFFF;	
+	background: #000000 url(../images/earth/pop.jpg) left top repeat-x;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#mainmenu > li.menu-item > ul.sub-menu {
+	border:3px solid #FFFFFF;	
+	background: #000000 url(../images/earth/pop.jpg) left top repeat-x;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	color: #cccccc;
+}
+
+#mainmenu ul.sub-menu, #mainmenu ul.children {
+	margin:0px;
+	padding:0px;
+}
+
+.sub-menu li {
+	padding-top:5px;
+	margin-left:10px;
+}

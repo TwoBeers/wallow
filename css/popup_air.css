@@ -1,0 +1,48 @@
+/*
+
+popup (air style)
+
+*/
+
+.sub-menu a, .fw_pul a {
+	color: #0080bc;
+	text-decoration: none;
+}
+
+.sub-menu a:hover, .fw_pul a:hover {
+	color: #d54e21;
+}
+
+.footer_wig ul{
+	color: #333333;
+	padding: 10px;
+	border-color:#aaaaaa;
+	border-style:solid;
+	border-width:1px;
+	background: #efefef url("../images/air/capt.jpg") left bottom repeat-x;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#mainmenu > li.menu-item > ul.sub-menu {
+	border: 1px solid #aaaaaa;
+	background:#efefef url("../images/air/capt.jpg") left bottom repeat-x;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	color: #333333;
+}
+
+#mainmenu ul.sub-menu, #mainmenu ul.children {
+	margin:0px;
+	padding:0px;
+
+}
+
+.sub-menu li {
+	padding-top:5px;
+	margin-left:10px;
+}

@@ -1,0 +1,205 @@
+﻿msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: Wallow Theme v0.40\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Poedit-Language: \n"
+"X-Poedit-Country: \n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. Text in echo
+#: footer.php:8
+msgid "All rights reserved"
+msgstr ""
+
+#. Text in echo
+#: functions.php:235
+msgid "Appearance"
+msgstr ""
+
+#. Text in echo
+#: functions.php:237
+#: functions.php:259
+msgid "Default style = fire"
+msgstr ""
+
+#. Text in echo
+#: footer.php:8
+msgid "Have fun!"
+msgstr ""
+
+#. Text in echo
+#: functions.php:304
+msgid "Hide/Show the fixed bar on bottom of page"
+msgstr ""
+
+#. Text in function
+#: functions.php:1
+msgid "Main Navigation Menu"
+msgstr ""
+
+#. Text in function
+#: index.php:61
+msgid "Newer Posts"
+msgstr ""
+
+#. Text in function
+#: index.php:61
+msgid "Older Posts"
+msgstr ""
+
+#. Text in echo
+#: functions.php:316
+msgid "Pop-up Menu Animations"
+msgstr ""
+
+#. Text in echo
+#: functions.php:303
+msgid "Quickbar"
+msgstr ""
+
+#. Text in echo
+#: functions.php:236
+msgid "Select one of the ready-made styles or mix them to build your custom style"
+msgstr ""
+
+#. Text in echo
+#: functions.php:258
+msgid "Select the style of the elements"
+msgstr ""
+
+#. Text in echo
+#: 404.php:12
+msgid "Sorry, you're looking for something that isn't here"
+msgstr ""
+
+#. Text in function
+#: functions.php:1
+msgid "Theme Options"
+msgstr ""
+
+#. Text in echo
+#: header.php:96
+msgid "Today is "
+msgstr ""
+
+#. Text in echo
+#: functions.php:317
+msgid "Try disable animations if you encountered problems with javascript"
+msgstr ""
+
+#. Text in echo
+#: functions.php:330
+msgid "Undo Changes"
+msgstr ""
+
+#. Text in echo
+#: functions.php:329
+msgid "Update Options"
+msgstr ""
+
+#. Text in echo
+#: functions.php:231
+msgid "Wallow - Theme options"
+msgstr ""
+
+#. Text in echo
+#: 404.php:13
+msgid "You can try the following:"
+msgstr ""
+
+#. Text in function
+#: functions.php:1
+msgid "about"
+msgstr ""
+
+#. Text in function
+#: functions.php:318
+msgid "active"
+msgstr ""
+
+#. Text in echo
+#: functions.php:292
+msgid "avatar"
+msgstr ""
+
+#. Text in echo
+#: 404.php:17
+msgid "browse the site throught the navigation bar below"
+msgstr ""
+
+#. Text in function
+#: functions.php:1
+msgid "by"
+msgstr ""
+
+#. Text in function
+#: functions.php:240
+msgid "custom..."
+msgstr ""
+
+#. Text in function
+#: functions.php:1
+msgid "drag here your favorite widgets"
+msgstr ""
+
+#. Text in function
+#: single.php:36
+#: page.php:36
+msgid "feed for comments on this post"
+msgstr ""
+
+#. Text in echo
+#: functions.php:262
+msgid "general looking"
+msgstr ""
+
+#. Text in function
+#: functions.php:318
+msgid "hide"
+msgstr ""
+
+#. Text in function
+#: functions.php:318
+msgid "inactive"
+msgstr ""
+
+#. Text in echo
+#: functions.php:274
+msgid "pages menu"
+msgstr ""
+
+#. Text in echo
+#: functions.php:280
+msgid "pop-up menu"
+msgstr ""
+
+#. Text in echo
+#: functions.php:286
+msgid "quickbar"
+msgstr ""
+
+#. Text in echo
+#: 404.php:15
+msgid "search the site using the searchbox in the upper-right"
+msgstr ""
+
+#. Text in echo
+#: 404.php:16
+msgid "see the suggested pages in the above menu"
+msgstr ""
+
+#. Text in function
+#: functions.php:318
+msgid "show"
+msgstr ""
+
+#. Text in echo
+#: functions.php:268
+msgid "sidebar"
+msgstr ""

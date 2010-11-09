@@ -1,0 +1,192 @@
+/*
+
+genlook (water style)
+
+*/
+
+/* Common html tags ----> */
+
+a {
+	color: #D54E21;
+	text-decoration: none;
+}
+
+a:hover, .menu-item a:hover, #credits a:hover, #content a:hover, .storytitle a:hover {
+	color: #ffffff;
+}
+
+blockquote {
+	border-left:4px double #ffffff;
+}
+
+body {
+	color: #333;
+	background: #43a4ff url(../images/water/bg.jpg) left top no-repeat;
+}
+
+h2.posts_date {
+	border-bottom:1px solid #5fb6ff;
+	color:#CFE9FF;
+	font-size:0.9em;
+	padding-bottom:3px;
+	text-align:right;
+	width:105%;
+	margin-right: -5%;
+}
+
+pre {
+	border:1px solid #5FB6FF;
+}
+
+table {
+	background-color:#A9D6FF;
+	border:3px double #FFFFFF;
+}
+
+thead {
+	background-color:#CFE9FF;
+}
+
+tfoot {
+	background-color:#CFE9FF;
+}
+
+fieldset {
+	border:1px solid #5fb6ff;
+}
+
+legend {
+	color: #CFE9FF;
+}
+
+/* <---- Common html tags */
+
+
+/* Post classes ----> */
+
+.post ul li {
+	border-left:4px solid #333333;
+}
+
+.storytitle  {
+	border-bottom:3px double #CFE9FF;
+	margin:0 0 3px;
+}
+
+.meta {
+	background-image:url("../images/water/meta.png");
+	background-repeat:no-repeat;
+	color:#CFE9FF;
+	padding:4px;
+}
+
+.storytitle a {
+	color: #333333;
+}
+
+.sticky {
+	background:url("../images/water/sticky.png") repeat scroll 0 0 transparent;
+	border:1px solid #b4e1fe;
+	padding:5px;
+}
+
+/* <---- Post classes */
+
+
+/* Comment classes ----> */
+
+.comment:hover  {
+}
+
+.comment, .trackback , .pingback  {
+	background: transparent url('../images/water/comfade.png') top left repeat-y;
+	border-top:1px solid #4dadff;
+	border-right:1px solid #4dadff;
+	border-bottom:1px solid #4dadff;
+}
+
+.bypostauthor {
+	background: transparent url("../images/water/meta.png") top left repeat-y;
+}
+
+.comment {
+	border-left:3px solid #0083F2;
+}
+
+.trackback , .pingback {
+	border-left:3px solid #0060AA;
+}
+
+.feedback {
+	color: #808080;
+	text-align: right;
+	clear: both;
+}
+
+.comment_tools {
+	background-color:#5FB6FF;
+	border:1px solid #FFFFFF;
+	background-image: none;
+}
+
+/* <---- Comment classes */
+
+
+/* Other classes ----> */
+
+#header {
+	color:#333333;
+}
+
+#header h1 {
+	margin: 0;
+	font-size:4em;
+	text-shadow:3px 3px 5px #DDFFFF;
+}
+
+#header a {
+	color: #333333;
+}
+
+#credits {
+	border-top:3px double #FFFFFF;
+	float:left;
+	padding-bottom:100px;
+	text-align:right;
+	width:99%;
+	color: #CFE9FF;
+	padding-right: 1%;
+}
+
+.intr {
+	color: #cccccc;
+}
+
+#nav_pages {
+	padding-top: 10px;
+	border-top: 1px solid #5fb6ff;
+	color: #5fb6ff;
+	width:105%;
+}
+
+#nav_pages a {
+	background-color:#5FB6FF;
+	border:1px solid #FFFFFF;
+	padding: 3px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+/* <---- Other classes */
+
+
+/* Captions & aligment ----> */
+
+.wp-caption {
+	border: 3px double #ffffff;
+	background-color: #a9d6ff;
+}
+
+/* <---- Captions & aligment */

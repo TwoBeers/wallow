@@ -1,0 +1,210 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: Wallow Theme v0.40\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: TwoBeers Crew <light@twobeers.net>\n"
+"Language-Team: TwoBeers Crew <light@twobeers.net>\n"
+"MIME-Version: 1.0\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#. Text in echo
+#: footer.php:8
+msgid "All rights reserved"
+msgstr "Tutti i diritti riservati"
+
+#. Text in function
+#: comments.php:40
+msgid "Really Simple Syndication"
+msgstr "Really Simple Syndication"
+
+#. Text in echo
+#: index.php:43
+msgid "Sorry, no posts matched your criteria."
+msgstr "Oops, nessun articolo di questo tipo."
+
+#. Text in echo
+#: header.php:175
+msgid "Today is "
+msgstr "Oggi &egrave; "
+
+#. Text in function
+#: comments.php:40
+msgid "feed for comments on this post"
+msgstr "feed dei commenti per questo post"
+
+#. Text in echo
+#: functions.php:156
+#: functions.php:179
+msgid "Default style = fire"
+msgstr "Stile predefinito = fire"
+
+#. Text in echo
+#: functions.php:178
+msgid "Select the style of the elements"
+msgstr "Seleziona lo stile degli elementi"
+
+#. Text in echo
+#: functions.php:155
+msgid "Select one of the ready-made styles or mix them to build your custom style"
+msgstr "Seleziona uno degli stili preassemblati o mischiali per creare il tuo stile personalizzato"
+
+#. Text in function
+#: functions.php:1
+msgid "Theme Options"
+msgstr "Opzioni del tema"
+
+#. Text in echo
+#: functions.php:223
+msgid "Undo Changes"
+msgstr "Annulla modifiche"
+
+#. Text in echo
+#: functions.php:222
+msgid "Update Options"
+msgstr "Salva opzioni"
+
+#. Text in echo
+#: functions.php:212
+msgid "avatar"
+msgstr "avatar"
+
+#. Text in function
+#: functions.php:160
+msgid "custom..."
+msgstr "personalizzato..."
+
+#. Text in echo
+#: functions.php:182
+msgid "general looking"
+msgstr "aspetto generale"
+
+#. Text in echo
+#: functions.php:194
+msgid "pages menu"
+msgstr "menu pagine"
+
+#. Text in echo
+#: functions.php:200
+msgid "pop-up menu"
+msgstr "pop-up menu"
+
+#. Text in echo
+#: functions.php:206
+msgid "quickbar"
+msgstr "quickbar"
+
+#. Text in echo
+#: functions.php:188
+msgid "sidebar"
+msgstr "sidebar"
+
+#. Text in echo
+#: functions.php:7
+msgid "Main Navigation Menu"
+msgstr "Menu Principale"
+
+#. Text in echo
+#: functions.php:153
+msgid "Wallow - Theme options"
+msgstr "Wallow - Opzioni del tema"
+
+#. Text in function
+#: functions.php:23
+msgid "drag here your favorite widgets"
+msgstr "trascina qui i tuoi widgets preferiti"
+
+#. Text in echo
+#: functions.php:46
+msgid "about"
+msgstr "in"
+
+#. Text in echo
+#: functions.php:72
+msgid "by"
+msgstr "di"
+
+#. Text in echo
+#: 404.php:12
+msgid "Sorry, you're looking for something that isn't here"
+msgstr "Spiacente, stai cercando qualcosa che non esiste"
+
+#. Text in echo
+#: 404.php:13
+msgid "You can try the following:"
+msgstr "Vuoi un consiglio? Prova a..."
+
+#. Text in echo
+#: 404.php:15
+msgid "search the site using the searchbox in the upper-right"
+msgstr "usare lo strumento di ricerca in alto a destra"
+
+#. Text in echo
+#: 404.php:16
+msgid "see the suggested pages in the above menu"
+msgstr "vedere le pagine proposte nel menu qui sopra"
+
+#. Text in echo
+#: 404.php:17
+msgid "browse the site throught the navigation bar below"
+msgstr "navigare nel sito tramite la barra qui sotto"
+
+#. Text in echo
+#: functions.php:304
+msgid "Hide/Show the fixed bar on bottom of page"
+msgstr "Nascondi/Visualizza la barra fissa in fondo alla pagina"
+
+#. Text in echo
+#: functions.php:317
+msgid "Try disable animations if you encountered problems with javascript"
+msgstr "Prova a disabilitare le animazioni nel caso di problemi con javascript"
+
+#. Text in echo
+#: functions.php:317
+msgid "Pop-up Menu Animations"
+msgstr "Animazioni dei menu pop-up"
+
+#. Text in function
+#: functions.php:318
+msgid "show"
+msgstr "visualizza"
+
+#. Text in function
+#: functions.php:318
+msgid "inactive"
+msgstr "disattivate"
+
+#. Text in function
+#: functions.php:318
+msgid "hide"
+msgstr "nascondi"
+
+#. Text in function
+#: functions.php:318
+msgid "active"
+msgstr "attivate"
+
+#. Text in function
+#: footer.php:126
+msgid "Older Posts"
+msgstr "Articoli pi&ugrave; vecchi"
+
+#. Text in function
+#: footer.php:126
+msgid "Newer Posts"
+msgstr "Articoli pi&ugrave; recenti"
+
+#. Text in function
+#: footer.php:126
+msgid "Have fun!"
+msgstr "Buon divertimento!"
+
+#. Text in echo
+#: functions.php:232
+msgid "Appearance"
+msgstr "Aspetto"
+

@@ -1,0 +1,69 @@
+/* Wallow v0.40 - stylesheet for print */
+
+body {
+	font-size: 14px;
+}
+
+h1,h2,h3,h4,h5,h6,p {
+	margin:5px 0;
+}
+
+a {
+	text-decoration: none;
+	color: #000000;
+}
+
+h2.posts_date {
+	font-size:11px;
+}
+
+h3.storytitle {
+	font-size:28px;
+}
+
+#pages, #menu, #quickbar, #edit_link, .avatar, .comment-edit-link, .comment-reply-link, #respond, .says , .description, .navigate_comments, .comment_tools, #nav_pages{
+	display: none;
+}
+
+.meta, .comment-meta, #credits, #header {
+	font-size:11px;
+}
+
+.meta, .comment_tools  {
+	border-left: 1px solid #CCCCCC;
+	padding-left: 10px;
+	margin:10px 0;
+}
+
+.comment_tools a {
+	display: none;
+}
+
+.comment-meta {
+	position: absolute;
+	top:2px;
+	right:2px;
+}
+
+.comment-body {
+	border:1px solid #CCCCCC;
+	padding: 3px;
+	margin-bottom: 3px;
+	position: relative;
+}
+
+#commentlist li {
+	list-style: disc outside none;
+}
+
+.fn {
+	font-weight: bold;
+}
+
+#header, #footer {
+	text-align: right;
+}
+
+#comments {
+	border-top:1px solid #CCCCCC;
+}

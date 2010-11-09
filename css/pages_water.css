@@ -1,0 +1,28 @@
+/*
+
+pages (water style)
+
+*/
+
+/* Pages classes ----> */
+
+.menu-item a {
+	color: #0080BC;
+	text-decoration: none;
+}
+
+.menu-item a:hover {
+	color: #d54e21;
+}
+
+#pages {
+	background: transparent url("../images/water/head.png") left top repeat;
+	border-top:1px solid #ffffff;
+	border-bottom:1px solid #777777;
+}
+
+#mainmenu > li.menu-item {
+	background: transparent url("../images/water/pages_sep.png") right center no-repeat;
+}
+
+/* <---- Pages classes */

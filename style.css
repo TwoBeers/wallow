@@ -1,0 +1,633 @@
+/*
+Theme Name: Wallow
+Theme URI: http://www.twobeers.net/annunci/wallow
+Description: Multistyle theme from TwoBeers. Use one of the four default styles or mix them to get your personal one. From version 0.40 added the possibility to enable/disable js animations and the quickbar (both are enabled by default).
+Version: 0.44
+Tags: flexible-width, two-columns, theme-options, translation-ready, right-sidebar, black, blue, orange, dark, light
+Author: TwoBeers Crew
+Author URI: http://www.twobeers.net/
+
+License: GNU General Public License, version 2
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+
+/* Common html tags ----> */
+body {
+	font-size: 62.5%;
+	font-family: 'Lucida Grande', Verdana, Arial, Sans-Serif;
+	margin: 0;
+	padding: 0;
+}
+
+h1,h2,h3
+{
+	font-weight: bold;
+}
+
+hr {
+	color:#ffffff;
+}
+
+a img {
+	border: none;
+}
+
+acronym, abbr {
+	border-bottom: 1px dotted;
+	cursor: help;
+}
+
+blockquote {
+	margin:15px 30px 0 10px;
+	padding-left:20px;
+	font-style:italic;
+	letter-spacing:1px;
+}
+
+pre, code, tt, kbd {
+	font:1.2em "Courier New", monospace;
+	padding:0 8px;
+	letter-spacing:1px;
+}
+
+pre {
+	display:block;
+	margin:5px auto;
+	overflow:auto;
+	padding:5px;
+	white-space:pre;
+	width:90%;
+}
+
+ol#comments li p {
+	font-size: 100%;
+}
+
+ul {
+	list-style:none outside none;
+}
+
+table {
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+td {
+	border: none;
+	padding: 3px;
+}
+
+th {
+	padding:5px;
+}
+
+input {
+	font-size:10pt;
+}
+
+fieldset {
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding:8px;
+}
+
+legend {
+	font-size:0.9em;
+	padding:3px;
+}
+
+#content img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* <---- Common html tags */
+
+
+/* Quickbar classes ----> */
+
+#quickbar {
+	position: fixed;
+	z-index: 1000;
+}
+
+.footer_wig {
+	float: left;
+	height:40px;
+	padding:0 10px;
+	position:relative;
+	z-index:200;
+}
+
+.footer_wig h4{
+	margin:5px 0;
+	cursor:default;
+	font-size:1em;
+}
+
+.footer_wig ul{
+	margin:0;
+	position:absolute;
+	display:none;
+	bottom:0;
+	width:300px;
+	left:-10px;
+ 	-moz-box-shadow: 1px 1px 0 #333333;
+	box-shadow: 1px 1px 0 #333333;
+	-webkit-box-shadow: 1px 1px 0 #333333;
+	-khtml-box-shadow: 1px 1px 0 #333333;
+}
+
+.footer_wig ul li{
+	padding-bottom:5px;
+}
+
+.footer_wig:hover ul {
+	display: block;
+}
+
+.fw_pul_cont {
+	position:absolute;
+	bottom:40px;
+	z-index:4;
+}
+
+#avatar_cont {
+	height:100px;
+	width:100px;
+}
+
+#quickbar .avatar {
+	padding:25px;
+}
+
+/* <---- Quickbar classes */
+
+
+/* Post classes ----> */
+
+.post {
+	position:relative;
+	margin-bottom:1em;
+}
+
+.post ul {
+	padding:0 0 0 27px;
+	margin: 0px;
+}
+
+.post ul li {
+	margin:2px 0;
+	padding-left:9px;
+}
+
+.meta, .comment-meta, .reply{
+	font-size: .9em;
+	font-weight: normal;
+	letter-spacing: 0;
+	padding-bottom: 5px;
+}
+
+.storytitle {
+	font-size:1.8em;
+	margin:0;
+	text-transform:capitalize;
+}
+
+.sticky {
+	background-color:#effaff;
+	border:1px solid #87CEFA;
+	padding:5px;
+}
+
+.storycontent {
+	margin-top: 10px;
+}
+
+.storycontent p {
+	overflow: auto;
+}
+
+/* <---- Post classes */
+
+
+/* Comment classes ----> */
+
+#commentform #author, #commentform #email, #commentform #url, #commentform textarea, .post input[type="password"], .post input[type="text"], .post textarea {
+	border: 1px solid #aaaaaa;
+	padding: .2em;
+	background:#fff url(images/input.jpg) left top repeat-x;
+}
+
+#commentform #author:hover, #commentform #email:hover, #commentform #url:hover, #commentform textarea:hover, .post input[type="password"]:hover, .post input[type="text"]:hover, .post textarea:hover {
+	border: 1px solid #d54e21;
+}
+
+#commentform #author:focus, #commentform #email:focus, #commentform #url:focus, #commentform textarea:focus, .post input[type="password"]:focus, .post input[type="text"]:focus, .post textarea:focus {
+	border: 1px solid #0080BC;
+}
+
+#commentform textarea {
+	width: 100%;
+}
+
+#commentlist {
+	list-style:none outside none;
+}
+
+.comment, .trackback , .pingback  {
+	padding-left:10px;
+	padding-right:50px;
+	position:relative;
+	margin:10px 0;
+	min-height:45px;
+}
+
+.comment-author {
+	font-size: 1.1em;
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+
+#commentlist li .avatar {
+	border: 1px solid #ccc;
+	padding: 2px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: 3px;
+}
+
+.comment_tools {
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin:5px 0;
+	padding:3px;
+	float:left;
+}
+
+ul.children {
+	padding: 0 0 0 10px;
+}
+
+/* <---- Comment classes */
+
+
+/* Pages classes ----> */
+
+#pages {
+	padding:10px 30% 40px 5%;
+	margin-left: -10px;
+	z-index:2;
+}
+
+#mainmenu {
+	margin:0;
+	padding:0;
+	width:100%;
+	position:relative;
+}
+
+#rss_imglink {
+	position:absolute;
+	margin:3px -3%;
+}
+
+#mainmenu ul{
+	padding-left: 15px;
+}
+
+#mainmenu > li.menu-item {
+	margin:5px 0;
+	padding:2px 10px;
+	float:left;
+}
+
+#mainmenu > li.menu-item > ul.sub-menu {
+	margin:0px;
+	position:absolute;
+	display:none;
+	padding:5px 10px 10px;
+	z-index:3;
+	max-width:300px;
+	min-width:100px;
+ 	-moz-box-shadow: 1px 1px 0 #333333;
+	box-shadow: 1px 1px 0 #333333;
+	-webkit-box-shadow: 1px 1px 0 #333333;
+	-khtml-box-shadow: 1px 1px 0 #333333;
+}
+
+.sub-menu {
+	margin:0px;
+	padding:0px;
+}
+
+.sub-menu li {
+	padding-top:5px;
+}
+
+.sub-menu li:before {
+	content: "» ";
+}
+
+.sub-menu li > div{
+	display: inline;
+}
+
+#pages li ul {
+}
+
+#mainmenu > li.menu-item:hover > ul.sub-menu {
+	display: block;
+}
+
+/* <---- Pages classes */
+
+
+/* Sidebar classes ----> */
+
+#menu {
+	clear:right;
+	float:right;
+	padding-bottom:30px;
+	width:25%;
+}
+
+#sidebartop {
+	width: 100%;
+	margin-top:30px;
+}
+
+#sidebarbottom {
+	width: 100%;
+}
+
+#searchform {
+	margin: 5px auto;
+	padding: 5px 3px;
+	text-align: center;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#menu ul {
+	font-weight: bold;
+	margin: 0;
+	padding-left: 3px;
+	text-transform: lowercase;
+}
+
+#menu ul li {
+	letter-spacing: 0.1em;
+	margin-top: 10px;
+	padding-bottom: 2px;
+}
+
+#menu ul ul li:before {
+	content: "» ";
+}
+
+#menu ul ul {
+	font-weight: normal;
+	margin: 0 0 0 10px;
+	padding: 0;
+	text-align: left;
+}
+
+#menu ul ul li {
+	border: 0;
+	margin: 3px 0 0;
+	padding: 0;
+}
+
+#menu ul ul li a {
+}
+
+#menu ul ul li a:hover {
+}
+
+#menu ul ul ul.children {
+	padding-left: 4px;
+}
+
+#menu select {
+	font-family:inherit;
+	font-size:inherit;
+	font-size-adjust:inherit;
+	font-stretch:inherit;
+	font-style:inherit;
+	font-variant:inherit;
+	font-weight:normal;
+	line-height:inherit;
+	max-width:100%;
+}
+
+.widget {
+	overflow: auto;
+}
+
+/* <---- Sidebar classes */
+
+
+/* Calendar classes ----> */
+
+#calendar_wrap {
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	margin:5px 0;
+}
+
+#wp-calendar {
+	empty-cells: show;
+	margin: 0;
+	width: 100%;
+	border: none;
+	background: transparent;
+}
+
+#wp-calendar #next a {
+	padding-right: 10px;
+	text-align: right;
+}
+
+#wp-calendar #prev a {
+	padding-left: 10px;
+	text-align: left;
+}
+
+#wp-calendar a {
+	display: block;
+}
+
+#wp-calendar caption {
+	text-align: center;
+}
+
+#wp-calendar td {
+	letter-spacing: -1px;
+	text-align: center;
+}
+
+#wp-calendar th {
+	font-style: normal;
+	text-transform: capitalize;
+}
+
+#wp-calendar tfoot {
+}
+
+/* <---- Calendar classes */
+
+
+/* Other classes ----> */
+
+#header {
+	letter-spacing: 0.2em;
+	margin: 0;
+	padding: 30px 30% 40px 4%;
+	min-height:30px;
+}
+
+#header h1 {
+	margin: 0 0 5px !important;
+	font-size:4em;
+	filter: glow(color=#000000,strength=5);
+}
+
+#content {
+	float:left;
+	font-size:1.2em;
+	margin-bottom:20px;
+	margin-left:2%;
+	margin-top:20px;
+	padding:5px 4% 10px 2%;
+	width:65%;
+}
+
+#nav_pages {
+	text-align:center;
+}
+
+#credits a {
+	font-weight: bold;
+}
+
+.fixfloat {
+	clear: both;
+}
+
+/* <---- Other classes */
+
+/* Gallery listing ----> */
+
+.category-gallery .size-thumbnail img {
+	border: 10px solid #f1f1f1;
+	margin-bottom: 0;
+}
+.category-gallery .gallery-thumb {
+	float: left;
+	margin-right: 20px;
+	margin-top: -4px;
+}
+.home #content .category-gallery .entry-utility {
+	padding-top: 4px;
+}
+#content .gallery {
+	margin: 0 auto 18px;
+}
+#content .gallery .gallery-item {
+	float: left;
+	margin-top: 0;
+	text-align: center;
+	width: 33%;
+}
+#content .gallery img {
+	border: 2px solid #cfcfcf;
+}
+#content .gallery .gallery-caption {
+	font-size: 10px;
+	margin: 0 0 12px;
+}
+#content .gallery dl {
+	margin: 0;
+}
+#content .gallery img {
+	border: 10px solid #f1f1f1;
+}
+#content .gallery br+br {
+	display: none;
+}
+
+/* <---- Gallery listing */
+
+/* Captions & aligment ----> */
+
+.aligncenter,
+div.aligncenter {
+	clear:both;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+img.alignleft, .alignleft {
+	display:inline;
+	float:left;
+	margin-right:24px;
+	margin-top:4px;
+}
+
+img.alignright, .alignright {
+	display:inline;
+	float:right;
+	margin-left:24px;
+	margin-top:4px;
+}
+
+img.alignleft, img.alignright, img.aligncenter {
+	margin-bottom:12px;
+}
+
+.wp-caption {
+	text-align: center;
+	padding-top: 4px;
+	margin: 10px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.wp-caption img {
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+}
+
+.wp-caption p.wp-caption-text {
+	font-size: 11px;
+	line-height: 17px;
+	padding: 0 4px 5px;
+	margin: 0;
+}
+
+.wp-post-image {
+	margin: 0 0 10px 10px;
+ 	-moz-box-shadow: 0 0 7px #000000;
+	box-shadow: 0 0 7px #000000;
+	-webkit-box-shadow: 0 0 7px #000000;
+	-khtml-box-shadow: 0 0 7px #000000;
+}
+
+/* <---- Captions & aligment */

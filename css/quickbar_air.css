@@ -1,0 +1,43 @@
+/*
+
+quickbar (air style)
+
+*/
+
+/* Quickbar classes ----> */
+
+#quickbar {
+	background: #888888 url(../images/air/qb.jpg) left bottom repeat-x;
+	border-top: 2px groove #FFFFFF;
+	color: #333;
+	margin: 10px 0 0 0;
+	padding: 0;
+	bottom: 0;
+	height:54px;
+	width:100%;
+}
+
+#qb_right {
+	background: transparent url(../images/air/grey-s.png) right center no-repeat;
+	float:right;
+	height:34px;
+	width:13%;
+	padding: 10px 0;
+	text-align: center;
+	font-weight: bold;
+}
+
+.footer_wig {
+	background:url("../images/air/menu_sep.png") no-repeat right top transparent;
+}
+
+.footer_wig:hover h4{
+	color: #ffffff;
+}
+
+#avatar_cont {
+	margin-top:-46px;
+	float:left;
+}
+
+/* <---- Quickbar classes */
