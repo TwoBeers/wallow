@@ -4,16 +4,20 @@ popup (fire style)
 
 */
 
-.sub-menu a, .fw_pul a {
+.children a, .sub-menu a, .fw_pul a {
 	color: #87CEFA;
 	text-decoration: none;
 }
 
-.sub-menu a:hover, .fw_pul a:hover {
+.children a:hover, .sub-menu a:hover, .fw_pul a:hover {
 	color: #d54e21;
 }
-
-.footer_wig ul{
+.current_page_item > a,
+.current-menu-item > a,
+.current-cat > a {
+	color: #d54e21;
+}
+.footer_wig .fw_pul{
 	color: #cccccc;
 	padding: 10px;
 	border-color:#888888;
@@ -26,6 +30,7 @@ popup (fire style)
 	border-radius: 5px;
 }
 
+#mainmenu > li.page_item > ul.children,
 #mainmenu > li.menu-item > ul.sub-menu {
 	border:1px solid #888888;
 	background: #333333 url(../images/fire/pop.jpg) left top no-repeat;
@@ -39,9 +44,4 @@ popup (fire style)
 #mainmenu ul.sub-menu, #mainmenu ul.children {
 	margin:0px;
 	padding:0px;
-}
-
-.sub-menu li {
-	padding-top:5px;
-	margin-left:10px;
 }

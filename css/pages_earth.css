@@ -6,12 +6,12 @@ pages (earth style)
 
 /* Pages classes ----> */
 
-.menu-item a {
+.page_item a, .menu-item a {
 	color: #555555;
 	text-decoration: none;
 }
 
-.menu-item a:hover {
+.page_item a:hover, .menu-item a:hover {
 	color: #0080BC;
 }
 
@@ -31,8 +31,13 @@ pages (earth style)
 	border:1px solid #a9d6ff;
 }
 
-#mainmenu > li.menu-item {
+#mainmenu > li.menu-item ,
+#mainmenu > li.page_item{
 	background: transparent url("../images/earth/pages_sep.png") right center no-repeat;
+}
+.current_page_ancestor .hiraquo,
+.current-menu-ancestor .hiraquo {
+	color: #0080BC;
 }
 
 /* <---- Pages classes */

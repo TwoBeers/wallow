@@ -4,7 +4,7 @@
 		<div id="sidebarbody">
 			<ul>
 					<li id="search"><div id="searchdiv">
-					  <form id="searchform" method="get" action="<?php bloginfo('url'); ?>">
+					  <form id="searchform" method="get" action="<?php echo home_url(); ?>">
 						<div>
 							<input type="text" name="s" id="s" size="15" title="<?php esc_attr_e('Enter a word to look up:'); ?>" />
 							<input type="submit" value="<?php esc_attr_e('Find'); ?>!" title="<?php esc_attr_e('Find'); ?>!" />

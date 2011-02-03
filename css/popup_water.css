@@ -4,16 +4,21 @@ popup (water style)
 
 */
 
-.sub-menu a, .fw_pul a {
+.children a, .sub-menu a, .fw_pul a {
 	color: #87CEFA;
 	text-decoration: none;
 }
 
-.sub-menu a:hover, .fw_pul a:hover {
+.children a:hover, .sub-menu a:hover, .fw_pul a:hover {
+	color: #ffffff;
+}
+.current_page_item > a,
+.current-menu-item > a,
+.current-cat > a {
 	color: #ffffff;
 }
 
-.footer_wig ul{
+.footer_wig .fw_pul{
 	color: #cccccc;
 	padding: 10px;
 	border-color:#ffffff;
@@ -26,6 +31,7 @@ popup (water style)
 	border-radius: 5px;
 }
 
+#mainmenu > li.page_item > ul.children,
 #mainmenu > li.menu-item > ul.sub-menu {
 	border:3px double #ffffff;
 	background: #0080BC url(../images/water/pop.jpg) left top no-repeat;
@@ -39,9 +45,4 @@ popup (water style)
 #mainmenu ul.sub-menu, #mainmenu ul.children {
 	margin:0px;
 	padding:0px;
-}
-
-.sub-menu li {
-	padding-top:5px;
-	margin-left:10px;
 }

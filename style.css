@@ -2,7 +2,7 @@
 Theme Name: Wallow
 Theme URI: http://www.twobeers.net/annunci/wallow
 Description: Multistyle theme from TwoBeers. Use one of the four default styles or mix them to get your personal one. From version 0.40 added the possibility to enable/disable js animations and the quickbar (both are enabled by default).
-Version: 0.44
+Version: 0.45
 Tags: flexible-width, two-columns, theme-options, translation-ready, right-sidebar, black, blue, orange, dark, light
 Author: TwoBeers Crew
 Author URI: http://www.twobeers.net/
@@ -130,7 +130,7 @@ legend {
 	font-size:1em;
 }
 
-.footer_wig ul{
+.footer_wig .fw_pul {
 	margin:0;
 	position:absolute;
 	display:none;
@@ -141,13 +141,22 @@ legend {
 	box-shadow: 1px 1px 0 #333333;
 	-webkit-box-shadow: 1px 1px 0 #333333;
 	-khtml-box-shadow: 1px 1px 0 #333333;
+	max-height: 250px;
+	overflow: auto;
 }
 
 .footer_wig ul li{
-	padding-bottom:5px;
+	padding-top:5px;
+}
+.footer_wig ul li:before {
+	content: "» ";
+}
+.footer_wig ul {
+	margin:0px;
+	padding:0px;
 }
 
-.footer_wig:hover ul {
+.footer_wig:hover .fw_pul {
 	display: block;
 }
 
@@ -210,7 +219,6 @@ legend {
 }
 
 .storycontent p {
-	overflow: auto;
 }
 
 /* <---- Post classes */
@@ -287,6 +295,51 @@ ul.children {
 	margin-left: -10px;
 	z-index:2;
 }
+#mainmenu > li.page_item,
+#mainmenu > li.menu-item {
+	float: left;
+	margin: 5px 0;
+	padding: 2px 10px;
+}
+#mainmenu > li.page_item > a,
+#mainmenu > li.menu-item > a{
+	display: block;
+}
+
+#mainmenu > li.page_item > ul.children,
+#mainmenu > li.menu-item > ul.sub-menu {
+	position: absolute;
+	display: none;
+	z-index: 30;
+	max-width: 300px;
+	min-width: 150px;
+	-moz-box-shadow: 1px 1px 2px #000;
+	-webkit-box-shadow: 1px 1px 2px #000;
+	box-shadow: 1px 1px 2px #000;
+	margin: 0;
+	padding: 5px 10px 10px;
+}
+#mainmenu > li.page_item:hover > ul.children,
+#mainmenu > li.menu-item:hover > ul.sub-menu {
+	display: block;
+}
+#mainmenu ul.children li,
+#mainmenu ul.sub-menu li {
+	margin: 0 0 0 10px;
+	padding: 5px 0 0;
+}
+
+#mainmenu ul.children li:before,
+#mainmenu ul.sub-menu li:before {
+	content: "» ";
+}
+
+#mainmenu .children li > div,
+#mainmenu .sub-menu li > div {
+	display: inline;
+}
+
+
 
 #mainmenu {
 	margin:0;
@@ -298,54 +351,6 @@ ul.children {
 #rss_imglink {
 	position:absolute;
 	margin:3px -3%;
-}
-
-#mainmenu ul{
-	padding-left: 15px;
-}
-
-#mainmenu > li.menu-item {
-	margin:5px 0;
-	padding:2px 10px;
-	float:left;
-}
-
-#mainmenu > li.menu-item > ul.sub-menu {
-	margin:0px;
-	position:absolute;
-	display:none;
-	padding:5px 10px 10px;
-	z-index:3;
-	max-width:300px;
-	min-width:100px;
- 	-moz-box-shadow: 1px 1px 0 #333333;
-	box-shadow: 1px 1px 0 #333333;
-	-webkit-box-shadow: 1px 1px 0 #333333;
-	-khtml-box-shadow: 1px 1px 0 #333333;
-}
-
-.sub-menu {
-	margin:0px;
-	padding:0px;
-}
-
-.sub-menu li {
-	padding-top:5px;
-}
-
-.sub-menu li:before {
-	content: "» ";
-}
-
-.sub-menu li > div{
-	display: inline;
-}
-
-#pages li ul {
-}
-
-#mainmenu > li.menu-item:hover > ul.sub-menu {
-	display: block;
 }
 
 /* <---- Pages classes */
@@ -550,7 +555,6 @@ ul.children {
 	float: left;
 	margin-top: 0;
 	text-align: center;
-	width: 33%;
 }
 #content .gallery img {
 	border: 2px solid #cfcfcf;
@@ -596,7 +600,7 @@ img.alignright, .alignright {
 }
 
 img.alignleft, img.alignright, img.aligncenter {
-	margin-bottom:12px;
+	margin-bottom:4px;
 }
 
 .wp-caption {
@@ -607,6 +611,7 @@ img.alignleft, img.alignright, img.aligncenter {
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
+	max-width: 100%;
 }
 
 .wp-caption img {

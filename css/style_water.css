@@ -75,7 +75,7 @@ legend {
 
 .meta {
 	background-image:url("../images/water/meta.png");
-	background-repeat:no-repeat;
+	background-repeat:repeat-y;
 	color:#CFE9FF;
 	padding:4px;
 }

@@ -4,7 +4,14 @@ load_theme_textdomain('wallow', TEMPLATEPATH . '/languages' );
 // Register Features Support
 add_theme_support( 'automatic-feed-links' );
 add_theme_support( 'post-thumbnails' ); // Thumbnails support
-// add_theme_support('menus'); Menus support --> No need, becuse automatically registered by register_nav_menus() on line 14 (http://codex.wordpress.org/Function_Reference/register_nav_menus/#Notes)
+// Register sidebars by running wallow_widgets_init() on the widgets_init hook
+add_action( 'widgets_init', 'wallow_widgets_init' );
+// Add js animations
+add_action( 'template_redirect', 'wallow_scripts' );
+// Custom filters
+add_filter( 'the_content', 'wallow_content_replace' );
+// Add stylesheets
+add_action( 'wp_print_styles', 'wallow_stylesheet' );
 
 // Sets the content_width (with a 1024x768 window size)
 if ( ! isset( $content_width ) )
@@ -13,19 +20,58 @@ if ( ! isset( $content_width ) )
 // Theme uses wp_nav_menu() in one location
 register_nav_menus( array('primary' => __( 'Main Navigation Menu', 'wallow' ),	) );
 
-// Registers the right sidebar
-register_sidebar(array(
-	'name'          => 'Sidepad',
-	'id'            => 'sidepad',
-	'description'   => __('drag here your favorite widgets','wallow'),
-	'before_widget' => '<li id="%1$s" class="widget %2$s">',
-	'after_widget' => '</li>',
-	'before_title' => '',
-	'after_title' => '',
-));
-	
+function wallow_widgets_init() {
+	// Registers the right sidebar
+	register_sidebar(array(
+		'name'          => 'Sidepad',
+		'id'            => 'sidepad',
+		'description'   => __('drag here your favorite widgets','wallow'),
+		'before_widget' => '<li id="%1$s" class="widget %2$s">',
+		'after_widget' 	=> '</li>',
+		'before_title' 	=> '',
+		'after_title' 	=> '',
+	));
+	// Register the Quickbar as sidebar
+	register_sidebar( array(
+		'name'          =>	'Quickbar',
+		'id'            =>	'w-quickbar',
+		'description'   =>	__('drag here your favorite widgets','wallow'),
+		'before_widget'	=>	'<div class="footer_wig">',
+		'after_widget'	=>	'</div></div></div>',
+		'before_title'	=>	'<h4>',
+		'after_title'	=>	' &raquo;</h4><div class="fw_pul_cont"><div class="fw_pul">',
+	));
+
+}
+
+// check if is "all category" page
+$wallow_is_allcat_page = false;
+if( isset( $_GET['allcat'] ) && ( md5( $_GET['allcat'] ) == '415290769594460e2e485922904f345d' ) ) {
+	$wallow_is_allcat_page = true;
+}
+
+// add scripts
+function wallow_scripts(){
+	$wallow_opt = get_option('wallow_options');
+	if ($wallow_opt['wallow_jsani'] == 'active' || !isset($wallow_opt['wallow_jsani']) ) {
+		wp_enqueue_script( 'wallowscript', get_template_directory_uri() . '/js/wallowscript.dev.js', array( 'jquery' ), '0.45', true  ); //wallow js
+	}
+	if ( is_singular() ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+}
+
+// Add stylesheets to page
+function wallow_stylesheet(){
+	//normal view
+	wp_enqueue_style( 'wallow_general-style', get_stylesheet_uri(), false, '0.45', 'screen' );
+	//print style
+	wp_enqueue_style( 'wallow_print-style', get_template_directory_uri() . '/css/print.css', false, '0.45', 'print' );
+}
+
+
 // Get Recent Comments
-function get_wallow_recentcomments() {
+function wallow_get_recentcomments() {
 	$recentcomments = get_comments('number=12&status=approve');
 	
 	if($recentcomments) {
@@ -35,8 +81,8 @@ function get_wallow_recentcomments() {
 			$comment_author = $comment->comment_author;
 			$comment_date = "";	// "<span class=\"intr\">".mysql2date('M dS H:i', $post->comment_date_gmt)."</span>&nbsp;"; //uncomment to use
 			$comment_id = $comment->comment_ID;
-			if (strlen($post_title)>25) {
-				$post_title_short = substr($post_title,0,25) . '&hellip;';
+			if (mb_strlen($post_title)>25) {
+				$post_title_short = mb_substr($post_title,0,25) . '&hellip;';
 			} else {
 				$post_title_short = $post_title;
 			}
@@ -51,7 +97,7 @@ function get_wallow_recentcomments() {
 }
 
 // Get Recent Entries
-function get_wallow_recententries($mode = '') {
+function wallow_get_recententries($mode = '') {
 	$recententries = get_posts('numberposts=12');
 	
 	if($recententries) {
@@ -61,8 +107,8 @@ function get_wallow_recententries($mode = '') {
 			$post_id = $post->ID;
 			$post_title = $post->post_title;
 			$post_date = ""; //"<span class=\"intr\">".mysql2date('M dS', esc_html($post->post_date))."</span>&nbsp;"; //uncomment to use
-			if (strlen($post_title)>25) {
-				$post_title_short = substr($post_title,0,25) . '&hellip;';
+			if (mb_strlen($post_title)>25) {
+				$post_title_short = mb_substr($post_title,0,25) . '&hellip;';
 			} else {
 				$post_title_short = $post_title;
 			}
@@ -76,51 +122,69 @@ function get_wallow_recententries($mode = '') {
 	}
 }
 
+// page hierarchy
+function wallow_multipages(){
+	global $post;
+	$args = array(
+		'post_type' => 'page',
+		'post_parent' => $post->ID
+		); 
+	$childrens = get_posts($args); // retrieve the child pages
+	$the_parent_page = $post->post_parent; // retrieve the parent page
+
+	if ( ( $childrens ) || ( $the_parent_page ) ){ ?>
+		<?php
+		echo __('<br />This page has hierarchy','wallow') . ' - ';
+		if ( $the_parent_page ) {
+			$the_parent_link = '<a href="' . get_permalink( $the_parent_page ) . '" title="' . get_the_title( $the_parent_page ) . '">' . get_the_title( $the_parent_page ) . '</a>';
+			echo __('Parent page: ','wallow') . $the_parent_link ; // echoes the parent
+		}
+		if ( ( $childrens ) && ( $the_parent_page ) ) { echo ' - '; } // if parent & child, echoes the separator
+		if ( $childrens ) {
+			$the_child_list = '';
+			foreach ($childrens as $children) {
+				$the_child_list[] = '<a href="' . get_permalink( $children ) . '" title="' . get_the_title( $children ) . '">' . get_the_title( $children ) . '</a>';
+			}
+			$the_child_list = implode(', ' , $the_child_list);
+			echo __('Child pages: ','wallow') . $the_child_list; // echoes the childs
+		}
+		?>
+	<?php }
+}
+
 // Pages Menu
 function wallow_pages_menu() {
-	echo '
-		<ul id="mainmenu">
-			<li class="menu-item"><div><a href="'. home_url() .'/">Home</a></div></li>';
-	
-	$pages = get_pages('parent=0'); 
-	foreach ($pages as $pagg) {
-	$option = '<li id="menu-item-'.$pagg->ID.'" class="menu-item"><div style="white-space: pre;"><a href="'.get_page_link($pagg->ID).'">';
-	$option .= $pagg->post_title;
-	echo $option;
-	$children = wp_list_pages('title_li=&child_of='.$pagg->ID.'&echo=0');
-	if ($children) { 
-		echo ' &raquo;</a></div><ul class="sub-menu">' . $children . '</ul>';
-	} else {
-		echo '</a></div>';
-	}
-	echo '</li>';
-  }
+	echo '<ul id="mainmenu">';
+	wp_list_pages( 'sort_column=menu_order&title_li=' ); // menu-order sorted
 	echo '</ul>';
 }
 
-// Gravatar static footer bar
-function wallow_gravatar($email) {
-	$hash = md5($email);
-	$default = urlencode( get_bloginfo('stylesheet_directory') . '/images/user.png' );
-	echo "<img class='avatar' src='http://www.gravatar.com/avatar.php?gravatar_id=$hash&amp;size=50&amp;default=$default' alt='avatar' />";
-}
-
 //add theme admin menu
-add_action('admin_menu', 'add_theme_wallow_option_interface');
-add_action('admin_init', 'add_theme_wallow_init');
+add_action('admin_menu', 'wallow_add_theme_option_page');
+add_action('admin_init', 'wallow_theme_init');
 
 //Init theme options
-function add_theme_wallow_init() {
+function wallow_theme_init() {
 	register_setting( 'wallow_theme_options', 'wallow_options');
 }
 
 //add theme options page
-function add_theme_wallow_option_interface() {
-	add_theme_page(__('Theme Options','wallow'), __('Theme Options','wallow'), 'manage_options', 'functions', 'edit_wallow_options');
+function wallow_add_theme_option_page() {
+	$topt_page = add_theme_page(__('Theme Options','wallow'), __('Theme Options','wallow'), 'manage_options', 'functions', 'wallow_edit_options');
+	add_action( 'admin_print_scripts-' . $topt_page, 'wallow_options_script' );
+	add_action( 'admin_print_styles-' . $topt_page, 'wallow_options_style' );
+}
+
+function wallow_options_script() {
+	wp_enqueue_script( 'wallow_otp_script', get_template_directory_uri().'/js/wallowoptions.dev.js',array('jquery'),'0.45', true );
+}
+function wallow_options_style() {
+	//add custom stylesheet
+	echo '<link rel="stylesheet" type="text/css" href="' . get_template_directory_uri() . '/css/theme-options.css" />' . "\n";
 }
 
 //manage theme options
-function edit_wallow_options() {
+function wallow_edit_options() {
 	$wallow_options = get_option('wallow_options');
 	if(empty($wallow_options)) { //if options are empty, sets the default values
 		$wallow_options['wallow_theme_set'] = 'fire';
@@ -135,94 +199,6 @@ function edit_wallow_options() {
 	
 	if ( isset( $_REQUEST['updated'] ) ) echo '<div id="message" class="updated"><p><strong>'.__('Options saved.').'</strong></p></div>';
 	?>
-	<script language="javascript" type="text/javascript" src="<?php bloginfo('stylesheet_directory'); ?>/js/mootools-1.2-core.js"></script>
-	<script type="text/javascript">
-		function changeWPreviewBg(inputName,styleOption){
-			if ($moochk(inputName)){
-				var imgtofade = $moo('tp_' + inputName);
-				var myFx = new Fx.Morph(imgtofade, {duration:200, wait:false});
-				myFx.start({'opacity': 0});
-				(function (){
-				imgtofade.setStyle( 'background-image' , 'url(<?php echo get_bloginfo('stylesheet_directory'); ?>/images/preview_' + styleOption + '.png)' );
-				}).delay(200);
-				(function (){
-				myFx.start({'opacity': 1});
-				}).delay(500);
-			}else{
-				$moo('tp_wallow_theme_genlook').setStyle( 'background-image' , 'url(<?php echo get_bloginfo('stylesheet_directory'); ?>/images/preview_' + styleOption + '.png)' );
-				$moo('tp_wallow_theme_sidebar').setStyle( 'background-image' , 'url(<?php echo get_bloginfo('stylesheet_directory'); ?>/images/preview_' + styleOption + '.png)' );
-				$moo('tp_wallow_theme_pages').setStyle( 'background-image' , 'url(<?php echo get_bloginfo('stylesheet_directory'); ?>/images/preview_' + styleOption + '.png)' );
-				$moo('tp_wallow_theme_popup').setStyle( 'background-image' , 'url(<?php echo get_bloginfo('stylesheet_directory'); ?>/images/preview_' + styleOption + '.png)' );
-				$moo('tp_wallow_theme_avatar').setStyle( 'background-image' , 'url(<?php echo get_bloginfo('stylesheet_directory'); ?>/images/preview_' + styleOption + '.png)' );
-				$moo('tp_wallow_theme_quickbar').setStyle( 'background-image' , 'url(<?php echo get_bloginfo('stylesheet_directory'); ?>/images/preview_' + styleOption + '.png)' );
-			}
-		}
-		function forceWPreviewOptChng(styleOption){
-			if(styleOption == '1'){
-				$$moo('input[name=wallow_theme_genlook]').set( 'checked' , '' );
-				$$moo('input[name=wallow_theme_sidebar]').set( 'checked' , '' );
-				$$moo('input[name=wallow_theme_pages]').set( 'checked' , '' );
-				$$moo('input[name=wallow_theme_popup]').set( 'checked' , '' );
-				$$moo('input[name=wallow_theme_avatar]').set( 'checked' , '' );
-				$$moo('input[name=wallow_theme_quickbar]').set( 'checked' , '' );
-				$moo('wallow_options_select').setStyle( 'visibility' , 'visible' );
-				$moo('wallow_options_select').setStyle( 'height' , 'auto' );
-			}else{
-				$$moo('input[name=wallow_theme_genlook][value=' + styleOption + ']').set( 'checked' , 'checked' );
-				$$moo('input[name=wallow_theme_sidebar][value=' + styleOption + ']').set( 'checked' , 'checked' );
-				$$moo('input[name=wallow_theme_pages][value=' + styleOption + ']').set( 'checked' , 'checked' );
-				$$moo('input[name=wallow_theme_popup][value=' + styleOption + ']').set( 'checked' , 'checked' );
-				$$moo('input[name=wallow_theme_avatar][value=' + styleOption + ']').set( 'checked' , 'checked' );
-				$$moo('input[name=wallow_theme_quickbar][value=' + styleOption + ']').set( 'checked' , 'checked' );
-				$moo('wallow_options_select').setStyle( 'visibility' , 'hidden' );
-				$moo('wallow_options_select').setStyle( 'height' , '0px' );
-			}
-		}
-	</script>
-	<style type="text/css">
-		.stylediv {
-			-moz-border-radius: 10px;
-			-khtml-border-radius: 10px;
-			-webkit-border-radius: 10px;
-			border-radius: 10px;
-			background:#F5F5F5;
-			border:1px solid #CCCCCC;
-			margin-bottom:10px;
-			max-width:800px;
-			padding:0 10px 10px;
-		}
-		.stylediv h3 {
-			-moz-border-radius:10px 10px 0 0;
-			-khtml-border-radius: 10px 10px 0 0;
-			-webkit-border-radius: 10px 10px 0 0;
-			border-radius: 10px 10px 0 0;
-			background:none repeat scroll 0 0 #F0F0F0;
-			border-bottom:1px solid #DDDDDD;
-			border-top:1px solid #FFFFFF;
-			color:#404040;
-			font-size:1em;
-			margin:0 -10px;
-			padding:5px 10px;
-			text-shadow:1px 1px 0 #FFFFFF;
-		}
-		.ww_opt_p {
-			padding: 3px;
-			width: 394px;
-			border: 1px solid #DFDFDF;
-			background-color: #FFFFFF;
-			-moz-border-radius: 5px;
-			-khtml-border-radius: 5px;
-			-webkit-border-radius: 5px;
-			border-radius: 5px;
-			text-align: center;
-		}
-		#theme_preview {
-			-moz-box-shadow: 2px 2px 3px #555555;
-			box-shadow: 2px 2px 3px #555555;
-			-webkit-box-shadow: 2px 2px 3px #555555;
-			-khtml-box-shadow: 2px 2px 3px #555555;
-		}
-	</style>
 	<div class="wrap" style="position: relative;">
 		<div class="icon32" id="icon-themes"><br></div>
 		<h2><?php _e('Wallow - Theme options','wallow'); ?></h2>
@@ -258,37 +234,37 @@ HERE;
 								<tr style="line-height: 1.8em;">
 									<td style="padding-left: 3px;"><?php _e('general looking','wallow'); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
-										<?php get_theme_multi_options('wallow_theme_genlook'); ?>
+										<?php wallow_get_theme_multi_options('wallow_theme_genlook'); ?>
 									</td>
 								</tr>
 								<tr style="line-height: 1.8em; background-color:#F5F5F5;">
 									<td style="padding-left: 3px;"><?php _e('sidebar','wallow'); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
-										<?php get_theme_multi_options('wallow_theme_sidebar'); ?>
+										<?php wallow_get_theme_multi_options('wallow_theme_sidebar'); ?>
 									</td>
 								</tr>
 								<tr style="line-height: 1.8em;">
 									<td style="padding-left: 3px;"><?php _e('pages menu','wallow'); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
-										<?php get_theme_multi_options('wallow_theme_pages'); ?>
+										<?php wallow_get_theme_multi_options('wallow_theme_pages'); ?>
 									</td>
 								</tr>
 								<tr style="line-height: 1.8em; background-color:#F5F5F5;">
 									<td style="padding-left: 3px;"><?php _e('pop-up menu','wallow'); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
-										<?php get_theme_multi_options('wallow_theme_popup'); ?>
+										<?php wallow_get_theme_multi_options('wallow_theme_popup'); ?>
 									</td>
 								</tr>
 								<tr style="line-height: 1.8em;">
 									<td style="padding-left: 3px;"><?php _e('quickbar','wallow'); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
-										<?php get_theme_multi_options('wallow_theme_quickbar'); ?>
+										<?php wallow_get_theme_multi_options('wallow_theme_quickbar'); ?>
 									</td>
 								</tr>
 								<tr style="line-height: 1.8em; background-color:#F5F5F5;">
 									<td style="padding-left: 3px;"><?php _e('avatar','wallow'); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
-										<?php get_theme_multi_options('wallow_theme_avatar'); ?>
+										<?php wallow_get_theme_multi_options('wallow_theme_avatar'); ?>
 									</td>
 								</tr>
 							</table>
@@ -333,7 +309,7 @@ HERE;
 }
 
 //multi styles options - return drop down list of set options
-function get_theme_multi_options($inputName){
+function wallow_get_theme_multi_options($inputName){
 	$wallow_options = get_option('wallow_options');
 	//check the current theme set
 	if(empty($wallow_options)){	//no style at all
@@ -358,58 +334,50 @@ HERE;
 //output preview
 function wallow_preview(){
 	$wallow_options = get_option('wallow_options');
-	$base_url = get_bloginfo('stylesheet_directory')."/images/preview_";
 	
 	//check the current theme set
 	if( empty($wallow_options) ) {	//no style at all set the default
 		$theme_set = "fire";
-		$genlook_url = $base_url.$theme_set.".png";
-		$pages_url = $base_url.$theme_set.".png";
-		$quickbar_url = $base_url.$theme_set.".png";
-		$sidebar_url = $base_url.$theme_set.".png";
-		$avatar_url = $base_url.$theme_set.".png";
-		$popup_url = $base_url.$theme_set.".png";
+		$genlook = $theme_set;
+		$pages = $theme_set;
+		$quickbar = $theme_set;
+		$sidebar = $theme_set;
+		$avatar = $theme_set;
+		$popup = $theme_set;
 	}else{
 		if( isset($wallow_options['wallow_theme_set']) && $wallow_options['wallow_theme_set'] == 1 ) {	//custom set check if options are set, otherwise leave blank (in output will result fire set)
 			if( isset($wallow_options['wallow_theme_genlook']) ) : $genlook = $wallow_options['wallow_theme_genlook']; else: $genlook = ''; endif;
-			$genlook_url = $base_url.$genlook.".png";
 			if( isset($wallow_options['wallow_theme_pages']) ) : $pages = $wallow_options['wallow_theme_pages']; else: $pages = ''; endif;
-			$pages_url = $base_url.$pages.".png";
 			if( isset($wallow_options['wallow_theme_quickbar']) ) : $quickbar = $wallow_options['wallow_theme_quickbar']; else: $quickbar = ''; endif;
-			$quickbar_url = $base_url.$quickbar.".png";
 			if( isset($wallow_options['wallow_theme_sidebar']) ) : $sidebar = $wallow_options['wallow_theme_sidebar']; else: $sidebar = ''; endif;
-			$sidebar_url = $base_url.$sidebar.".png";
 			if( isset($wallow_options['wallow_theme_avatar']) ) : $avatar = $wallow_options['wallow_theme_avatar']; else: $avatar = ''; endif;
-			$avatar_url = $base_url.$avatar.".png";
 			if (isset($wallow_options['wallow_theme_popup']) ) : $popup = $wallow_options['wallow_theme_popup']; else: $popup = ''; endif;
-			$popup_url = $base_url.$popup.".png";
 		}else{	//default theme set
 			$theme_set = $wallow_options['wallow_theme_set'];
-			$genlook_url = $base_url.$theme_set.".png";
-			$pages_url = $base_url.$theme_set.".png";
-			$quickbar_url = $base_url.$theme_set.".png";
-			$sidebar_url = $base_url.$theme_set.".png";
-			$avatar_url = $base_url.$theme_set.".png";
-			$popup_url = $base_url.$theme_set.".png";
+			$genlook = $theme_set;
+			$pages = $theme_set;
+			$quickbar = $theme_set;
+			$sidebar = $theme_set;
+			$avatar = $theme_set;
+			$popup = $theme_set;
 		}
 	}
-	
-	echo <<<HERE
-					<div id="theme_preview" style="background-color:transparent; height:240px; left:420px; position:absolute; top:0px; width:320px; border: 1px solid;">
-						<div id="tp_wallow_theme_genlook" style="background: transparent url('$genlook_url') left top no-repeat; height:240px; width:320px; position:absolute; left:0px; top:0px;"></div>
-						<div id="tp_wallow_theme_pages" style="background: url('$pages_url') left -240px no-repeat; height:20px; width:320px; position:absolute; left:0px; top:35px;"></div>
-						<div id="tp_wallow_theme_quickbar" style="background: url('$quickbar_url') left -260px no-repeat; height:20px; width:320px; position:absolute; left:0px; bottom:0px;"></div>
-						<div id="tp_wallow_theme_sidebar" style="background: url('$sidebar_url') right top no-repeat; height:215px; width:80px; position:absolute; right:0px; top:0px;"></div>
-						<div id="tp_wallow_theme_avatar" style="background: url('$avatar_url') right -255px no-repeat; height:25px; width:25px; position:absolute; left:5px; bottom:10px;"></div>
-						<div id="tp_wallow_theme_popup" style="background: url('$popup_url') right -218px no-repeat; height:30px; width:60px; position:absolute; left:20px; top:50px;"></div>
+	?>
+					<div id="theme_preview">
+						<div id="tp_wallow_theme_genlook" class="<?php echo $genlook ?>"></div>
+						<div id="tp_wallow_theme_pages" class="<?php echo $pages ?>"></div>
+						<div id="tp_wallow_theme_quickbar" class="<?php echo $quickbar ?>"></div>
+						<div id="tp_wallow_theme_sidebar" class="<?php echo $sidebar ?>"></div>
+						<div id="tp_wallow_theme_avatar" class="<?php echo $avatar ?>"></div>
+						<div id="tp_wallow_theme_popup" class="<?php echo $popup ?>"></div>
 					</div>
-HERE;
+	<?php
 }
 
 //output style
-function get_wallow_style() {
+function wallow_get_style() {
 	$wallow_options = get_option('wallow_options');
-	$stylePath = "@import url(".get_bloginfo('stylesheet_directory')."/css/";
+	$stylePath = "@import url(".get_template_directory_uri()."/css/";
 	if( isset($wallow_options['wallow_theme_set']) && $wallow_options['wallow_theme_set'] == 1 ){ // check if use set or custom combinations
 		if ( isset($wallow_options['wallow_theme_genlook']) ) : $genlook = $stylePath."style_".$wallow_options['wallow_theme_genlook'].".css );"; else: $genlook = $stylePath."style_fire.css );"; endif;
 		if ( isset($wallow_options['wallow_theme_sidebar']) ) : $sidebar = $stylePath."sidebar_".$wallow_options['wallow_theme_sidebar'].".css );"; else: $sidebar = $stylePath."sidebar_fire.css );"; endif;
@@ -440,23 +408,20 @@ function get_wallow_style() {
 	}
 }
 
-// if allcat=y redirect to allcat.php
+// show all categories list (redirect to allcat.php if allcat=y)
 function wallow_allcat () {
-	if(isset($_GET['allcat']) && (md5($_GET['allcat']) == '415290769594460e2e485922904f345d')) : 
-		include(TEMPLATEPATH . '/allcat.php');
+	global $wallow_is_allcat_page;
+	if( $wallow_is_allcat_page ) {
+		get_template_part( 'allcat' );
 		exit;
-	endif;
+	}
 }
 add_action('template_redirect', 'wallow_allcat');
 
-
-//add a fix for embed videos overlaing quickbar
-function wallow_content_replace(){
-	$content = get_the_content();
-	$content = apply_filters('the_content', $content);
-	$content = str_replace(']]>', ']]&gt;', $content);
-	$content = str_replace('<param name="allowscriptaccess" value="always">', '<param name="allowscriptaccess" value="always"><param name="wmode" value="transparent">', $content);
-	$content = str_replace('<embed ', '<embed wmode="transparent" ', $content);
-	echo $content;
+//add a fix for embed videos overlying quickbar
+function wallow_content_replace( $content ){
+	$content = str_replace( '<param name="allowscriptaccess" value="always">', '<param name="allowscriptaccess" value="always"><param name="wmode" value="transparent">', $content );
+	$content = str_replace( '<embed ', '<embed wmode="transparent" ', $content );
+	return $content;
 }
 ?>
