@@ -249,7 +249,7 @@ function wallow_options_style() {
 
 // sanitize options value
 function sanitize_wallow_options($input) {
-	$array = array( 'fire' , 'air' , 'water' , 'earth', 1, 'show', 'hide', 'active', 'inactive' );
+	$array = array( null, 1, 'fire' , 'air' , 'water' , 'earth', 'show', 'hide', 'active', 'inactive' );
 	if ( array_search( $input['wallow_theme_set'], $array ) == 0 ) {
 		$input['wallow_theme_set'] = 'fire';
 	}
@@ -262,19 +262,19 @@ function sanitize_wallow_options($input) {
 	if ( isset( $input['wallow_theme_genlook'] ) && array_search( $input['wallow_theme_genlook'], $array ) == 0 ) {
 		$input['wallow_theme_genlook'] = null;
 	}
-	if ( isset( $input['wallow_theme_sidebar'] ) && array_search( $input['wallow_theme_genlook'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_sidebar'] ) && array_search( $input['wallow_theme_sidebar'], $array ) == 0 ) {
 		$input['wallow_theme_sidebar'] = null;
 	}
-	if ( isset( $input['wallow_theme_pages'] ) && array_search( $input['wallow_theme_genlook'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_pages'] ) && array_search( $input['wallow_theme_pages'], $array ) == 0 ) {
 		$input['wallow_theme_pages'] = null;
 	}
-	if ( isset( $input['wallow_theme_popup'] ) && array_search( $input['wallow_theme_genlook'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_popup'] ) && array_search( $input['wallow_theme_popup'], $array ) == 0 ) {
 		$input['wallow_theme_popup'] = null;
 	}
-	if ( isset( $input['wallow_theme_quickbar'] ) && array_search( $input['wallow_theme_genlook'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_quickbar'] ) && array_search( $input['wallow_theme_quickbar'], $array ) == 0 ) {
 		$input['wallow_theme_quickbar'] = null;
 	}
-	if ( isset( $input['wallow_theme_avatar'] ) && array_search( $input['wallow_theme_genlook'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_avatar'] ) && array_search( $input['wallow_theme_avatar'], $array ) == 0 ) {
 		$input['wallow_theme_avatar'] = null;
 	}
 	
@@ -310,7 +310,7 @@ function wallow_edit_options() {
 					<div id="stylesubdiv" style="position:relative; min-height:245px;">
 						<p class="ww_opt_p"><?php
 						// use a default style?
-						$wallow_use_theme_set = array('fire' => 'fire' , 'air' => 'air' , 'water' => 'water' , 'earth' => 'earth' , '1' => __('custom...','wallow'));
+						$wallow_use_theme_set = array( 'fire' => 'fire' , 'air' => 'air' , 'water' => 'water' , 'earth' => 'earth' , '1' => __( 'custom...', 'wallow' ) );
 						foreach ($wallow_use_theme_set as $wallow_use_theme_set_value => $wallow_use_theme_set_option) {
 							$wallow_use_theme_set_selected = ($wallow_use_theme_set_value == $wallow_options['wallow_theme_set']) ? ' checked="checked"' : '';
 							echo <<<HERE
@@ -444,7 +444,7 @@ function wallow_get_theme_multi_options( $inputName ){
 		}
 	}
 	
-	$array = array('fire' => 'fire' , 'air' => 'air' , 'water' => 'water' , 'earth' => 'earth');
+	$array = array( 'fire' => 'fire' , 'air' => 'air' , 'water' => 'water' , 'earth' => 'earth' );
 	foreach ( $array as $array_value => $array_option ) {
 		$array_selected = ( $array_value == $current ) ? ' checked="checked"' : '';
 		echo <<<HERE
@@ -459,7 +459,7 @@ function wallow_preview(){
 	
 	//check the current theme set
 	if( empty($wallow_options) ) {	//no style at all set the default
-		$theme_set = "fire";
+		$theme_set = 'fire';
 		$genlook = $theme_set;
 		$pages = $theme_set;
 		$quickbar = $theme_set;
