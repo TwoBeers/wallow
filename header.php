@@ -109,7 +109,7 @@
 		</div>
 		<?php dynamic_sidebar( 'w-quickbar' ); ?>
 	</div>
-	<div id="qb_right"><?php printf( __( 'Today is %1$s', 'wallow' ), date_i18n( 'l' ) ); ?><br /><?php echo date_i18n( __( 'F j, Y' ) ); ?></div>
+	<div id="qb_right"><?php printf( __( 'Today is %1$s' , 'wallow' ), date_i18n( 'l' ) ); ?><br /><?php echo date_i18n( get_option( 'date_format' ) ); ?></div>
 
 </div>
 <!-- end quickbar -->
