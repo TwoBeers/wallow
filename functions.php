@@ -19,7 +19,7 @@ add_action('template_redirect', 'wallow_allcat');
 
 // dummy var
 function wallow_get_coa() {
-	$wallow_coa = __('ciao','wallow');
+	$wallow_coa = __( 'ciao', 'wallow' );
 	return $wallow_coa;
 }
 
@@ -292,7 +292,7 @@ function wallow_edit_options() {
 		$wallow_options['wallow_theme_set'] = 'fire';
 		$wallow_options['wallow_jsani'] = 'active';
 		$wallow_options['wallow_qbar'] = 'show';
-		add_option( 'wallow_options', $wallow_options, '', 'yes' );
+		update_option( 'wallow_options', $wallow_options );
 	}
 	
 	if ( isset( $_REQUEST['updated'] ) ) echo '<div id="message" class="updated"><p><strong>'.__( 'Options saved.', 'wallow' ).'</strong></p></div>';
@@ -305,7 +305,7 @@ function wallow_edit_options() {
 				<div class="stylediv">
 					<h3><?php _e( 'Appearance', 'wallow' ); ?></h3>
 					<p><?php _e( 'Select one of the ready-made styles or mix them to build your custom style', 'wallow' ); ?><br />
-					<small><?php _e('Default style = fire','wallow'); ?></small></p>
+					<small><?php _e( 'Default style = fire', 'wallow' ); ?></small></p>
 					<?php settings_fields( 'wallow_theme_options' ); ?>
 					<div id="stylesubdiv" style="position:relative; min-height:245px;">
 						<p class="ww_opt_p"><?php
@@ -373,7 +373,7 @@ HERE;
 				
 				
 				<div class="stylediv">
-					<h3><?php _e('Features','wallow'); ?></h3>
+					<h3><?php _e( 'Features', 'wallow' ); ?></h3>
 					<table style="border-collapse: collapse; width: 100%;border-bottom: 2px groove #fff;">
 						<tr style="border-bottom: 2px groove #fff;">
 							<th><?php _e( 'name' , 'wallow' ); ?></th>
@@ -385,28 +385,28 @@ HERE;
 							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php _e('Quickbar','wallow'); ?></td>
 							<td style="width: 200px;border-right:1px solid #ccc;text-align:center;">
 								<?php
-									$wallow_qbar = array('show' => __('show','wallow') , 'hide' => __('hide','wallow'));
+									$wallow_qbar = array( 'show' => __( 'show', 'wallow' ) , 'hide' => __( 'hide', 'wallow' ) );
 									foreach ($wallow_qbar as $wallow_qbar_value => $wallow_qbar_option) {
-										$wallow_qbar_selected = ($wallow_qbar_value == $wallow_options['wallow_qbar']) ? ' checked="checked"' : '';
+										$wallow_qbar_selected = ( $wallow_qbar_value == $wallow_options['wallow_qbar'] ) ? ' checked="checked"' : '';
 										echo '<input type="radio" name="wallow_options[wallow_qbar]" title="'. $wallow_qbar_option . '" value="' . $wallow_qbar_value . '" '. $wallow_qbar_selected . ' >' . $wallow_qbar_option . '&nbsp;&nbsp;';
 									}
 								?>
 							</td>
-							<td style="font-style:italic;border-right:1px solid #ccc;"><?php _e('Hide/Show the fixed bar on bottom of page','wallow'); ?></td>
+							<td style="font-style:italic;border-right:1px solid #ccc;"><?php _e( 'Hide/Show the fixed bar on bottom of page', 'wallow' ); ?></td>
 							<td><?php ?></td>
 						</tr>
 						<tr>
-							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php _e('Pop-up Menu Animations','wallow'); ?></td>
+							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php _e( 'Pop-up Menu Animations', 'wallow' ); ?></td>
 							<td style="width: 200px;border-right:1px solid #ccc;text-align:center;">
 								<?php
-									$wallow_jsani = array('active' => __('active','wallow') , 'inactive' => __('inactive','wallow'));
+									$wallow_jsani = array('active' => __( 'active', 'wallow' ) , 'inactive' => __( 'inactive', 'wallow' ) );
 									foreach ($wallow_jsani as $wallow_jsani_value => $wallow_jsani_option) {
-										$wallow_jsani_selected = ($wallow_jsani_value == $wallow_options['wallow_jsani']) ? ' checked="checked"' : '';
+										$wallow_jsani_selected = ( $wallow_jsani_value == $wallow_options['wallow_jsani'] ) ? ' checked="checked"' : '';
 										echo '<input type="radio" name="wallow_options[wallow_jsani]" title="'. $wallow_jsani_option . '" value="'. $wallow_jsani_value . '" '. $wallow_jsani_selected . ' >'. $wallow_jsani_option . '&nbsp;&nbsp;';
 									}
 								?>
 							</td>
-							<td style="font-style:italic;border-right:1px solid #ccc;"><?php _e('Try disable animations if you encountered problems with javascript','wallow'); ?></td>
+							<td style="font-style:italic;border-right:1px solid #ccc;"><?php _e( 'Try disable animations if you encountered problems with javascript', 'wallow' ); ?></td>
 							<td><?php ?></td>
 						</tr>
 					</table>
