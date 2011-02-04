@@ -1,15 +1,15 @@
 <!-- begin comments -->
 <?php
-if ( isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']) ) :
-	die ('Please do not load this page directly. Thanks!');
+if ( isset($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename( $_SERVER['SCRIPT_FILENAME'] ) ) :
+	die ( 'Please do not load this page directly. Thanks!' );
 endif;
 		
 if ( post_password_required() ) { ?>
-	<p><?php _e('Enter your password to view comments.'); ?></p>
+	<p><?php _e( 'Enter your password to view comments.', 'wallow' ); ?></p>
 <?php return; } ?>
 
 	<?php if ( have_comments() ) { ?>
-		<h3 id="comments"><?php comments_number(__('No Comments'), __('1 Comment'), __('% Comments')); ?> &raquo;</h3>
+		<h3 id="comments"><?php comments_number( __( 'No Comments', 'wallow' ), __( '1 Comment', 'wallow' ), __( '% Comments', 'wallow' ) ); ?> &raquo;</h3>
 		<ol id="commentlist">
 			<?php wp_list_comments(); ?>
 		</ol>
@@ -25,9 +25,9 @@ if ( post_password_required() ) { ?>
 <?php if ( comments_open() ) { ?>
 	<?php 
 		$custom_args = array(
-			'comment_notes_after'  => '<p class="form-allowed-tags" style="color: #555555; text-align: center;"><small>' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s' ), allowed_tags() ) . '</small></p>',
-			'label_submit'         => __( 'Say It!' ),
-			'logged_in_as'         => '<p class="logged-in-as">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>.' ), admin_url( 'profile.php' ), $user_identity ) . '</p>',
+			'comment_notes_after'  => '<p class="form-allowed-tags" style="color: #555555; text-align: center;"><small>' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s', 'wallow' ), allowed_tags() ) . '</small></p>',
+			'label_submit'         => __( 'Say It!', 'wallow' ),
+			'logged_in_as'         => '<p class="logged-in-as">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>.', 'wallow' ), admin_url( 'profile.php' ), $user_identity ) . '</p>',
 		);
 		comment_form($custom_args);
 	?>
