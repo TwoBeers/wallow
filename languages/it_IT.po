@@ -208,3 +208,6 @@ msgstr "Buon divertimento!"
 msgid "Appearance"
 msgstr "Aspetto"
 
+msgid "ciao"
+msgstr "ciao tradotto"
+

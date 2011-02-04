@@ -167,12 +167,9 @@ legend {
 }
 
 #avatar_cont {
-	height:100px;
-	width:100px;
-}
-
-#quickbar .avatar {
-	padding:25px;
+	height: 50px;
+	padding: 25px;
+	width: 50px;
 }
 
 /* <---- Quickbar classes */
@@ -209,8 +206,6 @@ legend {
 }
 
 .sticky {
-	background-color:#effaff;
-	border:1px solid #87CEFA;
 	padding:5px;
 }
 

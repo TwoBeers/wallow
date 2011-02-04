@@ -1,9 +1,7 @@
 <?php
-load_theme_textdomain('wallow', TEMPLATEPATH . '/languages' );
-
-// Register Features Support
-add_theme_support( 'automatic-feed-links' );
-add_theme_support( 'post-thumbnails' ); // Thumbnails support
+/**** begin theme hooks ****/
+// Tell WordPress to run wallow_setup() when the 'after_setup_theme' hook is run.
+add_action( 'after_setup_theme', 'wallow_setup' );
 // Register sidebars by running wallow_widgets_init() on the widgets_init hook
 add_action( 'widgets_init', 'wallow_widgets_init' );
 // Add js animations
@@ -12,13 +10,75 @@ add_action( 'template_redirect', 'wallow_scripts' );
 add_filter( 'the_content', 'wallow_content_replace' );
 // Add stylesheets
 add_action( 'wp_print_styles', 'wallow_stylesheet' );
+//add theme admin menu
+add_action('admin_menu', 'wallow_add_theme_option_page');
+add_action('admin_init', 'wallow_theme_init');
+// allcat page redirect
+add_action('template_redirect', 'wallow_allcat');
+/**** end theme hooks ****/
 
-// Sets the content_width (with a 1024x768 window size)
+
+// dummy var
+function wallow_get_coa() {
+	$wallow_coa = __('ciao','wallow');
+	return $wallow_coa;
+}
+
+// Set the content_width (with a 1024x768 window size)
 if ( ! isset( $content_width ) )
 	$content_width = 640;
 
-// Theme uses wp_nav_menu() in one location
-register_nav_menus( array('primary' => __( 'Main Navigation Menu', 'wallow' ),	) );
+if ( !function_exists( 'wallow_setup' ) ) {
+	function wallow_setup() {
+		
+		// Register localization support
+		load_theme_textdomain('wallow', TEMPLATEPATH . '/languages' );
+		// Theme uses wp_nav_menu() in one location
+		register_nav_menus( array( 'primary' => __( 'Main Navigation Menu', 'wallow' )	) );
+		// Register Features Support
+		add_theme_support( 'automatic-feed-links' );
+		// Thumbnails support
+		add_theme_support( 'post-thumbnails' );
+			
+		// Add a way for the custom background to be styled in the admin panel that controls
+		add_custom_background( 'wallow_custom_bg' , '' , '' );
+	}
+}
+
+// custom background style - gets included in the site header
+function wallow_custom_bg() {
+	$background = get_background_image();
+	$color = get_background_color();
+	if ( ! $background && ! $color ) return;
+
+	$style = $color ? "background-color: #$color;" : '';
+
+	if ( $background ) {
+		$image = " background-image: url('$background');";
+
+		$repeat = get_theme_mod( 'background_repeat', 'repeat' );
+		if ( ! in_array( $repeat, array( 'no-repeat', 'repeat-x', 'repeat-y', 'repeat' ) ) ) $repeat = 'repeat';
+		$repeat = " background-repeat: $repeat;";
+
+		$position = get_theme_mod( 'background_position_x', 'left' );
+		if ( ! in_array( $position, array( 'center', 'right', 'left' ) ) ) $position = 'left';
+		$position = " background-position: top $position;";
+
+		$attachment = get_theme_mod( 'background_attachment', 'scroll' );
+		if ( ! in_array( $attachment, array( 'fixed', 'scroll' ) ) ) $attachment = 'scroll';
+		$attachment = " background-attachment: $attachment;";
+
+		$style .= $image . $repeat . $position . $attachment;
+	} else {
+		$style .= ' background-image: url("");';
+	}
+	?>
+	<style type="text/css"> 
+		body { <?php echo trim( $style ); ?> }
+	</style>
+	<?php
+}
+
 
 function wallow_widgets_init() {
 	// Registers the right sidebar
@@ -48,6 +108,15 @@ function wallow_widgets_init() {
 $wallow_is_allcat_page = false;
 if( isset( $_GET['allcat'] ) && ( md5( $_GET['allcat'] ) == '415290769594460e2e485922904f345d' ) ) {
 	$wallow_is_allcat_page = true;
+}
+
+// show all categories list (redirect to allcat.php if allcat=y)
+function wallow_allcat () {
+	global $wallow_is_allcat_page;
+	if( $wallow_is_allcat_page ) {
+		get_template_part( 'allcat' );
+		exit;
+	}
 }
 
 // add scripts
@@ -159,10 +228,6 @@ function wallow_pages_menu() {
 	echo '</ul>';
 }
 
-//add theme admin menu
-add_action('admin_menu', 'wallow_add_theme_option_page');
-add_action('admin_init', 'wallow_theme_init');
-
 //Init theme options
 function wallow_theme_init() {
 	register_setting( 'wallow_theme_options', 'wallow_options');
@@ -180,11 +245,15 @@ function wallow_options_script() {
 }
 function wallow_options_style() {
 	//add custom stylesheet
-	echo '<link rel="stylesheet" type="text/css" href="' . get_template_directory_uri() . '/css/theme-options.css" />' . "\n";
+	wp_enqueue_style( 'wallow_options-style', get_template_directory_uri() . '/css/theme-options.css', false, '0.45', 'screen' );
 }
 
 //manage theme options
 function wallow_edit_options() {
+
+	// get dummy var
+	$wallow_coa = wallow_get_coa();
+	
 	$wallow_options = get_option('wallow_options');
 	if(empty($wallow_options)) { //if options are empty, sets the default values
 		$wallow_options['wallow_theme_set'] = 'fire';
@@ -272,32 +341,55 @@ HERE;
 						<?php wallow_preview(); ?>
 					</div>
 				</div>
+				
+				
 				<div class="stylediv">
-					<h3><?php _e('Quickbar','wallow'); ?></h3>
-					<p><?php _e('Hide/Show the fixed bar on bottom of page','wallow'); ?></p>
-					<p class="ww_opt_p"><?php
-					$wallow_qbar = array('show' => __('show','wallow') , 'hide' => __('hide','wallow'));
-					foreach ($wallow_qbar as $wallow_qbar_value => $wallow_qbar_option) {
-						$wallow_qbar_selected = ($wallow_qbar_value == $wallow_options['wallow_qbar']) ? ' checked="checked"' : '';
-						echo <<<HERE
-					<input type="radio" name="wallow_options[wallow_qbar]" title="$wallow_qbar_option" value="$wallow_qbar_value" $wallow_qbar_selected >$wallow_qbar_option&nbsp;&nbsp;
-HERE;
-						}
-					?></p>
+					<h3><?php _e('Features','wallow'); ?></h3>
+					<table style="border-collapse: collapse; width: 100%;border-bottom: 2px groove #fff;">
+						<tr style="border-bottom: 2px groove #fff;">
+							<th><?php _e( 'name' , 'wallow' ); ?></th>
+							<th><?php _e( 'status' , 'wallow' ); ?></th>
+							<th><?php _e( 'description' , 'wallow' ); ?></th>
+							<th><?php _e( 'require' , 'wallow' ); ?></th>
+						</tr>
+						<tr>
+							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php _e('Quickbar','wallow'); ?></td>
+							<td style="width: 200px;border-right:1px solid #ccc;text-align:center;">
+								<?php
+									$wallow_qbar = array('show' => __('show','wallow') , 'hide' => __('hide','wallow'));
+									foreach ($wallow_qbar as $wallow_qbar_value => $wallow_qbar_option) {
+										$wallow_qbar_selected = ($wallow_qbar_value == $wallow_options['wallow_qbar']) ? ' checked="checked"' : '';
+										echo '<input type="radio" name="wallow_options[wallow_qbar]" title="'. $wallow_qbar_option . '" value="' . $wallow_qbar_value . '" '. $wallow_qbar_selected . ' >' . $wallow_qbar_option . '&nbsp;&nbsp;';
+									}
+								?>
+							</td>
+							<td style="font-style:italic;border-right:1px solid #ccc;"><?php _e('Hide/Show the fixed bar on bottom of page','wallow'); ?></td>
+							<td><?php ?></td>
+						</tr>
+						<tr>
+							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php _e('Pop-up Menu Animations','wallow'); ?></td>
+							<td style="width: 200px;border-right:1px solid #ccc;text-align:center;">
+								<?php
+									$wallow_jsani = array('active' => __('active','wallow') , 'inactive' => __('inactive','wallow'));
+									foreach ($wallow_jsani as $wallow_jsani_value => $wallow_jsani_option) {
+										$wallow_jsani_selected = ($wallow_jsani_value == $wallow_options['wallow_jsani']) ? ' checked="checked"' : '';
+										echo '<input type="radio" name="wallow_options[wallow_jsani]" title="'. $wallow_jsani_option . '" value="'. $wallow_jsani_value . '" '. $wallow_jsani_selected . ' >'. $wallow_jsani_option . '&nbsp;&nbsp;';
+									}
+								?>
+							</td>
+							<td style="font-style:italic;border-right:1px solid #ccc;"><?php _e('Try disable animations if you encountered problems with javascript','wallow'); ?></td>
+							<td><?php ?></td>
+						</tr>
+					</table>
 				</div>
-				<div class="stylediv">
-					<h3><?php _e('Pop-up Menu Animations','wallow'); ?></h3>
-					<p><?php _e('Try disable animations if you encountered problems with javascript','wallow'); ?></p>
-					<p class="ww_opt_p"><?php
-					$wallow_jsani = array('active' => __('active','wallow') , 'inactive' => __('inactive','wallow'));
-					foreach ($wallow_jsani as $wallow_jsani_value => $wallow_jsani_option) {
-						$wallow_jsani_selected = ($wallow_jsani_value == $wallow_options['wallow_jsani']) ? ' checked="checked"' : '';
-						echo <<<HERE
-					<input type="radio" name="wallow_options[wallow_jsani]" title="$wallow_jsani_option" value="$wallow_jsani_value" $wallow_jsani_selected >$wallow_jsani_option&nbsp;&nbsp;
-HERE;
-						}
-					?></p>
+				<div class="stylediv" style="clear: both; text-align: center; border: 1px solid #ccc;">
+					<small>
+						<?php _e( 'If you like/dislike this theme, or if you encounter any issues using it, please let us know it.', 'wallow' ); ?><br />
+						<a href="<?php echo esc_url( 'http://www.twobeers.net/annunci/wallow' ); ?>" title="wallow theme" target="_blank"><?php _e( 'Leave a feedback', 'wallow' ); ?></a>
+					</small>
 				</div>
+				
+				
 				<p style="float:left; clear: both;">
 					<input class="button" type="submit" name="Submit" value="<?php _e('Update Options','wallow'); ?>" />
 					<a style="font-size: 10px; text-decoration: none; margin-left: 10px; cursor: pointer;" href="themes.php?page=functions" target="_self"><?php _e('Undo Changes','wallow'); ?></a>
@@ -408,20 +500,11 @@ function wallow_get_style() {
 	}
 }
 
-// show all categories list (redirect to allcat.php if allcat=y)
-function wallow_allcat () {
-	global $wallow_is_allcat_page;
-	if( $wallow_is_allcat_page ) {
-		get_template_part( 'allcat' );
-		exit;
-	}
-}
-add_action('template_redirect', 'wallow_allcat');
-
 //add a fix for embed videos overlying quickbar
 function wallow_content_replace( $content ){
 	$content = str_replace( '<param name="allowscriptaccess" value="always">', '<param name="allowscriptaccess" value="always"><param name="wmode" value="transparent">', $content );
 	$content = str_replace( '<embed ', '<embed wmode="transparent" ', $content );
 	return $content;
 }
+
 ?>
