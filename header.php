@@ -15,9 +15,6 @@
 		?>
 	</title>
 
-	<style type="text/css" media="screen">
-		<?php wallow_get_style(); ?>
-	</style>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri().'/print.css' ?>" type="text/css" media="print"  />
 	
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
@@ -49,63 +46,6 @@
 					echo get_avatar( 'dummyemail', 50, $default = get_template_directory_uri() . '/images/user.png','user-avatar' );
 				}
 			?>
-		</div>
-
-		<div class="footer_wig">
-			<h4><?php _e( 'Welcome', 'wallow' ); ?> <?php if ( is_user_logged_in() ) : echo $current_user->display_name; endif; ?> &raquo;</h4>
-			<div class="fw_pul_cont">
-				<div class="fw_pul">
-					<ul>
-						<?php if ( ! is_user_logged_in() || current_user_can( 'read' ) ) { wp_register(); }?>
-						<?php if ( is_user_logged_in() ) { ?>
-							<?php if ( current_user_can( 'read' ) ) { ?>
-								<li><a href="<?php echo esc_url( admin_url( 'profile.php' ) ); ?>"><?php _e( 'Your Profile', 'wallow' ); ?></a></li>
-								<?php if ( current_user_can( 'publish_posts' ) ) { ?>
-									<li><a title="<?php _e( 'Add New Post', 'wallow' ); ?>" href="<?php echo esc_url( admin_url( 'post-new.php' ) ); ?>"><?php _e( 'Add New Post', 'wallow' ); ?></a></li>
-								<?php } ?>
-								<?php if ( current_user_can( 'moderate_comments' ) ) { ?>
-									<li><a title="<?php _e( 'Comments', 'wallow' ); ?>" href="<?php echo esc_url( admin_url( 'edit-comments.php' ) ); ?>"><?php _e( 'Comments', 'wallow' ); ?></a></li>
-								<?php } ?>
-							<?php } ?>
-						<?php } ?>
-						<li><?php wp_loginout(); ?></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="footer_wig">
-			<h4><?php _e( 'Categories', 'wallow' ); ?> &raquo;</h4>
-			<div class="fw_pul_cont">
-				<div class="fw_pul">
-					<ul>
-						<?php wp_list_categories( 'number=10&title_li=&orderby=count&order=DESC&hierarchical=0' ); ?>
-						<li style="text-align: right;margin-top:12px;"><a title="<?php _e( 'View all categories', 'wallow'); ?>" href="<?php  echo home_url(); ?>/?allcat=y"><?php _e( 'More...' ); ?></a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="footer_wig">
-			<h4><?php _e( 'Recent Comments', 'wallow' ); ?> &raquo;</h4>
-			<div class="fw_pul_cont">
-				<div class="fw_pul">
-					<ul>
-						<?php wallow_get_recentcomments(); ?>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="footer_wig">
-			<h4><?php _e( 'Recent Posts', 'wallow' ); ?> &raquo;</h4>
-			<div class="fw_pul_cont">
-				<div class="fw_pul">
-					<ul>
-						<?php wallow_get_recententries() ?> 
-					</ul>
-				</div>
-			</div>
 		</div>
 		<?php dynamic_sidebar( 'w-quickbar' ); ?>
 	</div>

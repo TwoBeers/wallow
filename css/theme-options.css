@@ -23,9 +23,49 @@
 	padding:5px 10px;
 	text-shadow:1px 1px 0 #FFFFFF;
 }
+#stylesubdiv {
+	position: relative;
+}
+#wallow_options_select {
+	-moz-border-radius: 6px;
+	-khtml-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+	background-color: #FFFFFF; 
+	border: 1px solid #DFDFDF; 
+}
+#wallow_options_select p {
+	font-weight:bold; 
+	text-shadow:0 1px 0 #FFFFFF; 
+	margin: 0; 
+	color: #464646; 
+	padding: 0 5px; 
+	line-height: 29px; 
+	background: url('images/gray-grad.png') repeat-x scroll left top #DFDFDF; 
+	-moz-border-radius: 6px 6px 0 0;
+	-khtml-border-radius: 6px 6px 0 0;
+	-webkit-border-radius: 6px 6px 0 0;
+	border-radius: 6px 6px 0 0;
+}
+#wallow_options_select small {
+	font-style:italic; 
+	line-height: 1.8em; 
+	color: #777777; 
+	padding-left: 5px;
+}
+#wallow_options_select > table {
+	border-collapse: collapse; 
+	margin-bottom: 14px; 
+	margin-top: 0; 
+	width: 100%; 
+	border-top:1px solid #ECECEC; 
+	border-bottom:1px solid #ECECEC;
+}
+#wallow_options_select tr {
+	line-height: 1.8em;
+}
 .ww_opt_p {
 	padding: 3px;
-	width: 394px;
 	border: 1px solid #DFDFDF;
 	background-color: #FFFFFF;
 	-moz-border-radius: 5px;
@@ -37,15 +77,14 @@
 #theme_preview {
 	background:transparent;
 	height:240px;
-	left:420px;
-	position:absolute;
-	top:0px;
+	position:relative;
 	width:320px;
 	border: 1px solid;
 	-moz-box-shadow: 2px 2px 3px #555555;
 	box-shadow: 2px 2px 3px #555555;
 	-webkit-box-shadow: 2px 2px 3px #555555;
 	-khtml-box-shadow: 2px 2px 3px #555555;
+	margin: 0 auto;
 }
 #tp_wallow_theme_genlook {
 	background-position: left top;

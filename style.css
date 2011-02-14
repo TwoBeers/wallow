@@ -435,6 +435,9 @@ ul.children {
 	overflow: auto;
 }
 
+.wlw_widget_user_quick_links .avatar {
+	vertical-align: top;
+}
 /* <---- Sidebar classes */
 
 

@@ -2,7 +2,8 @@
 /**** begin theme hooks ****/
 // Tell WordPress to run wallow_setup() when the 'after_setup_theme' hook is run.
 add_action( 'after_setup_theme', 'wallow_setup' );
-// Register sidebars by running wallow_widgets_init() on the widgets_init hookadd_action( 'widgets_init', 'wallow_widgets_init' );
+// Register sidebars by running wallow_widget_area_init() on the widgets_init hook
+add_action( 'widgets_init', 'wallow_widget_area_init' );
 // Add js animations
 add_action( 'template_redirect', 'wallow_scripts' );
 // Custom filters
@@ -16,11 +17,22 @@ add_action('admin_init', 'wallow_theme_init');
 add_action('template_redirect', 'wallow_allcat');
 /**** end theme hooks ****/
 
-
-// dummy var
+//complete options array, with defaults values, description, infos and required option
 function wallow_get_coa() {
-	$wallow_coa = __( 'ciao', 'wallow' );
+	$wallow_coa = array(
+		'wallow_qbar' => array( 'default'=>1,'description'=>__( 'Quickbar','wallow' ),'info'=>__('Hide/Show the fixed bar on bottom of page [default = enabled]','wallow' ),'req'=>'' ),
+		'wallow_qbar_grav' => array( 'default'=>1,'description'=>__( '-- gravatar','wallow' ),'info'=>__( '[default = enabled]','wallow' ),'req'=>'wallow_qbar' ),
+		'wallow_qbar_date' => array( 'default'=>1,'description'=>__( '-- current date','wallow' ),'info'=>__( '[default = enabled]','wallow' ),'req'=>'wallow_qbar' ),
+		'wallow_jsani' => array( 'default'=>1,'description'=>__( 'Javascript animations','wallow' ),'info'=>__( 'try disable animations if you encountered problems with javascript [default = enabled]','wallow' ),'req'=>'' ),
+		'wallow_tbcred' => array( 'default'=>1,'description'=>__( 'Theme credits','wallow' ),'info'=>__( "please, don't hide theme credits [default = enabled]",'wallow' ),'req'=>'' )
+	);
 	return $wallow_coa;
+}
+
+// get the theme types
+function wallow_get_types() {
+	$wallow_types = array( 'fire' => __('fire','wallow') , 'air' => __('air','wallow') , 'water' => __('water','wallow') , 'earth' => __('earth','wallow'), 'topo' => __('topo morto','wallow') , 'zinne' => __('zinne','wallow') , 'papaja' => __('papaja','wallow') , 'qualcosa' => __('qualcosa','wallow') );
+	return $wallow_types;
 }
 
 // Set the content_width (with a 1024x768 window size)
@@ -79,7 +91,8 @@ function wallow_custom_bg() {
 }
 
 
-function wallow_widgets_init() {
+function wallow_widget_area_init() {
+	$wallow_options = get_option( 'wallow_options' );
 	// Registers the right sidebar
 	register_sidebar( array(
 		'name'          => 'Sidepad',
@@ -90,17 +103,19 @@ function wallow_widgets_init() {
 		'before_title' 	=> '',
 		'after_title' 	=> '',
 	));
-	// Register the Quickbar as sidebar
-	register_sidebar( array(
-		'name'          =>	'Quickbar',
-		'id'            =>	'w-quickbar',
-		'description'   =>	__( 'drag here your favorite widgets', 'wallow' ),
-		'before_widget'	=>	'<div class="footer_wig">',
-		'after_widget'	=>	'</div></div></div>',
-		'before_title'	=>	'<h4>',
-		'after_title'	=>	' &raquo;</h4><div class="fw_pul_cont"><div class="fw_pul">',
-	));
-
+	
+	if ( $wallow_options['wallow_qbar'] == 'show' || !isset( $wallow_options['wallow_qbar'] ) ) { 
+		// Register the Quickbar as sidebar
+		register_sidebar( array(
+			'name'          =>	'Quickbar',
+			'id'            =>	'w-quickbar',
+			'description'   =>	__( 'drag here your favorite widgets', 'wallow' ),
+			'before_widget'	=>	'<div class="footer_wig">',
+			'after_widget'	=>	'</div></div></div>',
+			'before_title'	=>	'<h4>',
+			'after_title'	=>	' &raquo;</h4><div class="fw_pul_cont"><div class="fw_pul">',
+		));
+	}
 }
 
 // check if is "all category" page
@@ -133,61 +148,9 @@ function wallow_scripts(){
 function wallow_stylesheet(){
 	//normal view
 	wp_enqueue_style( 'wallow_general-style', get_stylesheet_uri(), false, '0.45', 'screen' );
+	wallow_get_style();
 	//print style
 	wp_enqueue_style( 'wallow_print-style', get_template_directory_uri() . '/css/print.css', false, '0.45', 'print' );
-}
-
-
-// Get Recent Comments
-function wallow_get_recentcomments() {
-	$recentcomments = get_comments( 'number=12&status=approve' );
-	
-	if( $recentcomments ) {
-		foreach ( $recentcomments as $comment ) {
-			$post_id = $comment->comment_post_ID;
-			$post_title = get_the_title( $post_id );
-			$comment_author = $comment->comment_author;
-			$comment_date = "";	// "<span class=\"intr\">".mysql2date( 'M dS H:i', $post->comment_date_gmt )."</span>&nbsp;"; //uncomment to use
-			$comment_id = $comment->comment_ID;
-			if ( mb_strlen( $post_title ) > 25 ) {
-				$post_title_short = mb_substr( $post_title,0,25 ) . '&hellip;';
-			} else {
-				$post_title_short = $post_title;
-			}
-			if ( $post_title_short == "" ) {
-				$post_title_short = __( '(no title)', 'wallow' );
-			}
-			echo "<li>$comment_date$comment_author " . __( 'about', 'wallow' ) . " <a href=\"" . get_permalink( $post_id ) . "#comment-$comment_id\" title=\"$post_title\">$post_title_short</a></li>\n";
-		}
-	} else {
-		echo '<li>'.__( 'N/A', 'wallow' ).'</li>';
-	}
-}
-
-// Get Recent Entries
-function wallow_get_recententries( $mode = '' ) {
-	$recententries = get_posts( 'numberposts=12' );
-	
-	if( $recententries ) {
-		foreach ( $recententries as $post ) {
-			setup_postdata( $post );
-			$post_author = get_the_author();
-			$post_id = $post->ID;
-			$post_title = $post->post_title;
-			$post_date = ""; //"<span class=\"intr\">".mysql2date( 'M dS', esc_html( $post->post_date ) )."</span>&nbsp;"; //uncomment to use
-			if ( mb_strlen( $post_title ) > 25 ) {
-				$post_title_short = mb_substr( $post_title,0,25 ) . '&hellip;';
-			} else {
-				$post_title_short = $post_title;
-			}
-			if ($post_title_short == "") {
-				$post_title_short = __( '(no title)', 'wallow' );
-			}
-			echo "<li>$post_date<a href=\"" . get_permalink( $post_id ) . "\" title=\"$post_title\">$post_title_short</a> " . __( 'by', 'wallow' ) . " $post_author</li>\n";
-		}
-	} else {
-		echo '<li>' . __( 'N/A', 'wallow' ) . '</li>';
-	}
 }
 
 // page hierarchy
@@ -297,7 +260,7 @@ function wallow_edit_options() {
 	
 	if ( isset( $_REQUEST['updated'] ) ) echo '<div id="message" class="updated"><p><strong>'.__( 'Options saved.', 'wallow' ).'</strong></p></div>';
 	?>
-	<div class="wrap" style="position: relative;">
+	<div class="wrap">
 		<div class="icon32" id="icon-themes"><br></div>
 		<h2><?php _e( 'Wallow - Theme options', 'wallow' ); ?></h2>
 		<div>
@@ -307,10 +270,12 @@ function wallow_edit_options() {
 					<p><?php _e( 'Select one of the ready-made styles or mix them to build your custom style', 'wallow' ); ?><br />
 					<small><?php _e( 'Default style = fire', 'wallow' ); ?></small></p>
 					<?php settings_fields( 'wallow_theme_options' ); ?>
-					<div id="stylesubdiv" style="position:relative; min-height:245px;">
+					<?php wallow_preview(); ?>
+					<div id="stylesubdiv">
 						<p class="ww_opt_p"><?php
 						// use a default style?
-						$wallow_use_theme_set = array( 'fire' => 'fire' , 'air' => 'air' , 'water' => 'water' , 'earth' => 'earth' , '1' => __( 'custom...', 'wallow' ) );
+						$wallow_use_theme_set = wallow_get_types();
+						$wallow_use_theme_set['1'] = __( 'custom...', 'wallow' );
 						foreach ($wallow_use_theme_set as $wallow_use_theme_set_value => $wallow_use_theme_set_option) {
 							$wallow_use_theme_set_selected = ($wallow_use_theme_set_value == $wallow_options['wallow_theme_set']) ? ' checked="checked"' : '';
 							echo <<<HERE
@@ -325,41 +290,41 @@ HERE;
 							$option_style = "visibility: hidden; height: 0px;";
 						}
 						?>
-						<div id="wallow_options_select" style="<?php echo $option_style; ?> -moz-border-radius: 6px; background-color: #FFFFFF; border: 1px solid #DFDFDF; width: 400px;">
-							<p style="font-weight:bold; text-shadow:0 1px 0 #FFFFFF; margin: 0; color: #464646; padding: 0 5px; line-height: 29px; background: url('images/gray-grad.png') repeat-x scroll left top #DFDFDF; -moz-border-radius: 6px 6px 0 0;"><?php _e( 'Select the style of the elements', 'wallow' ); ?></p>
-							<small style="font-style:italic; line-height: 1.8em; color: #777777; padding-left: 5px;"><?php _e( 'Default style = fire', 'wallow' ); ?></small>
-							<table style="border-collapse: collapse; margin-bottom: 14px; margin-top: 0; width: 100%; border-top:1px solid #ECECEC; border-bottom:1px solid #ECECEC;">
-								<tr style="line-height: 1.8em;">
+						<div id="wallow_options_select" style="<?php echo $option_style; ?>">
+							<p><?php _e( 'Select the style of the elements', 'wallow' ); ?></p>
+							<small><?php _e( 'Default style = fire', 'wallow' ); ?></small>
+							<table>
+								<tr>
 									<td style="padding-left: 3px;"><?php _e( 'general looking', 'wallow' ); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
 										<?php wallow_get_theme_multi_options( 'wallow_theme_genlook' ); ?>
 									</td>
 								</tr>
-								<tr style="line-height: 1.8em; background-color:#F5F5F5;">
+								<tr style="background-color:#F5F5F5;">
 									<td style="padding-left: 3px;"><?php _e( 'sidebar', 'wallow' ); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
 										<?php wallow_get_theme_multi_options( 'wallow_theme_sidebar' ); ?>
 									</td>
 								</tr>
-								<tr style="line-height: 1.8em;">
+								<tr>
 									<td style="padding-left: 3px;"><?php _e( 'pages menu', 'wallow' ); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
 										<?php wallow_get_theme_multi_options( 'wallow_theme_pages' ); ?>
 									</td>
 								</tr>
-								<tr style="line-height: 1.8em; background-color:#F5F5F5;">
+								<tr style="background-color:#F5F5F5;">
 									<td style="padding-left: 3px;"><?php _e( 'pop-up menu', 'wallow' ); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
 										<?php wallow_get_theme_multi_options( 'wallow_theme_popup' ); ?>
 									</td>
 								</tr>
-								<tr style="line-height: 1.8em;">
+								<tr>
 									<td style="padding-left: 3px;"><?php _e( 'quickbar', 'wallow' ); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
 										<?php wallow_get_theme_multi_options( 'wallow_theme_quickbar' ); ?>
 									</td>
 								</tr>
-								<tr style="line-height: 1.8em; background-color:#F5F5F5;">
+								<tr style="background-color:#F5F5F5;">
 									<td style="padding-left: 3px;"><?php _e( 'avatar', 'wallow' ); ?>&nbsp;&nbsp;</td>
 									<td style="text-align: center;">
 										<?php wallow_get_theme_multi_options( 'wallow_theme_avatar' ); ?>
@@ -367,7 +332,6 @@ HERE;
 								</tr>
 							</table>
 						</div>
-						<?php wallow_preview(); ?>
 					</div>
 				</div>
 				
@@ -381,6 +345,18 @@ HERE;
 							<th><?php _e( 'description' , 'wallow' ); ?></th>
 							<th><?php _e( 'require' , 'wallow' ); ?></th>
 						</tr>
+						
+						<?php foreach ($wallow_coa as $key => $val) { ?>
+							<tr>
+								<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php echo $wallow_coa[$key]['description']; ?></td>
+								<td style="width: 20px;border-right:1px solid #ccc;text-align:center;">
+									<input name="wallow_options[<?php echo $key; ?>]" value="1" type="checkbox" class="ww_opt_p_checkbox" <?php checked( 1 , $wallow_options[$key] ); ?> />
+								</td>
+								<td style="font-style:italic;border-right:1px solid #ccc;"><?php echo $wallow_coa[$key]['info']; ?></td>
+								<td><?php if ( $wallow_coa[$key]['req'] != '' ) echo $wallow_coa[$wallow_coa[$key]['req']]['description']; ?></td>
+							</tr>
+						<?php }	?>
+
 						<tr>
 							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php _e('Quickbar','wallow'); ?></td>
 							<td style="width: 200px;border-right:1px solid #ccc;text-align:center;">
@@ -444,7 +420,7 @@ function wallow_get_theme_multi_options( $inputName ){
 		}
 	}
 	
-	$array = array( 'fire' => 'fire' , 'air' => 'air' , 'water' => 'water' , 'earth' => 'earth' );
+	$array = wallow_get_types();
 	foreach ( $array as $array_value => $array_option ) {
 		$array_selected = ( $array_value == $current ) ? ' checked="checked"' : '';
 		echo <<<HERE
@@ -468,12 +444,12 @@ function wallow_preview(){
 		$popup = $theme_set;
 	}else{
 		if( isset($wallow_options['wallow_theme_set']) && $wallow_options['wallow_theme_set'] == 1 ) {	//custom set check if options are set, otherwise leave blank (in output will result fire set)
-			if( isset($wallow_options['wallow_theme_genlook']) ) : $genlook = $wallow_options['wallow_theme_genlook']; else: $genlook = ''; endif;
-			if( isset($wallow_options['wallow_theme_pages']) ) : $pages = $wallow_options['wallow_theme_pages']; else: $pages = ''; endif;
-			if( isset($wallow_options['wallow_theme_quickbar']) ) : $quickbar = $wallow_options['wallow_theme_quickbar']; else: $quickbar = ''; endif;
-			if( isset($wallow_options['wallow_theme_sidebar']) ) : $sidebar = $wallow_options['wallow_theme_sidebar']; else: $sidebar = ''; endif;
-			if( isset($wallow_options['wallow_theme_avatar']) ) : $avatar = $wallow_options['wallow_theme_avatar']; else: $avatar = ''; endif;
-			if (isset($wallow_options['wallow_theme_popup']) ) : $popup = $wallow_options['wallow_theme_popup']; else: $popup = ''; endif;
+			if( isset($wallow_options['wallow_theme_genlook']) )	:	$genlook =	$wallow_options['wallow_theme_genlook'];	else: $genlook = '';	endif;
+			if( isset($wallow_options['wallow_theme_pages']) )		:	$pages =	$wallow_options['wallow_theme_pages'];		else: $pages = '';		endif;
+			if( isset($wallow_options['wallow_theme_quickbar']) )	:	$quickbar =	$wallow_options['wallow_theme_quickbar'];	else: $quickbar = '';	endif;
+			if( isset($wallow_options['wallow_theme_sidebar']) )	:	$sidebar =	$wallow_options['wallow_theme_sidebar'];	else: $sidebar = '';	endif;
+			if( isset($wallow_options['wallow_theme_avatar']) )		:	$avatar =	$wallow_options['wallow_theme_avatar'];		else: $avatar = '';		endif;
+			if (isset($wallow_options['wallow_theme_popup']) )		:	$popup =	$wallow_options['wallow_theme_popup'];		else: $popup = '';		endif;
 		}else{	//default theme set
 			$theme_set = $wallow_options['wallow_theme_set'];
 			$genlook = $theme_set;
@@ -485,49 +461,48 @@ function wallow_preview(){
 		}
 	}
 	?>
-					<div id="theme_preview">
-						<div id="tp_wallow_theme_genlook" class="<?php echo $genlook ?>"></div>
-						<div id="tp_wallow_theme_pages" class="<?php echo $pages ?>"></div>
-						<div id="tp_wallow_theme_quickbar" class="<?php echo $quickbar ?>"></div>
-						<div id="tp_wallow_theme_sidebar" class="<?php echo $sidebar ?>"></div>
-						<div id="tp_wallow_theme_avatar" class="<?php echo $avatar ?>"></div>
-						<div id="tp_wallow_theme_popup" class="<?php echo $popup ?>"></div>
-					</div>
+		<div id="theme_preview">
+			<div id="tp_wallow_theme_genlook" class="<?php echo $genlook ?>"></div>
+			<div id="tp_wallow_theme_pages" class="<?php echo $pages ?>"></div>
+			<div id="tp_wallow_theme_quickbar" class="<?php echo $quickbar ?>"></div>
+			<div id="tp_wallow_theme_sidebar" class="<?php echo $sidebar ?>"></div>
+			<div id="tp_wallow_theme_avatar" class="<?php echo $avatar ?>"></div>
+			<div id="tp_wallow_theme_popup" class="<?php echo $popup ?>"></div>
+		</div>
 	<?php
 }
 
 //output style
 function wallow_get_style() {
 	$wallow_options = get_option( 'wallow_options' );
-	$stylePath = '@import url(' . get_template_directory_uri() . '/css/';
+	$stylePath = get_template_directory_uri() . '/css/';
 	if( isset($wallow_options['wallow_theme_set']) && $wallow_options['wallow_theme_set'] == 1 ){ // check if use set or custom combinations
-		if ( isset($wallow_options['wallow_theme_genlook']) ) : $genlook = $stylePath."style_".$wallow_options['wallow_theme_genlook'].".css );"; else: $genlook = $stylePath."style_fire.css );"; endif;
-		if ( isset($wallow_options['wallow_theme_sidebar']) ) : $sidebar = $stylePath."sidebar_".$wallow_options['wallow_theme_sidebar'].".css );"; else: $sidebar = $stylePath."sidebar_fire.css );"; endif;
-		if ( isset($wallow_options['wallow_theme_pages']) ) : $pages = $stylePath."pages_".$wallow_options['wallow_theme_pages'].".css );"; else: $pages = $stylePath."pages_fire.css );"; endif;
-		if ( isset($wallow_options['wallow_theme_popup']) ) : $popup = $stylePath."popup_".$wallow_options['wallow_theme_popup'].".css );"; else: $popup = $stylePath."popup_fire.css );"; endif;
-		if ( isset($wallow_options['wallow_theme_quickbar']) ) : $quickbar = $stylePath."quickbar_".$wallow_options['wallow_theme_quickbar'].".css );\n"; else: $quickbar = $stylePath."quickbar_fire.css );"; endif;
-		if ( isset($wallow_options['wallow_theme_avatar']) ) : $avatar = $stylePath."avatar_".$wallow_options['wallow_theme_avatar'].".css );\n"; else: $avatar = $stylePath."avatar_fire.css );"; endif;
-		echo "$genlook\n
-		      $sidebar\n
-		      $pages\n
-		      $popup\n
-		      $quickbar\n
-		      $avatar\n
-		      ";
+		if ( isset($wallow_options['wallow_theme_genlook']) ) 	:	$genlook = 	$stylePath."style_".$wallow_options['wallow_theme_genlook'].".css"; 		else: $genlook =	$stylePath."style_fire.css"; 	endif;
+		if ( isset($wallow_options['wallow_theme_sidebar']) ) 	:	$sidebar = 	$stylePath."sidebar_".$wallow_options['wallow_theme_sidebar'].".css"; 	else: $sidebar =	$stylePath."sidebar_fire.css"; 	endif;
+		if ( isset($wallow_options['wallow_theme_pages']) ) 	:	$pages = 	$stylePath."pages_".$wallow_options['wallow_theme_pages'].".css"; 		else: $pages =		$stylePath."pages_fire.css"; 	endif;
+		if ( isset($wallow_options['wallow_theme_popup']) ) 	:	$popup = 	$stylePath."popup_".$wallow_options['wallow_theme_popup'].".css"; 		else: $popup =		$stylePath."popup_fire.css"; 	endif;
+		if ( isset($wallow_options['wallow_theme_quickbar']) ) 	: 	$quickbar = $stylePath."quickbar_".$wallow_options['wallow_theme_quickbar'].".css"; 	else: $quickbar =	$stylePath."quickbar_fire.css"; 	endif;
+		if ( isset($wallow_options['wallow_theme_avatar']) ) 	: 	$avatar = 	$stylePath."avatar_".$wallow_options['wallow_theme_avatar'].".css"; 		else: $avatar =		$stylePath."avatar_fire.css"; 	endif;
 	}else{ // output a default theme set
 		if ($wallow_options['wallow_theme_set']) {
 			$theme_set = $wallow_options['wallow_theme_set'];
 		}else{
 			$theme_set = "fire";
 		}
-		echo  $stylePath."style_".$theme_set.".css );\n
-		      ".$stylePath."sidebar_".$theme_set.".css );\n
-		      ".$stylePath."pages_".$theme_set.".css );\n
-		      ".$stylePath."popup_".$theme_set.".css );\n
-		      ".$stylePath."quickbar_".$theme_set.".css );
-		      ".$stylePath."avatar_".$theme_set.".css );
-		      ";
+		$genlook =	$stylePath."style_".$theme_set.".css";
+		$sidebar =	$stylePath."sidebar_".$theme_set.".css";
+		$pages =	$stylePath."pages_".$theme_set.".css";
+		$popup =	$stylePath."popup_".$theme_set.".css";
+		$quickbar =	$stylePath."quickbar_".$theme_set.".css";
+		$avatar =	$stylePath."avatar_".$theme_set.".css";
+		
 	}
+	wp_enqueue_style( 'wallow_theme_genlook-style', $genlook, false, '0.45', 'screen' );
+	wp_enqueue_style( 'wallow_theme_sidebar-style', $sidebar, false, '0.45', 'screen' );
+	wp_enqueue_style( 'wallow_theme_pages-style', $pages, false, '0.45', 'screen' );
+	wp_enqueue_style( 'wallow_theme_popup-style', $popup, false, '0.45', 'screen' );
+	wp_enqueue_style( 'wallow_theme_quickbar-style', $quickbar, false, '0.45', 'screen' );
+	wp_enqueue_style( 'wallow_theme_avatar-style', $avatar, false, '0.45', 'screen' );
 }
 
 //add a fix for embed videos overlying quickbar
@@ -536,5 +511,8 @@ function wallow_content_replace( $content ){
 	$content = str_replace( '<embed ', '<embed wmode="transparent" ', $content );
 	return $content;
 }
+
+// load the custom widgets module
+get_template_part('widgets');
 
 ?>
