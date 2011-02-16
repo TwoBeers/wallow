@@ -31,7 +31,7 @@ function wallow_get_coa() {
 
 // get the theme types
 function wallow_get_types() {
-	$wallow_types = array( 'fire' => __('fire','wallow') , 'air' => __('air','wallow') , 'water' => __('water','wallow') , 'earth' => __('earth','wallow'), 'topo' => __('topo morto','wallow') , 'zinne' => __('zinne','wallow') , 'papaja' => __('papaja','wallow') , 'qualcosa' => __('qualcosa','wallow') );
+	$wallow_types = array( 'fire' => __('fire','wallow') , 'air' => __('air','wallow') , 'water' => __('water','wallow') , 'earth' => __('earth','wallow'), 'fog' => __('fog','wallow') , 'clouds' => __('clouds','wallow') );
 	return $wallow_types;
 }
 
@@ -212,7 +212,7 @@ function wallow_options_style() {
 
 // sanitize options value
 function sanitize_wallow_options($input) {
-	$array = array( null, 1, 'fire' , 'air' , 'water' , 'earth', 'show', 'hide', 'active', 'inactive' );
+	$array = array( null, 1, 'fire' , 'air' , 'water' , 'earth', 'show', 'hide', 'active', 'inactive', 'fog' );
 	if ( array_search( $input['wallow_theme_set'], $array ) == 0 ) {
 		$input['wallow_theme_set'] = 'fire';
 	}
@@ -346,7 +346,7 @@ HERE;
 							<th><?php _e( 'require' , 'wallow' ); ?></th>
 						</tr>
 						
-						<?php foreach ($wallow_coa as $key => $val) { ?>
+						<?php if (1==0) { //foreach ($wallow_coa as $key => $val) { ?>
 							<tr>
 								<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php echo $wallow_coa[$key]['description']; ?></td>
 								<td style="width: 20px;border-right:1px solid #ccc;text-align:center;">

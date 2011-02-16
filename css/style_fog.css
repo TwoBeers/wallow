@@ -1,0 +1,198 @@
+/*
+
+genlook (air style)
+
+*/
+
+/* Common html tags ----> */
+
+a {
+	color: #0080bc;
+	text-decoration: none;
+}
+
+a:hover, .menu-item a:hover, #credits a:hover {
+	color: #ccc;
+}
+
+blockquote {
+	border-left:6px double #ffffff;
+}
+
+body {
+	color: #fff;
+	background: #434343 url(../images/fog/bg.jpg) left top repeat-y;
+}
+
+h2.posts_date {
+	border-bottom:1px solid #666666;
+	color:#666666;
+	font-size:0.9em;
+	padding-bottom:3px;
+	text-align:right;
+	width:105%;
+	margin-right: -5%;
+}
+
+pre {
+	border:1px solid #f4f4f4;
+}
+
+/* table elements*/
+table {
+	border: 1px solid #aaaaaa;
+	background: #EEEEEE url(../images/fog/capt.jpg) left bottom repeat-x;
+}
+
+thead {
+	background-color:#FFFFFF;
+}
+
+tfoot {
+	background-color:#DDDDDD;
+}
+
+th {
+	border:1px solid #CCCCCC;
+}
+
+fieldset {
+	border:1px solid #cccccc;
+}
+
+legend {
+	color: #aaaaaa;
+}
+
+/* <---- Common html tags */
+
+
+/* Post classes ----> */
+
+.hentry ul li {
+	border-left:4px solid #333333;
+}
+
+.meta {
+	color: #808080;
+}
+
+.storytitle a {
+	color: #F3F45B;
+}
+
+.storytitle a:hover {
+	color: #ccc;
+}
+
+.hentry,
+.c_list {
+	padding:5px;
+	-moz-border-radius: 10px 10px 10px 10px;
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.9);
+	border: 5px solid rgba(255, 255, 255, 0.1);
+	margin-bottom: 10px;
+
+}
+.sticky {
+	border: 5px solid rgba(255, 255, 255, 0.6);
+}
+
+/* <---- Post classes */
+
+
+/* Comment classes ----> */
+
+.comment:hover  {
+	border-top:1px solid #666;
+	border-right:1px solid #666;
+	border-bottom:1px solid #666;
+}
+
+.comment, .trackback , .pingback  {
+	background: transparent url('../images/fog/comfade.png') top left repeat-y;
+	border-top:1px solid transparent;
+	border-right:1px solid transparent;
+	border-bottom:1px solid transparent;
+}
+
+.bypostauthor {
+	background: transparent url('../images/fog/auth_comfade.png') top left repeat-y;
+}
+
+.comment {
+	border-left:3px solid #888888;
+}
+
+.trackback , .pingback {
+	border-left:3px solid #F4F4F4;
+}
+
+.feedback {
+	color: #808080;
+	text-align: right;
+	clear: both;
+}
+
+.comment_tools,
+#nav_pages {
+	border:1px solid #666;
+	float: none;
+	text-align: center;
+	background: none repeat scroll 0 0 #0D0D0D;
+	-moz-border-radius: 5px 5px 5px 5px;
+	padding: 3px;
+}
+#commentform textarea {
+    width: 99%;
+}
+
+/* <---- Comment classes */
+
+
+/* Other classes ----> */
+
+#header {
+	color:#FFFFFF;
+	padding: 30px 30% 40px 105px;
+	text-align: center;
+}
+
+#header h1 {
+	margin: 0;
+	font-size:4em;
+	text-shadow:2px 2px 5px #000000;
+}
+
+#header a {
+	color: #fff;
+}
+
+#nav_pages {
+	padding-top: 5px;
+	border-bottom:1px solid #666666;
+}
+
+#credits {
+	border-top:2px groove #FFFFFF;
+	float:left;
+	padding-bottom:100px;
+	text-align:center;
+	width:100%;
+}
+
+.intr {
+	color: #cccccc;
+}
+
+/* <---- Other classes */
+
+
+/* Captions & aligment ----> */
+
+.wp-caption {
+	border: 1px solid #ccc;
+	background:#434343;
+}
+
+/* <---- Captions & aligment */

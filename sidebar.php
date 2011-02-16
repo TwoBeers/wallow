@@ -32,6 +32,7 @@
 			<?php endif; ?>
 
 			</ul>
+			<div class="fixfloat"></div>
 		 </div>
 		 <div id="sidebarbottom" class="fixfloat"></div>
 

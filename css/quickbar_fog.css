@@ -1,0 +1,45 @@
+/*
+
+quickbar (air style)
+
+*/
+
+/* Quickbar classes ----> */
+
+#quickbar {
+	background: rgba(20, 20, 20, 0.8) url(../images/fog/qb.png) left top repeat-x;
+	border-bottom: 4px double #FFFFFF;
+	border-top: 4px double #FFFFFF;
+	color: #ccc;
+	margin: 10px 0 0 0;
+	padding: 0;
+	bottom: 10px;
+	height:54px;
+	width:100%;
+	-moz-box-shadow: -10px 0 10px #000000;
+}
+
+#qb_right {
+	background: transparent url(../images/fog/grey-s.png) right center no-repeat;
+	float:right;
+	height:34px;
+	width:13%;
+	padding: 10px 0;
+	text-align: center;
+	font-weight: bold;
+}
+
+.footer_wig {
+	background:url("../images/fog/menu_sep.png") no-repeat right top transparent;
+}
+
+.footer_wig:hover h4{
+	color: #ffffff;
+}
+
+#avatar_cont {
+	margin-top:-46px;
+	float:left;
+}
+
+/* <---- Quickbar classes */

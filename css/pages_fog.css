@@ -1,0 +1,34 @@
+/*
+
+pages (air style)
+
+*/
+
+/* Pages classes ----> */
+
+.page_item a, .menu-item a {
+	color: #ccc;
+	text-decoration: none;
+}
+
+.page_item a:hover, .menu-item a:hover {
+	color: #0080BC;
+}
+
+#pages {
+	-moz-box-shadow: -10px 0 10px #000000;
+	background: rgba(20, 20, 20, 0.8) url(../images/fog/qb.png) left top repeat-x;
+	border-bottom: 4px double #fff;
+	border-top: 4px double #fff;
+}
+
+#mainmenu > li.menu-item ,
+#mainmenu > li.page_item {
+	border-right:1px solid #aaaaaa;
+}
+.current_page_ancestor .hiraquo,
+.current-menu-ancestor .hiraquo {
+	color: #d54e21;
+}
+
+/* <---- Pages classes */

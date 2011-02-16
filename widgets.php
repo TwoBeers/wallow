@@ -295,9 +295,9 @@ class wallow_widget_latest_commentators extends WP_Widget {
 			foreach ( (array) $comments as $comment) {
 				if ( !in_array( $comment->comment_author_email, $post_array ) ) {
 					if ( $comment->comment_author_url == '' ) {
-						$output .=  '<li title="' .  $comment->comment_author . '">' . get_avatar( $comment, 32, $default=get_option('avatar_default') ) . '</li>';
+						$output .=  '<li title="' .  $comment->comment_author . '">' . get_avatar( $comment, 32, $default=get_option('avatar_default') ) . ' ' . $comment->comment_author . '</li>';
 					} else {
-						$output .=  '<li><a href="' . $comment->comment_author_url . '" title="' .  $comment->comment_author . '">' . get_avatar( $comment, 32, $default=get_option('avatar_default')) . '</a></li>';
+						$output .=  '<li><a href="' . $comment->comment_author_url . '" title="' .  $comment->comment_author . '">' . get_avatar( $comment, 32, $default=get_option('avatar_default')) . ' ' . $comment->comment_author . '</a></li>';
 					}
 					$post_array[] = $comment->comment_author_email;
 					if ( ++$counter >= $number ) break;
