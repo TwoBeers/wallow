@@ -16,17 +16,17 @@ a:hover, .menu-item a:hover, #credits a:hover {
 }
 
 blockquote {
-	border-left:6px double #ffffff;
+	border-left:6px double #fff;
 }
 
 body {
 	color: #fff;
-	background: #434343 url(../images/fog/bg.jpg) left top repeat-y;
+	background: #000 url(../images/smoke/bg.jpg) center top repeat-y;
 }
 
 h2.posts_date {
-	border-bottom:1px solid #666666;
-	color:#666666;
+	border-bottom:1px solid #666;
+	color:#666;
 	font-size:0.9em;
 	padding-bottom:3px;
 	text-align:right;
@@ -36,32 +36,35 @@ h2.posts_date {
 
 pre {
 	border:1px solid #f4f4f4;
+	background-color:#222;
 }
 
 /* table elements*/
 table {
-	border: 1px solid #aaaaaa;
-	background: #EEEEEE url(../images/fog/capt.jpg) left bottom repeat-x;
+	border: 1px solid #666;
 }
 
 thead {
-	background-color:#FFFFFF;
+	background-color:#fff;
 }
 
 tfoot {
-	background-color:#DDDDDD;
+	background-color:#ddd;
 }
 
 th {
-	border:1px solid #CCCCCC;
+	border:1px solid #666;
 }
 
 fieldset {
-	border:1px solid #cccccc;
+	border:1px solid #ccc;
 }
 
 legend {
-	color: #aaaaaa;
+	color: #aaa;
+}
+code {
+	background-color:#222;
 }
 
 /* <---- Common html tags */
@@ -70,7 +73,7 @@ legend {
 /* Post classes ----> */
 
 .hentry ul li {
-	border-left:4px solid #333333;
+	border-left:4px solid #333;
 }
 
 .meta {
@@ -88,7 +91,10 @@ legend {
 .hentry,
 .c_list {
 	padding:5px;
-	-moz-border-radius: 10px 10px 10px 10px;
+	-moz-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.9);
 	border: 5px solid rgba(255, 255, 255, 0.1);
 	margin-bottom: 10px;
@@ -110,18 +116,18 @@ legend {
 }
 
 .comment, .trackback , .pingback  {
-	background: transparent url('../images/fog/comfade.png') top left repeat-y;
+	background: transparent url('../images/smoke/comfade.png') top left repeat-y;
 	border-top:1px solid transparent;
 	border-right:1px solid transparent;
 	border-bottom:1px solid transparent;
 }
 
 .bypostauthor {
-	background: transparent url('../images/fog/auth_comfade.png') top left repeat-y;
+	background: transparent url('../images/smoke/auth_comfade.png') top left repeat-y;
 }
 
 .comment {
-	border-left:3px solid #888888;
+	border-left:3px solid #888;
 }
 
 .trackback , .pingback {
@@ -140,7 +146,10 @@ legend {
 	float: none;
 	text-align: center;
 	background: none repeat scroll 0 0 #0D0D0D;
-	-moz-border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 	padding: 3px;
 }
 #commentform textarea {
@@ -153,7 +162,7 @@ legend {
 /* Other classes ----> */
 
 #header {
-	color:#FFFFFF;
+	color:#fff;
 	padding: 30px 30% 40px 105px;
 	text-align: center;
 }
@@ -161,7 +170,7 @@ legend {
 #header h1 {
 	margin: 0;
 	font-size:4em;
-	text-shadow:2px 2px 5px #000000;
+	text-shadow:2px 2px 5px #000;
 }
 
 #header a {
@@ -170,11 +179,11 @@ legend {
 
 #nav_pages {
 	padding-top: 5px;
-	border-bottom:1px solid #666666;
+	border-bottom:1px solid #666;
 }
 
 #credits {
-	border-top:2px groove #FFFFFF;
+	border-top:2px groove #fff;
 	float:left;
 	padding-bottom:100px;
 	text-align:center;
@@ -182,7 +191,7 @@ legend {
 }
 
 .intr {
-	color: #cccccc;
+	color: #ccc;
 }
 
 /* <---- Other classes */
@@ -192,7 +201,7 @@ legend {
 
 .wp-caption {
 	border: 1px solid #ccc;
-	background:#434343;
+	background:#444;
 }
 
 /* <---- Captions & aligment */

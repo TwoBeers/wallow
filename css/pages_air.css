@@ -7,7 +7,7 @@ pages (air style)
 /* Pages classes ----> */
 
 .page_item a, .menu-item a {
-	color: #ffffff;
+	color: #fff;
 	text-decoration: none;
 }
 
@@ -21,7 +21,7 @@ pages (air style)
 
 #mainmenu > li.menu-item ,
 #mainmenu > li.page_item {
-	border-right:1px solid #aaaaaa;
+	border-right:1px solid #aaa;
 }
 .current_page_ancestor .hiraquo,
 .current-menu-ancestor .hiraquo {

@@ -37,7 +37,7 @@ sidebar (earth style)
 	height:30px;
 }
 
-#searchform {
+.searchform {
 	border: 1px solid #3F2715;
 }
 
@@ -50,7 +50,7 @@ sidebar (earth style)
 }
 
 #menu ul {
-	color: #333333;
+	color: #333;
 }
 
 #menu ul li {
@@ -73,13 +73,13 @@ sidebar (earth style)
 }
 
 #wp-calendar #today {
-	color:#ffffff;
+	color:#fff;
 }
 
 #wp-calendar thead {
 	border-top: 1px solid #D9BD8E;
 	border-bottom: 1px solid #D9BD8E;
-	background-color: #333333;
+	background-color: #333;
 }
 
 #wp-calendar th {

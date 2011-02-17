@@ -12,11 +12,11 @@ a {
 }
 
 a:hover, .menu-item a:hover, #credits a:hover, #content a:hover, .storytitle a:hover {
-	color: #ffffff;
+	color: #fff;
 }
 
 blockquote {
-	border-left:4px double #ffffff;
+	border-left:4px double #fff;
 }
 
 body {
@@ -40,7 +40,7 @@ pre {
 
 table {
 	background-color:#A9D6FF;
-	border:3px double #FFFFFF;
+	border:3px double #fff;
 }
 
 thead {
@@ -65,7 +65,7 @@ legend {
 /* Post classes ----> */
 
 .post ul li {
-	border-left:4px solid #333333;
+	border-left:4px solid #333;
 }
 
 .storytitle  {
@@ -81,7 +81,7 @@ legend {
 }
 
 .storytitle a {
-	color: #333333;
+	color: #333;
 }
 
 .sticky {
@@ -125,7 +125,7 @@ legend {
 
 .comment_tools {
 	background-color:#5FB6FF;
-	border:1px solid #FFFFFF;
+	border:1px solid #fff;
 	background-image: none;
 }
 
@@ -135,7 +135,7 @@ legend {
 /* Other classes ----> */
 
 #header {
-	color:#333333;
+	color:#333;
 }
 
 #header h1 {
@@ -145,11 +145,12 @@ legend {
 }
 
 #header a {
-	color: #333333;
+	color: #333;
+	filter: glow(color=#fff,strength=5);
 }
 
 #credits {
-	border-top:3px double #FFFFFF;
+	border-top:3px double #fff;
 	float:left;
 	padding-bottom:100px;
 	text-align:right;
@@ -159,7 +160,7 @@ legend {
 }
 
 .intr {
-	color: #cccccc;
+	color: #ccc;
 }
 
 #nav_pages {
@@ -171,7 +172,7 @@ legend {
 
 #nav_pages a {
 	background-color:#5FB6FF;
-	border:1px solid #FFFFFF;
+	border:1px solid #fff;
 	padding: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -185,7 +186,7 @@ legend {
 /* Captions & aligment ----> */
 
 .wp-caption {
-	border: 3px double #ffffff;
+	border: 3px double #fff;
 	background-color: #a9d6ff;
 }
 

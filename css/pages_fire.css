@@ -17,8 +17,8 @@ pages (fire style)
 
 #pages {
 	background: transparent url("../images/fire/head.png") left top repeat;
-	border-bottom:1px solid #888888;
-	border-top:1px solid #333333;
+	border-bottom:1px solid #888;
+	border-top:1px solid #333;
 }
 
 #mainmenu > li.menu-item ,

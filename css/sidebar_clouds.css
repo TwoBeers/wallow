@@ -12,7 +12,7 @@ sidebar (air style)
 }
 
 #menu a:hover {
-	color: #d54e21;
+	color: #888;
 }
 
 #menu {
@@ -22,24 +22,23 @@ sidebar (air style)
 #sidebarbody
 {
 	padding: 10px 10px 10px 29px;
-	background: transparent url('../images/air/graph.png') -1200px top repeat-Y;
+	background: transparent url('../images/clouds/graph.png') -1200px top repeat-Y;
 }
 
 #sidebartop
 {
-	background: transparent url('../images/air/graph.png') -600px top no-repeat;
+	background: transparent url('../images/clouds/graph.png') -600px top no-repeat;
 	height:25px;
 }
 
 #sidebarbottom
 {
-	background: transparent url('../images/air/graph.png') no-repeat top left;
+	background: transparent url('../images/clouds/graph.png') no-repeat top left;
 	height:25px;
 }
 
 .searchform {
-	border: 1px solid #aaa;
-	background: #eee url(../images/air/capt.jpg) left bottom repeat-x;
+	border: 1px solid #666;
 }
 
 #menu input#s {
@@ -50,30 +49,27 @@ sidebar (air style)
 }
 
 #menu ul {
-	color: #333;
+	color: #666;
 }
 
 /* <---- Sidebar classes */
 
-
 /* Calendar classes ----> */
 
-#calendar_wrap {
+#menu #calendar_wrap {
 	border: 1px solid #aaa;
-	background: #eee url(../images/air/capt.jpg) left bottom repeat-x;
 }
 
-#wp-calendar caption {
+#menu #wp-calendar caption {
 	color: #aaa;
 }
 
-#wp-calendar #today {
+#menu #wp-calendar #today {
 	background: #aaa;
 	color: #fff;
 }
 
-#wp-calendar tfoot {
+#menu #wp-calendar tfoot {
 	background: transparent;
 }
-
 /* <---- Calendar classes */

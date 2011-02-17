@@ -18,7 +18,7 @@ THEME SPECIAL FUNCTIONS:
   * Two columns: everithing find it’s own place with the two columns at your disposal
   * Widgets ready: there are thousands of beautiful and useful widgets that Wallow can support. Why don’t you use them?
   * Theme options: a blog is personal, so it must also be customizable. Mix-up the four styles to get your own
-  * Multiple styles: Wallow has 4 different styles, but with the “theme mixer” (*), your blog will be unique
+  * Multiple styles: Wallow has 6 different styles, but with the “theme mixer” (*), your blog will be unique
   * “Quickbar” navigation: with Wallow’s “quickbar”, browse through the blog has never been easier and faster (recent post, recent comments, categories) - could be disabled
   	- categories will browse you to a list of post of the selected category
   * Translation ready: Wallow is ready to be translated into other languages (English and Italian are included)

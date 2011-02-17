@@ -18,12 +18,12 @@ popup (fire style)
 	color: #d54e21;
 }
 .footer_wig .fw_pul{
-	color: #cccccc;
+	color: #ccc;
 	padding: 10px;
-	border-color:#888888;
+	border-color:#888;
 	border-style:solid;
 	border-width:1px;
-	background: #333333 url("../images/fire/pop.jpg") left top no-repeat;
+	background: #333 url("../images/fire/pop.jpg") left top no-repeat;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -32,13 +32,13 @@ popup (fire style)
 
 #mainmenu > li.page_item > ul.children,
 #mainmenu > li.menu-item > ul.sub-menu {
-	border:1px solid #888888;
-	background: #333333 url(../images/fire/pop.jpg) left top no-repeat;
+	border:1px solid #888;
+	background: #333 url(../images/fire/pop.jpg) left top no-repeat;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	color: #cccccc;
+	color: #ccc;
 }
 
 #mainmenu ul.sub-menu, #mainmenu ul.children {

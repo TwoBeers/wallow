@@ -17,21 +17,9 @@ add_action('admin_init', 'wallow_theme_init');
 add_action('template_redirect', 'wallow_allcat');
 /**** end theme hooks ****/
 
-//complete options array, with defaults values, description, infos and required option
-function wallow_get_coa() {
-	$wallow_coa = array(
-		'wallow_qbar' => array( 'default'=>1,'description'=>__( 'Quickbar','wallow' ),'info'=>__('Hide/Show the fixed bar on bottom of page [default = enabled]','wallow' ),'req'=>'' ),
-		'wallow_qbar_grav' => array( 'default'=>1,'description'=>__( '-- gravatar','wallow' ),'info'=>__( '[default = enabled]','wallow' ),'req'=>'wallow_qbar' ),
-		'wallow_qbar_date' => array( 'default'=>1,'description'=>__( '-- current date','wallow' ),'info'=>__( '[default = enabled]','wallow' ),'req'=>'wallow_qbar' ),
-		'wallow_jsani' => array( 'default'=>1,'description'=>__( 'Javascript animations','wallow' ),'info'=>__( 'try disable animations if you encountered problems with javascript [default = enabled]','wallow' ),'req'=>'' ),
-		'wallow_tbcred' => array( 'default'=>1,'description'=>__( 'Theme credits','wallow' ),'info'=>__( "please, don't hide theme credits [default = enabled]",'wallow' ),'req'=>'' )
-	);
-	return $wallow_coa;
-}
-
 // get the theme types
 function wallow_get_types() {
-	$wallow_types = array( 'fire' => __('fire','wallow') , 'air' => __('air','wallow') , 'water' => __('water','wallow') , 'earth' => __('earth','wallow'), 'fog' => __('fog','wallow') , 'clouds' => __('clouds','wallow') );
+	$wallow_types = array( 'fire' => __('fire','wallow') , 'air' => __('air','wallow') , 'water' => __('water','wallow') , 'earth' => __('earth','wallow'), 'smoke' => __('smoke','wallow') , 'clouds' => __('clouds','wallow') );
 	return $wallow_types;
 }
 
@@ -212,7 +200,7 @@ function wallow_options_style() {
 
 // sanitize options value
 function sanitize_wallow_options($input) {
-	$array = array( null, 1, 'fire' , 'air' , 'water' , 'earth', 'show', 'hide', 'active', 'inactive', 'fog' );
+	$array = array( null, 1, 'fire' , 'air' , 'water' , 'earth', 'show', 'hide', 'active', 'inactive', 'smoke', 'clouds' );
 	if ( array_search( $input['wallow_theme_set'], $array ) == 0 ) {
 		$input['wallow_theme_set'] = 'fire';
 	}
@@ -246,10 +234,6 @@ function sanitize_wallow_options($input) {
 
 //manage theme options
 function wallow_edit_options() {
-
-	// get dummy var
-	$wallow_coa = wallow_get_coa();
-	
 	$wallow_options = get_option( 'wallow_options' );
 	if( empty( $wallow_options ) ) { //if options are empty, sets the default values
 		$wallow_options['wallow_theme_set'] = 'fire';
@@ -345,18 +329,6 @@ HERE;
 							<th><?php _e( 'description' , 'wallow' ); ?></th>
 							<th><?php _e( 'require' , 'wallow' ); ?></th>
 						</tr>
-						
-						<?php if (1==0) { //foreach ($wallow_coa as $key => $val) { ?>
-							<tr>
-								<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php echo $wallow_coa[$key]['description']; ?></td>
-								<td style="width: 20px;border-right:1px solid #ccc;text-align:center;">
-									<input name="wallow_options[<?php echo $key; ?>]" value="1" type="checkbox" class="ww_opt_p_checkbox" <?php checked( 1 , $wallow_options[$key] ); ?> />
-								</td>
-								<td style="font-style:italic;border-right:1px solid #ccc;"><?php echo $wallow_coa[$key]['info']; ?></td>
-								<td><?php if ( $wallow_coa[$key]['req'] != '' ) echo $wallow_coa[$wallow_coa[$key]['req']]['description']; ?></td>
-							</tr>
-						<?php }	?>
-
 						<tr>
 							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php _e('Quickbar','wallow'); ?></td>
 							<td style="width: 200px;border-right:1px solid #ccc;text-align:center;">
@@ -368,7 +340,7 @@ HERE;
 									}
 								?>
 							</td>
-							<td style="font-style:italic;border-right:1px solid #ccc;"><?php _e( 'Hide/Show the fixed bar on bottom of page', 'wallow' ); ?></td>
+							<td style="font-style:italic;border-right:1px solid #ccc;padding: 5px;"><?php _e( 'Hide/Show the fixed bar on bottom of page', 'wallow' ); ?></td>
 							<td><?php ?></td>
 						</tr>
 						<tr>
@@ -382,7 +354,7 @@ HERE;
 									}
 								?>
 							</td>
-							<td style="font-style:italic;border-right:1px solid #ccc;"><?php _e( 'Try disable animations if you encountered problems with javascript', 'wallow' ); ?></td>
+							<td style="font-style:italic;border-right:1px solid #ccc;padding: 5px;"><?php _e( 'Try disable animations if you encountered problems with javascript', 'wallow' ); ?></td>
 							<td><?php ?></td>
 						</tr>
 					</table>

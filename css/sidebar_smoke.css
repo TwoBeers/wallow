@@ -1,0 +1,79 @@
+/*
+
+sidebar (air style)
+
+*/
+
+/* Sidebar classes ----> */
+
+#menu a {
+	color: #0080bc;
+	text-decoration: none;
+}
+
+#menu a:hover {
+	color: #fff;
+}
+
+#menu {
+	margin-top:-220px;
+}
+
+#sidebarbody
+{
+	padding: 10px 10px 10px 29px;
+	background: transparent url('../images/smoke/graph.png') -1200px top repeat-Y;
+}
+
+#sidebartop
+{
+	background: transparent url('../images/smoke/graph.png') -600px top no-repeat;
+	height:25px;
+}
+
+#sidebarbottom
+{
+	background: transparent url('../images/smoke/graph.png') no-repeat top left;
+	height:25px;
+}
+
+.searchform {
+	border: 1px solid #666;
+}
+
+#menu input#s {
+	width: 50%;
+	background: #eee;
+	border: 1px solid #999;
+	color: #000;
+}
+
+#menu ul {
+	color: #aaa;
+}
+
+/* <---- Sidebar classes */
+
+/* Calendar classes ----> */
+
+#menu #calendar_wrap {
+	border: 1px solid #666;
+}
+
+#menu #wp-calendar caption {
+	color: #aaa;
+}
+
+#menu #wp-calendar #today {
+	background: #222;
+	color: #fff;
+}
+
+#menu #wp-calendar tfoot {
+	background: transparent;
+}
+#menu #wp-calendar thead {
+	background: transparent;
+}
+
+/* <---- Calendar classes */

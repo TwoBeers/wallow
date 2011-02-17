@@ -7,7 +7,7 @@ pages (earth style)
 /* Pages classes ----> */
 
 .page_item a, .menu-item a {
-	color: #555555;
+	color: #555;
 	text-decoration: none;
 }
 
@@ -17,7 +17,7 @@ pages (earth style)
 
 #rap #pages {
 	background-color: #f5deb3;
-	border:7px solid #FFFFFF;
+	border:7px solid #fff;
 	margin-left:27px;
 	-moz-border-radius: 7px;
 	-khtml-border-radius: 7px;

@@ -37,8 +37,8 @@ sidebar (water style)
 	height:50px;
 }
 
-#searchform {
-	border: 1px solid #ffffff;
+.searchform {
+	border: 1px solid #fff;
 	background-color: #A9D6FF;
 }
 
@@ -51,11 +51,11 @@ sidebar (water style)
 }
 
 #menu ul {
-	color: #333333;
+	color: #333;
 }
 
 #menu ul li {
-	color:#555555;
+	color:#555;
 }
 
 /* <---- Sidebar classes */
@@ -64,20 +64,20 @@ sidebar (water style)
 /* Calendar classes ----> */
 
 #calendar_wrap {
-	border: 1px solid #ffffff;
+	border: 1px solid #fff;
 }
 
 #wp-calendar caption {
-	color: #ffffff;
+	color: #fff;
 }
 
 #wp-calendar #today {
-	border: 1px solid #ffffff;
+	border: 1px solid #fff;
 }
 
 #wp-calendar thead {
-	border-top: 3px double #ffffff;
-	border-bottom: 3px double #ffffff;
+	border-top: 3px double #fff;
+	border-bottom: 3px double #fff;
 	background-color: #CFE9FF;
 }
 

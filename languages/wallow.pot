@@ -1,41 +1,206 @@
-﻿msgid ""
+msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: Wallow Theme v0.40\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"MIME-Version: 1.0\n"
-"X-Poedit-Language: \n"
-"X-Poedit-Country: \n"
-"X-Poedit-SourceCharset: utf-8\n"
+
+#. Text in function
+#: attachment.php:19
+#: index.php:33
+#: single.php:20
+#: page.php:21
+#: comments.php:13
+msgid "% Comments"
+msgstr ""
+
+#. Text in function
+#: attachment.php:56
+msgid "&laquo; Previous Image"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "([][]) - Latest activity"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "([][]) - Latest comment authors"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "([][]) - Popular Categories"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "([][]) - Popular Posts"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "([][]) - User quick links"
+msgstr ""
 
 #. Text in echo
-#: footer.php:8
+#: attachment.php:12
+#: index.php:26
+#: single.php:23
+#: page.php:26
+msgid "(no title)"
+msgstr ""
+
+#. Text in function
+#: attachment.php:19
+#: index.php:33
+#: single.php:20
+#: page.php:21
+#: comments.php:13
+msgid "1 Comment"
+msgstr ""
+
+#. Text in function
+#: functions.php:155
+msgid "<br />This page has hierarchy"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "A list of popular categories"
+msgstr ""
+
+#. Text in echo
+#: widgets.php:389
+msgid "Add New Post"
+msgstr ""
+
+#. Text in function
+#: allcat.php:5
+msgid "All Categories"
+msgstr ""
+
+#. Text in echo
+#: footer.php:7
 msgid "All rights reserved"
 msgstr ""
 
 #. Text in echo
-#: functions.php:235
+#: functions.php:253
 msgid "Appearance"
 msgstr ""
 
-#. Text in echo
-#: functions.php:237
-#: functions.php:259
-msgid "Default style = fire"
+#. Text in function
+#: index.php:5
+#: sidebar.php:20
+msgid "Archives"
+msgstr ""
+
+#. Text in function
+#: allcat.php:5
+#: index.php:33
+#: single.php:20
+#: sidebar.php:19
+msgid "Categories"
+msgstr ""
+
+#. Text in function
+#: index.php:5
+msgid "Category"
+msgstr ""
+
+#. Text in function
+#: functions.php:155
+msgid "Child pages: "
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "Comment authors <strong>must</strong> use a name and a valid e-mail in order to use this widget. Check the <a href=\"%1$s\">Discussion settings</a>"
 msgstr ""
 
 #. Text in echo
-#: footer.php:8
+#: widgets.php:392
+msgid "Comments"
+msgstr ""
+
+#. Text in echo
+#: functions.php:255
+#: functions.php:279
+msgid "Default style = fire"
+msgstr ""
+
+#. Text in function
+#: attachment.php:19
+#: index.php:33
+#: single.php:20
+#: page.php:21
+msgid "Edit"
+msgstr ""
+
+#. Text in echo
+#: searchform.php:4
+msgid "Enter a word to look up:"
+msgstr ""
+
+#. Text in echo
+#: comments.php:8
+msgid "Enter your password to view comments."
+msgstr ""
+
+#. Text in echo
+#: functions.php:324
+msgid "Features"
+msgstr ""
+
+#. Text in echo
+#: searchform.php:5
+msgid "Find"
+msgstr ""
+
+#. Text in echo
+#: footer.php:7
 msgid "Have fun!"
 msgstr ""
 
 #. Text in echo
-#: functions.php:304
+#: functions.php:343
 msgid "Hide/Show the fixed bar on bottom of page"
+msgstr ""
+
+#. Text in echo
+#: functions.php:364
+msgid "If you like/dislike this theme, or if you encounter any issues using it, please let us know it."
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "Latest activity"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "Latest comment authors"
+msgstr ""
+
+#. Text in function
+#: attachment.php:19
+#: attachment.php:80
+#: index.php:33
+#: single.php:20
+#: single.php:47
+#: page.php:21
+#: page.php:49
+msgid "Leave a comment"
+msgstr ""
+
+#. Text in echo
+#: functions.php:365
+msgid "Leave a feedback"
+msgstr ""
+
+#. Text in function
+#: comments.php:26
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>."
 msgstr ""
 
 #. Text in function
@@ -43,163 +208,403 @@ msgstr ""
 msgid "Main Navigation Menu"
 msgstr ""
 
+#. Text in echo
+#: sidebar.php:10
+msgid "Meta"
+msgstr ""
+
 #. Text in function
-#: index.php:61
+#: index.php:50
 msgid "Newer Posts"
 msgstr ""
 
 #. Text in function
-#: index.php:61
+#: attachment.php:60
+msgid "Next Image &raquo;"
+msgstr ""
+
+#. Text in function
+#: comments.php:13
+msgid "No Comments"
+msgstr ""
+
+#. Text in echo
+#: widgets.php:487
+msgid "Number of categories to show:"
+msgstr ""
+
+#. Text in echo
+#: widgets.php:230
+msgid "Number of posts to show:"
+msgstr ""
+
+#. Text in echo
+#: widgets.php:343
+msgid "Number of users to show:"
+msgstr ""
+
+#. Text in function
+#: index.php:50
 msgid "Older Posts"
 msgstr ""
 
+#. Text in function
+#: functions.php:171
+msgid "Options saved."
+msgstr ""
+
 #. Text in echo
-#: functions.php:316
+#: 404.php:10
+msgid "Page not found"
+msgstr ""
+
+#. Text in function
+#: sidebar.php:17
+msgid "Pages"
+msgstr ""
+
+#. Text in function
+#: index.php:39
+#: single.php:29
+#: page.php:32
+msgid "Pages:"
+msgstr ""
+
+#. Text in function
+#: functions.php:155
+msgid "Parent page: "
+msgstr ""
+
+#. Text in echo
+#: functions.php:347
 msgid "Pop-up Menu Animations"
 msgstr ""
 
-#. Text in echo
-#: functions.php:303
-msgid "Quickbar"
+#. Text in function
+#: widgets.php:490
+msgid "Popular Posts"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "Popular categories"
 msgstr ""
 
 #. Text in echo
-#: functions.php:236
+#: footer.php:7
+msgid "Powered by"
+msgstr ""
+
+#. Text in echo
+#: footer.php:7
+msgid "Powered by WordPress"
+msgstr ""
+
+#. Text in echo
+#: functions.php:333
+msgid "Quickbar"
+msgstr ""
+
+#. Text in function
+#: comments.php:26
+msgid "Say It!"
+msgstr ""
+
+#. Text in function
+#: index.php:5
+msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
+
+#. Text in echo
+#: functions.php:254
 msgid "Select one of the ready-made styles or mix them to build your custom style"
 msgstr ""
 
 #. Text in echo
-#: functions.php:258
+#: functions.php:278
 msgid "Select the style of the elements"
 msgstr ""
 
 #. Text in echo
-#: 404.php:12
-msgid "Sorry, you're looking for something that isn't here"
+#: widgets.php:236
+msgid "Show post thumbnails"
+msgstr ""
+
+#. Text in echo
+#: widgets.php:421
+msgid "Show user gravatar"
 msgstr ""
 
 #. Text in function
-#: functions.php:1
-msgid "Theme Options"
+#: widgets.php:490
+msgid "Some useful links for users"
 msgstr ""
 
 #. Text in echo
-#: header.php:96
-msgid "Today is "
-msgstr ""
-
-#. Text in echo
-#: functions.php:317
-msgid "Try disable animations if you encountered problems with javascript"
-msgstr ""
-
-#. Text in echo
-#: functions.php:330
-msgid "Undo Changes"
-msgstr ""
-
-#. Text in echo
-#: functions.php:329
-msgid "Update Options"
-msgstr ""
-
-#. Text in echo
-#: functions.php:231
-msgid "Wallow - Theme options"
+#: index.php:46
+msgid "Sorry, no posts matched your criteria."
 msgstr ""
 
 #. Text in echo
 #: 404.php:13
+msgid "Sorry, you're looking for something that isn't here"
+msgstr ""
+
+#. Text in echo
+#: header.php:68
+msgid "Syndicate this site using RSS 2.0"
+msgstr ""
+
+#. Text in function
+#: index.php:5
+msgid "Tag"
+msgstr ""
+
+#. Text in function
+#: index.php:33
+#: single.php:20
+msgid "Tags: "
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "The latest comment authors"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "The latest commented posts/pages of your site"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "The most commented posts on your site"
+msgstr ""
+
+#. Text in function
+#: functions.php:171
+msgid "Theme Options"
+msgstr ""
+
+#. Text in echo
+#: widgets.php:482
+#: widgets.php:416
+msgid "Title:"
+msgstr ""
+
+#. Text in function
+#: header.php:52
+msgid "Today is %1$s"
+msgstr ""
+
+#. Text in echo
+#: attachment.php:77
+#: single.php:44
+#: page.php:46
+msgid "TrackBack URL"
+msgstr ""
+
+#. Text in echo
+#: functions.php:357
+msgid "Try disable animations if you encountered problems with javascript"
+msgstr ""
+
+#. Text in echo
+#: functions.php:373
+msgid "Undo Changes"
+msgstr ""
+
+#. Text in echo
+#: functions.php:372
+msgid "Update Options"
+msgstr ""
+
+#. Text in echo
+#: widgets.php:460
+msgid "View all"
+msgstr ""
+
+#. Text in echo
+#: widgets.php:460
+msgid "View all categories"
+msgstr ""
+
+#. Text in echo
+#: attachment.php:58
+msgid "View full size"
+msgstr ""
+
+#. Text in echo
+#: footer.php:7
+msgid "Visit author homepage"
+msgstr ""
+
+#. Text in echo
+#: functions.php:249
+msgid "Wallow - Theme options"
+msgstr ""
+
+#. Text in function
+#: widgets.php:490
+msgid "Welcome %s"
+msgstr ""
+
+#. Text in echo
+#: 404.php:14
 msgid "You can try the following:"
 msgstr ""
 
 #. Text in function
-#: functions.php:1
-msgid "about"
-msgstr ""
-
-#. Text in function
-#: functions.php:318
-msgid "active"
+#: comments.php:26
+msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
 msgstr ""
 
 #. Text in echo
-#: functions.php:292
+#: widgets.php:387
+msgid "Your Profile"
+msgstr ""
+
+#. Text in function
+#: functions.php:349
+msgid "active"
+msgstr ""
+
+#. Text in function
+#: functions.php:1
+msgid "air"
+msgstr ""
+
+#. Text in echo
+#: functions.php:312
 msgid "avatar"
 msgstr ""
 
 #. Text in echo
-#: 404.php:17
+#: 404.php:18
 msgid "browse the site throught the navigation bar below"
 msgstr ""
 
-#. Text in function
-#: functions.php:1
+#. Text in echo
+#: attachment.php:19
+#: 404.php:11
+#: index.php:33
+#: single.php:20
 msgid "by"
 msgstr ""
 
 #. Text in function
-#: functions.php:240
-msgid "custom..."
+#: functions.php:1
+msgid "clouds"
 msgstr ""
 
 #. Text in function
-#: functions.php:1
+#: functions.php:259
+msgid "custom..."
+msgstr ""
+
+#. Text in echo
+#: widgets.php:416
+msgid "default: \"Welcome %s\" , where %s is the user name"
+msgstr ""
+
+#. Text in echo
+#: functions.php:329
+msgid "description"
+msgstr ""
+
+#. Text in function
+#: functions.php:444
 msgid "drag here your favorite widgets"
 msgstr ""
 
 #. Text in function
-#: single.php:36
-#: page.php:36
+#: functions.php:1
+msgid "earth"
+msgstr ""
+
+#. Text in function
+#: attachment.php:71
+#: single.php:38
+#: page.php:40
 msgid "feed for comments on this post"
 msgstr ""
 
+#. Text in function
+#: functions.php:1
+msgid "fire"
+msgstr ""
+
 #. Text in echo
-#: functions.php:262
+#: functions.php:282
 msgid "general looking"
 msgstr ""
 
 #. Text in function
-#: functions.php:318
+#: functions.php:349
 msgid "hide"
 msgstr ""
 
 #. Text in function
-#: functions.php:318
+#: functions.php:349
 msgid "inactive"
 msgstr ""
 
 #. Text in echo
-#: functions.php:274
+#: functions.php:327
+msgid "name"
+msgstr ""
+
+#. Text in echo
+#: functions.php:294
 msgid "pages menu"
 msgstr ""
 
 #. Text in echo
-#: functions.php:280
+#: functions.php:300
 msgid "pop-up menu"
 msgstr ""
 
 #. Text in echo
-#: functions.php:286
+#: functions.php:306
 msgid "quickbar"
 msgstr ""
 
 #. Text in echo
-#: 404.php:15
-msgid "search the site using the searchbox in the upper-right"
+#: functions.php:330
+msgid "require"
 msgstr ""
 
 #. Text in echo
 #: 404.php:16
+msgid "search the site using the searchbox in the upper-right"
+msgstr ""
+
+#. Text in echo
+#: 404.php:17
 msgid "see the suggested pages in the above menu"
 msgstr ""
 
 #. Text in function
-#: functions.php:318
+#: functions.php:349
 msgid "show"
 msgstr ""
 
 #. Text in echo
-#: functions.php:268
+#: functions.php:288
 msgid "sidebar"
+msgstr ""
+
+#. Text in function
+#: functions.php:1
+msgid "smoke"
+msgstr ""
+
+#. Text in echo
+#: functions.php:328
+msgid "status"
+msgstr ""
+
+#. Text in function
+#: functions.php:1
+msgid "water"
 msgstr ""

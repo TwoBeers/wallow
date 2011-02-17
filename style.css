@@ -26,7 +26,7 @@ h1,h2,h3
 }
 
 hr {
-	color:#ffffff;
+	color:#fff;
 }
 
 a img {
@@ -137,10 +137,10 @@ legend {
 	bottom:0;
 	width:300px;
 	left:-10px;
- 	-moz-box-shadow: 1px 1px 0 #333333;
-	box-shadow: 1px 1px 0 #333333;
-	-webkit-box-shadow: 1px 1px 0 #333333;
-	-khtml-box-shadow: 1px 1px 0 #333333;
+ 	-moz-box-shadow: 1px 1px 0 #333;
+	box-shadow: 1px 1px 0 #333;
+	-webkit-box-shadow: 1px 1px 0 #333;
+	-khtml-box-shadow: 1px 1px 0 #333;
 	max-height: 250px;
 	overflow: auto;
 }
@@ -222,7 +222,7 @@ legend {
 /* Comment classes ----> */
 
 #commentform #author, #commentform #email, #commentform #url, #commentform textarea, .post input[type="password"], .post input[type="text"], .post textarea {
-	border: 1px solid #aaaaaa;
+	border: 1px solid #aaa;
 	padding: .2em;
 	background:#fff url(images/input.jpg) left top repeat-x;
 }
@@ -369,7 +369,7 @@ ul.children {
 	width: 100%;
 }
 
-#searchform {
+.searchform {
 	margin: 5px auto;
 	padding: 5px 3px;
 	text-align: center;
@@ -389,7 +389,7 @@ ul.children {
 #menu ul li {
 	letter-spacing: 0.1em;
 	margin-top: 10px;
-	padding-bottom: 2px;
+	padding-bottom: 10px;
 }
 
 #menu ul ul li:before {
@@ -433,6 +433,11 @@ ul.children {
 
 .widget {
 	overflow: auto;
+	word-wrap: break-word;
+}
+
+.widget img {
+	max-width: 100%;
 }
 
 .wlw_widget_user_quick_links .avatar {
@@ -440,6 +445,14 @@ ul.children {
 }
 /* <---- Sidebar classes */
 
+/* widget classes ----> */
+ul.with-thumbs img {
+	margin: 0;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+/* <---- widget classes */
 
 /* Calendar classes ----> */
 
@@ -505,7 +518,7 @@ ul.children {
 #header h1 {
 	margin: 0 0 5px !important;
 	font-size:4em;
-	filter: glow(color=#000000,strength=5);
+	filter: glow(color=#000,strength=5);
 }
 
 #content {
@@ -553,6 +566,7 @@ ul.children {
 	float: left;
 	margin-top: 0;
 	text-align: center;
+	margin-bottom: 20px;
 }
 #content .gallery img {
 	border: 2px solid #cfcfcf;
@@ -627,10 +641,10 @@ img.alignleft, img.alignright, img.aligncenter {
 
 .wp-post-image {
 	margin: 0 0 10px 10px;
- 	-moz-box-shadow: 0 0 7px #000000;
-	box-shadow: 0 0 7px #000000;
-	-webkit-box-shadow: 0 0 7px #000000;
-	-khtml-box-shadow: 0 0 7px #000000;
+ 	-moz-box-shadow: 0 0 7px #000;
+	box-shadow: 0 0 7px #000;
+	-webkit-box-shadow: 0 0 7px #000;
+	-khtml-box-shadow: 0 0 7px #000;
 }
 
 /* <---- Captions & aligment */

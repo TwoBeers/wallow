@@ -19,9 +19,9 @@ popup (air style)
 }
 
 .footer_wig .fw_pul{
-	color: #333333;
+	color: #333;
 	padding: 10px;
-	border-color:#aaaaaa;
+	border-color:#aaa;
 	border-style:solid;
 	border-width:1px;
 	background: #efefef url("../images/air/capt.jpg") left bottom repeat-x;
@@ -33,13 +33,13 @@ popup (air style)
 
 #mainmenu > li.page_item > ul.children,
 #mainmenu > li.menu-item > ul.sub-menu {
-	border: 1px solid #aaaaaa;
+	border: 1px solid #aaa;
 	background:#efefef url("../images/air/capt.jpg") left bottom repeat-x;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
-	color: #333333;
+	color: #333;
 }
 
 #mainmenu ul.sub-menu, #mainmenu ul.children {

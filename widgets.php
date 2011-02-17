@@ -49,20 +49,20 @@ class wallow_Widget_popular_posts extends WP_Widget {
 ?>
 		<?php echo $before_widget; ?>
 		<?php if ( $title ) echo $before_title . $title . $after_title; ?>
-		<ul>
+		<ul<?php if ( $use_thumbs ) echo ' class="with-thumbs"'; ?>>
 		<?php  while ($r->have_posts()) : $r->the_post(); ?>
-		<li<?php if ( $use_thumbs ) echo ' class="li-with-thumbs"'; ?>>
-			<?php
-				if ( $use_thumbs ) {
-					if( has_post_thumbnail() ) {
-						the_post_thumbnail( array( 40,40 ) );
-					} else {
-						echo '<div class="post-thumb"></div>';
+			<li>
+				<?php
+					if ( $use_thumbs ) {
+						if( has_post_thumbnail() ) {
+							the_post_thumbnail( array( 40,40 ) );
+						} else {
+							echo '<img src="' . get_template_directory_uri() . '/images/post-thumb.png' . '" alt="post-thumb" />';
+						}
 					}
-				}
-			 ?>
-			<a href="<?php the_permalink() ?>" title="<?php echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a> <span>(<?php echo get_comments_number(); ?>)</span>
-		</li>
+				 ?>
+				<a href="<?php the_permalink() ?>" title="<?php echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); ?>"><?php if ( get_the_title() ) the_title(); else the_ID(); ?></a> <span>(<?php echo get_comments_number(); ?>)</span>
+			</li>
 		<?php endwhile; ?>
 		</ul>
 		<?php echo $after_widget; ?>
@@ -168,9 +168,9 @@ class wallow_widget_latest_commented_posts extends WP_Widget {
 		$output .= $before_widget;
 		if ( $title )
 			$output .= $before_title . $title . $after_title;
-		$li_class = $use_thumbs ? ' class="li-with-thumbs"' : '';
+		$ul_class = $use_thumbs ? ' class="with-thumbs"' : '';
 
-		$output .= '<ul>';
+		$output .= '<ul' . $ul_class . '>';
 		if ( $comments ) {
 			foreach ( (array) $comments as $comment) {
 				if ( ! in_array( $comment->comment_post_ID, $post_array ) ) {
@@ -180,13 +180,13 @@ class wallow_widget_latest_commented_posts extends WP_Widget {
 						if( has_post_thumbnail($post->ID) ) {
 							$the_thumb = get_the_post_thumbnail( $post->ID, array( 40,40 ) );
 						} else {
-							$the_thumb = '<div class="post-thumb"></div>';
+							$the_thumb = '<img src="' . get_template_directory_uri() . '/images/post-thumb.png' . '" alt="post-thumb" />';
 						}
 					} else {
 						$the_thumb = '';
 					}
 					
-					$output .=  '<li' . $li_class . '>' . $the_thumb . ' <a href="' . get_permalink( $post->ID ) . '" title="' .  esc_html( $post->post_title ) . '">' . $post->post_title . '</a></li>';
+					$output .=  '<li>' . $the_thumb . ' <a href="' . get_permalink( $post->ID ) . '" title="' .  esc_html( $post->post_title ) . '">' . $post->post_title . '</a></li>';
 					$post_array[] = $comment->comment_post_ID;
 					if ( ++$counter >= $number ) break;
 				}

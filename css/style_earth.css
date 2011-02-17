@@ -20,12 +20,12 @@ a:hover, .menu-item a:hover, #credits a:hover, #content a:hover {
 }
 
 blockquote {
-	border-left:4px double #ffffff;
+	border-left:4px double #fff;
 	color: #f5deb3;
 }
 
 body {
-	color: #CCCCCC;
+	color: #ccc;
 	background: #080808 url(../images/earth/bg.jpg) left top no-repeat;
 }
 
@@ -87,7 +87,7 @@ legend {
 	color:#D9BD8E;
 	margin-top:4px;
 	padding:4px;
-	background-color:#333333;
+	background-color:#333;
 	border-style:solid none;
 	border-width:1px;
 }
@@ -98,7 +98,7 @@ legend {
 }
 
 #content .storytitle a {
-	color: #ffffff;
+	color: #fff;
 }
 
 #content .storytitle a:hover  {
@@ -153,8 +153,8 @@ legend {
 
 .comment_tools {
 	background-color:#D9BD8F;
-	border:1px solid #FFFFFF;
-	color:#555555;
+	border:1px solid #fff;
+	color:#555;
 }
 
 /* <---- Comment classes */
@@ -163,9 +163,9 @@ legend {
 /* Other classes ----> */
 
 #header {
-	color:#BBBBBB;
+	color:#bbb;
 	padding-left:50px;
-	text-shadow:3px 3px 6px #000000;
+	text-shadow:3px 3px 6px #000;
 }
 
 #header h1 {
@@ -174,7 +174,7 @@ legend {
 }
 
 #header a {
-	color: #FFFFFF;
+	color: #fff;
 }
 
 
@@ -192,7 +192,7 @@ legend {
 
 #nav_pages a {
 	background-color:#D9BD8F;
-	border:1px solid #FFFFFF;
+	border:1px solid #fff;
 	padding: 3px;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
@@ -211,7 +211,7 @@ legend {
 }
 
 .intr {
-	color: #cccccc;
+	color: #ccc;
 }
 
 /* <---- Other classes */
@@ -220,9 +220,9 @@ legend {
 /* Captions & aligment ----> */
 
 .wp-caption {
-	border: 3px solid #ffffff;
+	border: 3px solid #fff;
 	background-color: #D9BD8F;
-	color:#555555;
+	color:#555;
 }
 
 /* <---- Captions & aligment */

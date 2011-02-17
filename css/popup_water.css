@@ -10,18 +10,18 @@ popup (water style)
 }
 
 .children a:hover, .sub-menu a:hover, .fw_pul a:hover {
-	color: #ffffff;
+	color: #fff;
 }
 .current_page_item > a,
 .current-menu-item > a,
 .current-cat > a {
-	color: #ffffff;
+	color: #fff;
 }
 
 .footer_wig .fw_pul{
-	color: #cccccc;
+	color: #ccc;
 	padding: 10px;
-	border-color:#ffffff;
+	border-color:#fff;
 	border-style:double;
 	border-width:3px;
 	background: #0080BC url("../images/water/pop.jpg") left top no-repeat;
@@ -33,13 +33,13 @@ popup (water style)
 
 #mainmenu > li.page_item > ul.children,
 #mainmenu > li.menu-item > ul.sub-menu {
-	border:3px double #ffffff;
+	border:3px double #fff;
 	background: #0080BC url(../images/water/pop.jpg) left top no-repeat;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	color: #cccccc;
+	color: #ccc;
 }
 
 #mainmenu ul.sub-menu, #mainmenu ul.children {

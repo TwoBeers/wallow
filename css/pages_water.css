@@ -17,8 +17,8 @@ pages (water style)
 
 #pages {
 	background: transparent url("../images/water/head.png") left top repeat;
-	border-top:1px solid #ffffff;
-	border-bottom:1px solid #777777;
+	border-top:1px solid #fff;
+	border-bottom:1px solid #777;
 }
 
 #mainmenu > li.menu-item ,

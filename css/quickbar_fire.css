@@ -7,7 +7,7 @@ quickbar (fire style)
 /* Quickbar classes ----> */
 
 #quickbar {
-	color: #cccccc;
+	color: #ccc;
 	margin: 0 0 10px;
 	padding: 0;
 	bottom: 0;
@@ -45,7 +45,7 @@ quickbar (fire style)
 }
 
 .footer_wig:hover h4{
-	color: #ffffff;
+	color: #fff;
 }
 
 #avatar_cont {

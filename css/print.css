@@ -10,7 +10,7 @@ h1,h2,h3,h4,h5,h6,p {
 
 a {
 	text-decoration: none;
-	color: #000000;
+	color: #000;
 }
 
 h2.posts_date {
@@ -30,7 +30,7 @@ h3.storytitle {
 }
 
 .meta, .comment_tools  {
-	border-left: 1px solid #CCCCCC;
+	border-left: 1px solid #ccc;
 	padding-left: 10px;
 	margin:10px 0;
 }
@@ -46,7 +46,7 @@ h3.storytitle {
 }
 
 .comment-body {
-	border:1px solid #CCCCCC;
+	border:1px solid #ccc;
 	padding: 3px;
 	margin-bottom: 3px;
 	position: relative;
@@ -65,5 +65,5 @@ h3.storytitle {
 }
 
 #comments {
-	border-top:1px solid #CCCCCC;
+	border-top:1px solid #ccc;
 }

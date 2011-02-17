@@ -7,8 +7,8 @@ quickbar (air style)
 /* Quickbar classes ----> */
 
 #quickbar {
-	background: #888888 url(../images/air/qb.jpg) left bottom repeat-x;
-	border-top: 2px groove #FFFFFF;
+	background: #888 url(../images/air/qb.jpg) left bottom repeat-x;
+	border-top: 2px groove #fff;
 	color: #333;
 	margin: 10px 0 0 0;
 	padding: 0;
@@ -32,7 +32,7 @@ quickbar (air style)
 }
 
 .footer_wig:hover h4{
-	color: #ffffff;
+	color: #fff;
 }
 
 #avatar_cont {
