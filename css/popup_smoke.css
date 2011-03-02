@@ -1,6 +1,6 @@
 /*
 
-popup (air style)
+popup (smoke style)
 
 */
 
@@ -21,8 +21,8 @@ popup (air style)
 .footer_wig .fw_pul{
 	color: #aaa;
 	padding: 10px;
-	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.95);
-	border: 5px solid rgba(255, 255, 255, 0.1);
+	background: transparent url('../images/smoke/black_95.png') left top repeat;
+	border: 5px solid #222;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -35,8 +35,8 @@ popup (air style)
 
 #mainmenu > li.page_item > ul.children,
 #mainmenu > li.menu-item > ul.sub-menu {
-	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.95);
-	border: 5px solid rgba(255, 255, 255, 0.1);
+	background: transparent url('../images/smoke/black_95.png') left top repeat;
+	border: 5px solid #222;
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;

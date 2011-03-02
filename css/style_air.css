@@ -147,6 +147,11 @@ legend {
 	text-shadow:2px 2px 5px #000;
 }
 
+#header .description {
+	text-shadow: 1px 1px 1px #000000;
+	filter: dropshadow(color=#000000,offX=1,offY=1);
+}
+
 #header a {
 	color: #fff;
 }

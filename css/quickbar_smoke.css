@@ -1,13 +1,13 @@
 /*
 
-quickbar (air style)
+quickbar (smoke style)
 
 */
 
 /* Quickbar classes ----> */
 
 #quickbar {
-	background: rgba(20, 20, 20, 0.8) url(../images/smoke/qb.png) left top repeat-x;
+	background: transparent url(../images/smoke/qb.png) left top repeat-x;
 	border-bottom: 4px double #fff;
 	border-top: 4px double #fff;
 	color: #ccc;

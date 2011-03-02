@@ -1,6 +1,6 @@
 /*
 
-quickbar (air style)
+quickbar (clouds style)
 
 */
 
@@ -22,7 +22,7 @@ quickbar (air style)
 	-webkit-box-shadow: 0 0 10px #000;
 	-khtml-box-shadow: 0 0 10px #000;
 	box-shadow: 0 0 10px #000;
-    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+	background: transparent url('../images/clouds/gray_90.png') left top repeat;
     border: 1px solid #fff;
 }
 

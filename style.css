@@ -341,6 +341,7 @@ ul.children {
 	padding:0;
 	width:100%;
 	position:relative;
+	z-index:2;
 }
 
 #rss_imglink {
@@ -440,7 +441,7 @@ ul.children {
 	max-width: 100%;
 }
 
-.wlw_widget_user_quick_links .avatar {
+#quickbar .wlw_widget_user_quick_links .avatar {
 	vertical-align: top;
 }
 /* <---- Sidebar classes */
@@ -518,7 +519,7 @@ ul.with-thumbs img {
 #header h1 {
 	margin: 0 0 5px !important;
 	font-size:4em;
-	filter: glow(color=#000,strength=5);
+	filter: dropshadow(color=#000000,offX=3,offY=3);
 }
 
 #content {

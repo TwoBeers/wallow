@@ -142,11 +142,16 @@ legend {
 	margin: 0;
 	font-size:4em;
 	text-shadow:3px 3px 5px #DDFFFF;
+	filter: dropshadow(color=#ffffff,offX=3,offY=3);
+}
+
+#header .description {
+	text-shadow: 1px 1px 1px #fff;
+	filter: dropshadow(color=#ffffff,offX=1,offY=1);
 }
 
 #header a {
 	color: #333;
-	filter: glow(color=#fff,strength=5);
 }
 
 #credits {

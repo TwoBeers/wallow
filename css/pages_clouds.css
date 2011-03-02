@@ -1,6 +1,6 @@
 /*
 
-pages (air style)
+pages (clouds style)
 
 */
 
@@ -16,7 +16,7 @@ pages (air style)
 }
 
 #pages {
-	background: rgba(255, 255, 255, 0.6);
+	background: transparent url('../images/clouds/white_50.png') left top repeat;
 	padding: 7px 0;
 	border: 1px solid #fff;
 	color: #666;

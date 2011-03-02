@@ -1,6 +1,6 @@
 /*
 
-genlook (air style)
+genlook (clouds style)
 
 */
 
@@ -95,7 +95,7 @@ code {
 	-khtml-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.9);
+	background: transparent url('../images/clouds/white_90.png') left top repeat;
 	border: 1px solid #fff;
 	margin-bottom: 10px;
 
@@ -173,6 +173,11 @@ code {
 	text-shadow:2px 2px 5px #000;
 }
 
+#header .description {
+	text-shadow: 1px 1px 1px #000000;
+	filter: dropshadow(color=#000000,offX=1,offY=1);
+}
+
 #header a {
 	color: #fff;
 }
@@ -208,7 +213,7 @@ code {
 	border:1px solid #888;
 }
 .wp-caption p.wp-caption-text {
-    background: rgba(0, 0, 0, 0.7);
+	background: transparent url('../images/clouds/black_70.png') left top repeat;
     bottom: 0;
     color: #fff;
     margin: 0;

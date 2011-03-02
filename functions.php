@@ -27,21 +27,19 @@ function wallow_get_types() {
 if ( ! isset( $content_width ) )
 	$content_width = 640;
 
-if ( !function_exists( 'wallow_setup' ) ) {
-	function wallow_setup() {
+function wallow_setup() {
+	
+	// Register localization support
+	load_theme_textdomain('wallow', TEMPLATEPATH . '/languages' );
+	// Theme uses wp_nav_menu() in one location
+	register_nav_menus( array( 'primary' => __( 'Main Navigation Menu', 'wallow' )	) );
+	// Register Features Support
+	add_theme_support( 'automatic-feed-links' );
+	// Thumbnails support
+	add_theme_support( 'post-thumbnails' );
 		
-		// Register localization support
-		load_theme_textdomain('wallow', TEMPLATEPATH . '/languages' );
-		// Theme uses wp_nav_menu() in one location
-		register_nav_menus( array( 'primary' => __( 'Main Navigation Menu', 'wallow' )	) );
-		// Register Features Support
-		add_theme_support( 'automatic-feed-links' );
-		// Thumbnails support
-		add_theme_support( 'post-thumbnails' );
-			
-		// Add a way for the custom background to be styled in the admin panel that controls
-		add_custom_background( 'wallow_custom_bg' , '' , '' );
-	}
+	// Add a way for the custom background to be styled in the admin panel that controls
+	add_custom_background( 'wallow_custom_bg' , '' , '' );
 }
 
 // custom background style - gets included in the site header
@@ -98,7 +96,7 @@ function wallow_widget_area_init() {
 			'name'          =>	'Quickbar',
 			'id'            =>	'w-quickbar',
 			'description'   =>	__( 'drag here your favorite widgets', 'wallow' ),
-			'before_widget'	=>	'<div class="footer_wig">',
+			'before_widget' => '<div id="%1$s" class="footer_wig %2$s">',
 			'after_widget'	=>	'</div></div></div>',
 			'before_title'	=>	'<h4>',
 			'after_title'	=>	' &raquo;</h4><div class="fw_pul_cont"><div class="fw_pul">',
@@ -180,7 +178,7 @@ function wallow_pages_menu() {
 
 //Init theme options
 function wallow_theme_init() {
-	register_setting( 'wallow_theme_options', 'wallow_options', 'sanitize_wallow_options' );
+	register_setting( 'wallow_theme_options', 'wallow_options', 'wallow_sanitize_options' );
 }
 
 //add theme options page
@@ -199,33 +197,33 @@ function wallow_options_style() {
 }
 
 // sanitize options value
-function sanitize_wallow_options($input) {
-	$array = array( null, 1, 'fire' , 'air' , 'water' , 'earth', 'show', 'hide', 'active', 'inactive', 'smoke', 'clouds' );
-	if ( array_search( $input['wallow_theme_set'], $array ) == 0 ) {
+function wallow_sanitize_options($input) {
+	$array = array( 1, 'fire' , 'air' , 'water' , 'earth', 'show', 'hide', 'active', 'inactive', 'smoke', 'clouds' );
+	if ( !in_array( $input['wallow_theme_set'], $array ) ) {
 		$input['wallow_theme_set'] = 'fire';
 	}
-	if ( array_search( $input['wallow_qbar'], $array ) == 0 ) {
+	if ( !in_array( $input['wallow_qbar'], $array ) ) {
 		$input['wallow_qbar'] = 'show';
 	}
-	if ( array_search( $input['wallow_jsani'], $array ) == 0 ) {
+	if ( !in_array( $input['wallow_jsani'], $array ) ) {
 		$input['wallow_jsani'] = 'active';
 	}
-	if ( isset( $input['wallow_theme_genlook'] ) && array_search( $input['wallow_theme_genlook'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_genlook'] ) && !in_array( $input['wallow_theme_genlook'], $array ) ) {
 		$input['wallow_theme_genlook'] = null;
 	}
-	if ( isset( $input['wallow_theme_sidebar'] ) && array_search( $input['wallow_theme_sidebar'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_sidebar'] ) && !in_array( $input['wallow_theme_sidebar'], $array ) ) {
 		$input['wallow_theme_sidebar'] = null;
 	}
-	if ( isset( $input['wallow_theme_pages'] ) && array_search( $input['wallow_theme_pages'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_pages'] ) && !in_array( $input['wallow_theme_pages'], $array ) ) {
 		$input['wallow_theme_pages'] = null;
 	}
-	if ( isset( $input['wallow_theme_popup'] ) && array_search( $input['wallow_theme_popup'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_popup'] ) && !in_array( $input['wallow_theme_popup'], $array ) ) {
 		$input['wallow_theme_popup'] = null;
 	}
-	if ( isset( $input['wallow_theme_quickbar'] ) && array_search( $input['wallow_theme_quickbar'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_quickbar'] ) && !in_array( $input['wallow_theme_quickbar'], $array ) ) {
 		$input['wallow_theme_quickbar'] = null;
 	}
-	if ( isset( $input['wallow_theme_avatar'] ) && array_search( $input['wallow_theme_avatar'], $array ) == 0 ) {
+	if ( isset( $input['wallow_theme_avatar'] ) && !in_array( $input['wallow_theme_avatar'], $array ) ) {
 		$input['wallow_theme_avatar'] = null;
 	}
 	
@@ -396,7 +394,7 @@ function wallow_get_theme_multi_options( $inputName ){
 	foreach ( $array as $array_value => $array_option ) {
 		$array_selected = ( $array_value == $current ) ? ' checked="checked"' : '';
 		echo <<<HERE
-		<div style="display: inline;white-space:nowrap;"><input type="radio" name="wallow_options[$inputName]" title="$array_option" value="$array_value" $array_selected onmouseup="changeWPreviewBg('$inputName','$array_option'); return false;">$array_option&nbsp;&nbsp;</div>
+		<div style="display: inline;white-space:nowrap;"><input type="radio" name="wallow_options[$inputName]" title="$array_option" value="$array_value" $array_selected onmouseup="changeWPreviewBg('$inputName','$array_value'); return false;">$array_option&nbsp;&nbsp;</div>
 HERE;
 	}
 	

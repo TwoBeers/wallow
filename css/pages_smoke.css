@@ -1,6 +1,6 @@
 /*
 
-pages (air style)
+pages (smoke style)
 
 */
 
@@ -16,7 +16,7 @@ pages (air style)
 }
 
 #pages {
-	background: rgba(20, 20, 20, 0.8) url(../images/smoke/qb.png) left top repeat-x;
+	background: transparent url(../images/smoke/qb.png) left top repeat-x;
 	border-bottom: 4px double #fff;
 	border-top: 4px double #fff;
  	-moz-box-shadow: -10px 0 10px #000;
