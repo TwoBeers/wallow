@@ -28,4 +28,5 @@ THEME SPECIAL FUNCTIONS:
   * posts and pages thumbanils support: just open "function.php" and activate thumbanils support
   
 CREDITS
-	* thanks to Frank from http://www.wormserwebtreff.de/ for the german translation and the beta testing
+	* thanks to Frank from http://www.wormserwebtreff.de/ for the German translation and the beta testing
+	* thanks to Jose A. Milan for the Spanish translation
