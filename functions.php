@@ -1,5 +1,7 @@
 <?php
 /**** begin theme hooks ****/
+// Register localization support
+load_theme_textdomain( 'wallow', TEMPLATEPATH . '/languages' );
 // Tell WordPress to run wallow_setup() when the 'after_setup_theme' hook is run.
 add_action( 'after_setup_theme', 'wallow_setup' );
 // Register sidebars by running wallow_widget_area_init() on the widgets_init hook
@@ -19,7 +21,7 @@ add_action('template_redirect', 'wallow_allcat');
 
 // get the theme types
 function wallow_get_types() {
-	$wallow_types = array( 'fire' => __('fire','wallow') , 'air' => __('air','wallow') , 'water' => __('water','wallow') , 'earth' => __('earth','wallow'), 'smoke' => __('smoke','wallow') , 'clouds' => __('clouds','wallow') );
+	$wallow_types = array( 'fire' => __( 'fire', 'wallow' ) , 'air' => __( 'air', 'wallow' ) , 'water' => __( 'water', 'wallow' ) , 'earth' => __( 'earth', 'wallow' ), 'smoke' => __( 'smoke', 'wallow' ) , 'clouds' => __( 'clouds', 'wallow' ) );
 	return $wallow_types;
 }
 
@@ -29,10 +31,8 @@ if ( ! isset( $content_width ) )
 
 function wallow_setup() {
 	
-	// Register localization support
-	load_theme_textdomain('wallow', TEMPLATEPATH . '/languages' );
 	// Theme uses wp_nav_menu() in one location
-	register_nav_menus( array( 'primary' => __( 'Main Navigation Menu', 'wallow' )	) );
+	register_nav_menus( array( 'primary' => __( 'Main Navigation Menu', 'wallow' ) ) );
 	// Register Features Support
 	add_theme_support( 'automatic-feed-links' );
 	// Thumbnails support
@@ -357,19 +357,19 @@ HERE;
 						</tr>
 					</table>
 				</div>
+				<p style="float:left; clear: both;">
+					<input class="button" type="submit" name="Submit" value="<?php _e( 'Update Options', 'wallow' ); ?>" />
+					<a style="font-size: 10px; text-decoration: none; margin-left: 10px; cursor: pointer;" href="themes.php?page=functions" target="_self"><?php _e( 'Undo Changes', 'wallow' ); ?></a>
+				</p>
 				<div class="stylediv" style="clear: both; text-align: center; border: 1px solid #ccc;">
 					<small>
 						<?php _e( 'If you like/dislike this theme, or if you encounter any issues using it, please let us know it.', 'wallow' ); ?><br />
 						<a href="<?php echo esc_url( 'http://www.twobeers.net/annunci/wallow' ); ?>" title="wallow theme" target="_blank"><?php _e( 'Leave a feedback', 'wallow' ); ?></a>
 					</small>
-
 				</div>
-				
-				
-				<p style="float:left; clear: both;">
-					<input class="button" type="submit" name="Submit" value="<?php _e( 'Update Options', 'wallow' ); ?>" />
-					<a style="font-size: 10px; text-decoration: none; margin-left: 10px; cursor: pointer;" href="themes.php?page=functions" target="_self"><?php _e( 'Undo Changes', 'wallow' ); ?></a>
-				</p>
+				<div class="stylediv" style="clear: both; text-align: center; border: 1px solid #ccc; margin-top: 10px;">
+					<small>Support the theme in your language, provide a <a href="<?php echo esc_url( 'http://www.twobeers.net/temi-wp/wordpress-themes-translations' ); ?>" title="Themes translation" target="_blank">translation</a>.</small>
+				</div>
 			</form>
 		</div>
 	</div>
@@ -483,6 +483,6 @@ function wallow_content_replace( $content ){
 }
 
 // load the custom widgets module
-get_template_part('widgets');
+get_template_part( 'widgets' );
 
 ?>

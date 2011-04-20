@@ -17,16 +17,23 @@ THEME SPECIAL FUNCTIONS:
   * Flexible width: fits to everything, even widescreen! No more empty spaces on yours readers screens.
   * Two columns: everithing find it’s own place with the two columns at your disposal
   * Widgets ready: there are thousands of beautiful and useful widgets that Wallow can support. Why don’t you use them?
-  * Theme options: a blog is personal, so it must also be customizable. Mix-up the four styles to get your own
+  * Theme options: a blog is personal, so it must also be customizable. Mix-up six styles to get your own
   * Multiple styles: Wallow has 6 different styles, but with the “theme mixer” (*), your blog will be unique
-  * “Quickbar” navigation: with Wallow’s “quickbar”, browse through the blog has never been easier and faster (recent post, recent comments, categories) - could be disabled
-  	- categories will browse you to a list of post of the selected category
+  * “Quickbar” navigation: Wallow’s “quickbar” is the fastest way to help visitor browse your blog
+  * 5 new widgets: Popular Posts, User quick links (meta), Latest comment authors, Latest activity (latest commented posts), Popular Categories
   * Translation ready: Wallow is ready to be translated into other languages (English and Italian are included)
   * Right sidebar: a pretty comfortable sidebar is what you need for your extra content
   * Support Gravatars: your gravatar follows you everywhere
   * js menu animations - could be disabled
   * posts and pages thumbanils support: just open "function.php" and activate thumbanils support
   
+CHANGE LOG (FROM VERSION 0.44):
+	* “Quickbar” integrated functions, as recent post/comments/categories, has become widgets
+	* “Quickbar” has been changed into a widget container
+	* MooTools have ben replaced by WP integrated JQuery
+	* Two new styles (smoke and clouds)
+  
 CREDITS
 	* thanks to Frank from http://www.wormserwebtreff.de/ for the German translation and the beta testing
 	* thanks to Jose A. Milan for the Spanish translation
+	* thanks to Sebastien Blanrue from http://blog.sauterdanslesflaques.fr/ for the Frech translation

@@ -49,7 +49,7 @@
 		</div>
 		<?php dynamic_sidebar( 'w-quickbar' ); ?>
 	</div>
-	<div id="qb_right"><?php printf( __('Today is %1$s<br />%2$s','fastfood'), date_i18n( __( 'l','fastfood' ) ), date_i18n( get_option( 'date_format' ) ) ); ?></div>
+	<div id="qb_right"><?php printf( __( 'Today is %1$s<br />%2$s', 'wallow' ), date_i18n( __( 'l', 'wallow' ) ), date_i18n( get_option( 'date_format' ) ) ); ?></div>
 
 </div>
 <!-- end quickbar -->

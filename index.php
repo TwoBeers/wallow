@@ -8,7 +8,7 @@
 	elseif (is_tag()) :
 		echo '<div class="wp-caption aligncenter"><p class="wp-caption-text">' . __( 'Tag', 'wallow' ) . ':<strong> '; wp_title( '', true, 'right' ); echo ' </strong></p></div>';
 	elseif (is_search()) :
-		printf('<div class="wp-caption aligncenter"><p class="wp-caption-text">' . __( 'Search results for &#8220;%s&#8221;', 'wallow') . '</p></div>', '<strong>' . esc_html( get_search_query() ) . '</strong>');
+		printf('<div class="wp-caption aligncenter"><p class="wp-caption-text">' . __( 'Search results for &#8220;%s&#8221;', 'wallow' ) . '</p></div>', '<strong>' . esc_html( get_search_query() ) . '</strong>' );
 	elseif (is_date()) :
 		echo '<div class="wp-caption aligncenter"><p class="wp-caption-text">' . __( 'Archives', 'wallow' ) . ':<strong> '; wp_title( '', true, 'right' ); echo ' </strong></p></div>';
 	endif;
