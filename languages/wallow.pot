@@ -60,7 +60,7 @@ msgid "1 Comment"
 msgstr ""
 
 #. Text in function
-#: functions.php:155
+#: functions.php:153
 msgid "<br />This page has hierarchy"
 msgstr ""
 
@@ -85,7 +85,7 @@ msgid "All rights reserved"
 msgstr ""
 
 #. Text in echo
-#: functions.php:253
+#: functions.php:251
 msgid "Appearance"
 msgstr ""
 
@@ -109,7 +109,7 @@ msgid "Category"
 msgstr ""
 
 #. Text in function
-#: functions.php:155
+#: functions.php:153
 msgid "Child pages: "
 msgstr ""
 
@@ -124,8 +124,8 @@ msgid "Comments"
 msgstr ""
 
 #. Text in echo
-#: functions.php:255
-#: functions.php:279
+#: functions.php:253
+#: functions.php:277
 msgid "Default style = fire"
 msgstr ""
 
@@ -148,7 +148,7 @@ msgid "Enter your password to view comments."
 msgstr ""
 
 #. Text in echo
-#: functions.php:324
+#: functions.php:322
 msgid "Features"
 msgstr ""
 
@@ -163,12 +163,12 @@ msgid "Have fun!"
 msgstr ""
 
 #. Text in echo
-#: functions.php:343
+#: functions.php:341
 msgid "Hide/Show the fixed bar on bottom of page"
 msgstr ""
 
 #. Text in echo
-#: functions.php:364
+#: functions.php:366
 msgid "If you like/dislike this theme, or if you encounter any issues using it, please let us know it."
 msgstr ""
 
@@ -194,7 +194,7 @@ msgid "Leave a comment"
 msgstr ""
 
 #. Text in echo
-#: functions.php:365
+#: functions.php:367
 msgid "Leave a feedback"
 msgstr ""
 
@@ -249,7 +249,7 @@ msgid "Older Posts"
 msgstr ""
 
 #. Text in function
-#: functions.php:171
+#: functions.php:169
 msgid "Options saved."
 msgstr ""
 
@@ -271,12 +271,12 @@ msgid "Pages:"
 msgstr ""
 
 #. Text in function
-#: functions.php:155
+#: functions.php:153
 msgid "Parent page: "
 msgstr ""
 
 #. Text in echo
-#: functions.php:347
+#: functions.php:345
 msgid "Pop-up Menu Animations"
 msgstr ""
 
@@ -301,7 +301,7 @@ msgid "Powered by WordPress"
 msgstr ""
 
 #. Text in echo
-#: functions.php:333
+#: functions.php:331
 msgid "Quickbar"
 msgstr ""
 
@@ -316,12 +316,12 @@ msgid "Search results for &#8220;%s&#8221;"
 msgstr ""
 
 #. Text in echo
-#: functions.php:254
+#: functions.php:252
 msgid "Select one of the ready-made styles or mix them to build your custom style"
 msgstr ""
 
 #. Text in echo
-#: functions.php:278
+#: functions.php:276
 msgid "Select the style of the elements"
 msgstr ""
 
@@ -382,7 +382,7 @@ msgid "The most commented posts on your site"
 msgstr ""
 
 #. Text in function
-#: functions.php:171
+#: functions.php:169
 msgid "Theme Options"
 msgstr ""
 
@@ -394,7 +394,7 @@ msgstr ""
 
 #. Text in function
 #: header.php:52
-msgid "Today is %1$s"
+msgid "Today is %1$s<br />%2$s"
 msgstr ""
 
 #. Text in echo
@@ -405,17 +405,17 @@ msgid "TrackBack URL"
 msgstr ""
 
 #. Text in echo
-#: functions.php:357
+#: functions.php:355
 msgid "Try disable animations if you encountered problems with javascript"
 msgstr ""
 
 #. Text in echo
-#: functions.php:373
+#: functions.php:362
 msgid "Undo Changes"
 msgstr ""
 
 #. Text in echo
-#: functions.php:372
+#: functions.php:361
 msgid "Update Options"
 msgstr ""
 
@@ -440,7 +440,7 @@ msgid "Visit author homepage"
 msgstr ""
 
 #. Text in echo
-#: functions.php:249
+#: functions.php:247
 msgid "Wallow - Theme options"
 msgstr ""
 
@@ -465,7 +465,7 @@ msgid "Your Profile"
 msgstr ""
 
 #. Text in function
-#: functions.php:349
+#: functions.php:347
 msgid "active"
 msgstr ""
 
@@ -475,7 +475,7 @@ msgid "air"
 msgstr ""
 
 #. Text in echo
-#: functions.php:312
+#: functions.php:310
 msgid "avatar"
 msgstr ""
 
@@ -498,7 +498,7 @@ msgid "clouds"
 msgstr ""
 
 #. Text in function
-#: functions.php:259
+#: functions.php:257
 msgid "custom..."
 msgstr ""
 
@@ -508,12 +508,12 @@ msgid "default: \"Welcome %s\" , where %s is the user name"
 msgstr ""
 
 #. Text in echo
-#: functions.php:329
+#: functions.php:327
 msgid "description"
 msgstr ""
 
 #. Text in function
-#: functions.php:444
+#: functions.php:442
 msgid "drag here your favorite widgets"
 msgstr ""
 
@@ -535,42 +535,47 @@ msgid "fire"
 msgstr ""
 
 #. Text in echo
-#: functions.php:282
+#: functions.php:280
 msgid "general looking"
 msgstr ""
 
 #. Text in function
-#: functions.php:349
+#: functions.php:347
 msgid "hide"
 msgstr ""
 
 #. Text in function
-#: functions.php:349
+#: functions.php:347
 msgid "inactive"
 msgstr ""
 
+#. Text in function
+#: header.php:52
+msgid "l"
+msgstr ""
+
 #. Text in echo
-#: functions.php:327
+#: functions.php:325
 msgid "name"
 msgstr ""
 
 #. Text in echo
-#: functions.php:294
+#: functions.php:292
 msgid "pages menu"
 msgstr ""
 
 #. Text in echo
-#: functions.php:300
+#: functions.php:298
 msgid "pop-up menu"
 msgstr ""
 
 #. Text in echo
-#: functions.php:306
+#: functions.php:304
 msgid "quickbar"
 msgstr ""
 
 #. Text in echo
-#: functions.php:330
+#: functions.php:328
 msgid "require"
 msgstr ""
 
@@ -585,12 +590,12 @@ msgid "see the suggested pages in the above menu"
 msgstr ""
 
 #. Text in function
-#: functions.php:349
+#: functions.php:347
 msgid "show"
 msgstr ""
 
 #. Text in echo
-#: functions.php:288
+#: functions.php:286
 msgid "sidebar"
 msgstr ""
 
@@ -600,7 +605,7 @@ msgid "smoke"
 msgstr ""
 
 #. Text in echo
-#: functions.php:328
+#: functions.php:326
 msgid "status"
 msgstr ""
 
