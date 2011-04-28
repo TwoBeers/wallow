@@ -38,8 +38,50 @@ function wallow_setup() {
 	// Thumbnails support
 	add_theme_support( 'post-thumbnails' );
 		
-	// Add a way for the custom background to be styled in the admin panel that controls
+	// Custom background
 	add_custom_background( 'wallow_custom_bg' , '' , '' );
+	// Custom header
+	add_custom_image_header( 'wallow_header_style', 'wallow_admin_header_style' );
+	// No CSS, just IMG call. The %s is a placeholder for the theme template directory URI.
+	define( 'HEADER_TEXTCOLOR', 'fff' );
+	define( 'HEADER_IMAGE', '' );
+
+	// The height and width of your custom header. You can hook into the theme's own filters to change these values.
+	// Add a filter to wallow_header_image_width and wallow_header_image_height to change these values.
+	define( 'HEADER_IMAGE_WIDTH', 650 );
+	define( 'HEADER_IMAGE_HEIGHT', 135 );
+
+	// Support text inside the header image.
+	define( 'NO_HEADER_TEXT', true );
+}
+
+// gets included in the admin header
+function wallow_admin_header_style() {
+    ?><style type="text/css">
+        #headimg {
+            width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
+            height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
+        }
+    </style><?php
+}
+
+//  the custon header style - add style customization to page - gets included in the site header
+function wallow_header_style(){
+	$style = '';
+	if ( get_header_image() != '' ) $style = 'display:none;';
+?>
+	<style type="text/css">
+		#header {
+			padding-top: 10px;
+			padding-bottom: 10px;
+			padding-left: 2%;
+			text-align: left;
+		}
+		#header h1 a, #header .description {
+			<?php echo $style; ?>
+		}
+	</style>
+<?php
 }
 
 // custom background style - gets included in the site header
@@ -123,7 +165,7 @@ function wallow_allcat () {
 function wallow_scripts(){
 	$wallow_opt = get_option( 'wallow_options' );
 	if ($wallow_opt['wallow_jsani'] == 'active' || !isset($wallow_opt['wallow_jsani']) ) {
-		wp_enqueue_script( 'wallowscript', get_template_directory_uri() . '/js/wallowscript.dev.js', array( 'jquery' ), '0.45', true  ); //wallow js
+		wp_enqueue_script( 'wallowscript', get_template_directory_uri() . '/js/wallowscript.min.js', array( 'jquery' ), '0.46', true  ); //wallow js
 	}
 	if ( is_singular() ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -133,10 +175,10 @@ function wallow_scripts(){
 // Add stylesheets to page
 function wallow_stylesheet(){
 	//normal view
-	wp_enqueue_style( 'wallow_general-style', get_stylesheet_uri(), false, '0.45', 'screen' );
+	wp_enqueue_style( 'wallow_general-style', get_stylesheet_uri(), false, '0.46', 'screen' );
 	wallow_get_style();
 	//print style
-	wp_enqueue_style( 'wallow_print-style', get_template_directory_uri() . '/css/print.css', false, '0.45', 'print' );
+	wp_enqueue_style( 'wallow_print-style', get_template_directory_uri() . '/css/print.css', false, '0.46', 'print' );
 }
 
 // page hierarchy
@@ -151,7 +193,7 @@ function wallow_multipages(){
 
 	if ( ( $childrens ) || ( $the_parent_page ) ){ ?>
 		<?php
-		echo __( '<br />This page has hierarchy', 'wallow' ) . ' - ';
+		echo '<br />' . __( 'This page has hierarchy', 'wallow' ) . ' - ';
 		if ( $the_parent_page ) {
 			$the_parent_link = '<a href="' . get_permalink( $the_parent_page ) . '" title="' . get_the_title( $the_parent_page ) . '">' . get_the_title( $the_parent_page ) . '</a>';
 			echo __( 'Parent page: ', 'wallow' ) . $the_parent_link ; // echoes the parent

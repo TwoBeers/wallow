@@ -58,8 +58,12 @@
 <div id="rap">
 
 <div id="header">
-	<h1><a href="<?php echo home_url(); ?>/"><?php bloginfo( 'name' ); ?></a></h1>
-	<div class="description"><?php bloginfo( 'description' ); ?></div>
+	<?php if ( get_header_image() != '' ) { ?>
+		<a href="<?php echo home_url(); ?>/"><img src="<?php esc_url ( header_image() ); ?>" alt="<?php bloginfo( 'name' ); ?>" title="<?php bloginfo( 'name' ); ?>" /></a>
+	<?php } else { ?>
+		<h1><a href="<?php echo home_url(); ?>/"><?php bloginfo( 'name' ); ?></a></h1>
+		<div class="description"><?php bloginfo( 'description' ); ?></div>
+	<?php } ?>
 </div>
 
 <!-- begin pages menu -->

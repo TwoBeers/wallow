@@ -13,7 +13,7 @@ class wallow_Widget_popular_posts extends WP_Widget {
 
 	function wallow_Widget_popular_posts() {
 		$widget_ops = array( 'classname' => 'wlw_widget_popular_posts', 'description' => __( 'The most commented posts on your site', 'wallow' ) );
-		$this->WP_Widget( 'wlw-popular-posts', __( '([][]) - Popular Posts', 'wallow' ), $widget_ops );
+		$this->WP_Widget( 'wlw-popular-posts', '([][]) - ' . __( 'Popular posts', 'wallow' ), $widget_ops );
 		$this->alt_option_name = 'wlw_widget_popular_posts';
 
 		add_action( 'save_post', array(&$this, 'flush_widget_cache') );
@@ -35,7 +35,7 @@ class wallow_Widget_popular_posts extends WP_Widget {
 		ob_start();
 		extract($args);
 
-		$title = apply_filters( 'widget_title', empty($instance['title']) ? __( 'Popular Posts', 'wallow' ) : $instance['title'], $instance, $this->id_base );
+		$title = apply_filters( 'widget_title', empty($instance['title']) ? __( 'Popular posts', 'wallow' ) : $instance['title'], $instance, $this->id_base );
 		if ( !$number = (int) $instance['number'] )
 			$number = 10;
 		else if ( $number < 1 )
@@ -128,7 +128,7 @@ class wallow_widget_latest_commented_posts extends WP_Widget {
 
 	function wallow_widget_latest_commented_posts() {
 		$widget_ops = array( 'classname' => 'wlw_widget_latest_commented_posts', 'description' => __( 'The latest commented posts/pages of your site','wallow' ) );
-		$this->WP_Widget( 'wlw-recent-comments', __( '([][]) - Latest activity', 'wallow' ), $widget_ops);
+		$this->WP_Widget( 'wlw-recent-comments', '([][]) - ' . __( 'Latest activity', 'wallow' ), $widget_ops);
 		$this->alt_option_name = 'wlw_widget_latest_commented_posts';
 
 		add_action( 'comment_post', array(&$this, 'flush_widget_cache') );
@@ -248,7 +248,7 @@ class wallow_widget_latest_commentators extends WP_Widget {
 
 	function wallow_widget_latest_commentators() {
 		$widget_ops = array( 'classname' => 'wlw_widget_latest_commentators', 'description' => __( 'The latest comment authors','wallow' ) );
-		$this->WP_Widget( 'wlw-recent-commentators', __( '([][]) - Latest comment authors', 'wallow' ), $widget_ops);
+		$this->WP_Widget( 'wlw-recent-commentators', '([][]) - ' . __( 'Latest comment authors', 'wallow' ), $widget_ops);
 		$this->alt_option_name = 'wlw_widget_latest_commentators';
 
 		add_action( 'comment_post', array( &$this, 'flush_widget_cache' ) );
@@ -355,7 +355,7 @@ class wallow_user_quick_links extends WP_Widget {
 
 	function wallow_user_quick_links() {
 		$widget_ops = array( 'classname' => 'wlw_widget_user_quick_links', 'description' => __( 'Some useful links for users', 'wallow' ) );
-		$this->WP_Widget( 'wlw-user-quick-links', __( '([][]) - User quick links', 'wallow' ), $widget_ops );
+		$this->WP_Widget( 'wlw-user-quick-links', '([][]) - ' . __( 'User quick links', 'wallow' ), $widget_ops );
 		$this->alt_option_name = 'wlw_widget_user_quick_links';
 	}
 
@@ -434,7 +434,7 @@ class wallow_widget_pop_categories extends WP_Widget {
 
 	function wallow_widget_pop_categories() {
 		$widget_ops = array( 'classname' => 'wlw_widget_categories', 'description' => __( 'A list of popular categories', 'wallow' ) );
-		$this->WP_Widget( 'wlw-categories', __( '([][]) - Popular Categories', 'wallow' ), $widget_ops);
+		$this->WP_Widget( 'wlw-categories', '([][]) - ' . __( 'Popular categories', 'wallow' ), $widget_ops);
 	}
 
 	function widget( $args, $instance ) {

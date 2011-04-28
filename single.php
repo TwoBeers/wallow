@@ -26,7 +26,7 @@
 			</div>
 
 			<div>
-					<?php wp_link_pages( 'before=<div class="meta comment_tools">' . __( 'Pages:', 'wallow' ) . '&after=</div>' ); ?>
+					<?php wp_link_pages( 'before=<div class="meta comment_tools">' . __( 'Pages', 'wallow' ) . ':&after=</div>' ); ?>
 			</div>
 			<div class="fixfloat"></div>
 		</div>

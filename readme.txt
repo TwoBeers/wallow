@@ -24,14 +24,16 @@ THEME SPECIAL FUNCTIONS:
   * Translation ready: Wallow is ready to be translated into other languages (English and Italian are included)
   * Right sidebar: a pretty comfortable sidebar is what you need for your extra content
   * Support Gravatars: your gravatar follows you everywhere
-  * js menu animations - could be disabled
-  * posts and pages thumbanils support: just open "function.php" and activate thumbanils support
+  * Javascript animations: JQuery powered. Can be disabled in theme options
+  * Posts and pages thumbanils support
+  * Custom header: use your favorite image as header home link
   
 CHANGE LOG (FROM VERSION 0.44):
 	* “Quickbar” integrated functions, as recent post/comments/categories, has become widgets
 	* “Quickbar” has been changed into a widget container
 	* MooTools have ben replaced by WP integrated JQuery
 	* Two new styles (smoke and clouds)
+	* Customizable header
   
 CREDITS
 	* thanks to Frank from http://www.wormserwebtreff.de/ for the German translation and the beta testing

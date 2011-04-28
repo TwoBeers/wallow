@@ -1,9 +1,9 @@
 /*
 Theme Name: Wallow
 Theme URI: http://www.twobeers.net/annunci/wallow
-Description: Multistyle theme from TwoBeers. Use one of the four default styles or mix them to get your personal one. From version 0.40 added the possibility to enable/disable js animations and the quickbar (both are enabled by default).
-Version: 0.45
-Tags: flexible-width, two-columns, theme-options, translation-ready, right-sidebar, black, blue, orange, dark, light
+Description: Multistyle theme from TwoBeers. Use one of the six default styles or mix them to get your personal one. Wallow has a lot of features, like five built-in new widgets, the quickbar (a fixed bar for your most important widgets always on top), customizable menu, background and header, widgetized sidebar.
+Version: 0.46
+Tags: flexible-width, two-columns, theme-options, translation-ready, right-sidebar, custom-background, custom-menu, custom-header, black, blue, orange, dark, light
 Author: TwoBeers Crew
 Author URI: http://www.twobeers.net/
 
@@ -19,38 +19,36 @@ body {
 	margin: 0;
 	padding: 0;
 }
-
-h1,h2,h3
-{
+h1,
+h2,
+h3 {
 	font-weight: bold;
 }
-
 hr {
 	color:#fff;
 }
-
 a img {
 	border: none;
 }
-
-acronym, abbr {
+acronym,
+abbr {
 	border-bottom: 1px dotted;
 	cursor: help;
 }
-
 blockquote {
 	margin:15px 30px 0 10px;
 	padding-left:20px;
 	font-style:italic;
 	letter-spacing:1px;
 }
-
-pre, code, tt, kbd {
+pre, 
+code, 
+tt, 
+kbd {
 	font:1.2em "Courier New", monospace;
 	padding:0 8px;
 	letter-spacing:1px;
 }
-
 pre {
 	display:block;
 	margin:5px auto;
@@ -59,35 +57,28 @@ pre {
 	white-space:pre;
 	width:90%;
 }
-
 ol#comments li p {
 	font-size: 100%;
 }
-
 ul {
 	list-style:none outside none;
 }
-
 table {
 	-moz-border-radius: 3px;
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
-
 td {
 	border: none;
 	padding: 3px;
 }
-
 th {
 	padding:5px;
 }
-
 input {
 	font-size:10pt;
 }
-
 fieldset {
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
@@ -95,12 +86,10 @@ fieldset {
 	border-radius: 5px;
 	padding:8px;
 }
-
 legend {
 	font-size:0.9em;
 	padding:3px;
 }
-
 #content img {
 	max-width: 100%;
 	height: auto;
@@ -115,7 +104,6 @@ legend {
 	position: fixed;
 	z-index: 1000;
 }
-
 .footer_wig {
 	float: left;
 	height:40px;
@@ -123,13 +111,11 @@ legend {
 	position:relative;
 	z-index:200;
 }
-
 .footer_wig h4{
 	margin:5px 0;
 	cursor:default;
 	font-size:1em;
 }
-
 .footer_wig .fw_pul {
 	margin:0;
 	position:absolute;
@@ -144,7 +130,6 @@ legend {
 	max-height: 250px;
 	overflow: auto;
 }
-
 .footer_wig ul li{
 	padding-top:5px;
 }
@@ -155,17 +140,14 @@ legend {
 	margin:0px;
 	padding:0px;
 }
-
 .footer_wig:hover .fw_pul {
 	display: block;
 }
-
 .fw_pul_cont {
 	position:absolute;
 	bottom:40px;
 	z-index:4;
 }
-
 #avatar_cont {
 	height: 50px;
 	padding: 25px;
@@ -181,38 +163,33 @@ legend {
 	position:relative;
 	margin-bottom:1em;
 }
-
 .post ul {
 	padding:0 0 0 27px;
 	margin: 0px;
 }
-
 .post ul li {
 	margin:2px 0;
 	padding-left:9px;
 }
-
-.meta, .comment-meta, .reply{
+.meta,
+.comment-meta,
+.reply{
 	font-size: .9em;
 	font-weight: normal;
 	letter-spacing: 0;
 	padding-bottom: 5px;
 }
-
 .storytitle {
 	font-size:1.8em;
 	margin:0;
 	text-transform:capitalize;
 }
-
 .sticky {
 	padding:5px;
 }
-
 .storycontent {
 	margin-top: 10px;
 }
-
 .storycontent p {
 }
 
@@ -221,42 +198,55 @@ legend {
 
 /* Comment classes ----> */
 
-#commentform #author, #commentform #email, #commentform #url, #commentform textarea, .post input[type="password"], .post input[type="text"], .post textarea {
+#commentform #author,
+#commentform #email,
+#commentform #url,
+#commentform textarea,
+.post input[type="password"],
+.post input[type="text"],
+.post textarea {
 	border: 1px solid #aaa;
 	padding: .2em;
 	background:#fff url(images/input.jpg) left top repeat-x;
 }
-
-#commentform #author:hover, #commentform #email:hover, #commentform #url:hover, #commentform textarea:hover, .post input[type="password"]:hover, .post input[type="text"]:hover, .post textarea:hover {
+#commentform #author:hover,
+#commentform #email:hover,
+#commentform #url:hover,
+#commentform textarea:hover,
+.post input[type="password"]:hover,
+.post input[type="text"]:hover,
+.post textarea:hover {
 	border: 1px solid #d54e21;
 }
-
-#commentform #author:focus, #commentform #email:focus, #commentform #url:focus, #commentform textarea:focus, .post input[type="password"]:focus, .post input[type="text"]:focus, .post textarea:focus {
+#commentform #author:focus,
+#commentform #email:focus,
+#commentform #url:focus,
+#commentform textarea:focus,
+.post input[type="password"]:focus,
+.post input[type="text"]:focus,
+.post textarea:focus {
 	border: 1px solid #0080BC;
 }
-
 #commentform textarea {
 	width: 100%;
 }
-
 #commentlist {
 	list-style:none outside none;
 }
-
-.comment, .trackback , .pingback  {
+.comment,
+.trackback ,
+.pingback  {
 	padding-left:10px;
 	padding-right:50px;
 	position:relative;
 	margin:10px 0;
 	min-height:45px;
 }
-
 .comment-author {
 	font-size: 1.1em;
 	font-weight: bold;
 	padding-bottom: 5px;
 }
-
 #commentlist li .avatar {
 	border: 1px solid #ccc;
 	padding: 2px;
@@ -265,17 +255,16 @@ legend {
 	top: 0;
 	margin: 3px;
 }
-
 .comment_tools {
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	margin:5px 0;
-	padding:3px;
-	float:left;
+	margin: 5px 0;
+	padding: 3px;
+	float: left;
+	clear: both;
 }
-
 ul.children {
 	padding: 0 0 0 10px;
 }
@@ -300,7 +289,6 @@ ul.children {
 #mainmenu > li.menu-item > a{
 	display: block;
 }
-
 #mainmenu > li.page_item > ul.children,
 #mainmenu > li.menu-item > ul.sub-menu {
 	position: absolute;
@@ -323,19 +311,14 @@ ul.children {
 	margin: 0 0 0 10px;
 	padding: 5px 0 0;
 }
-
 #mainmenu ul.children li:before,
 #mainmenu ul.sub-menu li:before {
 	content: "» ";
 }
-
 #mainmenu .children li > div,
 #mainmenu .sub-menu li > div {
 	display: inline;
 }
-
-
-
 #mainmenu {
 	margin:0;
 	padding:0;
@@ -343,7 +326,6 @@ ul.children {
 	position:relative;
 	z-index:2;
 }
-
 #rss_imglink {
 	position:absolute;
 	margin:3px -3%;
@@ -360,16 +342,13 @@ ul.children {
 	padding-bottom:30px;
 	width:25%;
 }
-
 #sidebartop {
 	width: 100%;
 	margin-top:30px;
 }
-
 #sidebarbottom {
 	width: 100%;
 }
-
 .searchform {
 	margin: 5px auto;
 	padding: 5px 3px;
@@ -379,47 +358,38 @@ ul.children {
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
-
 #menu ul {
 	font-weight: bold;
 	margin: 0;
 	padding-left: 3px;
 	text-transform: lowercase;
 }
-
 #menu ul li {
 	letter-spacing: 0.1em;
 	margin-top: 10px;
 	padding-bottom: 10px;
 }
-
 #menu ul ul li:before {
 	content: "» ";
 }
-
 #menu ul ul {
 	font-weight: normal;
 	margin: 0 0 0 10px;
 	padding: 0;
 	text-align: left;
 }
-
 #menu ul ul li {
 	border: 0;
 	margin: 3px 0 0;
 	padding: 0;
 }
-
 #menu ul ul li a {
 }
-
 #menu ul ul li a:hover {
 }
-
 #menu ul ul ul.children {
 	padding-left: 4px;
 }
-
 #menu select {
 	font-family:inherit;
 	font-size:inherit;
@@ -431,16 +401,13 @@ ul.children {
 	line-height:inherit;
 	max-width:100%;
 }
-
 .widget {
 	overflow: auto;
 	word-wrap: break-word;
 }
-
 .widget img {
 	max-width: 100%;
 }
-
 #quickbar .wlw_widget_user_quick_links .avatar {
 	vertical-align: top;
 }
@@ -464,7 +431,6 @@ ul.with-thumbs img {
 	border-radius: 3px;
 	margin:5px 0;
 }
-
 #wp-calendar {
 	empty-cells: show;
 	margin: 0;
@@ -472,35 +438,28 @@ ul.with-thumbs img {
 	border: none;
 	background: transparent;
 }
-
 #wp-calendar #next a {
 	padding-right: 10px;
 	text-align: right;
 }
-
 #wp-calendar #prev a {
 	padding-left: 10px;
 	text-align: left;
 }
-
 #wp-calendar a {
 	display: block;
 }
-
 #wp-calendar caption {
 	text-align: center;
 }
-
 #wp-calendar td {
 	letter-spacing: -1px;
 	text-align: center;
 }
-
 #wp-calendar th {
 	font-style: normal;
 	text-transform: capitalize;
 }
-
 #wp-calendar tfoot {
 }
 
@@ -513,15 +472,13 @@ ul.with-thumbs img {
 	letter-spacing: 0.2em;
 	margin: 0;
 	padding: 30px 30% 40px 4%;
-	min-height:30px;
+	min-height:65px;
 }
-
 #header h1 {
 	margin: 0 0 5px !important;
 	font-size:4em;
 	filter: dropshadow(color=#000000,offX=3,offY=3);
 }
-
 #content {
 	float:left;
 	font-size:1.2em;
@@ -531,15 +488,12 @@ ul.with-thumbs img {
 	padding:5px 4% 10px 2%;
 	width:65%;
 }
-
 #nav_pages {
 	text-align:center;
 }
-
 #credits a {
 	font-weight: bold;
 }
-
 .fixfloat {
 	clear: both;
 }
@@ -597,25 +551,25 @@ div.aligncenter {
 	margin-left:auto;
 	margin-right:auto;
 }
-
-img.alignleft, .alignleft {
+img.alignleft,
+.alignleft {
 	display:inline;
 	float:left;
 	margin-right:24px;
 	margin-top:4px;
 }
-
-img.alignright, .alignright {
+img.alignright,
+.alignright {
 	display:inline;
 	float:right;
 	margin-left:24px;
 	margin-top:4px;
 }
-
-img.alignleft, img.alignright, img.aligncenter {
+img.alignleft,
+img.alignright,
+img.aligncenter {
 	margin-bottom:4px;
 }
-
 .wp-caption {
 	text-align: center;
 	padding-top: 4px;
@@ -624,22 +578,19 @@ img.alignleft, img.alignright, img.aligncenter {
 	-khtml-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
-	max-width: 100%;
+	max-width: 97%;
 }
-
 .wp-caption img {
 	margin: 0;
 	padding: 0;
 	border: 0 none;
 }
-
 .wp-caption p.wp-caption-text {
 	font-size: 11px;
 	line-height: 17px;
 	padding: 0 4px 5px;
 	margin: 0;
 }
-
 .wp-post-image {
 	margin: 0 0 10px 10px;
  	-moz-box-shadow: 0 0 7px #000;
