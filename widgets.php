@@ -457,7 +457,7 @@ class wallow_widget_pop_categories extends WP_Widget {
 		$cat_args = 'number=' . $number . '&title_li=&orderby=count&order=DESC&hierarchical=0&show_count=1';
 		wp_list_categories($cat_args);
 ?>
-			<li style="text-align: right;margin-top:12px;"><a title="<?php _e( 'View all categories', 'wallow' ); ?>" href="<?php  bloginfo( 'url' ); ?>/?allcat=y"><?php _e( 'View all', 'wallow' ); ?></a></li>
+			<li style="text-align: right;margin-top:12px;"><a title="<?php _e( 'View all categories', 'wallow' ); ?>" href="<?php  echo home_url(); ?>/?allcat=y"><?php _e( 'View all', 'wallow' ); ?></a></li>
 		</ul>
 <?php
 		echo $after_widget;
