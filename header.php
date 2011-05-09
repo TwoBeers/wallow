@@ -18,7 +18,6 @@
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri().'/print.css' ?>" type="text/css" media="print"  />
 	
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-	<?php wp_get_archives( 'type=monthly&format=link' ); ?>
 	<?php // call for theme options
 		$wallow_opt = get_option( 'wallow_options' );
 	?> 
