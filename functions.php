@@ -19,6 +19,8 @@ add_action('admin_init', 'wallow_theme_init');
 add_action('template_redirect', 'wallow_allcat');
 /**** end theme hooks ****/
 
+$wallow_options = get_option( 'wallow_options' );
+
 // get the theme types
 function wallow_get_types() {
 	$wallow_types = array( 'fire' => __( 'fire', 'wallow' ) , 'air' => __( 'air', 'wallow' ) , 'water' => __( 'water', 'wallow' ) , 'earth' => __( 'earth', 'wallow' ), 'smoke' => __( 'smoke', 'wallow' ) , 'clouds' => __( 'clouds', 'wallow' ) );
@@ -28,6 +30,12 @@ function wallow_get_types() {
 // Set the content_width (with a 1024x768 window size)
 if ( ! isset( $content_width ) )
 	$content_width = 640;
+
+// get theme version
+if ( get_theme( 'Wallow' ) ) {
+	$wallow_current_theme = get_theme( 'Wallow' );
+	$wallow_version = $wallow_current_theme['Version'];
+}
 
 function wallow_setup() {
 	
@@ -67,6 +75,7 @@ function wallow_admin_header_style() {
 
 //  the custon header style - add style customization to page - gets included in the site header
 function wallow_header_style(){
+	global $wallow_options;
 	$style = '';
 	if ( get_header_image() != '' ) $style = 'display:none;';
 ?>
@@ -79,6 +88,9 @@ function wallow_header_style(){
 		}
 		#header h1 a, #header .description {
 			<?php echo $style; ?>
+		}
+		body {
+			font-size: <?php echo isset( $wallow_options['wallow_fontsize'] ) ? $wallow_options['wallow_fontsize'] : '11px'; ?>
 		}
 	</style>
 <?php
@@ -120,7 +132,7 @@ function wallow_custom_bg() {
 
 
 function wallow_widget_area_init() {
-	$wallow_options = get_option( 'wallow_options' );
+	global $wallow_options;
 	// Registers the right sidebar
 	register_sidebar( array(
 		'name'          => 'Sidepad',
@@ -163,9 +175,9 @@ function wallow_allcat () {
 
 // add scripts
 function wallow_scripts(){
-	$wallow_opt = get_option( 'wallow_options' );
-	if ($wallow_opt['wallow_jsani'] == 'active' || !isset($wallow_opt['wallow_jsani']) ) {
-		wp_enqueue_script( 'wallowscript', get_template_directory_uri() . '/js/wallowscript.min.js', array( 'jquery' ), '0.46', true  ); //wallow js
+	global $wallow_version, $wallow_options;
+	if ($wallow_options['wallow_jsani'] == 'active' || !isset($wallow_options['wallow_jsani']) ) {
+		wp_enqueue_script( 'wallowscript', get_template_directory_uri() . '/js/wallowscript.min.js', array( 'jquery' ), $wallow_version, true  ); //wallow js
 	}
 	if ( is_singular() ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -174,11 +186,12 @@ function wallow_scripts(){
 
 // Add stylesheets to page
 function wallow_stylesheet(){
+	global $wallow_version;
 	//normal view
-	wp_enqueue_style( 'wallow_general-style', get_stylesheet_uri(), false, '0.46', 'screen' );
+	wp_enqueue_style( 'wallow_general-style', get_stylesheet_uri(), false, $wallow_version, 'screen' );
 	wallow_get_style();
 	//print style
-	wp_enqueue_style( 'wallow_print-style', get_template_directory_uri() . '/css/print.css', false, '0.46', 'print' );
+	wp_enqueue_style( 'wallow_print-style', get_template_directory_uri() . '/css/print.css', false, $wallow_version, 'print' );
 }
 
 // page hierarchy
@@ -186,8 +199,11 @@ function wallow_multipages(){
 	global $post;
 	$args = array(
 		'post_type' => 'page',
-		'post_parent' => $post->ID
-		); 
+		'post_parent' => $post->ID,
+		'order' => 'ASC',
+		'orderby' => 'menu_order',
+		'numberposts' => 0
+		);
 	$childrens = get_posts($args); // retrieve the child pages
 	$the_parent_page = $post->post_parent; // retrieve the parent page
 
@@ -231,11 +247,13 @@ function wallow_add_theme_option_page() {
 }
 
 function wallow_options_script() {
-	wp_enqueue_script( 'wallow_otp_script', get_template_directory_uri().'/js/wallowoptions.dev.js',array( 'jquery' ),'0.45', true );
+	global $wallow_version;
+	wp_enqueue_script( 'wallow_otp_script', get_template_directory_uri().'/js/wallowoptions.dev.js',array( 'jquery' ),$wallow_version, true );
 }
 function wallow_options_style() {
+	global $wallow_version;
 	//add custom stylesheet
-	wp_enqueue_style( 'wallow_options-style', get_template_directory_uri() . '/css/theme-options.css', false, '0.45', 'screen' );
+	wp_enqueue_style( 'wallow_options-style', get_template_directory_uri() . '/css/theme-options.css', false, $wallow_version, 'screen' );
 }
 
 // sanitize options value
@@ -274,7 +292,7 @@ function wallow_sanitize_options($input) {
 
 //manage theme options
 function wallow_edit_options() {
-	$wallow_options = get_option( 'wallow_options' );
+	global $wallow_options;
 	if( empty( $wallow_options ) ) { //if options are empty, sets the default values
 		$wallow_options['wallow_theme_set'] = 'fire';
 		$wallow_options['wallow_jsani'] = 'active';
@@ -282,7 +300,7 @@ function wallow_edit_options() {
 		update_option( 'wallow_options', $wallow_options );
 	}
 	
-	if ( isset( $_REQUEST['updated'] ) ) echo '<div id="message" class="updated"><p><strong>'.__( 'Options saved.', 'wallow' ).'</strong></p></div>';
+	if ( isset( $_REQUEST['settings-updated'] ) ) echo '<div id="message" class="updated"><p><strong>'.__( 'Options saved.', 'wallow' ).'</strong></p></div>';
 	?>
 	<div class="wrap">
 		<div class="icon32" id="icon-themes"><br></div>
@@ -369,8 +387,8 @@ HERE;
 							<th><?php _e( 'description' , 'wallow' ); ?></th>
 							<th><?php _e( 'require' , 'wallow' ); ?></th>
 						</tr>
-						<tr>
-							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php _e('Quickbar','wallow'); ?></td>
+						<tr style="border-bottom: 1px solid #ccc;">
+							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc; line-height: 3em;"><?php _e('Quickbar','wallow'); ?></td>
 							<td style="width: 200px;border-right:1px solid #ccc;text-align:center;">
 								<?php
 									$wallow_qbar = array( 'show' => __( 'show', 'wallow' ) , 'hide' => __( 'hide', 'wallow' ) );
@@ -383,8 +401,8 @@ HERE;
 							<td style="font-style:italic;border-right:1px solid #ccc;padding: 5px;"><?php _e( 'Hide/Show the fixed bar on bottom of page', 'wallow' ); ?></td>
 							<td><?php ?></td>
 						</tr>
-						<tr>
-							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc;"><?php _e( 'Pop-up Menu Animations', 'wallow' ); ?></td>
+						<tr style="border-bottom: 1px solid #ccc;">
+							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc; line-height: 3em;"><?php _e( 'Pop-up Menu Animations', 'wallow' ); ?></td>
 							<td style="width: 200px;border-right:1px solid #ccc;text-align:center;">
 								<?php
 									$wallow_jsani = array('active' => __( 'active', 'wallow' ) , 'inactive' => __( 'inactive', 'wallow' ) );
@@ -395,6 +413,22 @@ HERE;
 								?>
 							</td>
 							<td style="font-style:italic;border-right:1px solid #ccc;padding: 5px;"><?php _e( 'Try disable animations if you encountered problems with javascript', 'wallow' ); ?></td>
+							<td><?php ?></td>
+						</tr>
+						<tr>
+							<td style="width: 220px;font-weight:bold;border-right:1px solid #ccc; line-height: 3em;"><?php _e( 'Font size', 'wallow' ); ?></td>
+							<td style="width: 200px;border-right:1px solid #ccc;text-align:center;">
+								<select name="wallow_options[wallow_fontsize]">
+								<?php 
+									$curval = isset( $wallow_options['wallow_fontsize'] ) ? $wallow_options['wallow_fontsize'] : '11px';
+									$fontoptions = array( '9px', '10px', '11px', '12px', '13px' );
+								?>
+								<?php foreach( $fontoptions as $option ) { ?>
+									<option value="<?php echo $option; ?>" <?php if ( $curval == $option ) echo " selected "; ?>><?php echo $option; ?></option>
+								<?php } ?>
+								</select>
+							</td>
+							<td style="font-style:italic;border-right:1px solid #ccc;padding: 5px;"> </td>
 							<td><?php ?></td>
 						</tr>
 					</table>
@@ -420,7 +454,7 @@ HERE;
 
 //multi styles options - return drop down list of set options
 function wallow_get_theme_multi_options( $inputName ){
-	$wallow_options = get_option( 'wallow_options' );
+	global $wallow_options;
 	//check the current theme set
 	if( empty( $wallow_options ) ){	//no style at all
 		$current = 'fire';
@@ -443,8 +477,7 @@ HERE;
 }
 //output preview
 function wallow_preview(){
-	$wallow_options = get_option( 'wallow_options' );
-	
+	global $wallow_options;
 	//check the current theme set
 	if( empty($wallow_options) ) {	//no style at all set the default
 		$theme_set = 'fire';
@@ -486,7 +519,7 @@ function wallow_preview(){
 
 //output style
 function wallow_get_style() {
-	$wallow_options = get_option( 'wallow_options' );
+	global $wallow_version, $wallow_options;
 	$stylePath = get_template_directory_uri() . '/css/';
 	if( isset($wallow_options['wallow_theme_set']) && $wallow_options['wallow_theme_set'] == 1 ){ // check if use set or custom combinations
 		if ( isset($wallow_options['wallow_theme_genlook']) ) 	:	$genlook = 	$stylePath."style_".$wallow_options['wallow_theme_genlook'].".css"; 		else: $genlook =	$stylePath."style_fire.css"; 	endif;
@@ -509,12 +542,12 @@ function wallow_get_style() {
 		$avatar =	$stylePath."avatar_".$theme_set.".css";
 		
 	}
-	wp_enqueue_style( 'wallow_theme_genlook-style', $genlook, false, '0.45', 'screen' );
-	wp_enqueue_style( 'wallow_theme_sidebar-style', $sidebar, false, '0.45', 'screen' );
-	wp_enqueue_style( 'wallow_theme_pages-style', $pages, false, '0.45', 'screen' );
-	wp_enqueue_style( 'wallow_theme_popup-style', $popup, false, '0.45', 'screen' );
-	wp_enqueue_style( 'wallow_theme_quickbar-style', $quickbar, false, '0.45', 'screen' );
-	wp_enqueue_style( 'wallow_theme_avatar-style', $avatar, false, '0.45', 'screen' );
+	wp_enqueue_style( 'wallow_theme_genlook-style', $genlook, false, $wallow_version, 'screen' );
+	wp_enqueue_style( 'wallow_theme_sidebar-style', $sidebar, false, $wallow_version, 'screen' );
+	wp_enqueue_style( 'wallow_theme_pages-style', $pages, false, $wallow_version, 'screen' );
+	wp_enqueue_style( 'wallow_theme_popup-style', $popup, false, $wallow_version, 'screen' );
+	wp_enqueue_style( 'wallow_theme_quickbar-style', $quickbar, false, $wallow_version, 'screen' );
+	wp_enqueue_style( 'wallow_theme_avatar-style', $avatar, false, $wallow_version, 'screen' );
 }
 
 //add a fix for embed videos overlying quickbar

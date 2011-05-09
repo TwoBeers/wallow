@@ -1,9 +1,9 @@
+<?php global $wallow_options; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes( 'xhtml' ); ?>>
 
 <head profile="http://gmpg.org/xfn/11">
 	<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
-
 	<title>
 		<?php
 		if ( is_front_page() ) {
@@ -14,21 +14,15 @@
 		}
 		?>
 	</title>
-
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri().'/print.css' ?>" type="text/css" media="print"  />
-	
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-	<?php // call for theme options
-		$wallow_opt = get_option( 'wallow_options' );
-	?> 
 	<?php wp_head(); ?>
-	
 </head>
 
 <body <?php body_class(); ?>>
 
 <?php 
-	if ( $wallow_opt['wallow_qbar'] == 'show' || !isset( $wallow_opt['wallow_qbar'] ) ) { 
+	if ( $wallow_options['wallow_qbar'] == 'show' || !isset( $wallow_options['wallow_qbar'] ) ) { 
 ?>
 <!-- begin quickbar -->
 <div id="quickbar"> 

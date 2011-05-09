@@ -34,6 +34,7 @@ CHANGE LOG (FROM VERSION 0.44):
 	* MooTools have ben replaced by WP integrated JQuery
 	* Two new styles (smoke and clouds)
 	* Customizable header
+	* Adjustable font size
   
 CREDITS
 	* thanks to Frank from http://www.wormserwebtreff.de/ for the German translation and the beta testing
