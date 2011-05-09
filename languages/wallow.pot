@@ -590,3 +590,8 @@ msgstr ""
 #: functions.php:84
 msgid "water"
 msgstr ""
+
+#. Text in function
+#: functions.php:422
+msgid "Font size"
+msgstr ""

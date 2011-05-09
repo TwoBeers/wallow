@@ -6,11 +6,8 @@ msgstr ""
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: TwoBeers Crew <light@twobeers.net>\n"
-"Language-Team: Twobeers Crew <translations@twobeers.net>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
-"X-Poedit-Language: Italian\n"
-"X-Poedit-Country: ITALY\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 #. Text in function
 #: attachment.php:19
@@ -598,6 +595,11 @@ msgstr "stato"
 #: functions.php:84
 msgid "water"
 msgstr "acqua"
+
+#. Text in function
+#: functions.php:422
+msgid "Font size"
+msgstr "Dimensione carattere"
 
 #~ msgid "([][]) - Latest activity"
 #~ msgstr "([][]) - Attivit&agrave; recente"

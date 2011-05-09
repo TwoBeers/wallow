@@ -268,6 +268,9 @@ function wallow_sanitize_options($input) {
 	if ( !in_array( $input['wallow_jsani'], $array ) ) {
 		$input['wallow_jsani'] = 'active';
 	}
+	if ( !in_array( $input['wallow_fontsize'], array( '9px', '10px', '11px', '12px', '13px' ) ) ) {
+		$input['wallow_fontsize'] = '11px';
+	}
 	if ( isset( $input['wallow_theme_genlook'] ) && !in_array( $input['wallow_theme_genlook'], $array ) ) {
 		$input['wallow_theme_genlook'] = null;
 	}
