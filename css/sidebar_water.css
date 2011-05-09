@@ -22,7 +22,7 @@ sidebar (water style)
 #sidebarbody
 {
 	padding: 10px 10px 10px 18px;
-	background: transparent url('../images/water/graph.png') -1200px top repeat-Y;
+	background: transparent url('../images/water/graph.png') -1200px top repeat-y;
 }
 
 #sidebartop

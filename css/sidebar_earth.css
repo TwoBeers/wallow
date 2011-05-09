@@ -22,7 +22,7 @@ sidebar (earth style)
 #sidebarbody
 {
 	padding: 1px 4px 10px 18px;
-	background: transparent url('../images/earth/graph.png') -1200px top repeat-Y;
+	background: transparent url('../images/earth/graph.png') -1200px top repeat-y;
 }
 
 #sidebartop
