@@ -3,11 +3,14 @@ msgstr ""
 "Project-Id-Version: Wallow 0.46\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: TwoBeers Crew <light@twobeers.net>\n"
-"Language-Team: \n"
+"Language-Team: Twobeers Crew <translations@twobeers.net>\n"
 "MIME-Version: 1.0\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
 
 #. Text in function
 #: attachment.php:19
@@ -601,17 +604,3 @@ msgstr "acqua"
 msgid "Font size"
 msgstr "Dimensione carattere"
 
-#~ msgid "([][]) - Latest activity"
-#~ msgstr "([][]) - Attivit&agrave; recente"
-
-#~ msgid "([][]) - Latest comment authors"
-#~ msgstr "([][]) - Commentatori più recenti"
-
-#~ msgid "([][]) - Popular Categories"
-#~ msgstr "([][]) - Categorie più popolari"
-
-#~ msgid "([][]) - Popular Posts"
-#~ msgstr "([][]) - Articoli più popolari"
-
-#~ msgid "Pages:"
-#~ msgstr "Pagine:"
