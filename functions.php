@@ -241,7 +241,7 @@ function wallow_theme_init() {
 
 //add theme options page
 function wallow_add_theme_option_page() {
-	$topt_page = add_theme_page( __( 'Theme Options', 'wallow' ), __( 'Theme Options', 'wallow' ), 'manage_options', 'functions', 'wallow_edit_options' );
+	$topt_page = add_theme_page( __( 'Theme Options', 'wallow' ), __( 'Theme Options', 'wallow' ), 'edit_theme_options', 'functions', 'wallow_edit_options' );
 	add_action( 'admin_print_scripts-' . $topt_page, 'wallow_options_script' );
 	add_action( 'admin_print_styles-' . $topt_page, 'wallow_options_style' );
 }
@@ -300,6 +300,7 @@ function wallow_edit_options() {
 		$wallow_options['wallow_theme_set'] = 'fire';
 		$wallow_options['wallow_jsani'] = 'active';
 		$wallow_options['wallow_qbar'] = 'show';
+		$wallow_options['wallow_fontsize'] = '11px';
 		update_option( 'wallow_options', $wallow_options );
 	}
 	
