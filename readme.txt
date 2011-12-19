@@ -27,7 +27,10 @@ THEME SPECIAL FUNCTIONS:
   * Javascript animations: JQuery powered. Can be disabled in theme options
   * Posts and pages thumbanils support
   * Custom header: use your favorite image as header home link
-  
+    
+CHANGE LOG (FROM VERSION 0.46.4):
+	* WP 3.3 dashboard design compatibility
+	
 CHANGE LOG (FROM VERSION 0.44):
 	* “Quickbar” integrated functions, as recent post/comments/categories, has become widgets
 	* “Quickbar” has been changed into a widget container

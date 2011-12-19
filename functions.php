@@ -11,7 +11,7 @@ add_action( 'template_redirect', 'wallow_scripts' );
 // Custom filters
 add_filter( 'the_content', 'wallow_content_replace' );
 // Add stylesheets
-add_action( 'wp_print_styles', 'wallow_stylesheet' );
+add_action( 'wp_enqueue_scripts', 'wallow_stylesheet' );
 //add theme admin menu
 add_action('admin_menu', 'wallow_add_theme_option_page');
 add_action('admin_init', 'wallow_theme_init');
