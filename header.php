@@ -14,7 +14,7 @@
 		}
 		?>
 	</title>
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri().'/print.css' ?>" type="text/css" media="print"  />
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri().'/css/print.css' ?>" type="text/css" media="print"  />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	<?php wp_head(); ?>
 </head>
