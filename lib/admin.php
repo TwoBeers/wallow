@@ -500,7 +500,7 @@ if ( !function_exists( 'wallow_edit_options' ) ) {
 		if ( !current_user_can( 'edit_theme_options' ) ) {
 		wp_die( __( 'You do not have sufficient permissions to access this page.', 'wallow' ) );
 		}
-		global $wallow_options, $wallow_version;
+		global $wallow_options, $wallow_version, $wallow_current_theme;
 		
 		if ( isset( $_GET['erase'] ) && ! isset( $_REQUEST['settings-updated'] ) ) {
 			delete_option( 'wallow_options' );
@@ -518,7 +518,7 @@ if ( !function_exists( 'wallow_edit_options' ) ) {
 	?>
 		<div class="wrap">
 			<div class="icon32 icon-appearance" id="wlw-icon"><br></div>
-			<h2><?php echo wp_get_theme() . ' - ' . __( 'Theme Options', 'wallow' ); ?></h2>
+			<h2><?php echo $wallow_current_theme . ' - ' . __( 'Theme Options', 'wallow' ); ?></h2>
 			<?php
 				// return options save message
 				if ( isset( $_REQUEST['settings-updated'] ) ) {
