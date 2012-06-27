@@ -2,7 +2,7 @@
 Theme Name: Wallow
 Theme URI: http://www.twobeers.net/annunci/wallow
 Description: Multistyle theme from TwoBeers. Use one of the six default styles or mix them to get your personal one. Wallow has a lot of features, like five built-in new widgets, the quickbar (a fixed bar for your most important widgets always on top), customizable menu, background and header, widgetized sidebar.
-Version: 0.46.6
+Version: 0.50
 Tags: flexible-width, two-columns, theme-options, translation-ready, right-sidebar, custom-background, custom-menu, custom-header, black, blue, orange, dark, light
 Author: TwoBeers Crew
 Author URI: http://www.twobeers.net/
@@ -161,7 +161,7 @@ legend {
 
 .post {
 	position:relative;
-	margin-bottom:1em;
+	margin-bottom:3em;
 }
 .post ul {
 	padding:0 0 0 27px;
@@ -188,7 +188,7 @@ legend {
 	padding:5px;
 }
 .storycontent {
-	margin-top: 10px;
+	margin-top: 30px;
 }
 .storycontent p {
 }
@@ -268,16 +268,27 @@ legend {
 ul.children {
 	padding: 0 0 0 10px;
 }
-
+.bypostauthor {
+/* 
+ * rules for this class are loaded by css/load-styles.php
+ */
+}
+.form-allowed-tags {
+	color: #555; 
+	text-align: center;
+}
 /* <---- Comment classes */
 
 
 /* Pages classes ----> */
 
 #pages {
-	padding:10px 30% 40px 5%;
-	margin-left: -10px;
+	padding :20px 34% 20px 0;
 	z-index:2;
+	width: 100%;
+}
+#pages_subcont {
+	padding-left: 30px;
 }
 #mainmenu > li.page_item,
 #mainmenu > li.menu-item {
@@ -328,7 +339,7 @@ ul.children {
 }
 #rss_imglink {
 	position:absolute;
-	margin:3px -3%;
+	margin-left :-20px;
 }
 
 /* <---- Pages classes */
@@ -341,10 +352,10 @@ ul.children {
 	float:right;
 	padding-bottom:30px;
 	width:25%;
+	margin-top: 20px;
 }
 #sidebartop {
 	width: 100%;
-	margin-top:30px;
 }
 #sidebarbottom {
 	width: 100%;
@@ -472,22 +483,23 @@ ul.with-thumbs img {
 #header {
 	letter-spacing: 0.2em;
 	margin: 0;
-	padding: 30px 30% 40px 4%;
+	padding: 20px 0 20px 40px;
 	min-height:65px;
+	overflow: hidden;
 }
 #header h1 {
 	margin: 0 0 5px !important;
 	font-size:4em;
 	filter: dropshadow(color=#000000,offX=3,offY=3);
 }
+#header img {
+	max-width: 98%;
+}
+
 #content {
-	float:left;
 	font-size:1.2em;
-	margin-bottom:20px;
-	margin-left:2%;
-	margin-top:20px;
-	padding:5px 4% 10px 2%;
-	width:65%;
+	margin:20px 0 20px 20px;
+	padding:5px 10px;
 }
 #nav_pages {
 	text-align:center;
@@ -498,7 +510,24 @@ ul.with-thumbs img {
 .fixfloat {
 	clear: both;
 }
-
+#rap {
+    float: left;
+    width: 74%;
+}
+.wlw_allcat {
+	text-align: right;
+	margin-top:12px;
+}
+#error404-widgets-area .widget,
+#post-widgets-area .widget {
+	margin: 0 0 30px;
+	float: left;
+	padding: 0 1%;
+	width: 48%;
+}
+.wp-pagenavi {
+	padding: 10px;
+}
 /* <---- Other classes */
 
 /* Gallery listing ----> */
@@ -517,28 +546,46 @@ ul.with-thumbs img {
 }
 #content .gallery {
 	margin: 0 auto 18px;
+	clear: both;
 }
 #content .gallery .gallery-item {
 	float: left;
-	margin-top: 0;
+	margin: 0 0 20px 0;
 	text-align: center;
 	margin-bottom: 20px;
-}
-#content .gallery img {
-	border: 2px solid #cfcfcf;
+	padding: 2%;
 }
 #content .gallery .gallery-caption {
 	font-size: 10px;
 	margin: 0 0 12px;
-}
-#content .gallery dl {
-	margin: 0;
 }
 #content .gallery img {
 	border: 10px solid #f1f1f1;
 }
 #content .gallery br+br {
 	display: none;
+}
+.gallery-columns-0 .gallery-item,
+.gallery-columns-1 .gallery-item {
+	width: 95%;
+}
+.gallery-columns-2 .gallery-item {
+	width: 46%;
+}
+.gallery-columns-3 .gallery-item {
+	width: 29%;
+}
+.gallery-columns-4 .gallery-item {
+	width: 21%;
+}
+.gallery-columns-5 .gallery-item {
+	width: 16%;
+}
+.gallery-columns-6 .gallery-item {
+	width: 12.5%;
+}
+.gallery-columns-7 .gallery-item {
+	width: 10%;
 }
 
 /* <---- Gallery listing */
@@ -601,3 +648,126 @@ img.aligncenter {
 }
 
 /* <---- Captions & aligment */
+
+/* micronav ----> */
+
+#micronav {
+	width: 48px;
+	height: 48px;
+	position: relative;
+	float: left;
+	margin-top: -7px;
+	margin-left: -48px;
+}
+#micronav .prev a,
+#micronav .next a {
+	display: block;
+	width: 16px;
+	height: 48px;
+	position: absolute;
+}
+#micronav .prev a {
+	top: 0;
+	left: 0;
+	background-position: 0 0;
+}
+#micronav .next a {
+	top: 0;
+	right: 0;
+	background-position: -32px 0;
+}
+#micronav .up a,
+#micronav .home a,
+#micronav .down a {
+	display: block;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	left: 16px;
+}
+#micronav .up a {
+	top: 0;
+	background-position: -16px 0;
+}
+#micronav .home a {
+	top: 16px;
+	background-position: -16px -16px;
+}
+#micronav .down a {
+	top: 32px;
+	background-position: -16px -32px;
+}
+#micronav .prev a:hover {
+	background-position: 0 -48px;
+}
+#micronav .next a:hover {
+	background-position: -32px -48px;
+}
+#micronav .up a:hover {
+	background-position: -16px -48px;
+}
+#micronav .home a:hover {
+	background-position: -16px -64px;
+}
+#micronav .down a:hover {
+	background-position: -16px -80px;
+}
+
+/* <---- micronav */
+
+/* Thickbox 
+----------------------------------------------------------*/
+#TB_overlay {
+	z-index: 1001;
+}
+.TB_overlayBG {
+	opacity: 0.85;
+	filter: alpha(opacity=85);
+}
+#TB_window {
+	z-index: 1002;
+	border-color: transparent;
+}
+#TB_window img#TB_Image {
+	border-color: transparent;
+}
+#TB_prev a,
+#TB_next a {
+    display: block;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100px;
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+	color: transparent;
+}
+#TB_next a:hover,
+#TB_prev a:hover {
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+
+#TB_prev a {
+	background: url('images/arrows.png') no-repeat left center #000;
+    left: 0;
+}
+#TB_next a {
+	background: url('images/arrows.png') no-repeat right center #000;
+    right: 0;
+}
+#TB_closeWindow {
+	display: none;
+}
+#TB_load {
+	border: none;
+	z-index: 1003;
+	padding: 0;
+	box-shadow: 0 4px 30px #000;
+	background: #000;
+}
+#TB_caption {
+	float: none;
+	text-align: center;
+}
+

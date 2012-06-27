@@ -1,597 +1,967 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Wallow 0.46\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Project-Id-Version: Wallow v0.47\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2012-06-27 12:43:36+0000\n"
+"Last-Translator: TwoBeers Crew <light@twobeers.net>\n"
+"Language-Team: Twobeers Crew <translations@twobeers.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
 
-#. Text in function
-#: attachment.php:19
-#: index.php:33
-#: single.php:20
-#: page.php:21
-#: comments.php:13
+#: attachment.php:15
+#: comments.php:10
+#: index.php:30
+#: mobile/comments-mobile.php:10
+#: page.php:19
+#: single.php:18
+#@ wallow
 msgid "% Comments"
 msgstr ""
 
-#. Text in function
-#: attachment.php:56
+#: attachment.php:52
+#@ wallow
 msgid "&laquo; Previous Image"
 msgstr ""
 
-#. Text in echo
-#: attachment.php:12
-#: index.php:26
-#: single.php:23
-#: page.php:26
+#: functions.php:486
+#: lib/admin.php:89
+#@ wallow
 msgid "(no title)"
 msgstr ""
 
-#. Text in function
-#: attachment.php:19
-#: index.php:33
-#: single.php:20
-#: page.php:21
-#: comments.php:13
+#: attachment.php:15
+#: comments.php:10
+#: index.php:30
+#: mobile/comments-mobile.php:10
+#: page.php:19
+#: single.php:18
+#@ wallow
 msgid "1 Comment"
 msgstr ""
 
-#. Text in function
-#: functions.php:195
+#: functions.php:372
+#@ wallow
 msgid "This page has hierarchy"
 msgstr ""
 
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:438
+#@ wallow
 msgid "A list of popular categories"
 msgstr ""
 
-#. Text in echo
-#: widgets.php:389
+#: lib/widgets.php:387
+#@ wallow
 msgid "Add New Post"
 msgstr ""
 
-#. Text in function
-#: allcat.php:5
+#: allcat.php:7
+#@ wallow
 msgid "All Categories"
 msgstr ""
 
-#. Text in echo
-#: footer.php:7
+#: footer.php:10
+#@ wallow
 msgid "All rights reserved"
 msgstr ""
 
-#. Text in echo
-#: functions.php:293
+#: lib/admin.php:25
+#: lib/admin.php:543
+#@ wallow
 msgid "Appearance"
 msgstr ""
 
-#. Text in function
-#: index.php:5
+#: index.php:15
+#: mobile/loop-index-mobile.php:6
 #: sidebar.php:20
+#@ wallow
 msgid "Archives"
 msgstr ""
 
-#. Text in function
-#: allcat.php:5
-#: index.php:33
-#: single.php:20
+#: allcat.php:7
+#: index.php:30
+#: mobile/core-mobile.php:155
 #: sidebar.php:19
+#: single.php:18
+#@ wallow
 msgid "Categories"
 msgstr ""
 
-#. Text in function
-#: index.php:5
+#: index.php:9
+#: mobile/loop-index-mobile.php:4
+#@ wallow
 msgid "Category"
 msgstr ""
 
-#. Text in function
-#: functions.php:195
+#: functions.php:384
+#@ wallow
 msgid "Child pages: "
 msgstr ""
 
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:331
+#, php-format
+#@ wallow
 msgid "Comment authors <strong>must</strong> use a name and a valid e-mail in order to use this widget. Check the <a href=\"%1$s\">Discussion settings</a>"
 msgstr ""
 
-#. Text in echo
-#: widgets.php:392
+#: lib/widgets.php:394
+#@ wallow
 msgid "Comments"
 msgstr ""
 
-#. Text in echo
-#: functions.php:295
-#: functions.php:319
+#: lib/admin.php:546
+#@ wallow
 msgid "Default style = fire"
 msgstr ""
 
-#. Text in function
-#: attachment.php:19
-#: index.php:33
-#: single.php:20
-#: page.php:21
+#: attachment.php:15
+#: index.php:30
+#: page.php:19
+#: single.php:18
+#@ wallow
 msgid "Edit"
 msgstr ""
 
-#. Text in echo
 #: searchform.php:4
+#@ wallow
 msgid "Enter a word to look up:"
 msgstr ""
 
-#. Text in echo
-#: comments.php:8
+#: comments.php:5
+#: mobile/comments-mobile.php:4
+#@ wallow
 msgid "Enter your password to view comments."
 msgstr ""
 
-#. Text in echo
-#: functions.php:364
-msgid "Features"
-msgstr ""
-
-#. Text in echo
 #: searchform.php:5
+#@ wallow
 msgid "Find"
 msgstr ""
 
-#. Text in echo
-#: footer.php:7
+#: footer.php:12
+#@ wallow
 msgid "Have fun!"
 msgstr ""
 
-#. Text in echo
-#: functions.php:383
-msgid "Hide/Show the fixed bar on bottom of page"
-msgstr ""
-
-#. Text in echo
-#: functions.php:408
-msgid "If you like/dislike this theme, or if you encounter any issues using it, please let us know it."
-msgstr ""
-
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:129
+#: lib/widgets.php:155
+#@ wallow
 msgid "Latest activity"
 msgstr ""
 
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:249
+#: lib/widgets.php:277
+#@ wallow
 msgid "Latest comment authors"
 msgstr ""
 
-#. Text in function
-#: attachment.php:19
-#: attachment.php:80
-#: index.php:33
-#: single.php:20
-#: single.php:47
-#: page.php:21
-#: page.php:49
+#: attachment.php:15
+#: attachment.php:76
+#: index.php:30
+#: mobile/comments-mobile.php:40
+#: page.php:19
+#: page.php:47
+#: single.php:18
+#: single.php:45
+#@ wallow
 msgid "Leave a comment"
 msgstr ""
 
-#. Text in echo
-#: functions.php:409
+#: lib/admin.php:687
+#@ wallow
 msgid "Leave a feedback"
 msgstr ""
 
-#. Text in function
-#: comments.php:26
+#: comments.php:27
+#: mobile/comments-mobile.php:39
+#, php-format
+#@ wallow
 msgid "Logged in as <a href=\"%1$s\">%2$s</a>."
 msgstr ""
 
-#. Text in function
-#: functions.php:84
+#: functions.php:60
+#@ wallow
 msgid "Main Navigation Menu"
 msgstr ""
 
-#. Text in echo
 #: sidebar.php:10
+#@ wallow
 msgid "Meta"
 msgstr ""
 
-#. Text in function
-#: index.php:50
+#: functions.php:629
+#: index.php:56
+#@ wallow
 msgid "Newer Posts"
 msgstr ""
 
-#. Text in function
-#: attachment.php:60
+#: attachment.php:56
+#@ wallow
 msgid "Next Image &raquo;"
 msgstr ""
 
-#. Text in function
-#: comments.php:13
+#: comments.php:10
+#: mobile/comments-mobile.php:10
+#@ wallow
 msgid "No Comments"
 msgstr ""
 
-#. Text in echo
-#: widgets.php:487
+#: lib/widgets.php:497
+#@ wallow
 msgid "Number of categories to show:"
 msgstr ""
 
-#. Text in echo
-#: widgets.php:230
+#: lib/widgets.php:109
+#: lib/widgets.php:228
+#@ wallow
 msgid "Number of posts to show:"
 msgstr ""
 
-#. Text in echo
-#: widgets.php:343
+#: lib/widgets.php:341
+#@ wallow
 msgid "Number of users to show:"
 msgstr ""
 
-#. Text in function
-#: index.php:50
+#: functions.php:626
+#: index.php:56
+#@ wallow
 msgid "Older Posts"
 msgstr ""
 
-#. Text in function
-#: functions.php:211
+#: lib/admin.php:525
+#@ wallow
 msgid "Options saved."
 msgstr ""
 
-#. Text in echo
-#: 404.php:10
+#: 404.php:9
+#@ wallow
 msgid "Page not found"
 msgstr ""
 
-#. Text in function
+#: index.php:45
+#: mobile/loop-front-page-mobile.php:7
+#: mobile/loop-page-mobile.php:8
+#: mobile/loop-single-mobile.php:20
+#: page.php:30
 #: sidebar.php:17
-#: index.php:39
-#: single.php:29
-#: page.php:32
+#: single.php:27
+#@ wallow
 msgid "Pages"
 msgstr ""
 
-#. Text in function
-#: functions.php:195
+#: functions.php:375
+#@ wallow
 msgid "Parent page: "
 msgstr ""
 
-#. Text in echo
-#: functions.php:387
-msgid "Pop-up Menu Animations"
-msgstr ""
-
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:439
+#: lib/widgets.php:445
+#@ wallow
 msgid "Popular categories"
 msgstr ""
 
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:16
+#: lib/widgets.php:38
+#@ wallow
 msgid "Popular posts"
 msgstr ""
 
-#. Text in echo
-#: footer.php:7
-msgid "Powered by"
-msgstr ""
-
-#. Text in echo
-#: footer.php:7
-msgid "Powered by WordPress"
-msgstr ""
-
-#. Text in echo
-#: functions.php:373
-msgid "Quickbar"
-msgstr ""
-
-#. Text in function
 #: comments.php:26
+#: mobile/comments-mobile.php:38
+#@ wallow
 msgid "Say It!"
 msgstr ""
 
-#. Text in function
-#: index.php:5
+#: index.php:13
+#: mobile/loop-index-mobile.php:8
+#, php-format
+#@ wallow
 msgid "Search results for &#8220;%s&#8221;"
 msgstr ""
 
-#. Text in echo
-#: functions.php:294
+#: lib/admin.php:545
+#@ wallow
 msgid "Select one of the ready-made styles or mix them to build your custom style"
 msgstr ""
 
-#. Text in echo
-#: functions.php:318
-msgid "Select the style of the elements"
-msgstr ""
-
-#. Text in echo
-#: widgets.php:236
+#: lib/widgets.php:115
+#: lib/widgets.php:234
+#@ wallow
 msgid "Show post thumbnails"
 msgstr ""
 
-#. Text in echo
-#: widgets.php:421
+#: lib/widgets.php:423
+#@ wallow
 msgid "Show user gravatar"
 msgstr ""
 
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:355
+#@ wallow
 msgid "Some useful links for users"
 msgstr ""
 
-#. Text in echo
-#: index.php:46
+#: index.php:52
+#: mobile/loop-front-page-mobile.php:11
+#: mobile/loop-index-mobile.php:43
+#: mobile/loop-page-mobile.php:41
+#: mobile/loop-single-mobile.php:30
+#@ wallow
 msgid "Sorry, no posts matched your criteria."
 msgstr ""
 
-#. Text in echo
-#: 404.php:13
+#: 404.php:11
+#@ wallow
 msgid "Sorry, you're looking for something that isn't here"
 msgstr ""
 
-#. Text in echo
-#: header.php:72
+#: header.php:68
+#@ wallow
 msgid "Syndicate this site using RSS 2.0"
 msgstr ""
 
-#. Text in function
-#: index.php:5
+#: index.php:11
+#: mobile/loop-index-mobile.php:5
+#@ wallow
 msgid "Tag"
 msgstr ""
 
-#. Text in function
-#: index.php:33
-#: single.php:20
+#: index.php:30
+#: single.php:18
+#@ wallow
 msgid "Tags: "
 msgstr ""
 
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:248
+#@ wallow
 msgid "The latest comment authors"
 msgstr ""
 
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:128
+#@ wallow
 msgid "The latest commented posts/pages of your site"
 msgstr ""
 
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:15
+#@ wallow
 msgid "The most commented posts on your site"
 msgstr ""
 
-#. Text in function
-#: functions.php:211
+#: lib/admin.php:364
+#: lib/admin.php:521
+#@ wallow
 msgid "Theme Options"
 msgstr ""
 
-#. Text in echo
-#: widgets.php:482
-#: widgets.php:416
+#: lib/widgets.php:104
+#: lib/widgets.php:223
+#: lib/widgets.php:336
+#: lib/widgets.php:418
+#: lib/widgets.php:492
+#@ wallow
 msgid "Title:"
 msgstr ""
 
-#. Text in function
-#: header.php:52
+#: header.php:47
+#, php-format
+#@ wallow
 msgid "Today is %1$s<br />%2$s"
 msgstr ""
 
-#. Text in echo
-#: attachment.php:77
-#: single.php:44
-#: page.php:46
+#: attachment.php:73
+#: page.php:44
+#: single.php:42
+#@ wallow
 msgid "TrackBack URL"
 msgstr ""
 
-#. Text in echo
-#: functions.php:397
-msgid "Try disable animations if you encountered problems with javascript"
-msgstr ""
-
-#. Text in echo
-#: functions.php:404
+#: lib/admin.php:672
+#@ wallow
 msgid "Undo Changes"
 msgstr ""
 
-#. Text in echo
-#: functions.php:403
+#: lib/admin.php:671
+#@ wallow
 msgid "Update Options"
 msgstr ""
 
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:356
+#@ wallow
 msgid "User quick links"
 msgstr ""
 
-#. Text in echo
-#: widgets.php:460
+#: lib/widgets.php:470
+#@ wallow
 msgid "View all"
 msgstr ""
 
-#. Text in echo
-#: widgets.php:460
+#: lib/widgets.php:470
+#@ wallow
 msgid "View all categories"
 msgstr ""
 
-#. Text in echo
-#: attachment.php:58
+#: attachment.php:54
+#@ wallow
 msgid "View full size"
 msgstr ""
 
-#. Text in echo
-#: footer.php:7
-msgid "Visit author homepage"
-msgstr ""
-
-#. Text in echo
-#: functions.php:289
-msgid "Wallow - Theme options"
-msgstr ""
-
-#. Text in function
-#: widgets.php:490
+#: lib/widgets.php:365
+#, php-format
+#@ wallow
 msgid "Welcome %s"
 msgstr ""
 
-#. Text in echo
-#: 404.php:14
+#: 404.php:13
+#@ wallow
 msgid "You can try the following:"
 msgstr ""
 
-#. Text in function
-#: comments.php:26
+#: comments.php:25
+#, php-format
+#@ wallow
 msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
 msgstr ""
 
-#. Text in echo
-#: widgets.php:387
+#: lib/widgets.php:385
+#@ wallow
 msgid "Your Profile"
 msgstr ""
 
-#. Text in function
-#: functions.php:389
-msgid "active"
-msgstr ""
-
-#. Text in function
-#: functions.php:84
+#: functions.php:33
+#@ wallow
 msgid "air"
 msgstr ""
 
-#. Text in echo
-#: functions.php:352
+#: lib/admin.php:598
+#@ wallow
 msgid "avatar"
 msgstr ""
 
-#. Text in echo
-#: 404.php:18
-msgid "browse the site throught the navigation bar below"
-msgstr ""
-
-#. Text in echo
-#: attachment.php:19
-#: 404.php:11
-#: index.php:33
-#: single.php:20
+#: attachment.php:15
+#: index.php:30
+#: single.php:18
+#@ wallow
 msgid "by"
 msgstr ""
 
-#. Text in function
-#: functions.php:84
+#: functions.php:33
+#@ wallow
 msgid "clouds"
 msgstr ""
 
-#. Text in function
-#: functions.php:299
+#: lib/admin.php:551
+#@ wallow
 msgid "custom..."
 msgstr ""
 
-#. Text in echo
-#: widgets.php:416
+#: lib/widgets.php:418
+#, php-format
+#@ wallow
 msgid "default: \"Welcome %s\" , where %s is the user name"
 msgstr ""
 
-#. Text in echo
-#: functions.php:369
-msgid "description"
-msgstr ""
-
-#. Text in function
-#: functions.php:484
+#: functions.php:222
+#: functions.php:234
+#@ wallow
 msgid "drag here your favorite widgets"
 msgstr ""
 
-#. Text in function
-#: functions.php:84
+#: functions.php:33
+#@ wallow
 msgid "earth"
 msgstr ""
 
-#. Text in function
-#: attachment.php:71
-#: single.php:38
-#: page.php:40
+#: attachment.php:67
+#: page.php:38
+#: single.php:36
+#@ wallow
 msgid "feed for comments on this post"
 msgstr ""
 
-#. Text in function
-#: functions.php:84
+#: functions.php:33
+#@ wallow
 msgid "fire"
 msgstr ""
 
-#. Text in echo
-#: functions.php:322
+#: lib/admin.php:568
+#@ wallow
 msgid "general looking"
 msgstr ""
 
-#. Text in function
-#: functions.php:389
-msgid "hide"
-msgstr ""
-
-#. Text in function
-#: functions.php:389
-msgid "inactive"
-msgstr ""
-
-#. Text in function
-#: header.php:52
+#: header.php:47
+#@ wallow
 msgid "l"
 msgstr ""
 
-#. Text in echo
-#: functions.php:367
-msgid "name"
-msgstr ""
-
-#. Text in echo
-#: functions.php:334
+#: lib/admin.php:580
+#@ wallow
 msgid "pages menu"
 msgstr ""
 
-#. Text in echo
-#: functions.php:340
+#: lib/admin.php:586
+#@ wallow
 msgid "pop-up menu"
 msgstr ""
 
-#. Text in echo
-#: functions.php:346
+#: lib/admin.php:170
+#: lib/admin.php:592
+#@ wallow
 msgid "quickbar"
 msgstr ""
 
-#. Text in echo
-#: functions.php:370
-msgid "require"
-msgstr ""
-
-#. Text in echo
-#: 404.php:16
-msgid "search the site using the searchbox in the upper-right"
-msgstr ""
-
-#. Text in echo
-#: 404.php:17
-msgid "see the suggested pages in the above menu"
-msgstr ""
-
-#. Text in function
-#: functions.php:389
-msgid "show"
-msgstr ""
-
-#. Text in echo
-#: functions.php:328
+#: lib/admin.php:574
+#@ wallow
 msgid "sidebar"
 msgstr ""
 
-#. Text in function
-#: functions.php:84
+#: functions.php:33
+#@ wallow
 msgid "smoke"
 msgstr ""
 
-#. Text in echo
-#: functions.php:368
-msgid "status"
-msgstr ""
-
-#. Text in function
-#: functions.php:84
+#: functions.php:33
+#@ wallow
 msgid "water"
 msgstr ""
 
-#. Text in function
-#: functions.php:422
-msgid "Font size"
+#: 404.php:18
+#@ wallow
+msgid "There are several links scattered around the page, maybe you can find what you're looking for"
+msgstr ""
+
+#: 404.php:19
+#@ wallow
+msgid "Perhaps using the search form will help..."
+msgstr ""
+
+#: footer.php:11
+#@ wallow
+msgid "Mobile View"
+msgstr ""
+
+#: functions.php:243
+#@ wallow
+msgid "Page 404"
+msgstr ""
+
+#: functions.php:245
+#@ wallow
+msgid "Enrich the page 404 with some useful widgets"
+msgstr ""
+
+#: functions.php:404
+#@ wallow
+msgid "Next Post"
+msgstr ""
+
+#: functions.php:405
+#@ wallow
+msgid "Previous Post"
+msgstr ""
+
+#: functions.php:418
+#@ wallow
+msgid "Home"
+msgstr ""
+
+#: functions.php:419
+#@ wallow
+msgid "Top"
+msgstr ""
+
+#: functions.php:420
+#@ wallow
+msgid "Bottom"
+msgstr ""
+
+#: functions.php:487
+#@ wallow
+msgid "post"
+msgstr ""
+
+#: lib/admin.php:20
+#@ wallow
+msgid "Other"
+msgstr ""
+
+#: lib/admin.php:21
+#@ wallow
+msgid "Mobile"
+msgstr ""
+
+#: lib/admin.php:22
+#@ wallow
+msgid "Style"
+msgstr ""
+
+#: lib/admin.php:23
+#@ wallow
+msgid "Contents"
+msgstr ""
+
+#: lib/admin.php:24
+#@ wallow
+msgid "Elements"
+msgstr ""
+
+#: lib/admin.php:90
+#@ wallow
+msgid "blank titles"
+msgstr ""
+
+#: lib/admin.php:91
+#, php-format
+#@ wallow
+msgid "set the standard text for blank titles. you may use these codes:<br /><code>%d</code> for post date<br /><code>%f</code> for post format (if any)"
+msgstr ""
+
+#: lib/admin.php:99
+#@ wallow
+msgid "content summary"
+msgstr ""
+
+#: lib/admin.php:100
+#@ wallow
+msgid "use the summary instead of content in archives"
+msgstr ""
+
+#: lib/admin.php:109
+#@ wallow
+msgid "excerpt length"
+msgstr ""
+
+#: lib/admin.php:119
+#@ wallow
+msgid "<em>excerpt more</em> string"
+msgstr ""
+
+#: lib/admin.php:129
+#@ wallow
+msgid "<em>excerpt more</em> linked"
+msgstr ""
+
+#: lib/admin.php:130
+#@ wallow
+msgid "use the <em>excerpt more</em> string as a link to the full post"
+msgstr ""
+
+#: lib/admin.php:139
+#@ wallow
+msgid "\"more\" tag string"
+msgstr ""
+
+#: lib/admin.php:140
+#, php-format
+#@ wallow
+msgid "only plain text. use <code>%t</code> as placeholder for the post title"
+msgstr ""
+
+#: lib/admin.php:148
+#@ wallow
+msgid "posts thumbnail"
+msgstr ""
+
+#: lib/admin.php:160
+#@ wallow
+msgid "thumbnail size"
+msgstr ""
+
+#: lib/admin.php:171
+#@ wallow
+msgid "the sliding panel that is activated when the mouse rolls over the fixed buttons on the bottom left"
+msgstr ""
+
+#: lib/admin.php:180
+#@ wallow
+msgid "navigation tool"
+msgstr ""
+
+#: lib/admin.php:190
+#@ wallow
+msgid "custom avatar image"
+msgstr ""
+
+#: lib/admin.php:200
+#@ wallow
+msgid "primary menu"
+msgstr ""
+
+#: lib/admin.php:201
+#@ wallow
+msgid "uncheck if you want to hide it"
+msgstr ""
+
+#: lib/admin.php:209
+#@ wallow
+msgid "font family"
+msgstr ""
+
+#: lib/admin.php:223
+#@ wallow
+msgid "font size"
+msgstr ""
+
+#: lib/admin.php:233
+#@ wallow
+msgid "Google web font"
+msgstr ""
+
+#: lib/admin.php:234
+#@ wallow
+msgid "Copy and paste <a href=\"http://www.google.com/webfonts\" target=\"_blank\"><strong>Google web font</strong></a> name here. Example: <code>Architects Daughter</code>"
+msgstr ""
+
+#: lib/admin.php:243
+#@ wallow
+msgid "for whole page"
+msgstr ""
+
+#: lib/admin.php:253
+#@ wallow
+msgid "for posts/pages title"
+msgstr ""
+
+#: lib/admin.php:263
+#@ wallow
+msgid "for posts/pages content"
+msgstr ""
+
+#: lib/admin.php:273
+#@ wallow
+msgid "mobile support"
+msgstr ""
+
+#: lib/admin.php:274
+#@ wallow
+msgid "detect mobile devices and use a dedicated style. Disable it if you don't like it or you're already using a plugin for mobile support"
+msgstr ""
+
+#: lib/admin.php:285
+#@ wallow
+msgid "colors"
+msgstr ""
+
+#: lib/admin.php:295
+#@ wallow
+msgid "javascript animations"
+msgstr ""
+
+#: lib/admin.php:296
+#@ wallow
+msgid "try disable animations if you encountered problems with javascript"
+msgstr ""
+
+#: lib/admin.php:304
+#@ wallow
+msgid "thickbox"
+msgstr ""
+
+#: lib/admin.php:305
+#@ wallow
+msgid "use thickbox for showing images and galleries"
+msgstr ""
+
+#: lib/admin.php:314
+#@ wallow
+msgid "gallery links"
+msgstr ""
+
+#: lib/admin.php:315
+#@ wallow
+msgid "force galleries to use links to image instead of links to attachment"
+msgstr ""
+
+#: lib/admin.php:324
+#@ wallow
+msgid "custom widgets"
+msgstr ""
+
+#: lib/admin.php:325
+#@ wallow
+msgid "add a lot of new usefull widgets"
+msgstr ""
+
+#: lib/admin.php:333
+#@ wallow
+msgid "custom CSS code"
+msgstr ""
+
+#: lib/admin.php:334
+#@ wallow
+msgid "<strong>For advanced users only</strong>: paste here your custom css code. it will be added after the defatult style"
+msgstr ""
+
+#: lib/admin.php:342
+#@ wallow
+msgid "theme credits"
+msgstr ""
+
+#: lib/admin.php:343
+#@ wallow
+msgid "please, don't hide theme credits. TwoBeers.net's authors reserve themselfs to give support only to those who recognize TwoBeers work, keeping TwoBeers.net credits visible on their site."
+msgstr ""
+
+#: lib/admin.php:401
+#@ wallow
+msgid "Are you really sure you want to set all the options to their default values?"
+msgstr ""
+
+#: lib/admin.php:501
+#@ wallow
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: lib/admin.php:529
+#@ wallow
+msgid "Defaults values loaded."
+msgstr ""
+
+#: lib/admin.php:606
+#@ wallow
+msgid "Options"
+msgstr ""
+
+#: lib/admin.php:632
+#@ wallow
+msgid "requires"
+msgstr ""
+
+#: lib/admin.php:674
+#@ wallow
+msgid "Back to defaults"
+msgstr ""
+
+#: lib/admin.php:679
+#@ wallow
+msgid "Info"
+msgstr ""
+
+#: lib/admin.php:686
+#@ wallow
+msgid "If you like/dislike this theme, or if you encounter any issues, please let us know it."
+msgstr ""
+
+#: lib/admin.php:787
+#@ wallow
+msgid "wallow Default Gravatar"
+msgstr ""
+
+#: lib/admin.php:810
+#@ wallow
+msgid "Remove"
+msgstr ""
+
+#: mobile/comments-mobile.php:26
+#@ wallow
+msgid "Name"
+msgstr ""
+
+#: mobile/comments-mobile.php:28
+#@ wallow
+msgid "Email"
+msgstr ""
+
+#: mobile/comments-mobile.php:30
+#@ wallow
+msgid "Website"
+msgstr ""
+
+#: mobile/comments-mobile.php:41
+#, php-format
+#@ wallow
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: mobile/core-mobile.php:94
+#@ wallow
+msgid "Mobile Widget Area"
+msgstr ""
+
+#: mobile/core-mobile.php:148
+#, php-format
+#@ wallow
+msgid "follow %s on Twitter"
+msgstr ""
+
+#: mobile/core-mobile.php:149
+#, php-format
+#@ wallow
+msgid "follow %s on Facebook"
+msgstr ""
+
+#: mobile/core-mobile.php:156
+#@ wallow
+msgid "Tags"
+msgstr ""
+
+#: mobile/core-mobile.php:156
+#@ wallow
+msgid "No Tags"
+msgstr ""
+
+#: mobile/core-mobile.php:157
+#, php-format
+#@ wallow
+msgid "Published on: %1$s"
+msgstr ""
+
+#: mobile/core-mobile.php:167
+#@ wallow
+msgid "Navigation Menu for mobiles<br><small>only supports the first level of hierarchy</small>"
+msgstr ""
+
+#: mobile/footer-mobile.php:5
+#@ wallow
+msgid "Menu"
+msgstr ""
+
+#: mobile/footer-mobile.php:16
+#@ wallow
+msgid "Desktop View"
+msgstr ""
+
+#: mobile/loop-index-mobile.php:3
+#@ wallow
+msgid "Posts"
+msgstr ""
+
+#: mobile/loop-index-mobile.php:7
+#, php-format
+#@ wallow
+msgid "Posts by %s"
+msgstr ""
+
+#: mobile/loop-index-mobile.php:31
+#, php-format
+#@ wallow
+msgid "page %1$s of %2$s"
+msgstr ""
+
+#: mobile/loop-index-mobile.php:36
+#@ wallow
+msgid "Previous page"
+msgstr ""
+
+#: mobile/loop-index-mobile.php:37
+#@ wallow
+msgid "Next page"
+msgstr ""
+
+#: mobile/loop-page-mobile.php:22
+#@ wallow
+msgid "Child pages"
+msgstr ""
+
+#: mobile/loop-page-mobile.php:34
+#@ wallow
+msgid "Parent page"
 msgstr ""

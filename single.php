@@ -1,3 +1,5 @@
+<?php global $wallow_options; ?>
+
 <?php get_header(); ?>
 
 <div id="content">
@@ -8,13 +10,9 @@
 		<?php printf( '<h2 class="posts_date">%1$s</h2>', get_the_date() ); ?>
 
 		<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
-			<?php the_post_thumbnail( array( 150,150 ), array( 'class' => 'alignleft' ) ); ?>
-			<h3 class="storytitle"><a href="<?php the_permalink() ?>" rel="bookmark">
-				<?php
-				$post_title = the_title_attribute( 'echo=0' );
-				if (!$post_title) { _e( '(no title)', 'wallow' ); } else { echo $post_title; };
-				?>
-				</a>
+			<?php if ( $wallow_options['wallow_pthumb'] ) the_post_thumbnail( array( $wallow_options['wallow_pthumb_size'], $wallow_options['wallow_pthumb_size'] ), array( 'class' => 'alignleft' ) ); ?>
+			<h3 class="storytitle">
+				<a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h3>
 
 			<div class="meta"><?php _e( 'by', 'wallow' ); ?> <?php the_author() ?> &#8212; <?php if( !is_page()) { _e( 'Categories', 'wallow'); ?>: <?php the_category( ', ' ) ?> &#8212; <?php the_tags( __( 'Tags: ', 'wallow' ), ', ', ' &#8212; ' ); }; ?> <?php comments_popup_link( __( 'Leave a comment', 'wallow' ), __( '1 Comment', 'wallow' ), __( '% Comments', 'wallow' ) ); ?> <?php edit_post_link( __( 'Edit', 'wallow' ), ' &#8212; ' ); ?></div>

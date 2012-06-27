@@ -54,5 +54,45 @@
 			});
 		};
 	});
-	
+
+	// fade in/out on scroll
+	top_but = $('#micronav .up');
+	bot_but = $('#micronav .down');
+	top_but.hide();
+	$(function () {
+		$(window).scroll(function () {
+			// check for top action
+			if ($(this).scrollTop() > 100) {
+				top_but.fadeIn();
+			} else {
+				top_but.fadeOut();
+			}
+			// check for bottom action
+			if ( $('body').height()-$(window).scrollTop()-$(window).height() < 100) {
+				bot_but.fadeOut();
+			} else {
+				bot_but.fadeIn();
+			}
+
+		});
+	});
+
+	// smooth scroll top/bottom
+	top_but.click(function() {
+		$("html, body").animate({
+			scrollTop: 0
+		}, {
+			duration: 400
+		});
+		return false;
+	});
+	bot_but.click(function() {
+		$("html, body").animate({
+			scrollTop: $('#credits').offset().top - 80
+		}, {
+			duration: 400
+		});
+		return false;
+	});
+
 });

@@ -1,5 +1,8 @@
 ﻿Wallow WordPress theme
 
+Version:
+	0.50
+
 Project page:
 	http://www.twobeers.net/annunci/wallow
 
@@ -30,6 +33,11 @@ THEME SPECIAL FUNCTIONS:
 
 CHANGE LOG (FROM VERSION 0.46.5):
 	* Fixed print.css link
+	* added a ton of new options
+	* mobile support
+	* less images + css3 rules + dinamic css builder = lighter then ever
+	* WP 3.4 full compatible
+	* WP-pagenavi native support
 
 CHANGE LOG (FROM VERSION 0.46.4):
 	* WP 3.3 dashboard design compatibility
@@ -41,8 +49,3 @@ CHANGE LOG (FROM VERSION 0.44):
 	* Two new styles (smoke and clouds)
 	* Customizable header
 	* Adjustable font size
-  
-CREDITS
-	* thanks to Frank from http://www.wormserwebtreff.de/ for the German translation and the beta testing
-	* thanks to Jose A. Milan for the Spanish translation
-	* thanks to Sebastien Blanrue from http://blog.sauterdanslesflaques.fr/ for the Frech translation

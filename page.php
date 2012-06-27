@@ -1,3 +1,5 @@
+<?php global $wallow_options; ?>
+
 <?php get_header(); ?>
 
 <div id="content">
@@ -8,13 +10,9 @@
 		<h2 class="posts_date">&nbsp;</h2>
 
 		<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
-			<?php the_post_thumbnail( array( 150,150 ), array( 'class' => 'alignleft' ) ); ?>
-			<h3 class="storytitle"><a href="<?php the_permalink() ?>" rel="bookmark">
-				<?php
-				$post_title = the_title_attribute('echo=0');
-				if (!$post_title) { _e( '(no title)', 'wallow' ); } else { echo $post_title; } ;
-				?>
-				</a>
+			<?php if ( $wallow_options['wallow_pthumb'] ) the_post_thumbnail( array( $wallow_options['wallow_pthumb_size'], $wallow_options['wallow_pthumb_size'] ), array( 'class' => 'alignleft' ) ); ?>
+			<h3 class="storytitle">
+				<a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h3>
 
 			<div class="meta">

@@ -8,12 +8,8 @@
 		<?php printf( '<h2 class="posts_date">%1$s</h2>', get_the_date() ); ?>
 
 		<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
-			<h3 class="storytitle"><a href="<?php the_permalink() ?>" rel="bookmark">
-				<?php
-				$post_title = the_title_attribute( 'echo=0' );
-				if (!$post_title) { _e( '(no title)', 'wallow' ); } else { echo $post_title; };
-				?>
-				</a>
+			<h3 class="storytitle">
+				<a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h3>
 
 			<div class="meta"><?php _e( 'by', 'wallow' ); ?> <?php the_author() ?> &#8212; <?php comments_popup_link( __( 'Leave a comment', 'wallow' ), __( '1 Comment', 'wallow' ), __( '% Comments', 'wallow' ) ); ?> <?php edit_post_link( __( 'Edit', 'wallow' ), ' &#8212; ' ); ?></div>

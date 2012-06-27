@@ -1,4 +1,4 @@
-<?php global $wallow_options; ?>
+<?php global $wallow_options, $current_user; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php language_attributes( 'xhtml' ); ?>>
 
@@ -22,7 +22,7 @@
 <body <?php body_class(); ?>>
 
 <?php 
-	if ( $wallow_options['wallow_qbar'] == 'show' || !isset( $wallow_options['wallow_qbar'] ) ) { 
+	if ( !isset( $wallow_options['wallow_qbar'] ) || $wallow_options['wallow_qbar'] ) { 
 ?>
 <!-- begin quickbar -->
 <div id="quickbar"> 
@@ -30,20 +30,21 @@
 	<div id="qb_center">
 		<div id="avatar_cont">
 			<?php
-				if ( is_user_logged_in() ) { //fix for notice when user not log-in
-					global $current_user;
+				if ( isset( $wallow_options['wallow_qbar_avatar'] ) && $wallow_options['wallow_qbar_avatar'] ) {
+					echo '<img width="50" height="50" class="avatar avatar-50 photo" src="' . $wallow_options['wallow_qbar_avatar'] . '" alt="user-avatar">';
+				} elseif ( is_user_logged_in() ) { //fix for notice when user not log-in
 					get_currentuserinfo();
 					$email = $current_user->user_email;
 					echo get_avatar( $email, 50, $default = get_template_directory_uri() . '/images/user.png','user-avatar' );
 				} else {
-					echo get_avatar( 'dummyemail', 50, $default = get_template_directory_uri() . '/images/user.png','user-avatar' );
+					echo '<img width="50" height="50" class="avatar avatar-50 photo" src="' . get_template_directory_uri() . '/images/user.png" alt="user-avatar">';
 				}
 			?>
 		</div>
+		
 		<?php dynamic_sidebar( 'w-quickbar' ); ?>
 	</div>
-	<div id="qb_right"><?php printf( __( 'Today is %1$s<br />%2$s', 'wallow' ), date_i18n( __( 'l', 'wallow' ) ), date_i18n( get_option( 'date_format' ) ) ); ?></div>
-
+	<div id="qb_right"><?php wallow_micronav(); ?><?php printf( __( 'Today is %1$s<br />%2$s', 'wallow' ), date_i18n( __( 'l', 'wallow' ) ), date_i18n( get_option( 'date_format' ) ) ); ?></div>
 </div>
 <!-- end quickbar -->
 <?php } ?>
@@ -59,6 +60,8 @@
 	<?php } ?>
 </div>
 
+<?php if ( !isset( $wallow_options['wallow_primary_menu'] ) || $wallow_options['wallow_primary_menu'] ) { ?>
+
 <!-- begin pages menu -->
 <div id="pages">
 	<div id="pages_subcont">
@@ -68,5 +71,7 @@
 	</div>
 </div>
 <!-- end pages menu -->
+
+<?php } ?>
 
 <!-- end header -->

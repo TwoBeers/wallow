@@ -1,0 +1,21 @@
+#tbm-widget-area {
+	background: url("../mobile/images/mobwig.png") no-repeat center 10px transparent;
+	padding-top: 80px;
+}
+div[id*=_wlw-] .widget-title {
+	background: url("../images/wlw18.png") no-repeat 5px center transparent;
+	padding-left: 24px;
+}
+.sw-service-input {
+	float: left; 
+	width: 40%; 
+	margin: 0pt 5%;
+}
+.sw-service-input img {
+	vertical-align:middle; 
+	width:40px; 
+	height:40px;
+}
+.sw-service-input input[type="checkbox"] {
+	vertical-align:middle; 
+}

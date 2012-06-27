@@ -1,3 +1,5 @@
+<?php global $wallow_options; ?>
+
 <?php get_header(); ?>
 
 <div id="content">
@@ -20,20 +22,24 @@
 			<?php if ( !is_page() ) { printf( '<h2 class="posts_date">%1$s</h2>', get_the_date() ); } ?>
 		
 			<div <?php post_class() ?> id="post-<?php the_ID(); ?>">
-				<?php the_post_thumbnail( array( 150,150 ), array( 'class' => 'alignleft' ) ); ?>
+				<?php if ( $wallow_options['wallow_pthumb'] ) the_post_thumbnail( array( $wallow_options['wallow_pthumb_size'], $wallow_options['wallow_pthumb_size'] ), array( 'class' => 'alignleft' ) ); ?>
 				<h3 class="storytitle">
-					<a href="<?php the_permalink() ?>" rel="bookmark">
-					<?php
-						$post_title = the_title_attribute( 'echo=0' );
-						if ( !$post_title ) { _e( '(no title)', 'wallow' ); } else { echo $post_title; }
-					?>
-					</a>
+					<a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a>
 				</h3>
 				<div class="meta">
 					<?php _e( 'by', 'wallow' ); ?> <?php the_author() ?> &#8212; <?php _e( 'Categories', 'wallow' ); ?>: <?php the_category( ', ' ) ?> &#8212; <?php the_tags( __( 'Tags: ', 'wallow' ), ', ', ' &#8212; '); ?> <?php comments_popup_link( __( 'Leave a comment', 'wallow'), __( '1 Comment', 'wallow' ), __( '% Comments', 'wallow' )); // number of comments?> <?php edit_post_link( __( 'Edit', 'wallow' ), ' &#8212; ' ); ?>
 				</div>
 				<div class="storycontent">
-					<?php the_content(); ?>
+					<?php
+						switch ( $wallow_options['wallow_postexcerpt'] ) {
+							case 0: //the content
+								the_content();
+								break;
+							case 1: //the excerpt
+								the_excerpt();
+								break;
+						}
+					?>
 				</div>
 				<div>
 						<?php wp_link_pages( 'before=<div class="meta comment_tools">' . __( 'Pages', 'wallow' ) . ':&after=</div>' ); ?>
@@ -47,7 +53,11 @@
 	} ?>
 	
 	<div id="nav_pages">
-		<?php posts_nav_link( ' &#8212; ', '&laquo; ' . __( 'Newer Posts', 'wallow' ), __( 'Older Posts', 'wallow' ) . ' &raquo;'); ?>
+		<?php if ( function_exists( 'wp_pagenavi' ) ) { ?>
+			<?php wp_pagenavi(); ?>
+		<?php } else { ?>
+			<?php posts_nav_link( ' &#8212; ', '&laquo; ' . __( 'Newer Posts', 'wallow' ), __( 'Older Posts', 'wallow' ) . ' &raquo;'); ?>
+		<?php } ?>
 	</div>
 
 </div>
