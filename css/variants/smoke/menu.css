@@ -1,0 +1,28 @@
+.page_item a, .menu-item a {
+	color: #ccc;
+	text-decoration: none;
+}
+.page_item a:hover, .menu-item a:hover {
+	color: #0080BC;
+}
+#pages {
+	background: #131313;
+	background: -moz-linear-gradient(top,  rgba(19,19,19,1) 0%, rgba(19,19,19,1) 30%, rgba(19,19,19,0.9) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(19,19,19,1)), color-stop(30%,rgba(19,19,19,1)), color-stop(100%,rgba(19,19,19,0.9))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(19,19,19,1) 0%,rgba(19,19,19,1) 30%,rgba(19,19,19,0.9) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(19,19,19,1) 0%,rgba(19,19,19,1) 30%,rgba(19,19,19,0.9) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(19,19,19,1) 0%,rgba(19,19,19,1) 30%,rgba(19,19,19,0.9) 100%); /* IE10+ */
+	background: linear-gradient(top,  rgba(19,19,19,1) 0%,rgba(19,19,19,1) 30%,rgba(19,19,19,0.9) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#131313', endColorstr='#e6131313',GradientType=0 ); /* IE6-9 */
+	border-bottom: 4px double #fff;
+	border-top: 4px double #fff;
+	box-shadow: -10px 0 10px #000;
+}
+#mainmenu > li.menu-item ,
+#mainmenu > li.page_item {
+	border-right:1px solid #aaa;
+}
+.current_page_ancestor .hiraquo,
+.current-menu-ancestor .hiraquo {
+	color: #d54e21;
+}

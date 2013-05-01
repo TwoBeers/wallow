@@ -1,57 +1,154 @@
 <?php
+/**
+ * functions.php
+ *
+ * Contains almost all of the Theme's setup functions and custom functions.
+ *
+ * Sets up the theme and provides some helper functions, which are used
+ * in the theme as custom template tags. Others are attached to action and
+ * filter hooks in WordPress to change core functionality.
+ *
+ * When using a child theme (see http://codex.wordpress.org/Theme_Development and
+ * http://codex.wordpress.org/Child_Themes), you can override certain functions
+ * (those wrapped in a function_exists() call) by defining them first in your child theme's
+ * functions.php file. The child theme's functions.php file is included before the parent
+ * theme's file, so the child theme functions would be used.
+ *
+ * Functions that are not pluggable (not wrapped in function_exists()) are instead attached
+ * to a filter or action hook.
+ *
+ * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
+ *
+ * @package wallow
+ * @since 0.29
+ */
 
-add_action( 'after_setup_theme', 'wallow_setup' ); // Tell WordPress to run wallow_setup() when the 'after_setup_theme' hook is run.
-add_action( 'widgets_init', 'wallow_widget_area_init' ); // Register sidebars by running wallow_widget_area_init() on the widgets_init hook
-add_action( 'template_redirect', 'wallow_scripts' ); // Add js animations
-add_action( 'wp_enqueue_scripts', 'wallow_stylesheet' ); // Add stylesheets
-add_action( 'template_redirect', 'wallow_allcat' ); // allcat page redirect
-add_action( 'wp_print_styles', 'wallow_deregister_styles', 100 ); // deregister styles
-add_action( 'wp_footer', 'wallow_init_scripts' ); //initialize some scripts
-add_action( 'wp_head', 'wallow_custom_css' ); //custom css code
 
-// Custom filters
-add_filter( 'the_content', 'wallow_content_replace' );
-add_filter( 'the_title', 'wallow_title_tags_filter', 10, 2 );
-add_filter( 'excerpt_length', 'wallow_excerpt_length' );
-add_filter( 'excerpt_more', 'wallow_excerpt_more' );
-add_filter( 'the_content_more_link', 'wallow_more_link', 10, 2 );
-add_filter( 'post_gallery', 'wallow_gallery_shortcode', 10, 2 );
-add_filter( 'next_posts_link_attributes', 'wallow_next_posts_title' ); 
-add_filter( 'previous_posts_link_attributes', 'wallow_previous_posts_title' ); 
+/* Custom actions - WP hooks */
+
+add_action( 'after_setup_theme'					, 'wallow_setup' );
+add_action( 'template_redirect'					, 'wallow_scripts' );
+add_action( 'wp_enqueue_scripts'				, 'wallow_stylesheet' );
+add_action( 'template_redirect'					, 'wallow_allcat' );
+add_action( 'wp_print_styles'					, 'wallow_deregister_styles', 100 );
+add_action( 'wp_footer'							, 'wallow_init_scripts' );
+add_action( 'wp_head'							, 'wallow_custom_css' );
+add_action( 'admin_bar_menu'					, 'wallow_admin_bar_plus', 999 );
+add_action( 'comment_form_before'				, 'wallow_enqueue_comments_reply' );
+add_action( 'wallow_hook_header_after'			, 'wallow_primary_menu' );
+add_action( 'wallow_hook_comments_list_before'	, 'wallow_navigate_comments' );
+add_action( 'wallow_hook_comments_list_after'	, 'wallow_navigate_comments' );
+add_action( 'wallow_hook_content_top'			, 'wallow_search_reminder' );
+add_action( 'wallow_hook_entry_bottom'			, 'wallow_link_pages' );
+add_action( 'wallow_hook_entry_bottom'			, 'wallow_single_widgets_area' );
+add_action( 'wallow_hook_post_title_before'		, 'wallow_the_thumb' );
+add_action( 'wallow_hook_post_title_after'		, 'wallow_top_meta' );
+add_action( 'wallow_hook_entry_after'			, 'wallow_bottom_meta' );
+add_action( 'wallow_hook_content_bottom'		, 'wallow_nav_posts' );
+add_action( 'wallow_hook_entry_before'			, 'wallow_navigate_attachments' );
 
 
-$wallow_options = get_option( 'wallow_options' );
-$wallow_is_mobile_browser = false;
+/* Custom filters - WP hooks */
 
-// load modules (accordingly to http://justintadlock.com/archives/2010/11/17/how-to-load-files-within-wordpress-themes)
-require_once( 'mobile/core-mobile.php' ); // load the mobile theme
-require_once( 'lib/admin.php' ); // load the admin stuff
-if ( $wallow_options['wallow_custom_widgets'] == 1 ) require_once( 'lib/widgets.php' ); // load the custom widgets module
+add_filter( 'embed_oembed_html'					, 'wallow_wmode_transparent', 10, 3);
+add_filter( 'the_title'							, 'wallow_titles_filter', 10, 2 );
+add_filter( 'excerpt_length'					, 'wallow_excerpt_length' );
+add_filter( 'excerpt_mblength'					, 'wallow_excerpt_length' );
+add_filter( 'excerpt_more'						, 'wallow_excerpt_more' );
+add_filter( 'the_content_more_link'				, 'wallow_more_link', 10, 2 );
+add_filter( 'post_gallery'						, 'wallow_gallery_shortcode', 10, 2 );
+add_filter( 'next_posts_link_attributes'		, 'wallow_next_posts_title' ); 
+add_filter( 'previous_posts_link_attributes'	, 'wallow_previous_posts_title' ); 
+add_filter( 'wp_title'							, 'wallow_filter_wp_title' );
+add_filter( 'body_class'						, 'wallow_body_classes' );
+add_filter( 'page_css_class'					, 'wallow_add_parent_class', 10, 4 );
+add_filter( 'wp_nav_menu_objects'				, 'wallow_add_menu_parent_class' );
+add_filter( 'wp_list_categories'				, 'wallow_wrap_categories_count' );
+
+
+/* get the theme options */
+
+$wallow_opt = get_option( 'wallow_options' );
+
+
+/* theme infos */
+
+function wallow_get_info( $field ) {
+	static $infos;
+
+	if ( !isset( $infos ) ) {
+
+		$infos['theme'] =			wp_get_theme( 'wallow' );
+		$infos['current_theme'] =	wp_get_theme();
+		$infos['version'] =			$infos['theme']? $infos['theme']['Version'] : '';
+
+	}
+
+	return $infos[$field];
+}
+
+
+/* load modules (accordingly to http://justintadlock.com/archives/2010/11/17/how-to-load-files-within-wordpress-themes) */
+
+require_once( 'lib/options.php' ); // load options
+
+require_once( 'lib/admin.php' ); // load admin functions
+
+require_once( 'lib/hooks.php' ); // load the custom hooks module
+
+require_once( 'lib/widgets.php' ); // load the custom widgets module
+
+require_once( 'lib/custom-header.php' ); // load the custom header module
+
+require_once( 'lib/jetpack.php' ); // load the jetpack support module
+
+require_once( 'lib/quickbar.php' ); // load quickbar functions
+
+$wallow_is_mobile = false;
+if ( wallow_get_opt( 'wallow_mobile_css' ) ) require_once( 'mobile/core-mobile.php' ); // load mobile functions
+
+
+/* conditional tags */
+
+function wallow_is_mobile() { // mobile
+	global $wallow_is_mobile;
+
+	return $wallow_is_mobile;
+
+}
+
+function wallow_is_allcat() { //is "all category" page
+	static $is_allcat;
+
+	if ( !isset( $is_allcat ) )
+		$is_allcat = isset( $_GET['allcat'] ) && md5( $_GET['allcat'] ) == '415290769594460e2e485922904f345d' ? true : false;
+
+	return $is_allcat;
+
+}
+
 
 // get the theme types
 function wallow_get_types() {
-	$wallow_types = array( 'fire' => __( 'fire', 'wallow' ) , 'air' => __( 'air', 'wallow' ) , 'water' => __( 'water', 'wallow' ) , 'earth' => __( 'earth', 'wallow' ), 'smoke' => __( 'smoke', 'wallow' ) , 'clouds' => __( 'clouds', 'wallow' ) );
+	$wallow_types = array(
+		'fire'		=> __( 'fire', 'wallow' ),
+		'air'		=> __( 'air', 'wallow' ),
+		'water'		=> __( 'water', 'wallow' ),
+		'earth'		=> __( 'earth', 'wallow' ),
+		'smoke'		=> __( 'smoke', 'wallow' ),
+		'clouds'	=> __( 'clouds', 'wallow' ),
+	);
 	return $wallow_types;
 }
+
 
 // Set the content_width (with a 1024x768 window size)
 if ( ! isset( $content_width ) )
 	$content_width = 640;
 
-// get theme version
-if ( function_exists( 'wp_get_theme' ) ) {
-	$wallow_theme = wp_get_theme( 'wallow' );
-	$wallow_current_theme = wp_get_theme();
-} else { // Compatibility with versions of WordPress prior to 3.4.
-	$wallow_theme = get_theme( 'Wallow' );
-	$wallow_current_theme = get_current_theme();
-}
-$wallow_version = $wallow_theme? $wallow_theme['Version'] : '';
-
 
 if ( !function_exists( 'wallow_setup' ) ) {
 	function wallow_setup() {
-		global $wallow_is_mobile_browser;
 
 		// Register localization support
 		load_theme_textdomain( 'wallow', get_template_directory() . '/languages' );
@@ -66,7 +163,7 @@ if ( !function_exists( 'wallow_setup' ) ) {
 		add_theme_support( 'post-thumbnails' );
 
 		// skip the rest if in mobile view
-		if ( $wallow_is_mobile_browser ) return;
+		if ( wallow_is_mobile() ) return;
 		
 		// Custom background
 		wallow_setup_custom_background();
@@ -76,9 +173,11 @@ if ( !function_exists( 'wallow_setup' ) ) {
 	}
 }
 
+
 //the custom header support
 if ( !function_exists( 'wallow_setup_custom_header' ) ) {
 	function wallow_setup_custom_header() {
+
 		$args = array(
 			'width'					=> 980, // Header image width (in pixels)
 			'height'				=> 120, // Header image height (in pixels)
@@ -90,95 +189,109 @@ if ( !function_exists( 'wallow_setup_custom_header' ) ) {
 			'flex-width'			=> true,
 			'flex-height'			=> true
 		);
-	 
+
 		$args = apply_filters( 'wallow_custom_header_args', $args );
-	 
-		if ( function_exists( 'get_custom_header' ) ) {
-			add_theme_support( 'custom-header', $args );
-		} else {
-			// Compatibility with versions of WordPress prior to 3.4.
-			define( 'HEADER_TEXTCOLOR',		$args['default-text-color'] );
-			define( 'NO_HEADER_TEXT',		$args['header-text'] );
-			define( 'HEADER_IMAGE',			$args['default-image'] );
-			define( 'HEADER_IMAGE_WIDTH',	$args['width'] );
-			define( 'HEADER_IMAGE_HEIGHT',	$args['height'] );
-			add_custom_image_header( $args['wp-head-callback'], $args['admin-head-callback'] );
-		}
+
+		add_theme_support( 'custom-header', $args );
+
 	}
 }
+
 
 // the custom background support
 if ( !function_exists( 'wallow_setup_custom_background' ) ) {
 	function wallow_setup_custom_background() {
+
 		$args = array( 'default-color' => '' );
-		if ( function_exists( 'get_custom_header' ) ) {
-			add_theme_support( 'custom-background', $args );
-		} else {
-			// Compat: Versions of WordPress prior to 3.4.
-			define( 'BACKGROUND_COLOR', $args['default-color'] );
-			add_custom_background();
-		}
+
+		add_theme_support( 'custom-background', $args );
+
 	}
 }
+
 
 // the custom header style - add style customization to page - gets included in the site header
 if ( !function_exists( 'wallow_header_style' ) ) {
 	function wallow_header_style(){
-		global $wallow_options;
+
+		global $wallow_opt;
 		$style = '';
 		if ( get_header_image() != '' ) $style = 'display:none;';
-?>
 
+?>
 		<style type="text/css">
 			#header h1 a, #header .description {
 				<?php echo $style; ?>
 			}
 			body {
-				font-size: <?php echo isset( $wallow_options['wallow_fontsize'] ) ? $wallow_options['wallow_fontsize'] : '11px'; ?>;
-<?php if ( $wallow_options['wallow_google_font_family'] && $wallow_options['wallow_google_font_body'] ) { ?>
-				font-family: <?php echo $wallow_options['wallow_google_font_family']; ?>;
+				font-size: <?php echo isset( $wallow_opt['wallow_fontsize'] ) ? $wallow_opt['wallow_fontsize'] : '11px'; ?>;
+<?php if ( $wallow_opt['wallow_google_font_family'] && $wallow_opt['wallow_google_font_body'] ) { ?>
+				font-family: <?php echo $wallow_opt['wallow_google_font_family']; ?>;
 <?php } else { ?>
-				font-family: <?php echo $wallow_options['wallow_font_family']; ?>;
+				font-family: <?php echo $wallow_opt['wallow_font_family']; ?>;
 <?php } ?>
 			}
-<?php if ( $wallow_options['wallow_google_font_family'] && $wallow_options['wallow_google_font_post_title'] ) { ?>
+<?php if ( $wallow_opt['wallow_google_font_family'] && $wallow_opt['wallow_google_font_post_title'] ) { ?>
 			h3.storytitle {
-				font-family: <?php echo $wallow_options['wallow_google_font_family']; ?>;
+				font-family: <?php echo $wallow_opt['wallow_google_font_family']; ?>;
 			}
 <?php } ?>
-<?php if ( $wallow_options['wallow_google_font_family'] && $wallow_options['wallow_google_font_post_content'] ) { ?>
+<?php if ( $wallow_opt['wallow_google_font_family'] && $wallow_opt['wallow_google_font_post_content'] ) { ?>
 			.storycontent {
-				font-family: <?php echo $wallow_options['wallow_google_font_family']; ?>;
+				font-family: <?php echo $wallow_opt['wallow_google_font_family']; ?>;
 			}
 <?php } ?>
 
 		</style>
-
 <?php
 
 	}
 }
+
 
 // custom css
 if ( !function_exists( 'wallow_custom_css' ) ) {
 	function wallow_custom_css(){
-		global $wallow_options;
+
+		if ( ! wallow_get_opt( 'wallow_custom_css' ) ) return;
 
 ?>
-		<style type="text/css">
-<?php 
-		if ( $wallow_options['wallow_custom_css'] )
-			echo $wallow_options['wallow_custom_css']; 
-?>
-		</style>
+	<style type="text/css">
+		<?php echo wallow_get_opt( 'wallow_custom_css' ); ?>
+	</style>
 <?php
 
 	}
 }
 
+
+// add links to admin bar
+if ( !function_exists( 'wallow_admin_bar_plus' ) ) {
+	function wallow_admin_bar_plus() {
+		global $wp_admin_bar;
+
+		if (!is_super_admin() || !is_admin_bar_showing() || !current_user_can( 'edit_theme_options' ) ) return;
+
+		$add_menu_meta = array(
+			'target'    => '_blank'
+		);
+
+		$wp_admin_bar->add_menu( array(
+			'id'        => 'wallow_theme_options',
+			'parent'    => 'appearance',
+			'title'     => __( 'Theme Options','wallow' ),
+			'href'      => get_admin_url() . 'themes.php?page=tb_wallow_functions',
+			'meta'      => $add_menu_meta
+		) );
+
+	}
+}
+
+
 // custom background style - gets included in the site header
 if ( !function_exists( 'wallow_custom_bg' ) ) {
 	function wallow_custom_bg() {
+
 		$background = get_background_image();
 		$color = get_background_color();
 		if ( ! $background && ! $color ) return;
@@ -204,159 +317,159 @@ if ( !function_exists( 'wallow_custom_bg' ) ) {
 		} else {
 			$style .= ' background-image: url("");';
 		}
-		?>
-		<style type="text/css"> 
-			body { <?php echo trim( $style ); ?> }
-		</style>
-		<?php
-	}
-}
-
-if ( !function_exists( 'wallow_widget_area_init' ) ) {
-	function wallow_widget_area_init() {
-		global $wallow_options;
-		// Registers the right sidebar
-		register_sidebar( array(
-			'name'          => 'Sidebar',
-			'id'            => 'sidepad',
-			'description'   => __( 'drag here your favorite widgets', 'wallow' ),
-			'before_widget' => '<li id="%1$s" class="widget %2$s">',
-			'after_widget' 	=> '</li>',
-			'before_title' 	=> '<h3>',
-			'after_title' 	=> '</h3>',
-		));
-		
-		if ( !isset( $wallow_options['wallow_qbar'] ) || $wallow_options['wallow_qbar'] ) { 
-			// Register the Quickbar as sidebar
-			register_sidebar( array(
-				'name'          =>	'Quickbar',
-				'id'            =>	'w-quickbar',
-				'description'   =>	__( 'drag here your favorite widgets', 'wallow' ),
-				'before_widget' => '<div id="%1$s" class="footer_wig %2$s">',
-				'after_widget'	=>	'</div></div></div>',
-				'before_title'	=>	'<h4>',
-				'after_title'	=>	' &raquo;</h4><div class="fw_pul_cont"><div class="fw_pul">',
-			));
-		}
-		// 404
-		register_sidebar( array(
-			'name' => __( 'Page 404', 'wallow' ),
-			'id' => '404-widgets-area',
-			'description' => __( 'Enrich the page 404 with some useful widgets', 'wallow' ),
-			'before_widget' => '<div class="widget %2$s">',
-			'after_widget' => '</div>',
-			'before_title' => '<h3>',
-			'after_title' => '</h3>',
-		) );
-	}
-}
-
-// check if is "all category" page
-$wallow_is_allcat_page = false;
-if( isset( $_GET['allcat'] ) && ( md5( $_GET['allcat'] ) == '415290769594460e2e485922904f345d' ) ) {
-	$wallow_is_allcat_page = true;
-}
-
-// show all categories list (redirect to allcat.php if allcat=y)
-function wallow_allcat () {
-	global $wallow_is_allcat_page;
-	if( $wallow_is_allcat_page ) {
-		get_template_part( 'allcat' );
-		exit;
-	}
-}
-
-// add scripts
-function wallow_scripts(){
-	global $wallow_version, $wallow_options, $wallow_is_mobile_browser;
-
-	if ( $wallow_is_mobile_browser ) return;
-
-	if ( !isset($wallow_options['wallow_jsani']) || $wallow_options['wallow_jsani'] ) {
-		wp_enqueue_script( 'wallowscript', get_template_directory_uri() . '/js/wallowscript.min.js', array( 'jquery' ), $wallow_version, true  ); //wallow js
-	}
-
-	if ( is_singular() ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-
-	// thickbox
-	if ( ( $wallow_options['wallow_thickbox'] == 1 ) ) {
-		wp_enqueue_script( 'thickbox' );
-	}
-
-}
-
-// initialize scripts
-if ( !function_exists( 'wallow_init_scripts' ) ) {
-	function wallow_init_scripts(){
-		global $wallow_options, $wallow_is_mobile_browser;
 
 ?>
-
-		<script type="text/javascript">
-			/* <![CDATA[ */
-			(function(){
-				var c = document.body.className;
-				c = c.replace(/ff-no-js/, 'ff-js');
-				document.body.className = c;
-			})();
-			/* ]]> */
-		</script>
-
-<?php if ( $wallow_is_mobile_browser || !$wallow_options['wallow_jsani'] ) return; ?>
-
-		<script type="text/javascript">
-			/* <![CDATA[ */
-			jQuery(document).ready(function($){
-				$('#error404-widgets-area .widget:nth-child(odd)').css('clear', 'left');
-<?php if ( $wallow_options['wallow_thickbox'] ) { ?>
-				$('.storycontent a img').parent('a[href$=".jpg"],a[href$=".png"],a[href$=".gif"]').addClass('thickbox');
-				$('.storycontent .gallery').each(function() {
-					$('a[href$=".jpg"],a[href$=".png"],a[href$=".gif"]',$(this)).attr('rel', $(this).attr('id'));
-				});
-<?php } ?>
-			});
-			/* ]]> */
-		</script>
-
+	<style type="text/css"> 
+		body { <?php echo trim( $style ); ?> }
+	</style>
 <?php
 
 	}
 }
+
+
+// show all categories list (redirect to allcat.php if allcat=y)
+function wallow_allcat () {
+	if( wallow_is_allcat() ) {
+
+		get_template_part( 'allcat' );
+
+		exit;
+
+	}
+}
+
+
+// get js modules
+function wallow_get_js_modules() {
+
+	$modules = array(
+		'main_menu',
+		'quickbar',
+		'widgets_style',
+		'smooth_scroll',
+		'resizevideo',
+	);
+
+	if ( wallow_get_opt( 'wallow_thickbox' ) ) $modules[] = 'thickbox';
+
+	$modules = implode( ',', $modules);
+
+	return  apply_filters( 'wallow_filter_js_modules', $modules );
+
+}
+
+
+// add scripts
+function wallow_scripts(){
+
+	if ( wallow_is_mobile() ) return;
+
+	// thickbox
+	if ( wallow_get_opt( 'wallow_thickbox' ) )
+		wp_enqueue_script( 'thickbox' );
+
+	if ( wallow_get_opt( 'wallow_jsani' ) )
+		wp_enqueue_script( 'wallow-script', get_template_directory_uri() . '/js/wallowscript.min.js', array( 'jquery', 'hoverIntent' ), wallow_get_info( 'version' ), true  ); //wallow js
+
+	$data = array(
+		'script_modules' => wallow_get_js_modules(),
+	);
+	wp_localize_script( 'wallow-script', 'wallow_l10n', $data );
+
+}
+
+
+// initialize scripts
+if ( !function_exists( 'wallow_init_scripts' ) ) {
+	function wallow_init_scripts(){
+
+?>
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		(function(){
+			var c = document.body.className;
+			c = c.replace(/wlw-no-js/, 'wlw-js');
+			document.body.className = c;
+		})();
+		/* ]]> */
+	</script>
+<?php
+
+	}
+}
+
+
+//enqueue the 'comment-reply' script when needed
+function wallow_enqueue_comments_reply() {
+
+	if( get_option( 'thread_comments' ) )
+		wp_enqueue_script( 'comment-reply' );
+
+}
+
 
 // deregister style for installed plugins
 function wallow_deregister_styles() {
 	//here goes something
 }
 
+
 // Add stylesheets to page
 function wallow_stylesheet(){
-	global $wallow_version, $wallow_options, $wallow_is_mobile_browser;
 
-	if ( $wallow_is_mobile_browser ) return;
+	if ( wallow_is_mobile() ) return;
 
 	// thickbox
-	if ( ( $wallow_options['wallow_thickbox'] == 1 ) ) {
+	if ( wallow_get_opt( 'wallow_thickbox' ) )
 		wp_enqueue_style( 'thickbox' );
-	}
 
 	//normal view
-	wp_enqueue_style( 'wallow_general-style', get_stylesheet_uri(), false, $wallow_version, 'screen' );
+	wp_enqueue_style( 'wallow_general-style', get_stylesheet_uri(), false, wallow_get_info( 'version' ), 'screen' );
 	wallow_get_style();
 
 	//print style
-	wp_enqueue_style( 'wallow_print-style', get_template_directory_uri() . '/css/print.css', false, $wallow_version, 'print' );
+	wp_enqueue_style( 'wallow_print-style', get_template_directory_uri() . '/css/print.css', false, wallow_get_info( 'version' ), 'print' );
 
 	//google font
-	if ( $wallow_options['wallow_google_font_family'] ) wp_enqueue_style( 'wallow_google-fonts', 'http://fonts.googleapis.com/css?family=' . str_replace( ' ', '+' , $wallow_options['wallow_google_font_family'] ) );
+	if ( wallow_get_opt( 'wallow_google_font_family' ) )
+		wp_enqueue_style( 'wallow_google-fonts', '//fonts.googleapis.com/css?family=' . urlencode( wallow_get_opt( 'wallow_google_font_family' ) ) );
 
 }
+
+
+// get the post thumbnail or (if not set) the format related icon
+function wallow_get_the_thumb( $args = '' ) {
+	global $post;
+
+	$defaults = array(
+		'id' => $post->ID,
+		'width' => wallow_get_opt( 'wallow_pthumb_size' ),
+		'height' => wallow_get_opt( 'wallow_pthumb_size' ),
+		'class' => '',
+		'linked' => 0,
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+
+	$output = '';
+
+	if ( has_post_thumbnail( $args['id'] ) )
+		$output = get_the_post_thumbnail( $args['id'], array( $args['width'], $args['height'] ), array( 'class' => $args['class'] ) );
+
+	if ( $output && $args['linked'] )
+		$output = '<a href="' . get_permalink( $args['id'] ) . '" rel="bookmark">' . $output . '</a>';
+
+	return apply_filters( 'wallow_filter_get_the_thumb', $output );
+
+}
+
 
 // page hierarchy
 if ( !function_exists( 'wallow_multipages' ) ) {
 	function wallow_multipages(){
 		global $post;
+
 		$args = array(
 			'post_type' => 'page',
 			'post_parent' => $post->ID,
@@ -364,7 +477,9 @@ if ( !function_exists( 'wallow_multipages' ) ) {
 			'orderby' => 'menu_order',
 			'numberposts' => 0
 			);
+
 		$childrens = get_posts($args); // retrieve the child pages
+
 		$the_parent_page = $post->post_parent; // retrieve the parent page
 
 		if ( ( $childrens ) || ( $the_parent_page ) ){ ?>
@@ -385,149 +500,611 @@ if ( !function_exists( 'wallow_multipages' ) ) {
 			}
 			?>
 		<?php }
+
 	}
 }
 
-// micronav
-if ( !function_exists( 'wallow_micronav' ) ) {
-	function wallow_micronav() {
-		global $post, $wallow_is_allcat_page, $wallow_options;
 
-		if ( !isset ($wallow_options['wallow_qbar_micronavi'] ) || ( ! $wallow_options['wallow_qbar_micronavi'] ) ) return;
-
-		wp_reset_postdata();
-		
-		$is_post = is_single() && !is_attachment() && !$wallow_is_allcat_page;
-		$is_archive = ( is_archive() || is_search() || is_home() ) && !$wallow_is_allcat_page;
-
-		if ( $is_post ) {
-			$prev = get_next_post()? '<a title="' . sprintf( __( 'Next Post', 'wallow' ) . ': %s', get_the_title( get_next_post() ) ) . '" href="' . get_permalink( get_next_post() ) . '">&nbsp;</a>' : '';
-			$next = get_previous_post()? '<a title="' . sprintf( __( 'Previous Post', 'wallow' ) . ': %s', get_the_title( get_previous_post() ) ) . '" href="' . get_permalink( get_previous_post() ) . '">&nbsp;</a>' : '';
-		} elseif ( $is_archive ) {
-			$next = get_next_posts_link()? get_next_posts_link('&nbsp;') : '';
-			$prev = get_previous_posts_link()? get_previous_posts_link('&nbsp;') : '';
-		} else {
-			$next = '';
-			$prev =  '';
-		}
+// Pages Menu
+if ( !function_exists( 'wallow_pages_menu' ) ) {
+	function wallow_pages_menu() {
 
 ?>
-		<div id="micronav">
-			<div class="next"><?php echo $next; ?></div>
-			<div class="prev"><?php echo $prev; ?></div>
-			<div class="home"><a title="<?php _e( 'Home', 'wallow' ); ?>" href="<?php echo home_url(); ?>">&nbsp;</a></div>
-			<div class="up"><a title="<?php _e( 'Top', 'wallow' ); ?>" href="#">&nbsp;</a></div>
-			<div class="down"><a title="<?php _e( 'Bottom', 'wallow' ); ?>" href="#credits">&nbsp;</a></div>
-		</div>
+	<ul id="mainmenu">
+		<?php wp_list_pages( 'sort_column=menu_order&title_li=' ); // menu-order sorted ?>
+	</ul>
 <?php
 
 	}
 }
 
-// Pages Menu
-if ( !function_exists( 'wallow_pages_menu' ) ) {
-	function wallow_pages_menu() {
-		echo '<ul id="mainmenu">';
-		wp_list_pages( 'sort_column=menu_order&title_li=' ); // menu-order sorted
-		echo '</ul>';
+
+function wallow_get_header() {
+
+	$output = '';
+
+	if ( get_header_image() ) {
+		$output .= '<a href="' . home_url() . '/"><img src="' . get_header_image() . '" alt="' . get_bloginfo( 'name' ) . '" title="' . get_bloginfo( 'name' ) . '" /></a>' . "\n";
+		$output .= '<h1 class="hidden">' . get_bloginfo( 'name' ) . '</h1>' . "\n";
+		$output .= '<span class="description hidden">' . get_bloginfo( 'description' ) . '</span>';
+	} else {
+		$output .= '<h1><a href="' . home_url() . '/">' . get_bloginfo( 'name' ) . '</a></h1>' . "\n";
+		$output .= '<div class="description">' . get_bloginfo( 'description' ) . '</div>';
+	}
+
+	$output = apply_filters( 'wallow_filter_header', $output );
+
+	return $output;
+
+}
+
+
+// display the second secondary menu
+function wallow_primary_menu() {
+
+	if( ! wallow_get_opt( 'wallow_primary_menu' ) ) return;
+
+?>
+	<div id="pages">
+		<div id="pages-out">
+			<div id="pages-in">
+				<div id="rss_imglink"><a href="<?php bloginfo( 'rss2_url' ); ?>" title="<?php _e( 'Syndicate this site using RSS 2.0', 'wallow' ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/rss.png" alt="rss img"/></a></div>
+					<?php
+						wp_nav_menu( array(
+							'menu_id' => 'mainmenu',
+							'fallback_cb' => 'wallow_pages_menu',
+							'theme_location' => 'primary'
+						) );
+					?>
+				<br class="fixfloat" />
+			</div>
+		</div>
+	</div>
+<?php
+
+}
+
+
+// comments navigation
+if ( !function_exists( 'wallow_navigate_comments' ) ) {
+	function wallow_navigate_comments(){
+
+		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) {
+
+?>
+	<div class="navigate_comments meta comment_tools">
+		<?php if(function_exists('wp_paginate_comments')) {
+			wp_paginate_comments();
+		} else {
+			paginate_comments_links();
+		} ?>
+	</div>
+	<br class="fixfloat" />
+<?php 
+
+		}
+
 	}
 }
 
+
+// Search reminder
+function wallow_search_reminder() {
+	global $post;
+
+	$text = '';
+
+	if ( is_archive() ) {
+
+		$term = get_queried_object();
+		$title = '';
+		$type = '';
+		if ( is_category() || is_tag() || is_tax() ) {
+			if ( is_category() )	$type = __( 'Category', 'wallow' );
+			elseif ( is_tag() )		$type = __( 'Tag', 'wallow' );
+			elseif ( is_tax() )		$type = __( 'Taxonomy', 'wallow' );
+			$title = $term->name;
+		} elseif ( is_date() ) {
+			$type = __( 'Date', 'wallow' );
+			if ( is_day() ) {
+				$title = get_the_date();
+			} else if ( is_month() ) {
+				$title = single_month_title( ' ', false );
+			} else if ( is_year() ) {
+				$title = get_query_var( 'year' );
+			}
+		} elseif ( is_author() ) {
+			$type = __( 'Author', 'wallow' );
+			$title = $term->display_name;
+		}
+
+		$text = sprintf( __( '%s archive', 'wallow' ), get_bloginfo( 'name' ) ) . '<br>' . $type . ' : <span class="search-term">' . $title . '</span>';
+
+	} elseif ( is_search() ) {
+
+		$text = sprintf( __( 'Search results for &#8220;%s&#8221;', 'wallow' ), '<span class="search-term">' . esc_html( get_search_query() ) . '</span>' );
+
+	}
+
+	if ( $text ) {
+
+?>
+	<div class="search-reminder">
+		<p><?php echo $text; ?></p>
+	</div>
+<?php
+
+	}
+
+	if ( wallow_get_opt( 'wallow_cat_description' ) && is_category() && category_description() ) { 
+
+?>
+	<div class="search-reminder">
+		<p><?php echo category_description(); ?></p>
+	</div>
+<?php
+
+	}
+
+	if ( is_author() ) echo wallow_author_badge( $post->post_author, 48 );
+
+}
+
+
+// get the author badge
+function wallow_author_badge( $author = '', $size ) {
+
+	if ( ! $author ) return;
+
+	$name = get_the_author_meta( 'nickname', $author ); // nickname
+
+	$avatar = get_avatar( $author, $size, 'Gravatar Logo', get_the_author_meta( 'user_nicename', $author ) . '-photo' ); // gravatar
+
+	$description = get_the_author_meta( 'description', $author ); // bio
+
+	$author_link = get_author_posts_url($author); // link to author posts
+
+	$author_net = ''; // author social networks
+	foreach ( array( 'twitter' => 'Twitter', 'facebook' => 'Facebook', 'googleplus' => 'Google+' ) as $s_key => $s_name ) {
+		if ( get_the_author_meta( $s_key, $author ) ) $author_net .= '<a target="_blank" class="url" title="' . esc_attr( sprintf( __('Follow %s on %s', 'wallow'), $name, $s_name ) ) . '" href="'.get_the_author_meta( $s_key, $author ).'"><img alt="' . $s_key . '" class="social-icon" width="24" height="24" src="' . get_template_directory_uri() . '/images/follow/' . $s_key . '.png" /></a>';
+	}
+
+	$output = '<li class="author-avatar">' . $avatar . '</li>';
+	$output .= '<li class="author-name"><a class="fn" href="' . $author_link . '" >' . $name . '</a></li>';
+	$output .= $description ? '<li class="author-description note">' . $description . '</li>' : '';
+	$output .= $author_net ? '<li class="author-social">' . $author_net . '</li>' : '';
+
+	$output = '<div class="tb-post-details tb-author-bio vcard"><ul>' . $output . '</ul></div>';
+
+	return apply_filters( 'wallow_filter_author_badge', $output );
+
+}
+
+
+// archives pages navigation
+if ( !function_exists( 'wallow_navigate_archives' ) ) {
+	function wallow_navigate_archives() {
+		global $paged, $wp_query;
+
+		if ( !$paged ) $paged = 1;
+
+?>
+	<div class="nav_pages archive-navigation">
+	<?php if ( function_exists( 'wp_pagenavi' ) ) { ?>
+
+		<?php wp_pagenavi(); ?>
+
+	<?php } elseif ( function_exists( 'wp_paginate' ) ) { ?>
+
+		<?php wp_paginate(); ?>
+
+	<?php } else { ?>
+
+		<?php posts_nav_link( ' &#8212; ', '&laquo; ' . __( 'Newer Posts', 'wallow' ), __( 'Older Posts', 'wallow' ) . ' &raquo;'); ?>
+
+	<?php } ?>
+	</div>
+<?php
+
+	}
+}
+
+
+// displays page-links for paginated posts
+function wallow_link_pages() {
+
+?>
+	<div class="fixfloat">
+		<?php wp_link_pages( 'before=<div class="meta comment_tools fixfloat">' . __( 'Pages', 'wallow' ) . ':&after=</div>' ); ?>
+	</div>
+<?php
+
+}
+
+
+// the widget area for single posts/pages
+function wallow_single_widgets_area() {
+
+	if ( !is_singular() ) return;
+
+	if ( is_active_sidebar( 'single-widgets-area' ) ) {
+
+?>
+	<div id="single-widgets-area" class="fixfloat">
+		<?php dynamic_sidebar( 'single-widgets-area' ); ?>
+		<br class="fixfloat" />
+	</div>
+<?php
+
+	}
+}
+
+
+// displays prev/next post links
+function wallow_nav_posts() {
+
+	if ( ! is_single() || is_attachment() ) return;
+?>
+	<div class="nav_pages">
+		<?php next_post_link( '&laquo; %link' ) ?> <?php previous_post_link( '&#8212; %link &raquo;' ) ?>
+	</div>
+<?php
+
+}
+
+
+// attachments navigation
+if ( !function_exists( 'wallow_navigate_attachments' ) ) {
+	function wallow_navigate_attachments() {
+		global $post;
+
+		if ( is_attachment() && wp_attachment_is_image() ) {
+			$attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
+			foreach ( $attachments as $k => $attachment ) {
+				if ( $attachment->ID == $post->ID )
+					break;
+			}
+			$nextk = $k + 1;
+			$prevk = $k - 1;
+
+?>
+	<div class="nav-single">
+
+		<?php if ( isset( $attachments[ $prevk ] ) ) { ?>
+			<span class="nav-previous ">
+				<a rel="prev" title="" href="<?php echo get_attachment_link( $attachments[ $prevk ]->ID ); ?>">&laquo; <?php echo wp_get_attachment_image( $attachments[ $prevk ]->ID, array( 70, 70 ) ); ?></a>
+			</span>
+		<?php } ?>
+
+		<?php if ( isset( $attachments[ $nextk ] ) ) { ?>
+			<span class="nav-next">
+				<a rel="next" title="" href="<?php echo get_attachment_link( $attachments[ $nextk ]->ID ); ?>"><?php echo wp_get_attachment_image( $attachments[ $nextk ]->ID, array( 70, 70 ) ); ?> &raquo;</a>
+			</span>
+		<?php } ?>
+
+	</div><!-- #nav-single -->
+<?php
+
+		} 
+	}
+}
+
+
+// displays the thumbnail
+function wallow_the_thumb() {
+
+	if ( wallow_get_opt( 'wallow_pthumb' ) )
+		echo wallow_get_the_thumb( array( 'class' => 'alignleft', 'linked' => true ) );
+
+}
+
+
+// displays meta info (author,tags,comments,etc..)
+function wallow_top_meta() {
+
+	if ( ! is_page() ) {
+
+?>
+	<div class="meta">
+		<?php _e( 'by', 'wallow' ); ?> <?php the_author() ?> &#8212; <?php _e( 'Categories', 'wallow' ); ?>: <?php the_category( ', ' ) ?> &#8212; <?php the_tags( __( 'Tags: ', 'wallow' ), ', ', ' &#8212; '); ?> <?php comments_popup_link( __( 'Leave a comment', 'wallow'), __( '1 Comment', 'wallow' ), __( '% Comments', 'wallow' )); // number of comments?> <?php edit_post_link( __( 'Edit', 'wallow' ), ' &#8212; ' ); ?>
+	</div>
+<?php
+
+	} else {
+
+?>
+	<div class="meta">
+		<?php if ( comments_open()) { comments_popup_link( __( 'Leave a comment', 'wallow' ), __( '1 Comment', 'wallow' ), __( '% Comments', 'wallow' ) ); }; ?> <?php edit_post_link( __( 'Edit', 'wallow' ), ' &#8212; ' ); ?>
+		<?php wallow_multipages(); ?>
+	</div>
+<?php
+
+	}
+}
+
+
+// displays post/page links (trackback, rss feed, comments)
+function wallow_bottom_meta() {
+
+	if ( ! is_singular() ) return;
+
+	$links = '';
+
+	if ( comments_open() && is_singular() )
+		$links[] = '<a href="' . esc_url( get_post_comments_feed_link() ) . '">' . sprintf( __( '%s feed for comments on this post', 'wallow' ), '<abbr title="Really Simple Syndication">RSS</abbr>' ) . '</a>';
+
+	if ( pings_open() )
+		$links[] = '<a href="' . get_trackback_url() . '" rel="trackback">' . __( 'TrackBack URL', 'wallow' ) . '</a>';
+
+	if ( comments_open() && is_singular() )
+		$links[] = '<a href="#postcomment" title="' . __( 'Leave a comment', 'wallow' ) . '">' . __( 'Leave a comment', 'wallow' ) . '</a>';
+
+	$links = implode( ' | ', $links );
+
+	if ( $links ) {
+
+?>
+	<div class="meta comment_tools">
+		<?php echo $links; ?>
+	</div>
+	<br class="fixfloat" />
+<?php
+
+	}
+
+}
+
+
+// default widgets to be printed in primary sidebar
+if ( !function_exists( 'wallow_default_widgets' ) ) {
+	function wallow_default_widgets() {
+
+		$default_widgets = array(
+			'WP_Widget_Search' => 'widget_search',
+			'WP_Widget_Meta' => 'widget_meta',
+			'WP_Widget_Pages' => 'widget_pages',
+			'WP_Widget_Links' => 'widget_links',
+			'WP_Widget_Categories' => 'widget_categories',
+			'WP_Widget_Archives' => 'widget_archive',
+		);
+
+		foreach ( apply_filters( 'wallow_default_widgets', $default_widgets ) as $widget => $class ) {
+			the_widget( $widget, '', array(
+				'before_widget'		=> '<div class="widget ' . $class . '">',
+				'after_widget'		=> '</div>',
+				'before_title'		=> '<h3 class="widgettitle">',
+				'after_title'		=> '</h3>',
+			) );
+		}
+
+	}
+}
+
+
 //output style
 function wallow_get_style() {
-	global $wallow_version, $wallow_options;
+
 	$style_path = get_template_directory_uri() . '/css/';
-	if( isset($wallow_options['wallow_theme_set']) && $wallow_options['wallow_theme_set'] == 1 ){ // check if use set or custom combinations
-		$genlook = 	isset($wallow_options['wallow_theme_genlook'])	? $wallow_options['wallow_theme_genlook']	:'fire';
-		$sidebar = 	isset($wallow_options['wallow_theme_sidebar'])	? $wallow_options['wallow_theme_sidebar']	:'fire';
-		$pages = 	isset($wallow_options['wallow_theme_pages'])		? $wallow_options['wallow_theme_pages']		:'fire';
-		$popup = 	isset($wallow_options['wallow_theme_popup'])		? $wallow_options['wallow_theme_popup']		:'fire';
-		$quickbar = isset($wallow_options['wallow_theme_quickbar'])	? $wallow_options['wallow_theme_quickbar']	:'fire';
-		$avatar = 	isset($wallow_options['wallow_theme_avatar'])	? $wallow_options['wallow_theme_avatar']	:'fire';
+
+	if( wallow_get_opt( 'wallow_theme_set' ) === '1' ){ // use custom combinations
+
+		$genlook	= wallow_get_opt( 'wallow_theme_genlook' );
+		$sidebar	= wallow_get_opt( 'wallow_theme_sidebar' );
+		$pages		= wallow_get_opt( 'wallow_theme_pages' );
+		$popup		= wallow_get_opt( 'wallow_theme_popup' );
+		$quickbar	= wallow_get_opt( 'wallow_theme_quickbar' );
+		$avatar		= wallow_get_opt( 'wallow_theme_avatar' );
+
 	}else{ // output a default theme set
-		if ($wallow_options['wallow_theme_set']) {
-			$theme_set = $wallow_options['wallow_theme_set'];
-		}else{
-			$theme_set = "fire";
-		}
+
+		$theme_set = wallow_get_opt( 'wallow_theme_set' );
 		$genlook =	$theme_set;
 		$sidebar =	$theme_set;
 		$pages =	$theme_set;
 		$popup =	$theme_set;
 		$quickbar =	$theme_set;
 		$avatar =	$theme_set;
-		
+
 	}
+
 	$style_path = $style_path . 'load-styles.php?st=' . $genlook . '&amp;si=' . $sidebar . '&amp;pa=' . $pages . '&amp;po=' . $popup . '&amp;qu=' . $quickbar . '&amp;av=' . $avatar;
-	wp_enqueue_style( 'wallow_theme_genlook-style', $style_path, false, $wallow_version, 'screen' );
+
+	wp_enqueue_style( 'wallow_theme_genlook-style', $style_path, false, wallow_get_info( 'version' ), 'screen' );
+
 }
 
-//add a fix for embed videos overlying quickbar
-function wallow_content_replace( $content ){
-	global $wallow_is_mobile_browser;
-	
-	if ( $wallow_is_mobile_browser )
-		return $content;
 
-	$content = str_replace( '<param name="allowscriptaccess" value="always">', '<param name="allowscriptaccess" value="always"><param name="wmode" value="transparent">', $content );
-	$content = str_replace( '<embed ', '<embed wmode="transparent" ', $content );
-	return $content;
+// get the post format string
+if ( !function_exists( 'wallow_get_post_format' ) ) {
+	function wallow_get_post_format( $id ) {
+
+		if ( post_password_required() )
+			$format = 'protected';
+		else
+			$format = get_post_format( $id ) ;
+
+		return $format;
+
+	}
 }
 
-// strip tags from titles and apply title format for blank ones
-function wallow_title_tags_filter( $title, $id ) {
-	global $wallow_options;
-	
+
+// add a fix for embed videos
+function wallow_wmode_transparent($html, $url = null, $attr = null) {
+
+	if ( strpos( $html, '<embed ' ) !== false ) {
+
+		$html = str_replace('</param><embed', '</param><param name="wmode" value="transparent"></param><embed', $html);
+		$html = str_replace('<embed ', '<embed wmode="transparent" ', $html);
+		return $html;
+
+	} elseif ( strpos ( $html, 'feature=oembed' ) !== false )
+
+		return str_replace( 'feature=oembed', 'feature=oembed&wmode=transparent', $html );
+
+	else
+
+		return $html;
+
+}
+
+
+// strip tags and apply title format for blank titles
+function wallow_titles_filter( $title, $id = null ) {
+
 	if ( is_admin() ) return $title;
-	
-	$title = strip_tags( $title, '<abbr><acronym><b><em><i><del><ins><bdo><strong>' );
-	
+
+	$title = strip_tags( $title, '<abbr><acronym><em><i><del><ins><bdo>' );
+
+	if ( $id == null ) return $title;
+
+	if ( ! wallow_get_opt( 'wallow_blank_title' ) ) return $title;
+
 	if ( empty( $title ) ) {
-		if ( !isset( $wallow_options['wallow_blank_title'] ) || empty( $wallow_options['wallow_blank_title'] ) ) return __( '(no title)', 'wallow' );
-		$postdata = array( get_post_format( $id )? __(get_post_format( $id ), 'wallow' ): __( 'post', 'wallow' ), get_the_time( get_option( 'date_format' ), $id ) );
-		$codes = array( '%f', '%d' );
-		return str_replace( $codes, $postdata, $wallow_options['wallow_blank_title'] );
+
+		if ( ! wallow_get_opt( 'wallow_blank_title_text' ) ) return __( '(no title)', 'wallow' );
+		$postdata = array( get_post_format( $id )? get_post_format_string( get_post_format( $id ) ): __( 'Post', 'wallow' ), get_the_time( get_option( 'date_format' ), $id ), $id );
+		$codes = array( '%f', '%d', '%n' );
+
+		return str_replace( $codes, $postdata, wallow_get_opt( 'wallow_blank_title_text' ) );
+
 	} else
+
 		return $title;
+
 }
+
 
 //set the excerpt length
-if ( !function_exists( 'wallow_excerpt_length' ) ) {
-	function wallow_excerpt_length( $length ) {
-		global $wallow_options;
-		return (int) $wallow_options['wallow_excerpt_length'];
-	}
+function wallow_excerpt_length( $length ) {
+
+	return (int) wallow_get_opt( 'wallow_excerpt_length' );
+
 }
+
 
 // use the "excerpt more" string as a link to the post
 function wallow_excerpt_more( $more ) {
-	global $wallow_options, $post;
 
-	if ( is_admin() || empty( $wallow_options['wallow_excerpt_more_txt'] ) ) return $more;
+	if ( is_admin() || wallow_get_opt( 'wallow_excerpt_more_txt' ) == '' ) return $more;
 
-	if ( $wallow_options['wallow_excerpt_more_link'] ) {
-		return ' <a href="' . get_permalink() . '">' . esc_html( $wallow_options['wallow_excerpt_more_txt'] ) . '</a>';
-	} else {
-		return ' ' . esc_html( $wallow_options['wallow_excerpt_more_txt'] );
-	}
+	if ( wallow_get_opt( 'wallow_excerpt_more_txt' ) )
+		$more = wallow_get_opt( 'wallow_excerpt_more_txt' );
+
+	if ( wallow_get_opt( 'wallow_excerpt_more_link' ) )
+		$more = '<a href="' . get_permalink() . '">' . $more . '</a>';
 
 	return $more;
+
 }
+
 
 // custom text for the "more" tag
 function wallow_more_link( $more_link, $more_link_text ) {
-	global $wallow_options;
-	
-	if ( isset( $wallow_options['wallow_more_tag'] ) && !is_admin() && !empty( $wallow_options['wallow_more_tag'] ) ) {
-		$text = esc_html( str_replace ( '%t', get_the_title(), $wallow_options['wallow_more_tag'] ) );
+
+	if ( wallow_get_opt( 'wallow_more_tag' ) && !is_admin() ) {
+
+		$text = str_replace ( '%t', get_the_title(), wallow_get_opt( 'wallow_more_tag' ) );
+
 		return str_replace( $more_link_text, $text, $more_link );
+
 	}
+
 	return $more_link;
+
 }
+
+
+//filter wp_title
+function wallow_filter_wp_title( $title ) {
+
+	if ( is_single() && empty( $title ) ) {
+		$_post = get_queried_object();
+		$title = wallow_titles_filter( '', $_post->ID ) . ' &laquo; ';
+	}
+
+	// Get the Site Name
+	$site_name = get_bloginfo( 'name' );
+
+	// Append name
+	$filtered_title = $title . $site_name;
+
+	// If site front page, append description
+	if ( is_front_page() ) {
+		// Get the Site Description
+		$site_description = get_bloginfo( 'description' );
+		// Append Site Description to title
+		$filtered_title .= ' - ' . $site_description;
+	}
+
+	// Return the modified title
+	return $filtered_title;
+
+}
+
+
+// Add specific CSS class by filter
+function wallow_body_classes( $classes ) {
+
+	$classes[] = 'wlw-no-js';
+
+	if ( wallow_get_opt( 'wallow_qbar' ) ) $classes[] = 'quickbar';
+
+	if ( ! wallow_get_opt( 'wallow_sidebar' ) ) $classes[] = 'no-sidebar';
+
+	return $classes;
+
+}
+
+
+/**
+ * Add parent class to wp_page_menu top parent list items
+ */
+function wallow_add_parent_class( $css_class, $page, $depth, $args ) {
+
+	if ( ! empty( $args['has_children'] ) && $depth == 0 )
+		$css_class[] = 'menu-item-parent';
+
+	return $css_class;
+
+}
+
+
+/**
+ * Add parent class to wp_nav_menu top parent list items
+ */
+function wallow_add_menu_parent_class( $items ) {
+
+	$parents = array();
+	foreach ( $items as $item ) {
+		if ( $item->menu_item_parent && $item->menu_item_parent > 0 ) {
+			$parents[] = $item->menu_item_parent;
+		}
+	}
+
+	foreach ( $items as $item ) {
+		if ( in_array( $item->ID, $parents ) ) {
+			if ( ! $item->menu_item_parent )
+				$item->classes[] = 'menu-item-parent'; 
+		}
+	}
+
+	return $items;    
+}
+
+
+// wrap the categories count with a span
+function wallow_wrap_categories_count( $output ) {
+	$pattern = '/<\/a>\s(\(\d+\))/i';
+	$replacement = ' <span class="details">$1</span></a>';
+	return preg_replace( $pattern, $replacement, $output );
+}
+
 
 // The Gallery shortcode
 function wallow_gallery_shortcode( $null, $attr ) {
-	global $post, $wallow_options;
+
+	global $post;
 
 	static $instance = 0;
 	$instance++;
@@ -552,7 +1129,7 @@ function wallow_gallery_shortcode( $null, $attr ) {
 		'exclude'    => ''
 	), $attr));
 
-	if ( $wallow_options['wallow_thickbox_link_to_image'] == 1 ) $attr['link'] = 'file';
+	if ( wallow_get_opt( 'wallow_thickbox_link_to_image' ) ) $attr['link'] = 'file';
 
 	$id = intval($id);
 	if ( 'RAND' == $order )
@@ -620,14 +1197,20 @@ function wallow_gallery_shortcode( $null, $attr ) {
 		</div>\n";
 
 	return $output;
+
 }
+
 
 function wallow_next_posts_title($content) {
+
 	return 'title="' . __( 'Older Posts', 'wallow' ) . '"';
+
 }
+
+
 function wallow_previous_posts_title($content) {
+
 	return 'title="' . __( 'Newer Posts', 'wallow' ) . '"';
+
 }
 
-
-?>

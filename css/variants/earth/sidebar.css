@@ -1,0 +1,68 @@
+#menu a {
+	color: #87CEFA;
+	text-decoration: none;
+}
+#menu a:hover {
+	color: #d54e21;
+}
+#sidebarbody
+{
+	padding: 1px 4px 10px 20px;
+	background: transparent url('../images/earth/graph.png') -1200px top repeat-y;
+}
+#sidebartop
+{
+	background: transparent url('../images/earth/graph.png') -600px top no-repeat;
+	height:30px;
+}
+#sidebarbottom
+{
+	background: transparent url('../images/earth/graph.png') no-repeat top left;
+	height:30px;
+}
+.searchform {
+	border: 1px solid #3F2715;
+}
+#menu input#s {
+	width: 50%;
+	background: #eee;
+	border: 1px solid #999;
+	color: #000;
+}
+#menu {
+	color:#D9BD8E;
+}
+#menu .widgettitle {
+	color: #ccc;
+}
+/* <---- Sidebar classes */
+/* Calendar classes ----> */
+#calendar_wrap {
+	border: 1px solid #3F2715;
+	margin:5px 0;
+}
+#wp-calendar caption {
+	color:#3F2715;
+	padding:3px;
+}
+#wp-calendar #today {
+	color:#fff;
+}
+#wp-calendar thead {
+	border-top: 1px solid #D9BD8E;
+	border-bottom: 1px solid #D9BD8E;
+	background-color: #333;
+}
+#wp-calendar th {
+	border:none;
+}
+#wp-calendar tfoot {
+	background: transparent;
+}
+#wp-calendar {
+	border-collapse: collapse;
+}
+#menu .tb-author-bio {
+	border: 1px solid #222;
+	background: transparent;
+}

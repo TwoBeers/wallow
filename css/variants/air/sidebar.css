@@ -1,0 +1,69 @@
+#menu a {
+	color: #0080bc;
+	text-decoration: none;
+}
+#menu a:hover {
+	color: #d54e21;
+}
+#sidebarbody
+{
+	padding: 10px 10px 10px 29px;
+	background: transparent url('../images/air/graph.png') -1200px top repeat-y;
+}
+#sidebartop
+{
+	background: transparent url('../images/air/graph.png') -600px top no-repeat;
+	height:25px;
+}
+#sidebarbottom
+{
+	background: transparent url('../images/air/graph.png') no-repeat top left;
+	height:25px;
+}
+.searchform {
+	border: 1px solid #aaa;
+	background: #efefef; /* Old browsers */
+	background: -moz-linear-gradient(top,  #efefef 0%, #cacaca 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efefef), color-stop(100%,#cacaca)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #efefef 0%,#cacaca 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #efefef 0%,#cacaca 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #efefef 0%,#cacaca 100%); /* IE10+ */
+	background: linear-gradient(top,  #efefef 0%,#cacaca 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#cacaca',GradientType=0 ); /* IE6-9 */
+}
+#menu input#s {
+	width: 50%;
+	background: #eee;
+	border: 1px solid #999;
+	color: #000;
+}
+#menu {
+	color: #333;
+}
+/* <---- Sidebar classes */
+/* Calendar classes ----> */
+#calendar_wrap {
+	border: 1px solid #aaa;
+	background: #efefef; /* Old browsers */
+	background: -moz-linear-gradient(top,  #efefef 0%, #cacaca 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#efefef), color-stop(100%,#cacaca)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #efefef 0%,#cacaca 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #efefef 0%,#cacaca 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #efefef 0%,#cacaca 100%); /* IE10+ */
+	background: linear-gradient(top,  #efefef 0%,#cacaca 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#cacaca',GradientType=0 ); /* IE6-9 */
+}
+#wp-calendar caption {
+	color: #aaa;
+}
+#wp-calendar #today {
+	background: #aaa;
+	color: #fff;
+}
+#wp-calendar tfoot {
+	background: transparent;
+}
+#menu .tb-author-bio {
+	border: 1px solid #ccc;
+	background: transparent;
+}

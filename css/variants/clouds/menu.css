@@ -1,0 +1,33 @@
+.page_item a, .menu-item a {
+	color: #0080BC;
+	text-decoration: none;
+}
+.page_item a:hover, .menu-item a:hover {
+	color: #888;
+}
+#pages {
+	background: -moz-linear-gradient(left,  rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0.5)), color-stop(100%,rgba(255,255,255,0.5))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.5) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.5) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.5) 100%); /* IE10+ */
+	background: linear-gradient(left,  rgba(255,255,255,0.5) 0%,rgba(255,255,255,0.5) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ffffff', endColorstr='#80ffffff',GradientType=1 ); /* IE6-9 */
+	padding: 7px 0;
+	border: 1px solid #fff;
+	color: #666;
+	box-shadow: -10px 0 10px #A9D6FF;
+}
+#pages-in {
+	padding:10px 28% 10px 30px;
+	border:1px solid #67B9FF;
+	background: #fff;
+}
+#mainmenu > li.menu-item ,
+#mainmenu > li.page_item {
+	border-right:1px solid #aaa;
+}
+.current_page_ancestor .hiraquo,
+.current-menu-ancestor .hiraquo {
+	color: #d54e21;
+}

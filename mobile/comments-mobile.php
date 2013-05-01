@@ -1,45 +1,37 @@
+<?php
+/**
+ * The mobile theme - Comments template
+ *
+ * @package wallow
+ * @subpackage mobile
+ * @since 3.03
+ */
+?>
+
 <!-- begin comments -->
 <?php
-	if ( post_password_required() ) { ?>
-		<div class="meta" id="comments" style="text-align: right;"><?php _e( 'Enter your password to view comments.', 'wallow' ); ?></div>
-		<?php return;
+	if ( post_password_required() ) {
+		echo '<p>' . __( 'Enter your password to view comments.', 'wallow' ) . '</p>';
+		return;
 	} 
 ?>
 
 <?php if ( have_comments() ) { ?>
-	<?php echo wallow_mobile_seztitle( 'before' ); comments_number( __( 'No Comments', 'wallow' ), __( '1 Comment', 'wallow' ), __( '% Comments', 'wallow' ) ); echo wallow_mobile_seztitle( 'after' ); ?>
+
+	<?php echo apply_filters( 'wallow_mobile_filter_seztitle', __('Comments','wallow') . ' (' . get_comments_number() . ')' ); ?>
+
+	<?php do_action( 'wallow_mobile_hook_comments_before' ); ?>
+
 	<ol class="commentlist">
 		<?php wp_list_comments(); ?>
 	</ol>
-	<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) { ?>
-		<div class="tbm-pc-navi">
-			<?php paginate_comments_links(); ?>
-		</div>
-	<?php } ?>
-<?php } ?>
-	
-<?php if ( comments_open() ) { ?>
 
-	<?php
-	$tbm_fields =  array(
-		'author' => '<p class="comment-form-author">' . '<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" aria-required="true" />' .
-					'<label for="author">' . __( 'Name', 'wallow' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .'</p>',
-		'email'  => '<p class="comment-form-email">' . '<input id="email" name="email" type="text" value="' . sanitize_email(  $commenter['comment_author_email'] ) . '" size="30" aria-required="true" />' .
-					'<label for="email">' . __( 'Email', 'wallow' ) . '</label> ' . ( $req ? '<span class="required">*</span>' : '' ) .'</p>',
-		'url'    => '<p class="comment-form-url">' . '<input id="url" name="url" type="text" value="' . esc_url( $commenter['comment_author_url'] ) . '" size="30" />' .
-					'<label for="url">' . __( 'Website', 'wallow' ) . '</label>' .'</p>',
-	); 
-	?>
+	<?php do_action( 'wallow_mobile_hook_comments_after' ); ?>
 
-	<?php $tbm_custom_args = array(
-		'fields'               => apply_filters( 'comment_form_default_fields', $tbm_fields ),
-		'comment_field'        => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="7" style="width: 98%;" aria-required="true"></textarea></p>',
-		'comment_notes_after'  => '',
-		'label_submit'         => __( 'Say It!', 'wallow' ),
-		'logged_in_as'         => '<p class="logged-in-as">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>.', 'wallow' ), admin_url( 'profile.php' ), $user_identity ) . '</p>',
-		'title_reply'          => wallow_mobile_seztitle( 'before' ) . __( 'Leave a comment', 'wallow' ) . wallow_mobile_seztitle( 'after' ),
-		'title_reply_to'       => wallow_mobile_seztitle( 'before' ) . __( 'Leave a Reply to %s', 'wallow' ) . wallow_mobile_seztitle( 'after' ),
-	);
-	comment_form( $tbm_custom_args ); ?>
 <?php } ?>
+
+<?php
+	if ( comments_open() )
+		comment_form();
+?>
 <!-- end comments -->

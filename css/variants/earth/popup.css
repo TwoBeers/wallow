@@ -1,0 +1,34 @@
+#pages .children a, .sub-menu a, .fw_pul a {
+	color: #87CEFA;
+	text-decoration: none;
+}
+#pages .children a:hover, .sub-menu a:hover, .fw_pul a:hover {
+	color: #D54E21;
+}
+.current_page_item > a,
+.current-menu-item > a,
+.current-cat > a {
+	color: #d54e21;
+}
+.footer_wig .fw_pul{
+	color: #ccc;
+	padding: 10px;
+	border:3px solid #fff;	
+	background: #000 url(../images/earth/pop.jpg) left top repeat-x;
+	border-radius: 5px;
+}
+#mainmenu > li.page_item > ul.children,
+#mainmenu > li.menu-item > ul.sub-menu {
+	border:3px solid #fff;	
+	background: #000 url(../images/earth/pop.jpg) left top repeat-x;
+	border-radius: 5px;
+	color: #ccc;
+}
+#mainmenu ul.sub-menu, #mainmenu ul.children {
+	margin:0px;
+	padding:0px;
+}
+.footer_wig .tb-author-bio {
+	border: 1px solid #222;
+	background: transparent;
+}

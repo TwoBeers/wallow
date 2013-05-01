@@ -23,13 +23,19 @@ THEME SPECIAL FUNCTIONS:
   * Theme options: a blog is personal, so it must also be customizable. Mix-up six styles to get your own
   * Multiple styles: Wallow has 6 different styles, but with the “theme mixer” (*), your blog will be unique
   * “Quickbar” navigation: Wallow’s “quickbar” is the fastest way to help visitor browse your blog
-  * 5 new widgets: Popular Posts, User quick links (meta), Latest comment authors, Latest activity (latest commented posts), Popular Categories
+  * Custom widgets
   * Translation ready: Wallow is ready to be translated into other languages (English and Italian are included)
   * Right sidebar: a pretty comfortable sidebar is what you need for your extra content
   * Support Gravatars: your gravatar follows you everywhere
   * Javascript animations: JQuery powered. Can be disabled in theme options
   * Posts and pages thumbanils support
   * Custom header: use your favorite image as header home link
+
+CHANGE LOG (FROM VERSION 0.50):
+	* added a ton of new options
+	* new widgets
+	* code cleaned
+	* js optimized
 
 CHANGE LOG (FROM VERSION 0.46.5):
 	* Fixed print.css link

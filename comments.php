@@ -1,34 +1,49 @@
+<?php
+/**
+ * comments.php
+ *
+ * This template file includes both the comments list and
+ * the comment form
+ *
+ * @package wallow
+ * @since 0.27
+ */
+?>
+
 <!-- begin comments -->
 <?php
+	if ( post_password_required() ) {
+		echo '<div id="comments" class="c_list"><p>' . __( 'Enter your password to view comments.','wallow' ) . '</p></div>';
+		return;
+	}
+?>
 
-if ( post_password_required() ) { ?>
-	<div class="c_list"><p><?php _e( 'Enter your password to view comments.', 'wallow' ); ?></p></div>
-<?php return; } ?>
+<?php wallow_hook_comments_before(); ?>
 
-<div <?php if ( have_comments() || comments_open() ) echo 'class="c_list"'; ?>>
+<div<?php if ( have_comments() || comments_open() ) echo ' class="c_list"'; ?>>
+
 	<?php if ( have_comments() ) { ?>
+
 		<h3 id="comments"><?php comments_number( __( 'No Comments', 'wallow' ), __( '1 Comment', 'wallow' ), __( '% Comments', 'wallow' ) ); ?> &raquo;</h3>
+
+		<?php wallow_hook_comments_list_before(); ?>
+
 		<ol id="commentlist">
 			<?php wp_list_comments(); ?>
 		</ol>
 
-		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) { ?>
-			<div class="navigate_comments meta comment_tools">
-				<?php paginate_comments_links(); ?>
-			</div>
-			<div class="fixfloat"> </div>
-		<?php }
-	} ?>
-	<?php if ( comments_open() ) { ?>
-		<?php 
-			$custom_args = array(
-				'comment_notes_after'  => '<p class="form-allowed-tags"><small>' . sprintf( __( 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s', 'wallow' ), allowed_tags() ) . '</small></p>',
-				'label_submit'         => __( 'Say It!', 'wallow' ),
-				'logged_in_as'         => '<p class="logged-in-as">' . sprintf( __( 'Logged in as <a href="%1$s">%2$s</a>.', 'wallow' ), admin_url( 'profile.php' ), $user_identity ) . '</p>',
-			);
-			comment_form($custom_args);
-		?>
-		<div class="fixfloat"></div>
+		<?php wallow_hook_comments_list_after(); ?>
+
 	<?php } ?>
+
+	<?php if ( comments_open() ) {  //if comments are open
+
+		comment_form(); ?>
+		<br class="fixfloat" />
+
+	<?php } ?>
+
 </div>
 <!-- end comments -->
+
+<?php wallow_hook_comments_after(); ?>

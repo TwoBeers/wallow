@@ -1,966 +1,1292 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Wallow v0.47\n"
+"Project-Id-Version: Wallow v0.60\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2012-06-27 14:50+0100\n"
+"PO-Revision-Date: 2013-05-01 09:52:37+0000\n"
 "Last-Translator: TwoBeers Crew <light@twobeers.net>\n"
 "Language-Team: Twobeers Crew <translations@twobeers.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: CSL v1.x\n"
 "X-Poedit-Language: Italian\n"
 "X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
-"X-Textdomain-Support: yes\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: \n"
+"X-Poedit-Bookmarks: \n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
 
+#: comments.php:27
+#: functions.php:809
+#: functions.php:817
 #@ wallow
-#: attachment.php:15
-#: comments.php:10
-#: index.php:30
-#: mobile/comments-mobile.php:10
-#: page.php:19
-#: single.php:18
 msgid "% Comments"
 msgstr "% commenti"
 
+#: functions.php:965
+#: lib/options.php:86
 #@ wallow
-#: attachment.php:52
-msgid "&laquo; Previous Image"
-msgstr "&laquo; Immagine precedente"
-
-#@ wallow
-#: functions.php:486
-#: lib/admin.php:89
 msgid "(no title)"
 msgstr "(senza titolo)"
 
+#: comments.php:27
+#: functions.php:809
+#: functions.php:817
 #@ wallow
-#: attachment.php:15
-#: comments.php:10
-#: index.php:30
-#: mobile/comments-mobile.php:10
-#: page.php:19
-#: single.php:18
 msgid "1 Comment"
 msgstr "1 commento"
 
+#: functions.php:487
 #@ wallow
-#: functions.php:372
 msgid "This page has hierarchy"
 msgstr "Questa pagina ha una gerarchia"
 
+#: lib/widgets.php:496
 #@ wallow
-#: lib/widgets.php:438
 msgid "A list of popular categories"
 msgstr "Una lista delle categorie più popolari"
 
+#: lib/widgets.php:446
 #@ wallow
-#: lib/widgets.php:387
 msgid "Add New Post"
 msgstr "Aggiungi nuovo articolo"
 
+#: allcat.php:27
 #@ wallow
-#: allcat.php:7
 msgid "All Categories"
 msgstr "Tutte le categorie"
 
+#: footer.php:29
 #@ wallow
-#: footer.php:10
 msgid "All rights reserved"
 msgstr "Tutti i diritti riservati"
 
+#: lib/admin.php:289
+#: lib/options.php:21
 #@ wallow
-#: lib/admin.php:25
-#: lib/admin.php:543
 msgid "Appearance"
 msgstr "Aspetto"
 
+#: lib/widgets.php:1355
 #@ wallow
-#: index.php:15
-#: mobile/loop-index-mobile.php:6
-#: sidebar.php:20
 msgid "Archives"
 msgstr "Archivi"
 
+#: allcat.php:25
+#: functions.php:809
+#: lib/widgets.php:1083
+#: lib/widgets.php:1172
 #@ wallow
-#: allcat.php:7
-#: index.php:30
-#: mobile/core-mobile.php:155
-#: sidebar.php:19
-#: single.php:18
 msgid "Categories"
 msgstr "Categorie"
 
+#: functions.php:603
+#: lib/widgets.php:816
+#: mobile/core-mobile.php:301
 #@ wallow
-#: index.php:9
-#: mobile/loop-index-mobile.php:4
 msgid "Category"
 msgstr "Categoria"
 
+#: functions.php:499
 #@ wallow
-#: functions.php:384
 msgid "Child pages: "
 msgstr "Pagine discendenti: "
 
-#@ wallow
-#: lib/widgets.php:331
+#: lib/widgets.php:386
 #, php-format
+#@ wallow
 msgid "Comment authors <strong>must</strong> use a name and a valid e-mail in order to use this widget. Check the <a href=\"%1$s\">Discussion settings</a>"
 msgstr "Per poter utilizzare questo widget gli autori dei commenti <strong>devono</strong> usare un nome e una e-mail valida. Controlla le <a href=\"%1$s\">Impostazioni discussione</a>"
 
+#: lib/widgets.php:453
+#: mobile/comments-mobile.php:21
 #@ wallow
-#: lib/widgets.php:394
 msgid "Comments"
 msgstr "Commenti"
 
+#: lib/admin.php:295
 #@ wallow
-#: lib/admin.php:546
 msgid "Default style = fire"
 msgstr "Stile predefinito = fuoco"
 
+#: functions.php:809
+#: functions.php:817
 #@ wallow
-#: attachment.php:15
-#: index.php:30
-#: page.php:19
-#: single.php:18
 msgid "Edit"
 msgstr "Modifica"
 
-#@ wallow
 #: searchform.php:4
+#@ wallow
 msgid "Enter a word to look up:"
 msgstr "Inserisci una parola da cercare:"
 
+#: comments.php:16
+#: mobile/comments-mobile.php:14
 #@ wallow
-#: comments.php:5
-#: mobile/comments-mobile.php:4
 msgid "Enter your password to view comments."
 msgstr "Inserire la propria password per visualizzare i commenti"
 
-#@ wallow
 #: searchform.php:5
+#@ wallow
 msgid "Find"
 msgstr "Trova"
 
+#: footer.php:31
 #@ wallow
-#: footer.php:12
 msgid "Have fun!"
 msgstr "Buon divertimento!"
 
+#: lib/widgets.php:182
+#: lib/widgets.php:208
 #@ wallow
-#: lib/widgets.php:129
-#: lib/widgets.php:155
 msgid "Latest activity"
 msgstr "Attivit&agrave; recente"
 
+#: lib/widgets.php:297
+#: lib/widgets.php:325
 #@ wallow
-#: lib/widgets.php:249
-#: lib/widgets.php:277
 msgid "Latest comment authors"
 msgstr "Commentatori più recenti"
 
+#: functions.php:809
+#: functions.php:817
+#: functions.php:840
+#: mobile/core-mobile.php:361
 #@ wallow
-#: attachment.php:15
-#: attachment.php:76
-#: index.php:30
-#: mobile/comments-mobile.php:40
-#: page.php:19
-#: page.php:47
-#: single.php:18
-#: single.php:45
 msgid "Leave a comment"
 msgstr "Lascia un commento"
 
+#: lib/admin.php:418
 #@ wallow
-#: lib/admin.php:687
 msgid "Leave a feedback"
 msgstr "Lascia un feedback"
 
+#: functions.php:157
 #@ wallow
-#: comments.php:27
-#: mobile/comments-mobile.php:39
-#, php-format
-msgid "Logged in as <a href=\"%1$s\">%2$s</a>."
-msgstr "Autenticato come <a href=\"%1$s\">%2$s</a>."
-
-#@ wallow
-#: functions.php:60
 msgid "Main Navigation Menu"
 msgstr "Menu di navigazione principale"
 
+#: functions.php:703
+#: functions.php:1213
 #@ wallow
-#: sidebar.php:10
-msgid "Meta"
-msgstr "Meta"
-
-#@ wallow
-#: functions.php:629
-#: index.php:56
 msgid "Newer Posts"
 msgstr "Articoli più recenti"
 
+#: comments.php:27
 #@ wallow
-#: attachment.php:56
-msgid "Next Image &raquo;"
-msgstr "Immagine successiva &raquo;"
-
-#@ wallow
-#: comments.php:10
-#: mobile/comments-mobile.php:10
 msgid "No Comments"
 msgstr "Nessun commento"
 
+#: functions.php:703
+#: functions.php:1206
 #@ wallow
-#: lib/widgets.php:497
-msgid "Number of categories to show:"
-msgstr "Numero di categorie da visualizzare:"
-
-#@ wallow
-#: lib/widgets.php:109
-#: lib/widgets.php:228
-msgid "Number of posts to show:"
-msgstr "Numero di articoli da visualizzare:"
-
-#@ wallow
-#: lib/widgets.php:341
-msgid "Number of users to show:"
-msgstr "Numero di utenti da visualizzare:"
-
-#@ wallow
-#: functions.php:626
-#: index.php:56
 msgid "Older Posts"
 msgstr "Articoli più vecchi"
 
+#: lib/admin.php:263
 #@ wallow
-#: lib/admin.php:525
 msgid "Options saved."
 msgstr "Impostazioni salvate."
 
+#: 404.php:23
 #@ wallow
-#: 404.php:9
 msgid "Page not found"
 msgstr "Pagina non trovata."
 
-#@ wallow
-#: index.php:45
-#: mobile/loop-front-page-mobile.php:7
+#: functions.php:718
+#: mobile/loop-front-page-mobile.php:23
 #: mobile/loop-page-mobile.php:8
-#: mobile/loop-single-mobile.php:20
-#: page.php:30
-#: sidebar.php:17
-#: single.php:27
+#: mobile/loop-single-mobile.php:24
+#@ wallow
 msgid "Pages"
 msgstr "Pagine"
 
+#: functions.php:490
 #@ wallow
-#: functions.php:375
 msgid "Parent page: "
 msgstr "Pagina madre:"
 
+#: mobile/core-mobile.php:359
 #@ wallow
-#: lib/widgets.php:439
-#: lib/widgets.php:445
-msgid "Popular categories"
-msgstr "Categorie più popolari"
-
-#@ wallow
-#: lib/widgets.php:16
-#: lib/widgets.php:38
-msgid "Popular posts"
-msgstr "Articoli più popolari"
-
-#@ wallow
-#: comments.php:26
-#: mobile/comments-mobile.php:38
 msgid "Say It!"
 msgstr "Dillo!"
 
-#@ wallow
-#: index.php:13
-#: mobile/loop-index-mobile.php:8
+#: functions.php:625
+#: mobile/core-mobile.php:323
 #, php-format
+#@ wallow
 msgid "Search results for &#8220;%s&#8221;"
 msgstr "Risultati della ricerca per &#8220;%s&#8221;"
 
+#: lib/admin.php:293
 #@ wallow
-#: lib/admin.php:545
 msgid "Select one of the ready-made styles or mix them to build your custom style"
 msgstr "Seleziona uno degli stili preassemblati o mischiali per creare il tuo stile personalizzato"
 
+#: lib/widgets.php:168
+#: lib/widgets.php:282
+#: lib/widgets.php:838
 #@ wallow
-#: lib/widgets.php:115
-#: lib/widgets.php:234
 msgid "Show post thumbnails"
 msgstr "Mostra miniature articoli"
 
+#: lib/widgets.php:482
 #@ wallow
-#: lib/widgets.php:423
 msgid "Show user gravatar"
 msgstr "Mostra avatar"
 
+#: lib/widgets.php:414
 #@ wallow
-#: lib/widgets.php:355
 msgid "Some useful links for users"
 msgstr "Alcuni utili link per l'utente"
 
-#@ wallow
-#: index.php:52
-#: mobile/loop-front-page-mobile.php:11
-#: mobile/loop-index-mobile.php:43
+#: loop/post-none.php:17
+#: mobile/loop-front-page-mobile.php:30
+#: mobile/loop-index-mobile.php:40
 #: mobile/loop-page-mobile.php:41
-#: mobile/loop-single-mobile.php:30
+#: mobile/loop-single-mobile.php:37
+#@ wallow
 msgid "Sorry, no posts matched your criteria."
 msgstr "Nessun articolo risponde ai criteri di ricerca impostati."
 
+#: 404.php:27
 #@ wallow
-#: 404.php:11
 msgid "Sorry, you're looking for something that isn't here"
 msgstr "Spiacente, stai cercando qualcosa che non esiste"
 
+#: functions.php:551
 #@ wallow
-#: header.php:68
 msgid "Syndicate this site using RSS 2.0"
 msgstr "Abbonati a questo sito usando RSS 2.0"
 
+#: functions.php:604
+#: mobile/core-mobile.php:302
 #@ wallow
-#: index.php:11
-#: mobile/loop-index-mobile.php:5
 msgid "Tag"
 msgstr "Tag"
 
+#: functions.php:809
 #@ wallow
-#: index.php:30
-#: single.php:18
 msgid "Tags: "
 msgstr "Tag:"
 
+#: lib/widgets.php:296
 #@ wallow
-#: lib/widgets.php:248
 msgid "The latest comment authors"
 msgstr "Gli ultimi utenti che hanno lasciato un commento"
 
+#: lib/widgets.php:181
 #@ wallow
-#: lib/widgets.php:128
 msgid "The latest commented posts/pages of your site"
 msgstr "Gli articoli con i commenti più recenti"
 
+#: lib/widgets.php:75
 #@ wallow
-#: lib/widgets.php:15
 msgid "The most commented posts on your site"
 msgstr "Gli articoli più commentati di questo sito"
 
+#: functions.php:282
+#: lib/admin.php:23
+#: lib/admin.php:24
+#: lib/admin.php:258
 #@ wallow
-#: lib/admin.php:364
-#: lib/admin.php:521
 msgid "Theme Options"
 msgstr "Opzioni tema"
 
+#: functions.php:837
 #@ wallow
-#: lib/widgets.php:104
-#: lib/widgets.php:223
-#: lib/widgets.php:336
-#: lib/widgets.php:418
-#: lib/widgets.php:492
-msgid "Title:"
-msgstr "Titolo:"
-
-#@ wallow
-#: header.php:47
-#, php-format
-msgid "Today is %1$s<br />%2$s"
-msgstr "Oggi &egrave; %1$s<br />%2$s"
-
-#@ wallow
-#: attachment.php:73
-#: page.php:44
-#: single.php:42
 msgid "TrackBack URL"
 msgstr "TrackBack URL"
 
+#: lib/admin.php:396
 #@ wallow
-#: lib/admin.php:672
 msgid "Undo Changes"
 msgstr "Annulla le modifiche"
 
+#: lib/admin.php:394
 #@ wallow
-#: lib/admin.php:671
 msgid "Update Options"
 msgstr "Aggiorna opzioni"
 
+#: lib/widgets.php:415
 #@ wallow
-#: lib/widgets.php:356
 msgid "User quick links"
 msgstr "Link rapidi utente"
 
+#: lib/widgets.php:522
 #@ wallow
-#: lib/widgets.php:470
 msgid "View all"
 msgstr "Mostra tutti"
 
+#: lib/widgets.php:522
 #@ wallow
-#: lib/widgets.php:470
 msgid "View all categories"
 msgstr "Tutte le categorie"
 
+#: attachment.php:37
 #@ wallow
-#: attachment.php:54
 msgid "View full size"
 msgstr "Mostra dimensione reale"
 
-#@ wallow
-#: lib/widgets.php:365
+#: lib/widgets.php:424
 #, php-format
+#@ wallow
 msgid "Welcome %s"
 msgstr "Benvenuto %s"
 
+#: 404.php:33
 #@ wallow
-#: 404.php:13
 msgid "You can try the following:"
 msgstr "Prova a:"
 
+#: lib/widgets.php:444
 #@ wallow
-#: comments.php:25
-#, php-format
-msgid "You may use these <abbr title=\"HyperText Markup Language\">HTML</abbr> tags and attributes: %s"
-msgstr "&Egrave; possibile utilizzare questi tag ed attributi <abbr title=\"eXtensible HyperText Markup Language\">XHTML</abbr>: %s"
-
-#@ wallow
-#: lib/widgets.php:385
 msgid "Your Profile"
 msgstr "Il tuo profilo"
 
+#: functions.php:135
 #@ wallow
-#: functions.php:33
 msgid "air"
 msgstr "aria"
 
+#: lib/admin.php:349
+#: lib/options.php:187
 #@ wallow
-#: lib/admin.php:598
 msgid "avatar"
 msgstr "avatar"
 
+#: functions.php:809
 #@ wallow
-#: attachment.php:15
-#: index.php:30
-#: single.php:18
 msgid "by"
 msgstr "di"
 
+#: functions.php:139
 #@ wallow
-#: functions.php:33
 msgid "clouds"
 msgstr "nuvole"
 
+#: lib/admin.php:302
 #@ wallow
-#: lib/admin.php:551
 msgid "custom..."
 msgstr "personalizzato..."
 
-#@ wallow
-#: lib/widgets.php:418
+#: lib/widgets.php:477
 #, php-format
+#@ wallow
 msgid "default: \"Welcome %s\" , where %s is the user name"
 msgstr "predefinito: \"Benvenuto %s\" , dove %s è il nome dell'utente"
 
+#: lib/widgets.php:26
+#: lib/widgets.php:38
 #@ wallow
-#: functions.php:222
-#: functions.php:234
 msgid "drag here your favorite widgets"
 msgstr "trascina qui i tuoi widgets preferiti"
 
+#: functions.php:137
 #@ wallow
-#: functions.php:33
 msgid "earth"
 msgstr "terra"
 
+#: functions.php:134
 #@ wallow
-#: attachment.php:67
-#: page.php:38
-#: single.php:36
-msgid "feed for comments on this post"
-msgstr "feed dei commenti per questo articolo"
-
-#@ wallow
-#: functions.php:33
 msgid "fire"
 msgstr "fuoco"
 
+#: lib/admin.php:319
 #@ wallow
-#: lib/admin.php:568
 msgid "general looking"
 msgstr "aspetto generale"
 
+#: lib/quickbar.php:99
 #@ wallow
-#: header.php:47
 msgid "l"
 msgstr "l"
 
+#: lib/admin.php:331
 #@ wallow
-#: lib/admin.php:580
 msgid "pages menu"
 msgstr "menu pagine"
 
+#: lib/admin.php:337
 #@ wallow
-#: lib/admin.php:586
 msgid "pop-up menu"
 msgstr "menu pop-up"
 
+#: lib/admin.php:343
+#: lib/options.php:167
 #@ wallow
-#: lib/admin.php:170
-#: lib/admin.php:592
 msgid "quickbar"
 msgstr "quickbar"
 
+#: lib/admin.php:325
 #@ wallow
-#: lib/admin.php:574
 msgid "sidebar"
 msgstr "barra laterale"
 
+#: functions.php:138
 #@ wallow
-#: functions.php:33
 msgid "smoke"
 msgstr "fumo"
 
+#: functions.php:136
 #@ wallow
-#: functions.php:33
 msgid "water"
 msgstr "acqua"
 
+#: mobile/core-mobile.php:372
 #@ wallow
-#: 404.php:18
-msgid "There are several links scattered around the page, maybe you can find what you're looking for"
-msgstr "Ci sono parecchi link sparsi per la pagina, magari trovi quello che fa per te"
-
-#@ wallow
-#: 404.php:19
-msgid "Perhaps using the search form will help..."
-msgstr "Magari una ricerca potrebbe aiutare"
-
-#@ wallow
-#: footer.php:11
 msgid "Mobile View"
 msgstr "Modalità Mobile"
 
+#: lib/widgets.php:57
 #@ wallow
-#: functions.php:243
 msgid "Page 404"
 msgstr "Pagina 404"
 
+#: lib/widgets.php:59
 #@ wallow
-#: functions.php:245
 msgid "Enrich the page 404 with some useful widgets"
 msgstr "Arrcchisci la pagina 404 con alcuni utili widget"
 
+#: lib/quickbar.php:75
 #@ wallow
-#: functions.php:404
 msgid "Next Post"
 msgstr "Articolo successivo"
 
+#: lib/quickbar.php:76
 #@ wallow
-#: functions.php:405
 msgid "Previous Post"
 msgstr "Articolo precedente"
 
+#: lib/quickbar.php:89
 #@ wallow
-#: functions.php:418
 msgid "Home"
 msgstr "Home"
 
+#: lib/quickbar.php:90
 #@ wallow
-#: functions.php:419
 msgid "Top"
 msgstr "Alto"
 
+#: lib/quickbar.php:91
 #@ wallow
-#: functions.php:420
 msgid "Bottom"
 msgstr "Basso"
 
+#: lib/options.php:16
 #@ wallow
-#: functions.php:487
-msgid "post"
-msgstr "articolo"
-
-#@ wallow
-#: lib/admin.php:20
 msgid "Other"
 msgstr "Altro"
 
+#: lib/options.php:17
 #@ wallow
-#: lib/admin.php:21
 msgid "Mobile"
 msgstr "Mobile"
 
+#: lib/options.php:18
 #@ wallow
-#: lib/admin.php:22
 msgid "Style"
 msgstr "Stile"
 
+#: lib/options.php:19
 #@ wallow
-#: lib/admin.php:23
 msgid "Contents"
 msgstr "Contenuti"
 
+#: lib/options.php:20
 #@ wallow
-#: lib/admin.php:24
 msgid "Elements"
 msgstr "Elementi"
 
+#: lib/options.php:87
 #@ wallow
-#: lib/admin.php:90
 msgid "blank titles"
 msgstr "titoli vuoti"
 
-#@ wallow
-#: lib/admin.php:91
+#: lib/options.php:88
 #, php-format
+#@ wallow
 msgid "set the standard text for blank titles. you may use these codes:<br /><code>%d</code> for post date<br /><code>%f</code> for post format (if any)"
 msgstr "imposta il testo standard per i titoli vuoti. puoi usare i seguenti codici:<br /><code>%d</code> per la data dell'articolo<br /><code>%f</code> per il formato dell'articolo"
 
+#: lib/options.php:96
 #@ wallow
-#: lib/admin.php:99
 msgid "content summary"
 msgstr "riassunto"
 
+#: lib/options.php:97
 #@ wallow
-#: lib/admin.php:100
 msgid "use the summary instead of content in archives"
 msgstr "usa il riassunto al posto del contenuto completo negli archivi"
 
+#: lib/options.php:106
 #@ wallow
-#: lib/admin.php:109
 msgid "excerpt length"
 msgstr "lunghezza riassunto"
 
+#: lib/options.php:116
 #@ wallow
-#: lib/admin.php:119
 msgid "<em>excerpt more</em> string"
 msgstr "testo dell'<em>excerpt more</em>"
 
+#: lib/options.php:126
 #@ wallow
-#: lib/admin.php:129
 msgid "<em>excerpt more</em> linked"
 msgstr "<em>excerpt more</em> collegato"
 
+#: lib/options.php:127
 #@ wallow
-#: lib/admin.php:130
 msgid "use the <em>excerpt more</em> string as a link to the full post"
 msgstr "usa l'<em>excerpt more</em> come collegamento all'articolo completo"
 
+#: lib/options.php:136
 #@ wallow
-#: lib/admin.php:139
 msgid "\"more\" tag string"
 msgstr "testo della tag \"more\""
 
-#@ wallow
-#: lib/admin.php:140
+#: lib/options.php:137
 #, php-format
+#@ wallow
 msgid "only plain text. use <code>%t</code> as placeholder for the post title"
 msgstr "solo testo semplice. usa <code>%t</code> per inserire il titolo dell'articolo"
 
+#: lib/options.php:145
 #@ wallow
-#: lib/admin.php:148
 msgid "posts thumbnail"
 msgstr "miniatura articolo"
 
+#: lib/options.php:157
 #@ wallow
-#: lib/admin.php:160
 msgid "thumbnail size"
 msgstr "dimensione miniatura"
 
+#: lib/options.php:177
 #@ wallow
-#: lib/admin.php:171
-msgid "the sliding panel that is activated when the mouse rolls over the fixed buttons on the bottom left"
-msgstr ""
-
-#@ wallow
-#: lib/admin.php:180
 msgid "navigation tool"
 msgstr "strumento di navigazione"
 
+#: lib/options.php:197
 #@ wallow
-#: lib/admin.php:190
 msgid "custom avatar image"
 msgstr "immagine avatar personalizzata"
 
+#: lib/options.php:217
 #@ wallow
-#: lib/admin.php:200
 msgid "primary menu"
 msgstr "menu principale"
 
+#: lib/options.php:218
+#: lib/options.php:227
 #@ wallow
-#: lib/admin.php:201
 msgid "uncheck if you want to hide it"
 msgstr "deseleziona se lo vuoi nascondere"
 
+#: lib/options.php:235
 #@ wallow
-#: lib/admin.php:209
 msgid "font family"
 msgstr "font family"
 
+#: lib/options.php:249
 #@ wallow
-#: lib/admin.php:223
 msgid "font size"
 msgstr "dimensione caratteri"
 
+#: lib/options.php:259
 #@ wallow
-#: lib/admin.php:233
 msgid "Google web font"
 msgstr "Google web font"
 
+#: lib/options.php:260
 #@ wallow
-#: lib/admin.php:234
 msgid "Copy and paste <a href=\"http://www.google.com/webfonts\" target=\"_blank\"><strong>Google web font</strong></a> name here. Example: <code>Architects Daughter</code>"
 msgstr "Copia e incolla qui il nome della <a href=\"http://www.google.com/webfonts\" target=\"_blank\"><strong>Google web font</strong></a>. Ad esempio: <code>Architects Daughter</code>"
 
+#: lib/options.php:269
 #@ wallow
-#: lib/admin.php:243
 msgid "for whole page"
 msgstr "per l'intera pagina"
 
+#: lib/options.php:279
 #@ wallow
-#: lib/admin.php:253
 msgid "for posts/pages title"
 msgstr "per il titolo degli articoli/pagine"
 
+#: lib/options.php:289
 #@ wallow
-#: lib/admin.php:263
 msgid "for posts/pages content"
 msgstr "per il contenuto degli articoli/pagine"
 
+#: lib/options.php:299
 #@ wallow
-#: lib/admin.php:273
 msgid "mobile support"
 msgstr "supporto mobile"
 
+#: lib/options.php:300
 #@ wallow
-#: lib/admin.php:274
 msgid "detect mobile devices and use a dedicated style. Disable it if you don't like it or you're already using a plugin for mobile support"
 msgstr "individua i dispositivi mobili e usa uno stile apposito. Disabilita questa opzione se non ti piace o se stai già usando un plugin per dispositivi mobili"
 
+#: lib/options.php:311
 #@ wallow
-#: lib/admin.php:285
 msgid "colors"
 msgstr "colori"
 
+#: lib/options.php:321
 #@ wallow
-#: lib/admin.php:295
 msgid "javascript animations"
 msgstr "animazioni javascript"
 
+#: lib/options.php:322
 #@ wallow
-#: lib/admin.php:296
 msgid "try disable animations if you encountered problems with javascript"
 msgstr "prova a disabilitare le animazioni se riscontri dei problemi con javascript"
 
+#: lib/options.php:330
 #@ wallow
-#: lib/admin.php:304
 msgid "thickbox"
 msgstr "thickbox"
 
+#: lib/options.php:331
 #@ wallow
-#: lib/admin.php:305
 msgid "use thickbox for showing images and galleries"
 msgstr "usa thickbox per viualizzare immagini e gallerie"
 
+#: lib/options.php:340
 #@ wallow
-#: lib/admin.php:314
 msgid "gallery links"
 msgstr "collegamenti nelle gallerie"
 
+#: lib/options.php:341
 #@ wallow
-#: lib/admin.php:315
 msgid "force galleries to use links to image instead of links to attachment"
 msgstr "forza le gallerie ad utilizzare il collegamento alle immagini anzichè agli allegati"
 
+#: lib/options.php:350
 #@ wallow
-#: lib/admin.php:324
 msgid "custom widgets"
 msgstr "widget personalizzati"
 
+#: lib/options.php:351
 #@ wallow
-#: lib/admin.php:325
 msgid "add a lot of new usefull widgets"
 msgstr "aggiugi un sacco di widget utili"
 
+#: lib/options.php:359
 #@ wallow
-#: lib/admin.php:333
 msgid "custom CSS code"
 msgstr "codice CSS personalizzato"
 
+#: lib/options.php:360
 #@ wallow
-#: lib/admin.php:334
 msgid "<strong>For advanced users only</strong>: paste here your custom css code. it will be added after the defatult style"
 msgstr "<strong>Solo per utenti esperti</strong>: incolla qui il tuo codice css personslizzato, che verrà aggiunto allo stile di predefinito"
 
+#: lib/options.php:368
 #@ wallow
-#: lib/admin.php:342
 msgid "theme credits"
 msgstr "crediti del tema"
 
+#: lib/options.php:369
 #@ wallow
-#: lib/admin.php:343
 msgid "please, don't hide theme credits. TwoBeers.net's authors reserve themselfs to give support only to those who recognize TwoBeers work, keeping TwoBeers.net credits visible on their site."
 msgstr "per favore non nascondete i crediti del tema."
 
+#: lib/admin.php:108
 #@ wallow
-#: lib/admin.php:401
 msgid "Are you really sure you want to set all the options to their default values?"
 msgstr "Sei sicuro che vuoi riportare tutte le opzioni ai valori predefiniti?"
 
+#: lib/admin.php:235
 #@ wallow
-#: lib/admin.php:501
 msgid "You do not have sufficient permissions to access this page."
 msgstr "Non sei autorizzato ad accedere a questa pagina"
 
+#: lib/admin.php:267
 #@ wallow
-#: lib/admin.php:529
 msgid "Defaults values loaded."
 msgstr "Valori predefiniti caricati"
 
+#: lib/admin.php:358
 #@ wallow
-#: lib/admin.php:606
 msgid "Options"
 msgstr "Opzioni"
 
+#: lib/admin.php:450
+#: lib/admin.php:469
+#: lib/admin.php:486
+#: lib/admin.php:504
+#: lib/admin.php:526
+#: lib/admin.php:545
 #@ wallow
-#: lib/admin.php:632
 msgid "requires"
 msgstr "richiede"
 
+#: lib/admin.php:398
 #@ wallow
-#: lib/admin.php:674
 msgid "Back to defaults"
 msgstr "Ripristina predefiniti"
 
+#: lib/admin.php:407
 #@ wallow
-#: lib/admin.php:679
 msgid "Info"
 msgstr "Info"
 
+#: lib/admin.php:417
 #@ wallow
-#: lib/admin.php:686
 msgid "If you like/dislike this theme, or if you encounter any issues, please let us know it."
 msgstr "Se (non) ti piace questo tema, o riscontri qualche problema, per favore faccelo sapere."
 
+#: lib/admin.php:651
 #@ wallow
-#: lib/admin.php:787
 msgid "wallow Default Gravatar"
 msgstr "Gravatar predefinito di Wallow"
 
+#: lib/admin.php:678
 #@ wallow
-#: lib/admin.php:810
 msgid "Remove"
 msgstr "Rimuovi"
 
+#: mobile/core-mobile.php:344
 #@ wallow
-#: mobile/comments-mobile.php:26
 msgid "Name"
 msgstr "Nome"
 
+#: mobile/core-mobile.php:346
 #@ wallow
-#: mobile/comments-mobile.php:28
 msgid "Email"
 msgstr "Email"
 
+#: mobile/core-mobile.php:348
 #@ wallow
-#: mobile/comments-mobile.php:30
 msgid "Website"
 msgstr "Website"
 
-#@ wallow
-#: mobile/comments-mobile.php:41
+#: mobile/core-mobile.php:362
 #, php-format
+#@ wallow
 msgid "Leave a Reply to %s"
 msgstr "Rispondi a %s"
 
+#: mobile/core-mobile.php:147
 #@ wallow
-#: mobile/core-mobile.php:94
 msgid "Mobile Widget Area"
 msgstr "Area Widget Mobile"
 
+#: lib/widgets.php:1087
+#: lib/widgets.php:1168
 #@ wallow
-#: mobile/core-mobile.php:148
-#, php-format
-msgid "follow %s on Twitter"
-msgstr "segui %s su Twitter"
-
-#@ wallow
-#: mobile/core-mobile.php:149
-#, php-format
-msgid "follow %s on Facebook"
-msgstr "segiu %s su Facebook"
-
-#@ wallow
-#: mobile/core-mobile.php:156
 msgid "Tags"
 msgstr "Tag"
 
+#: lib/widgets.php:1086
 #@ wallow
-#: mobile/core-mobile.php:156
 msgid "No Tags"
 msgstr "Nessuna tag"
 
+#: mobile/core-mobile.php:123
 #@ wallow
-#: mobile/core-mobile.php:157
-#, php-format
-msgid "Published on: %1$s"
-msgstr "Pubblicato in: %1$s"
-
-#@ wallow
-#: mobile/core-mobile.php:167
 msgid "Navigation Menu for mobiles<br><small>only supports the first level of hierarchy</small>"
 msgstr "Menu di navigazione per i dispositivi mobili<br><small>suporta solamente il primo livello</small>"
 
+#: mobile/footer-mobile.php:15
 #@ wallow
-#: mobile/footer-mobile.php:5
 msgid "Menu"
 msgstr "Menu"
 
+#: mobile/footer-mobile.php:29
 #@ wallow
-#: mobile/footer-mobile.php:16
 msgid "Desktop View"
 msgstr "Modalità Desktop"
 
+#: mobile/core-mobile.php:293
 #@ wallow
-#: mobile/loop-index-mobile.php:3
 msgid "Posts"
 msgstr "Articoli"
 
-#@ wallow
-#: mobile/loop-index-mobile.php:7
+#: mobile/core-mobile.php:227
 #, php-format
-msgid "Posts by %s"
-msgstr "Articolo di %s"
-
 #@ wallow
-#: mobile/loop-index-mobile.php:31
-#, php-format
 msgid "page %1$s of %2$s"
 msgstr "pagina %1$s di %2$s"
 
+#: mobile/core-mobile.php:236
 #@ wallow
-#: mobile/loop-index-mobile.php:36
 msgid "Previous page"
 msgstr "Pagina precedente"
 
+#: mobile/core-mobile.php:237
 #@ wallow
-#: mobile/loop-index-mobile.php:37
 msgid "Next page"
 msgstr "Pagina successiva"
 
-#@ wallow
+#: mobile/core-mobile.php:265
 #: mobile/loop-page-mobile.php:22
+#@ wallow
 msgid "Child pages"
 msgstr "Pagine inferiori"
 
-#@ wallow
+#: mobile/core-mobile.php:281
 #: mobile/loop-page-mobile.php:34
+#@ wallow
 msgid "Parent page"
 msgstr "Pagina superiore"
+
+#: 404.php:23
+#: mobile/core-mobile.php:327
+#@ wallow
+msgid "Error 404"
+msgstr "Errore 404"
+
+#: 404.php:39
+#@ wallow
+msgid "There are several links scattered around the page, maybe they can help you on finding what you're looking for."
+msgstr "Ci sono parecchi link sparsi per la pagina, magari uno di questi potrebbe aiutarti a trovare quello che cerchi"
+
+#: 404.php:41
+#@ wallow
+msgid "Perhaps using the search form will help too..."
+msgstr "Forse il modulo di ricerca potrebbe esserti utile..."
+
+#: functions.php:605
+#: mobile/core-mobile.php:303
+#@ wallow
+msgid "Taxonomy"
+msgstr "Tassonomia"
+
+#: functions.php:608
+#: lib/widgets.php:1164
+#: mobile/core-mobile.php:306
+#@ wallow
+msgid "Date"
+msgstr "Data"
+
+#: functions.php:617
+#: lib/widgets.php:1147
+#: mobile/core-mobile.php:315
+#@ wallow
+msgid "Author"
+msgstr "Autore"
+
+#: functions.php:621
+#, php-format
+#@ wallow
+msgid "%s archive"
+msgstr "Archivio di %s"
+
+#: functions.php:669
+#, php-format
+#@ wallow
+msgid "Follow %s on %s"
+msgstr "Segui %s su %s"
+
+#: functions.php:834
+#, php-format
+#@ wallow
+msgid "%s feed for comments on this post"
+msgstr "%s feed per i commenti su questo articolo"
+
+#: functions.php:966
+#@ wallow
+msgid "Post"
+msgstr "Articolo"
+
+#: lib/admin.php:542
+#: lib/admin.php:551
+#@ wallow
+msgid "Default"
+msgstr "Predefinito"
+
+#: lib/options.php:168
+#@ wallow
+msgid "the fixed bar on bottom of page"
+msgstr "La barra fissa in fondo alla pagina"
+
+#: lib/options.php:198
+#@ wallow
+msgid "image should be 50x50"
+msgstr "l'immagine dovrebbe essere 50x50"
+
+#: lib/options.php:207
+#@ wallow
+msgid "date"
+msgstr "data"
+
+#: lib/options.php:226
+#@ wallow
+msgid "right sidebar"
+msgstr "sidebar destra"
+
+#: lib/quickbar.php:99
+#, php-format
+#@ wallow
+msgid "Today is %1$s<br>%2$s"
+msgstr "Oggi è %1$s<br>%2$s"
+
+#: lib/widgets.php:24
+#@ wallow
+msgid "Sidebar Widget Area"
+msgstr "Area widget della sidebar"
+
+#: lib/widgets.php:47
+#@ wallow
+msgid "Single Widget Area"
+msgstr "Area widget dell'articolo"
+
+#: lib/widgets.php:49
+#@ wallow
+msgid "Located after the post/page content, it is the ideal place for your widgets related to individual entries"
+msgstr "Posto dopo il contenuto degli articoli/pagine, è il posto migliore per i vostri widget relativi al singolo contenuto"
+
+#: lib/widgets.php:76
+#: lib/widgets.php:98
+#@ wallow
+msgid "Popular Posts"
+msgstr "Articoli Popolari"
+
+#: lib/widgets.php:157
+#: lib/widgets.php:271
+#: lib/widgets.php:391
+#: lib/widgets.php:477
+#: lib/widgets.php:544
+#: lib/widgets.php:626
+#: lib/widgets.php:811
+#: lib/widgets.php:884
+#: lib/widgets.php:920
+#: lib/widgets.php:1021
+#: lib/widgets.php:1138
+#: lib/widgets.php:1280
+#: lib/widgets.php:1359
+#@ wallow
+msgid "Title"
+msgstr "Titolo"
+
+#: lib/widgets.php:162
+#: lib/widgets.php:276
+#: lib/widgets.php:833
+#@ wallow
+msgid "Number of posts to show"
+msgstr "Nureo di articoli da visualizzare"
+
+#: lib/widgets.php:396
+#@ wallow
+msgid "Number of users to show"
+msgstr "Numero di utenti da visualizzare"
+
+#: lib/widgets.php:401
+#@ wallow
+msgid "Compact view (only avatars)"
+msgstr "Modalità compatta (solamente gli avatar)"
+
+#: lib/widgets.php:497
+#: lib/widgets.php:503
+#@ wallow
+msgid "Popular Categories"
+msgstr "Categorie Popolari"
+
+#: lib/widgets.php:549
+#@ wallow
+msgid "Number of categories to show"
+msgstr "Numero di categorie da visualizzare"
+
+#: lib/widgets.php:568
+#@ wallow
+msgid "This widget lets visitors of your blog subscribe to it and follow you on popular social networks like Twitter, FaceBook etc."
+msgstr "Questo widget da la possibilità ai lettori di seguirti sui principale social network, come Twitter, FaceBook, etc"
+
+#: lib/widgets.php:571
+#: lib/widgets.php:615
+#@ wallow
+msgid "Follow Me"
+msgstr "Seguimi"
+
+#: lib/widgets.php:630
+#@ wallow
+msgid "NOTE: Enter the <strong>full</strong> addresses ( with <em>http://</em> )"
+msgstr "Nota: inserisci il titolo <strong>completo</strong> ( con <em>http://</em> )"
+
+#: lib/widgets.php:647
+#, php-format
+#@ wallow
+msgid "Enter %1$s account link:"
+msgstr "Inserisci il link a %1$s"
+
+#: lib/widgets.php:661
+#@ wallow
+msgid "Select your icon size"
+msgstr "Seleziona la dimensione delle icone"
+
+#: lib/widgets.php:732
+#@ wallow
+msgid "The most recent posts in a single category"
+msgstr "Gli articoli più recenti nella singola categoria"
+
+#: lib/widgets.php:733
+#@ wallow
+msgid "Recent Posts in Category"
+msgstr "Articoli recenti nella Categoria"
+
+#: lib/widgets.php:757
+#, php-format
+#@ wallow
+msgid "Recent Posts in %s"
+msgstr "Articoli Recenti in %s"
+
+#: lib/widgets.php:851
+#@ wallow
+msgid "Display image details. It's visible ONLY in single attachments"
+msgstr "Visualizza i dettagli dell'immagine. E' visibile SOLAMENTE nei singoli articoli"
+
+#: lib/widgets.php:852
+#: lib/widgets.php:917
+#@ wallow
+msgid "Image details"
+msgstr "Dettagli immagine"
+
+#: lib/widgets.php:879
+#@ wallow
+msgid "Width"
+msgstr "Larghezza"
+
+#: lib/widgets.php:880
+#@ wallow
+msgid "Height"
+msgstr "Altezza"
+
+#: lib/widgets.php:881
+#@ wallow
+msgid "Date Taken"
+msgstr "Scattata il"
+
+#: lib/widgets.php:882
+#@ wallow
+msgid "Copyright"
+msgstr "Copyright"
+
+#: lib/widgets.php:883
+#@ wallow
+msgid "Credit"
+msgstr "Crediti"
+
+#: lib/widgets.php:885
+#@ wallow
+msgid "Caption"
+msgstr "Etichetta"
+
+#: lib/widgets.php:886
+#@ wallow
+msgid "Camera"
+msgstr "Fotocamera"
+
+#: lib/widgets.php:887
+#@ wallow
+msgid "Focal Length"
+msgstr "Lunghezza Focale"
+
+#: lib/widgets.php:888
+#@ wallow
+msgid "Aperture"
+msgstr "Apertura"
+
+#: lib/widgets.php:889
+#@ wallow
+msgid "ISO"
+msgstr "ISO"
+
+#: lib/widgets.php:890
+#@ wallow
+msgid "Shutter Speed"
+msgstr "Velocità Otturatore"
+
+#: lib/widgets.php:890
+#, php-format
+#@ wallow
+msgid "%s seconds"
+msgstr "%s secondi"
+
+#: lib/widgets.php:953
+#@ wallow
+msgid "Show some popular sharing services links. It's visible ONLY in single posts, pages and attachments"
+msgstr "Visualizza alcuni dei principali servizi di condivisione. E' visibile SOLAMENTE nei singoli articoli"
+
+#: lib/widgets.php:954
+#: lib/widgets.php:1009
+#@ wallow
+msgid "Share this"
+msgstr "Condividi questo"
+
+#: lib/widgets.php:979
+#, php-format
+#@ wallow
+msgid "Share with %s"
+msgstr "Condividi con %s"
+
+#: lib/widgets.php:1025
+#@ wallow
+msgid "Select icon size"
+msgstr "Seleziona la dimensione delle icone"
+
+#: lib/widgets.php:1049
+#@ wallow
+msgid "Show some details and links related to the current post. It's visible ONLY in single posts"
+msgstr "Visualizza alcuni dettagli e collegamenti relativi all'articolo corrente. E' visibile SOLAMENTE nei singoli articoli"
+
+#: lib/widgets.php:1050
+#: lib/widgets.php:1128
+#: mobile/core-mobile.php:382
+#@ wallow
+msgid "Post details"
+msgstr "Dettagli dell'articolo"
+
+#: lib/widgets.php:1090
+#@ wallow
+msgid "Published"
+msgstr "Pubblicato"
+
+#: lib/widgets.php:1143
+#@ wallow
+msgid "Thumbnail"
+msgstr "Miniatura"
+
+#: lib/widgets.php:1150
+#@ wallow
+msgid "Select avatar size"
+msgstr "Seleziona la dimensione dell'avatar"
+
+#: lib/widgets.php:1187
+#@ wallow
+msgid "The most recent comments"
+msgstr "I commenti più recenti"
+
+#: lib/widgets.php:1188
+#@ wallow
+msgid "Recent Comments (Enhanced)"
+msgstr "Commenti Recenti (Potenziato)"
+
+#: lib/widgets.php:1229
+#@ wallow
+msgid "Recent Comments"
+msgstr "Commenti Recenti"
+
+#. translators: comments widget: 1: comment author, 2: post link
+#: lib/widgets.php:1248
+#, php-format
+#@ wallow
+msgctxt "widgets"
+msgid "%1$s on %2$s"
+msgstr "%1$s in %2$s"
+
+#: lib/widgets.php:1283
+#@ wallow
+msgid "Number of comments to show"
+msgstr "Numero di commenti da visualizzare"
+
+#: lib/widgets.php:1287
+#@ wallow
+msgid "Show excerpt"
+msgstr "Visualizza il riassunto"
+
+#: lib/widgets.php:1299
+#@ wallow
+msgid "Show archives in a cleaner way"
+msgstr "Visualizza gli archivi in maniera semplice e compatta"
+
+#: lib/widgets.php:1300
+#@ wallow
+msgid "Clean Archives"
+msgstr "Archivi Semplici"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "jan"
+msgstr "gen"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "feb"
+msgstr "feb"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "mar"
+msgstr "mar"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "apr"
+msgstr "apr"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "may"
+msgstr "mag"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "jun"
+msgstr "giu"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "jul"
+msgstr "lug"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "aug"
+msgstr "ago"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "sep"
+msgstr "set"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "oct"
+msgstr "ott"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "nov"
+msgstr "nov"
+
+#: lib/widgets.php:1323
+#@ wallow
+msgid "dec"
+msgstr "dic"
+
+#: lib/widgets.php:1363
+#@ wallow
+msgid "Select month style"
+msgstr "Seleziona lo stile del mese"
+
+#: lib/widgets.php:1365
+#@ wallow
+msgid "number"
+msgstr "numero"
+
+#: lib/widgets.php:1366
+#@ wallow
+msgid "acronym"
+msgstr "acronimo"
+
+#: loop/post-none.php:14
+#@ wallow
+msgid "Nothing Found"
+msgstr "Nessun Risultato"
+
+#: mobile/footer-mobile.php:27
+#, php-format
+#@ wallow
+msgid "Powered by %s and %s"
+msgstr "Utilizza %s e %s"
+
+#: mobile/footer-mobile.php:27
+#@ wallow
+msgid "Visit theme authors homepage"
+msgstr "Visita il sito degli autori del tema"
 

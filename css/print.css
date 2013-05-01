@@ -21,7 +21,7 @@ h3.storytitle {
 	font-size:28px;
 }
 
-#pages, #menu, #quickbar, #edit_link, .avatar, .comment-edit-link, .comment-reply-link, #respond, .says , .description, .navigate_comments, .comment_tools, #nav_pages{
+#pages, #menu, #quickbar, #edit_link, .avatar, .comment-edit-link, .comment-reply-link, #respond, .says , .description, .navigate_comments, .comment_tools, .nav_pages{
 	display: none;
 }
 

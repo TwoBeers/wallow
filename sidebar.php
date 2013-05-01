@@ -1,32 +1,40 @@
-<!-- begin sidebar -->
-<div id="menu">
-		<div id="sidebartop"></div>
-		<div id="sidebarbody">
-			<ul>
-			<?php if ( !function_exists( 'dynamic_sidebar' ) || !dynamic_sidebar( 'sidepad' ) ) { ?>
-				<li id="search">
-					<?php get_search_form(); ?>
-				</li>
-				<li id="meta"><h3><?php _e( 'Meta', 'wallow' ); ?></h3>
-					<ul>
-						<?php wp_register(); ?>
-						<li><?php wp_loginout(); ?></li>
-						<?php wp_meta(); ?>
-					</ul>
-				</li>
-				<?php wp_list_pages( 'title_li=<h3>' . __( 'Pages', 'wallow' ) .'</h3>'); ?>
-				<?php wp_list_bookmarks( 'title_after=</h3>&title_before=<h3>' ); ?>
-				<?php wp_list_categories( 'title_li=<h3>' . __( 'Categories', 'wallow' ).'</h3>' ); ?>
-				<li id="archives"><h3><?php _e( 'Archives', 'wallow' ); ?></h3>
-					<ul>
-					<?php wp_get_archives( 'type=monthly' ); ?>
-					</ul>
-				</li>
-			<?php } ?>
-			</ul>
-			<div class="fixfloat"></div>
-		 </div>
-		 <div id="sidebarbottom" class="fixfloat"></div>
+<?php
+/**
+ * sidebar.php
+ *
+ * Template part file that contains the default sidebar content
+ *
+ * @package wallow
+ * @since 0.27
+ */
+?>
+
+<?php wallow_hook_sidebars_before( 'primary' ); ?>
+
+<!-- begin primary sidebar -->
+
+<div id="menu" class="sidebar">
+
+	<div id="sidebartop"></div>
+
+	<div id="sidebarbody">
+
+		<?php wallow_hook_sidebar_top( 'primary' ); ?>
+
+		<?php if ( !dynamic_sidebar( 'sidepad' ) ) { //if the widget area is empty, we print some standard wigets ?>
+
+			<?php wallow_default_widgets(); ?>
+
+		<?php } ?>
+
+		<?php wallow_hook_sidebar_bottom( 'primary' ); ?>
+
+	</div>
+
+	<div id="sidebarbottom" class="fixfloat"></div>
 
 </div>
-<!-- end sidebar -->
+
+<!-- end primary sidebar -->
+
+<?php wallow_hook_sidebars_after( 'primary' ); ?>

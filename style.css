@@ -2,7 +2,7 @@
 Theme Name: Wallow
 Theme URI: http://www.twobeers.net/annunci/wallow
 Description: Multistyle theme from TwoBeers. Use one of the six default styles or mix them to get your personal one. Wallow has a lot of features, like five built-in new widgets, the quickbar (a fixed bar for your most important widgets always on top), customizable menu, background and header, widgetized sidebar.
-Version: 0.50
+Version: 0.60
 Tags: flexible-width, two-columns, theme-options, translation-ready, right-sidebar, custom-background, custom-menu, custom-header, black, blue, orange, dark, light
 Author: TwoBeers Crew
 Author URI: http://www.twobeers.net/
@@ -94,9 +94,15 @@ legend {
 	max-width: 100%;
 	height: auto;
 }
-
+li {
+	margin-bottom: 4px;
+	padding-left: 8px;
+}
 /* <---- Common html tags */
 
+.hidden {
+	display: none;
+}
 
 /* Quickbar classes ----> */
 
@@ -167,10 +173,6 @@ legend {
 	padding:0 0 0 27px;
 	margin: 0px;
 }
-.post ul li {
-	margin:2px 0;
-	padding-left:9px;
-}
 .meta,
 .comment-meta,
 .reply{
@@ -183,12 +185,14 @@ legend {
 	font-size:1.8em;
 	margin:0;
 	text-transform:capitalize;
+	line-height: 2em;
 }
 .sticky {
 	padding:5px;
 }
 .storycontent {
 	margin-top: 30px;
+	clear: both;
 }
 .storycontent p {
 }
@@ -283,12 +287,19 @@ ul.children {
 /* Pages classes ----> */
 
 #pages {
-	padding :20px 34% 20px 0;
+	padding :20px 0;
 	z-index:2;
-	width: 100%;
+	width: 135%;
 }
-#pages_subcont {
+.no-sidebar #pages {
+	width: auto;
+}
+#pages-in {
 	padding-left: 30px;
+	padding-right: 28%;
+}
+.no-sidebar #pages-in {
+	padding-right: 30px;
 }
 #mainmenu > li.page_item,
 #mainmenu > li.menu-item {
@@ -337,6 +348,10 @@ ul.children {
 	position:relative;
 	z-index:2;
 }
+#mainmenu .menu-item-parent > a:after { 
+	padding-left: 5px;
+	content: '\00bb';
+}
 #rss_imglink {
 	position:absolute;
 	margin-left :-20px;
@@ -353,6 +368,7 @@ ul.children {
 	padding-bottom:30px;
 	width:25%;
 	margin-top: 20px;
+	letter-spacing: 0.1em;
 }
 #sidebartop {
 	width: 100%;
@@ -369,37 +385,22 @@ ul.children {
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
-#menu ul {
+#menu .widgettitle {
 	font-weight: bold;
-	margin: 0;
-	padding-left: 3px;
 	text-transform: lowercase;
 }
-#menu ul li {
-	letter-spacing: 0.1em;
-	margin-top: 10px;
-	padding-bottom: 10px;
-}
-#menu ul ul li:before {
+#menu .widget li:before {
 	content: "» ";
 }
-#menu ul ul {
-	font-weight: normal;
-	margin: 0 0 0 10px;
-	padding: 0;
-	text-align: left;
+#menu .widget ul ul {
+	padding-left: 1em;
 }
-#menu ul ul li {
-	border: 0;
-	margin: 3px 0 0;
+#menu .widget ul {
+	margin: 0;
 	padding: 0;
 }
-#menu ul ul li a {
-}
-#menu ul ul li a:hover {
-}
-#menu ul ul ul.children {
-	padding-left: 4px;
+#menu .widget {
+	margin-bottom: 30px;
 }
 #menu select {
 	font-family:inherit;
@@ -413,7 +414,6 @@ ul.children {
 	max-width:100%;
 }
 .widget {
-	overflow: auto;
 	word-wrap: break-word;
 	max-width: 100%;
 }
@@ -427,10 +427,49 @@ ul.children {
 
 /* widget classes ----> */
 ul.with-thumbs img {
-	margin: 0;
+	margin: 0 4px 0 0;
 	-moz-box-shadow: none;
 	-webkit-box-shadow: none;
 	box-shadow: none;
+}
+.tb_latest_commentators img {
+	margin: 4px 4px 0 0;
+}
+.tb_clean_archives a {
+	margin-right: 4px;
+}
+.year-link {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+.tb-author-bio {
+	padding: 10px;
+}
+.tb-author-bio ul {
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+.tb-author-bio li:before {
+	content: '' !important;
+}
+.tb-author-bio li {
+	border: none !important;
+}
+.tb-author-bio .author-avatar {
+	float: left;
+	margin: 0 10px 10px 0;
+}
+.tb-author-bio .author-social a {
+	margin-right: 4px;
+}
+#single-widgets-area .widget {
+	width: 49%;
+	float: left;
+}
+#error404-widgets-area .widget {
+	width: 49%;
+	float: left;
 }
 /* <---- widget classes */
 
@@ -501,7 +540,12 @@ ul.with-thumbs img {
 	margin:20px 0 20px 20px;
 	padding:5px 10px;
 }
-#nav_pages {
+.no-sidebar #content {
+	margin:20px auto;
+	width: 74%;
+	max-width: 1024px;
+}
+.nav_pages {
 	text-align:center;
 }
 #credits a {
@@ -509,10 +553,16 @@ ul.with-thumbs img {
 }
 .fixfloat {
 	clear: both;
+	float: none;
 }
-#rap {
-    float: left;
-    width: 74%;
+#main {
+	float: left;
+	width: 74%;
+}
+.no-sidebar #main {
+	float: none;
+	margin: 0 auto;
+	width: auto;
 }
 .wlw_allcat {
 	text-align: right;
@@ -527,6 +577,12 @@ ul.with-thumbs img {
 }
 .wp-pagenavi {
 	padding: 10px;
+}
+.search-reminder {
+	text-align: center;
+}
+.search-term {
+	font-weight: bold;
 }
 /* <---- Other classes */
 
@@ -733,11 +789,11 @@ img.aligncenter {
 }
 #TB_prev a,
 #TB_next a {
-    display: block;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    width: 100px;
+	display: block;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	width: 100px;
 	opacity: 0.3;
 	filter: alpha(opacity=30);
 	color: transparent;
@@ -750,11 +806,11 @@ img.aligncenter {
 
 #TB_prev a {
 	background: url('images/arrows.png') no-repeat left center #000;
-    left: 0;
+	left: 0;
 }
 #TB_next a {
 	background: url('images/arrows.png') no-repeat right center #000;
-    right: 0;
+	right: 0;
 }
 #TB_closeWindow {
 	display: none;
@@ -771,3 +827,6 @@ img.aligncenter {
 	text-align: center;
 }
 
+.infinite-scroll .archive-navigation {
+	display: none;
+}

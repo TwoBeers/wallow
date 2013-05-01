@@ -1,4 +1,3 @@
-var farbtastic;
 var wallowOptions;
 
 (function($) {
@@ -8,44 +7,27 @@ wallowOptions = {
 	//initialize
 	init : function() {
 		wallowOptions.switchTab('appearance');
-		
-		$(document).mousedown(function(){
-			$('.wlw-colorpicker').each( function() {
-				var display = $(this).css('display');
-				if (display == 'block')
-					$(this).fadeOut(2);
-			});
-		});
-		
+
 		$('#to-defaults').click (function () {
-			var answer = confirm(wlw_l10n.confirm_to_defaults)
+			var answer = confirm(wlw_L10n.confirm_to_defaults)
 			if (!answer){
 				return false;
 			}
 		});
 
-	},
-
-	//update inputs value
-	updateColor : function (domid,color,txtcolor) {
-		inputid = '#wlw-color-' + domid;
-		$(inputid).css({
-			'background-color' : color,
-			'color' : txtcolor
+		$('#wallow-options .wlw-color').each(function() {
+			$this = $(this);
+			$this.wpColorPicker({
+				change: function( event, ui ) {
+					$this.val( $this.wpColorPicker('color') );
+				},
+				clear: function() {
+					$this.val( '' );
+				},
+				palettes: ['#21759b','#404040','#87ceeb','#000','#fff','#aaa','#ff7b0a','#f7009c']
+			});
 		});
-		$(inputid).val(color);
-	},
 
-	// display the color picker
-	showColorPicker : function (domid) {
-		placeholder = '#wlw-colorpicker-' + domid;
-		$(placeholder).show();
-		farbtastic = $.farbtastic(placeholder, function(color) { 
-			lightness = farbtastic.RGBToHSL(farbtastic.unpack( color ))[2];
-			lightness > 0.5 ? txtcolor = '#000' : txtcolor = '#fff';
-			wallowOptions.updateColor(domid,color,txtcolor);
-		});
-		farbtastic.setColor($('#wlw-color-' + domid).val());
 	},
 
 	//show only a set of rows

@@ -1,0 +1,53 @@
+#quickbar {
+	background: transparent url(../images/earth/qb.png) left top repeat-x;
+	color: #555;
+	margin: 0 0 10px;
+	padding: 0;
+	bottom: 0;
+	height:65px;
+	width:97%;
+	right:0;
+}
+#qb_left {
+	float:left;
+	height:56px;
+	margin-left:0;
+	width:0;
+}
+#qb_center {
+	float:left;
+	height:59px;
+	width:82%;
+	padding-top: 10px;
+}
+#qb_right {
+	background: transparent url(../images/earth/grey-s.png) right center no-repeat;
+	float:right;
+	height:27px;
+	width:17%;
+	padding: 16px 0;
+	text-align: center;
+	font-weight: bold;
+}
+.footer_wig {
+	background:url("../images/earth/menu_sep.png") no-repeat right 3px transparent;
+}
+.footer_wig:hover h4{
+	color: #0080BC;
+}
+#avatar_cont {
+	margin-left:-30px;
+	margin-top:-30px;
+	float:left;
+}
+#micronav .prev a,
+#micronav .next a,
+#micronav .up a,
+#micronav .home a,
+#micronav .down a {
+	background-image: url(../images/earth/micronav.png);
+}
+#micronav {
+	top: -4px;
+	background: url(../images/earth/micronav.png) no-repeat scroll center -96px transparent;
+}

@@ -1,4 +1,10 @@
-﻿/* wallow - stylesheet for login */
+﻿/**
+ * The mobile theme - stylesheet for login
+ *
+ * @package wallow
+ * @subpackage mobile
+ * @since 3.03
+*/
 
 body { 
 	background: #fff !important; 
