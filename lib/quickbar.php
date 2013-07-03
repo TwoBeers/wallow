@@ -72,11 +72,11 @@ class Wallow_Quickbar {
 		$is_archive = ( is_archive() || is_search() || is_home() ) && ! wallow_is_allcat();
 
 		if ( $is_post ) {
-			$prev = get_next_post()? '<a title="' . sprintf( __( 'Next Post', 'wallow' ) . ': %s', get_the_title( get_next_post() ) ) . '" href="' . get_permalink( get_next_post() ) . '">&nbsp;</a>' : '';
-			$next = get_previous_post()? '<a title="' . sprintf( __( 'Previous Post', 'wallow' ) . ': %s', get_the_title( get_previous_post() ) ) . '" href="' . get_permalink( get_previous_post() ) . '">&nbsp;</a>' : '';
+			$next = get_next_post()? '<a title="' . sprintf( __( 'Next Post', 'wallow' ) . ': %s', get_the_title( get_next_post() ) ) . '" href="' . get_permalink( get_next_post() ) . '">&nbsp;</a>' : '';
+			$prev = get_previous_post()? '<a title="' . sprintf( __( 'Previous Post', 'wallow' ) . ': %s', get_the_title( get_previous_post() ) ) . '" href="' . get_permalink( get_previous_post() ) . '">&nbsp;</a>' : '';
 		} elseif ( $is_archive ) {
-			$next = get_next_posts_link()? get_next_posts_link('&nbsp;') : '';
-			$prev = get_previous_posts_link()? get_previous_posts_link('&nbsp;') : '';
+			$prev = get_next_posts_link()? get_next_posts_link('&nbsp;') : '';
+			$next = get_previous_posts_link()? get_previous_posts_link('&nbsp;') : '';
 		} else {
 			$next = '';
 			$prev =  '';

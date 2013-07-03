@@ -175,10 +175,10 @@ if ( !function_exists( 'wallow_sanitize_options' ) ) {
 				}
 
 			} elseif( $the_coa[$key]['type'] == 'sel' ) {						//sel
-				if ( !in_array( $input[$key], $the_coa[$key]['options'] ) ) $input[$key] = $the_coa[$key]['default'];
+				if ( !isset( $input[$key] ) || !in_array( $input[$key], $the_coa[$key]['options'] ) ) $input[$key] = $the_coa[$key]['default'];
 
 			} elseif( $the_coa[$key]['type'] == 'opt' ) {						//opt
-				if ( !in_array( $input[$key], $the_coa[$key]['options'] ) ) $input[$key] = $the_coa[$key]['default'];
+				if ( !isset( $input[$key] ) || !in_array( $input[$key], $the_coa[$key]['options'] ) ) $input[$key] = $the_coa[$key]['default'];
 
 			} elseif( $the_coa[$key]['type'] == 'txt' ) {						//txt
 				if( !isset( $input[$key] ) ) {
@@ -662,10 +662,9 @@ if ( !function_exists( 'wallow_addgravatar' ) ) {
  * @return void
  */
 function wallow_custom_header_scripts() {
+	global $_wp_default_headers;
 
-	$uploaded_headers = get_uploaded_header_images();
-
-	if( ! empty( $uploaded_headers ) ) return;
+	$default_headers = $_wp_default_headers;
 
 	$nonce = wp_create_nonce( 'wallow_header_image_remove_nonce' );
 

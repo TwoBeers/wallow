@@ -1,7 +1,7 @@
 ﻿Wallow WordPress theme
 
 Version:
-	0.50
+	0.60
 
 Project page:
 	http://www.twobeers.net/annunci/wallow
@@ -10,26 +10,27 @@ Author page:
 	http://www.twobeers.net/
 
 Licensed under GPL
+	Copyright (C) 2010 TwoBeers
 	http://www.gnu.org/licenses/gpl-2.0.html
 
 REQUIREMENTS:
 	* PHP 5+
-	* Wordpress 3.0+ (REQUIRED)
+	* Wordpress 3.5+ (REQUIRED)
 
 THEME SPECIAL FUNCTIONS:
-  * Flexible width: fits to everything, even widescreen! No more empty spaces on yours readers screens.
-  * Two columns: everithing find it’s own place with the two columns at your disposal
-  * Widgets ready: there are thousands of beautiful and useful widgets that Wallow can support. Why don’t you use them?
-  * Theme options: a blog is personal, so it must also be customizable. Mix-up six styles to get your own
-  * Multiple styles: Wallow has 6 different styles, but with the “theme mixer” (*), your blog will be unique
-  * “Quickbar” navigation: Wallow’s “quickbar” is the fastest way to help visitor browse your blog
-  * Custom widgets
-  * Translation ready: Wallow is ready to be translated into other languages (English and Italian are included)
-  * Right sidebar: a pretty comfortable sidebar is what you need for your extra content
-  * Support Gravatars: your gravatar follows you everywhere
-  * Javascript animations: JQuery powered. Can be disabled in theme options
-  * Posts and pages thumbanils support
-  * Custom header: use your favorite image as header home link
+	* Flexible width: fits to everything, even widescreen! No more empty spaces on yours readers screens.
+	* Two columns: everithing find it’s own place with the two columns at your disposal
+	* Widgets ready: there are thousands of beautiful and useful widgets that Wallow can support. Why don’t you use them?
+	* Theme options: a blog is personal, so it must also be customizable. Mix-up six styles to get your own
+	* Multiple styles: Wallow has 6 different styles, but with the “theme mixer” (*), your blog will be unique
+	* “Quickbar” navigation: Wallow’s “quickbar” is the fastest way to help visitor browse your blog
+	* Custom widgets
+	* Translation ready: Wallow is ready to be translated into other languages (English and Italian are included)
+	* Right sidebar: a pretty comfortable sidebar is what you need for your extra content
+	* Support Gravatars: your gravatar follows you everywhere
+	* Javascript animations: JQuery powered. Can be disabled in theme options
+	* Posts and pages thumbanils support
+	* Custom header: use your favorite image as header home link
 
 CHANGE LOG (FROM VERSION 0.50):
 	* added a ton of new options

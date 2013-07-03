@@ -35,6 +35,10 @@ add_action( 'wp_footer'							, 'wallow_init_scripts' );
 add_action( 'wp_head'							, 'wallow_custom_css' );
 add_action( 'admin_bar_menu'					, 'wallow_admin_bar_plus', 999 );
 add_action( 'comment_form_before'				, 'wallow_enqueue_comments_reply' );
+
+
+/* Custom actions - theme hooks */
+
 add_action( 'wallow_hook_header_after'			, 'wallow_primary_menu' );
 add_action( 'wallow_hook_comments_list_before'	, 'wallow_navigate_comments' );
 add_action( 'wallow_hook_comments_list_after'	, 'wallow_navigate_comments' );
@@ -43,7 +47,7 @@ add_action( 'wallow_hook_entry_bottom'			, 'wallow_link_pages' );
 add_action( 'wallow_hook_entry_bottom'			, 'wallow_single_widgets_area' );
 add_action( 'wallow_hook_post_title_before'		, 'wallow_the_thumb' );
 add_action( 'wallow_hook_post_title_after'		, 'wallow_top_meta' );
-add_action( 'wallow_hook_entry_after'			, 'wallow_bottom_meta' );
+add_action( 'wallow_hook_entry_bottom'			, 'wallow_bottom_meta' );
 add_action( 'wallow_hook_content_bottom'		, 'wallow_nav_posts' );
 add_action( 'wallow_hook_entry_before'			, 'wallow_navigate_attachments' );
 
@@ -98,11 +102,11 @@ require_once( 'lib/hooks.php' ); // load the custom hooks module
 
 require_once( 'lib/widgets.php' ); // load the custom widgets module
 
-require_once( 'lib/custom-header.php' ); // load the custom header module
-
 require_once( 'lib/jetpack.php' ); // load the jetpack support module
 
 require_once( 'lib/quickbar.php' ); // load quickbar functions
+
+require_once( 'lib/breadcrumb.php' ); // load breadcrumb functions
 
 $wallow_is_mobile = false;
 if ( wallow_get_opt( 'wallow_mobile_css' ) ) require_once( 'mobile/core-mobile.php' ); // load mobile functions
@@ -161,6 +165,9 @@ if ( !function_exists( 'wallow_setup' ) ) {
 
 		// Thumbnails support
 		add_theme_support( 'post-thumbnails' );
+
+		// Post formats
+		add_theme_support( 'post-formats', apply_filters( 'wallow_post_formats', array() ) );
 
 		// skip the rest if in mobile view
 		if ( wallow_is_mobile() ) return;
@@ -426,7 +433,8 @@ function wallow_stylesheet(){
 
 	//normal view
 	wp_enqueue_style( 'wallow_general-style', get_stylesheet_uri(), false, wallow_get_info( 'version' ), 'screen' );
-	wallow_get_style();
+
+	wallow_get_variants();
 
 	//print style
 	wp_enqueue_style( 'wallow_print-style', get_template_directory_uri() . '/css/print.css', false, wallow_get_info( 'version' ), 'print' );
@@ -438,16 +446,48 @@ function wallow_stylesheet(){
 }
 
 
+//output style
+function wallow_get_variants() {
+
+
+	if( wallow_get_opt( 'wallow_theme_set' ) && wallow_get_opt( 'wallow_theme_set' ) == 1 ){ // check if use set or custom combinations
+
+		$args['st']	= wallow_get_opt( 'wallow_theme_genlook' );
+		$args['si']	= wallow_get_opt( 'wallow_theme_sidebar' );
+		$args['me']	= wallow_get_opt( 'wallow_theme_pages' );
+		$args['po']	= wallow_get_opt( 'wallow_theme_popup' );
+		$args['qu']	= wallow_get_opt( 'wallow_theme_quickbar' );
+		$args['av']	= wallow_get_opt( 'wallow_theme_avatar' );
+
+	} else { // output a default theme set
+
+		$theme_set	= wallow_get_opt( 'wallow_theme_set' ) ? wallow_get_opt( 'wallow_theme_set' ) : 'fire';
+		$args['st']	= $theme_set;
+		$args['si']	= $theme_set;
+		$args['me']	= $theme_set;
+		$args['po']	= $theme_set;
+		$args['qu']	= $theme_set;
+		$args['av']	= $theme_set;
+
+	}
+	//$args = array();
+
+	$style_path = add_query_arg( $args, get_template_directory_uri() . '/css/load-styles.php' );
+
+	wp_enqueue_style( 'wallow_variants-style', $style_path, false, wallow_get_info( 'version' ), 'screen' );
+
+}
+
 // get the post thumbnail or (if not set) the format related icon
 function wallow_get_the_thumb( $args = '' ) {
 	global $post;
 
 	$defaults = array(
-		'id' => $post->ID,
-		'width' => wallow_get_opt( 'wallow_pthumb_size' ),
-		'height' => wallow_get_opt( 'wallow_pthumb_size' ),
-		'class' => '',
-		'linked' => 0,
+		'id'		=> $post->ID,
+		'width'		=> wallow_get_opt( 'wallow_pthumb_size' ),
+		'height'	=> wallow_get_opt( 'wallow_pthumb_size' ),
+		'class'		=> '',
+		'linked'	=> 0,
 	);
 
 	$args = wp_parse_args( $args, $defaults );
@@ -545,9 +585,9 @@ function wallow_primary_menu() {
 	if( ! wallow_get_opt( 'wallow_primary_menu' ) ) return;
 
 ?>
-	<div id="pages">
-		<div id="pages-out">
-			<div id="pages-in">
+	<div id="primary_menu">
+		<div id="primary_menu-out">
+			<div id="primary_menu-in">
 				<div id="rss_imglink"><a href="<?php bloginfo( 'rss2_url' ); ?>" title="<?php _e( 'Syndicate this site using RSS 2.0', 'wallow' ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/rss.png" alt="rss img"/></a></div>
 					<?php
 						wp_nav_menu( array(
@@ -651,6 +691,54 @@ function wallow_search_reminder() {
 }
 
 
+// print extra info for posts/pages
+if ( !function_exists( 'wallow_post_details' ) ) {
+	function wallow_post_details( $args = '' ) {
+		global $post;
+
+		$defaults = array(
+			'author'		=> 1,
+			'date'			=> 1,
+			'tags'			=> 1,
+			'categories'	=> 1,
+			'avatar_size'	=> 48,
+			'featured'		=> 0,
+			'echo'			=> 1,
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+
+		$tax_separator = apply_filters( 'wallow_filter_taxomony_separator', ', ' );
+
+		$output = '<ul class="post-details">';
+
+		if ( $args['featured'] &&  has_post_thumbnail( $post->ID ) )
+			$output .= '<li class="post-details-thumb">' . get_the_post_thumbnail( $post->ID, 'thumbnail') . '</li>';
+
+		if ( $args['author'] )
+			$output .= '<li>' . wallow_author_badge( $post->post_author, $args['avatar_size'] ) . '</li>';
+
+		if ( $args['categories'] )
+			$output .= '<li class="post-details-cats"><i class="icon-folder-close"></i> <span>' . __( 'Categories', 'boozurk' ) . ': </span>' . get_the_category_list( $tax_separator ) . '</li>';
+
+		if ( $args['tags'] )
+			$tags = get_the_tags() ? get_the_tag_list( '</span>', $tax_separator, '' ) : __( 'No Tags', 'boozurk' ) . '</span>';
+			$output .= '<li class="post-details-tags"><i class="icon-tags"></i> <span>' . __( 'Tags', 'boozurk' ) . ': ' . $tags . '</li>';
+
+		if ( $args['date'] )
+			$output .= '<li class="post-details-date"><i class="icon-time"></i> <span>' . __( 'Published', 'boozurk' ) . ': </span><a href="' . esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ) . '">' . get_the_time( get_option( 'date_format' ) ) . '</a></li>';
+
+		$output .= '</ul>';
+
+		if ( ! $args['echo'] )
+			return $output;
+
+		echo $output;
+
+	}
+}
+
+
 // get the author badge
 function wallow_author_badge( $author = '', $size ) {
 
@@ -687,6 +775,11 @@ if ( !function_exists( 'wallow_navigate_archives' ) ) {
 		global $paged, $wp_query;
 
 		if ( !$paged ) $paged = 1;
+			$output = '';
+			$output .= get_next_posts_link()? get_next_posts_link( '&laquo; ' . __( 'Older Posts', 'wallow' ) ) : '';
+			$output .= ( get_next_posts_link() && get_previous_posts_link() ) ? ' | ' : '';
+			$output .= get_previous_posts_link()? get_previous_posts_link( __( 'Newer Posts', 'wallow' ) . ' &raquo;' ) : '';
+
 
 ?>
 	<div class="nav_pages archive-navigation">
@@ -700,7 +793,7 @@ if ( !function_exists( 'wallow_navigate_archives' ) ) {
 
 	<?php } else { ?>
 
-		<?php posts_nav_link( ' &#8212; ', '&laquo; ' . __( 'Newer Posts', 'wallow' ), __( 'Older Posts', 'wallow' ) . ' &raquo;'); ?>
+		<?php echo $output; ?>
 
 	<?php } ?>
 	</div>
@@ -746,7 +839,7 @@ function wallow_nav_posts() {
 	if ( ! is_single() || is_attachment() ) return;
 ?>
 	<div class="nav_pages">
-		<?php next_post_link( '&laquo; %link' ) ?> <?php previous_post_link( '&#8212; %link &raquo;' ) ?>
+		<?php previous_post_link( '&laquo; %link' ) ?><?php next_post_link( ' | %link &raquo;' ) ?>
 	</div>
 <?php
 
@@ -839,6 +932,9 @@ function wallow_bottom_meta() {
 	if ( comments_open() && is_singular() )
 		$links[] = '<a href="#postcomment" title="' . __( 'Leave a comment', 'wallow' ) . '">' . __( 'Leave a comment', 'wallow' ) . '</a>';
 
+	if ( !comments_open() && is_single() )
+		$links[] = '<span>' . __( 'Comments closed', 'wallow' ) . '</span>';
+
 	$links = implode( ' | ', $links );
 
 	if ( $links ) {
@@ -863,7 +959,6 @@ if ( !function_exists( 'wallow_default_widgets' ) ) {
 			'WP_Widget_Search' => 'widget_search',
 			'WP_Widget_Meta' => 'widget_meta',
 			'WP_Widget_Pages' => 'widget_pages',
-			'WP_Widget_Links' => 'widget_links',
 			'WP_Widget_Categories' => 'widget_categories',
 			'WP_Widget_Archives' => 'widget_archive',
 		);
@@ -878,39 +973,6 @@ if ( !function_exists( 'wallow_default_widgets' ) ) {
 		}
 
 	}
-}
-
-
-//output style
-function wallow_get_style() {
-
-	$style_path = get_template_directory_uri() . '/css/';
-
-	if( wallow_get_opt( 'wallow_theme_set' ) === '1' ){ // use custom combinations
-
-		$genlook	= wallow_get_opt( 'wallow_theme_genlook' );
-		$sidebar	= wallow_get_opt( 'wallow_theme_sidebar' );
-		$pages		= wallow_get_opt( 'wallow_theme_pages' );
-		$popup		= wallow_get_opt( 'wallow_theme_popup' );
-		$quickbar	= wallow_get_opt( 'wallow_theme_quickbar' );
-		$avatar		= wallow_get_opt( 'wallow_theme_avatar' );
-
-	}else{ // output a default theme set
-
-		$theme_set = wallow_get_opt( 'wallow_theme_set' );
-		$genlook =	$theme_set;
-		$sidebar =	$theme_set;
-		$pages =	$theme_set;
-		$popup =	$theme_set;
-		$quickbar =	$theme_set;
-		$avatar =	$theme_set;
-
-	}
-
-	$style_path = $style_path . 'load-styles.php?st=' . $genlook . '&amp;si=' . $sidebar . '&amp;pa=' . $pages . '&amp;po=' . $popup . '&amp;qu=' . $quickbar . '&amp;av=' . $avatar;
-
-	wp_enqueue_style( 'wallow_theme_genlook-style', $style_path, false, wallow_get_info( 'version' ), 'screen' );
-
 }
 
 
@@ -1045,6 +1107,35 @@ function wallow_filter_wp_title( $title ) {
 
 // Add specific CSS class by filter
 function wallow_body_classes( $classes ) {
+
+	if( wallow_get_opt( 'wallow_theme_set' ) === '1' ){ // use custom combinations
+
+		$genlook	= wallow_get_opt( 'wallow_theme_genlook' );
+		$sidebar	= wallow_get_opt( 'wallow_theme_sidebar' );
+		$menu		= wallow_get_opt( 'wallow_theme_pages' );
+		$popup		= wallow_get_opt( 'wallow_theme_popup' );
+		$quickbar	= wallow_get_opt( 'wallow_theme_quickbar' );
+		$avatar		= wallow_get_opt( 'wallow_theme_avatar' );
+
+	}else{ // output a default theme set
+
+		$theme_set	= wallow_get_opt( 'wallow_theme_set' );
+		$genlook	= $theme_set;
+		$sidebar	= $theme_set;
+		$menu		= $theme_set;
+		$popup		= $theme_set;
+		$quickbar	= $theme_set;
+		$avatar		= $theme_set;
+
+	}
+
+	$classes[] = 'body-' . $genlook;
+	$classes[] = 'sidebar-' . $sidebar;
+	$classes[] = 'menu-' . $menu;
+	$classes[] = 'quickbar-' . $quickbar;
+	$classes[] = 'popup-' . $popup;
+	$classes[] = 'avatar-' . $avatar;
+
 
 	$classes[] = 'wlw-no-js';
 

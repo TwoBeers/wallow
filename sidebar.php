@@ -13,7 +13,7 @@
 
 <!-- begin primary sidebar -->
 
-<div id="menu" class="sidebar">
+<div id="primary-sidebar" class="sidebar">
 
 	<div id="sidebartop"></div>
 

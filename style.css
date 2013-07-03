@@ -11,6 +11,14 @@ License: GNU General Public License, version 2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
+/* Reset */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
+	background: none repeat scroll 0 0 transparent;
+	border: 0 none;
+	vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+}
 
 /* Common html tags ----> */
 body {
@@ -21,11 +29,11 @@ body {
 }
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5 {
 	font-weight: bold;
-}
-hr {
-	color:#fff;
+	margin: 1em 0;
 }
 a img {
 	border: none;
@@ -36,7 +44,7 @@ abbr {
 	cursor: help;
 }
 blockquote {
-	margin:15px 30px 0 10px;
+	margin:15px 30px 15px 10px;
 	padding-left:20px;
 	font-style:italic;
 	letter-spacing:1px;
@@ -97,6 +105,9 @@ legend {
 li {
 	margin-bottom: 4px;
 	padding-left: 8px;
+}
+p {
+	margin: 1em 0;
 }
 /* <---- Common html tags */
 
@@ -169,6 +180,7 @@ li {
 	position:relative;
 	margin-bottom:3em;
 }
+.post ol,
 .post ul {
 	padding:0 0 0 27px;
 	margin: 0px;
@@ -191,7 +203,7 @@ li {
 	padding:5px;
 }
 .storycontent {
-	margin-top: 30px;
+	margin: 30px 0;
 	clear: both;
 }
 .storycontent p {
@@ -260,13 +272,8 @@ li {
 	margin: 3px;
 }
 .comment_tools {
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
 	margin: 5px 0;
 	padding: 3px;
-	float: left;
 	clear: both;
 }
 ul.children {
@@ -286,19 +293,19 @@ ul.children {
 
 /* Pages classes ----> */
 
-#pages {
+#primary_menu {
 	padding :20px 0;
 	z-index:2;
 	width: 135%;
 }
-.no-sidebar #pages {
+.no-sidebar #primary_menu {
 	width: auto;
 }
-#pages-in {
+#primary_menu-in {
 	padding-left: 30px;
 	padding-right: 28%;
 }
-.no-sidebar #pages-in {
+.no-sidebar #primary_menu-in {
 	padding-right: 30px;
 }
 #mainmenu > li.page_item,
@@ -362,7 +369,7 @@ ul.children {
 
 /* Sidebar classes ----> */
 
-#menu {
+#primary-sidebar {
 	clear:right;
 	float:right;
 	padding-bottom:30px;
@@ -385,24 +392,24 @@ ul.children {
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
-#menu .widgettitle {
+#primary-sidebar .widgettitle {
 	font-weight: bold;
 	text-transform: lowercase;
 }
-#menu .widget li:before {
+#primary-sidebar .widget li:before {
 	content: "» ";
 }
-#menu .widget ul ul {
+#primary-sidebar .widget ul ul {
 	padding-left: 1em;
 }
-#menu .widget ul {
+#primary-sidebar .widget ul {
 	margin: 0;
 	padding: 0;
 }
-#menu .widget {
+#primary-sidebar .widget {
 	margin-bottom: 30px;
 }
-#menu select {
+#primary-sidebar select {
 	font-family:inherit;
 	font-size:inherit;
 	font-size-adjust:inherit;
@@ -419,6 +426,7 @@ ul.children {
 }
 .widget img {
 	max-width: 100%;
+	height: auto;
 }
 #quickbar .wlw_widget_user_quick_links .avatar {
 	vertical-align: top;
@@ -555,6 +563,11 @@ ul.with-thumbs img {
 	clear: both;
 	float: none;
 }
+br.fixfloat {
+	display: block;
+	height: 1px;
+	width: 100%;
+}
 #main {
 	float: left;
 	width: 74%;
@@ -674,6 +687,10 @@ img.alignright,
 img.aligncenter {
 	margin-bottom:4px;
 }
+.alignnone {
+	float: none;
+	clear: both;
+}
 .wp-caption {
 	text-align: center;
 	padding-top: 4px;
@@ -695,8 +712,8 @@ img.aligncenter {
 	padding: 0 4px 5px;
 	margin: 0;
 }
-.wp-post-image {
-	margin: 0 0 10px 10px;
+img.wp-post-image {
+	margin: 0 10px 10px 0;
  	-moz-box-shadow: 0 0 7px #000;
 	box-shadow: 0 0 7px #000;
 	-webkit-box-shadow: 0 0 7px #000;
@@ -771,6 +788,71 @@ img.aligncenter {
 
 /* <---- micronav */
 
+/* TB Chat Post
+----------------------------------------------------------*/
+#content .tb-chat .chat-select li,
+#content .tb-chat .chat-transcript li {
+	border: none;
+	background: #ffdab9;
+	border-left: 3px solid;
+	border-color: #FF7700;
+	overflow: hidden;
+}
+#content .tb-chat li.rightalign {
+	border-left: none;
+	border-right: 3px solid;
+}
+#content .tb-chat li.speaker-1 {
+	background: #fffacd;
+	border-color: #FFE600;
+}
+#content .tb-chat li.speaker-2 {
+	background: #d8eef4;
+	border-color: #00C0F5;
+}
+#content .tb-chat li.speaker-3 {
+	background: #d8ffcd;
+	border-color: #37FF00;
+}
+#content .tb-chat li.aside-text {
+	border: none;
+	background: transparent;
+}
+#content .tb-chat .chat-transcript li {
+	margin: 0 100px 20px 0;
+	padding: 0 5px;
+}
+#content .tb-chat .chat-select .rightalign {
+	margin: 0 0 0 10px;
+}
+#content .tb-chat .chat-transcript .rightalign {
+	margin: 0 0 20px 100px;
+	text-align: left;
+}
+#content .tb-chat .timestamp {
+	font-size: 0.8em;
+	opacity: 0.3;
+	display: block;
+	line-height:1em;
+	padding-top: 5px;
+}
+#content .tb-chat .rightalign .timestamp {
+	text-align: right;
+}
+
+/* TB Comment Tools
+----------------------------------------------------------*/
+#tb-comment-tools-tags a {
+	font-family: "Courier New",monospace;
+	background: none repeat scroll 0 0 #F5F5F5;
+	border: 1px solid #ddd;
+	margin: 0 1px 0 0;
+	padding: 0 6px;
+}
+#tb-comment-tools-tags a:hover {
+	border: 1px solid #aaa;
+}
+
 /* Thickbox 
 ----------------------------------------------------------*/
 #TB_overlay {
@@ -830,3 +912,13 @@ img.aligncenter {
 .infinite-scroll .archive-navigation {
 	display: none;
 }
+
+/* common */
+
+h2.posts_date {
+	font-size: .9em;
+	padding-bottom: 3px;
+	margin-bottom: 3px;
+	text-align: right;
+}
+

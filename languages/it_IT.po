@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Wallow v0.60\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-05-01 09:52:37+0000\n"
+"PO-Revision-Date: 2013-07-03 09:27:20+0000\n"
 "Last-Translator: TwoBeers Crew <light@twobeers.net>\n"
 "Language-Team: Twobeers Crew <translations@twobeers.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,26 +21,26 @@ msgstr ""
 "X-Textdomain-Support: yes"
 
 #: comments.php:27
-#: functions.php:809
-#: functions.php:817
+#: functions.php:821
+#: functions.php:829
 #@ wallow
 msgid "% Comments"
 msgstr "% commenti"
 
-#: functions.php:965
+#: functions.php:947
 #: lib/options.php:86
 #@ wallow
 msgid "(no title)"
 msgstr "(senza titolo)"
 
 #: comments.php:27
-#: functions.php:809
-#: functions.php:817
+#: functions.php:821
+#: functions.php:829
 #@ wallow
 msgid "1 Comment"
 msgstr "1 commento"
 
-#: functions.php:487
+#: functions.php:494
 #@ wallow
 msgid "This page has hierarchy"
 msgstr "Questa pagina ha una gerarchia"
@@ -77,21 +77,21 @@ msgid "Archives"
 msgstr "Archivi"
 
 #: allcat.php:25
-#: functions.php:809
+#: functions.php:821
 #: lib/widgets.php:1083
 #: lib/widgets.php:1172
 #@ wallow
 msgid "Categories"
 msgstr "Categorie"
 
-#: functions.php:603
+#: functions.php:610
 #: lib/widgets.php:816
 #: mobile/core-mobile.php:301
 #@ wallow
 msgid "Category"
 msgstr "Categoria"
 
-#: functions.php:499
+#: functions.php:506
 #@ wallow
 msgid "Child pages: "
 msgstr "Pagine discendenti: "
@@ -113,8 +113,8 @@ msgstr "Commenti"
 msgid "Default style = fire"
 msgstr "Stile predefinito = fuoco"
 
-#: functions.php:809
-#: functions.php:817
+#: functions.php:821
+#: functions.php:829
 #@ wallow
 msgid "Edit"
 msgstr "Modifica"
@@ -152,9 +152,9 @@ msgstr "Attivit&agrave; recente"
 msgid "Latest comment authors"
 msgstr "Commentatori più recenti"
 
-#: functions.php:809
-#: functions.php:817
-#: functions.php:840
+#: functions.php:821
+#: functions.php:829
+#: functions.php:852
 #: mobile/core-mobile.php:361
 #@ wallow
 msgid "Leave a comment"
@@ -165,13 +165,13 @@ msgstr "Lascia un commento"
 msgid "Leave a feedback"
 msgstr "Lascia un feedback"
 
-#: functions.php:157
+#: functions.php:161
 #@ wallow
 msgid "Main Navigation Menu"
 msgstr "Menu di navigazione principale"
 
-#: functions.php:703
-#: functions.php:1213
+#: functions.php:700
+#: functions.php:1224
 #@ wallow
 msgid "Newer Posts"
 msgstr "Articoli più recenti"
@@ -181,8 +181,8 @@ msgstr "Articoli più recenti"
 msgid "No Comments"
 msgstr "Nessun commento"
 
-#: functions.php:703
-#: functions.php:1206
+#: functions.php:698
+#: functions.php:1217
 #@ wallow
 msgid "Older Posts"
 msgstr "Articoli più vecchi"
@@ -197,7 +197,7 @@ msgstr "Impostazioni salvate."
 msgid "Page not found"
 msgstr "Pagina non trovata."
 
-#: functions.php:718
+#: functions.php:730
 #: mobile/loop-front-page-mobile.php:23
 #: mobile/loop-page-mobile.php:8
 #: mobile/loop-single-mobile.php:24
@@ -205,7 +205,7 @@ msgstr "Pagina non trovata."
 msgid "Pages"
 msgstr "Pagine"
 
-#: functions.php:490
+#: functions.php:497
 #@ wallow
 msgid "Parent page: "
 msgstr "Pagina madre:"
@@ -215,7 +215,7 @@ msgstr "Pagina madre:"
 msgid "Say It!"
 msgstr "Dillo!"
 
-#: functions.php:625
+#: functions.php:632
 #: mobile/core-mobile.php:323
 #, php-format
 #@ wallow
@@ -258,18 +258,18 @@ msgstr "Nessun articolo risponde ai criteri di ricerca impostati."
 msgid "Sorry, you're looking for something that isn't here"
 msgstr "Spiacente, stai cercando qualcosa che non esiste"
 
-#: functions.php:551
+#: functions.php:558
 #@ wallow
 msgid "Syndicate this site using RSS 2.0"
 msgstr "Abbonati a questo sito usando RSS 2.0"
 
-#: functions.php:604
+#: functions.php:611
 #: mobile/core-mobile.php:302
 #@ wallow
 msgid "Tag"
 msgstr "Tag"
 
-#: functions.php:809
+#: functions.php:821
 #@ wallow
 msgid "Tags: "
 msgstr "Tag:"
@@ -289,7 +289,7 @@ msgstr "Gli articoli con i commenti più recenti"
 msgid "The most commented posts on your site"
 msgstr "Gli articoli più commentati di questo sito"
 
-#: functions.php:282
+#: functions.php:289
 #: lib/admin.php:23
 #: lib/admin.php:24
 #: lib/admin.php:258
@@ -297,7 +297,7 @@ msgstr "Gli articoli più commentati di questo sito"
 msgid "Theme Options"
 msgstr "Opzioni tema"
 
-#: functions.php:837
+#: functions.php:849
 #@ wallow
 msgid "TrackBack URL"
 msgstr "TrackBack URL"
@@ -348,7 +348,7 @@ msgstr "Prova a:"
 msgid "Your Profile"
 msgstr "Il tuo profilo"
 
-#: functions.php:135
+#: functions.php:139
 #@ wallow
 msgid "air"
 msgstr "aria"
@@ -359,12 +359,12 @@ msgstr "aria"
 msgid "avatar"
 msgstr "avatar"
 
-#: functions.php:809
+#: functions.php:821
 #@ wallow
 msgid "by"
 msgstr "di"
 
-#: functions.php:139
+#: functions.php:143
 #@ wallow
 msgid "clouds"
 msgstr "nuvole"
@@ -386,12 +386,12 @@ msgstr "predefinito: \"Benvenuto %s\" , dove %s è il nome dell'utente"
 msgid "drag here your favorite widgets"
 msgstr "trascina qui i tuoi widgets preferiti"
 
-#: functions.php:137
+#: functions.php:141
 #@ wallow
 msgid "earth"
 msgstr "terra"
 
-#: functions.php:134
+#: functions.php:138
 #@ wallow
 msgid "fire"
 msgstr "fuoco"
@@ -427,12 +427,12 @@ msgstr "quickbar"
 msgid "sidebar"
 msgstr "barra laterale"
 
-#: functions.php:138
+#: functions.php:142
 #@ wallow
 msgid "smoke"
 msgstr "fumo"
 
-#: functions.php:136
+#: functions.php:140
 #@ wallow
 msgid "water"
 msgstr "acqua"
@@ -745,7 +745,7 @@ msgstr "Se (non) ti piace questo tema, o riscontri qualche problema, per favore 
 msgid "wallow Default Gravatar"
 msgstr "Gravatar predefinito di Wallow"
 
-#: lib/admin.php:678
+#: lib/admin.php:677
 #@ wallow
 msgid "Remove"
 msgstr "Rimuovi"
@@ -851,45 +851,45 @@ msgstr "Ci sono parecchi link sparsi per la pagina, magari uno di questi potrebb
 msgid "Perhaps using the search form will help too..."
 msgstr "Forse il modulo di ricerca potrebbe esserti utile..."
 
-#: functions.php:605
+#: functions.php:612
 #: mobile/core-mobile.php:303
 #@ wallow
 msgid "Taxonomy"
 msgstr "Tassonomia"
 
-#: functions.php:608
+#: functions.php:615
 #: lib/widgets.php:1164
 #: mobile/core-mobile.php:306
 #@ wallow
 msgid "Date"
 msgstr "Data"
 
-#: functions.php:617
+#: functions.php:624
 #: lib/widgets.php:1147
 #: mobile/core-mobile.php:315
 #@ wallow
 msgid "Author"
 msgstr "Autore"
 
-#: functions.php:621
+#: functions.php:628
 #, php-format
 #@ wallow
 msgid "%s archive"
 msgstr "Archivio di %s"
 
-#: functions.php:669
+#: functions.php:676
 #, php-format
 #@ wallow
 msgid "Follow %s on %s"
 msgstr "Segui %s su %s"
 
-#: functions.php:834
+#: functions.php:846
 #, php-format
 #@ wallow
 msgid "%s feed for comments on this post"
 msgstr "%s feed per i commenti su questo articolo"
 
-#: functions.php:966
+#: functions.php:948
 #@ wallow
 msgid "Post"
 msgstr "Articolo"
@@ -1289,4 +1289,9 @@ msgstr "Utilizza %s e %s"
 #@ wallow
 msgid "Visit theme authors homepage"
 msgstr "Visita il sito degli autori del tema"
+
+#: functions.php:855
+#@ wallow
+msgid "Comments closed"
+msgstr "Commenti chiusi"
 

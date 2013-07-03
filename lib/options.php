@@ -243,7 +243,7 @@ function wallow_get_coa( $option = false ) {
 						array(
 							'group' => 'fonts',
 							'type' => 'sel',
-							'default' => '11px',
+							'default' => '14px',
 							'options' => array( '9px', '10px', '11px', '12px', '13px', '14px', '15px', '16px' ),
 							'options_readable' => array( '9px', '10px', '11px', '12px', '13px', '14px', '15px', '16px' ),
 							'description' => __( 'font size', 'wallow' ),
@@ -255,9 +255,9 @@ function wallow_get_coa( $option = false ) {
 						array(
 							'group' => 'fonts',
 							'type' => 'txt',
-							'default' => '',
+							'default' => 'Open Sans',
 							'description' => __( 'Google web font', 'wallow' ),
-							'info' => __( 'Copy and paste <a href="http://www.google.com/webfonts" target="_blank"><strong>Google web font</strong></a> name here. Example: <code>Architects Daughter</code>', 'wallow' ),
+							'info' => __( 'Copy and paste <a href="http://www.google.com/webfonts" target="_blank"><strong>Google web font</strong></a> name here. Example: <code>Open Sans</code>', 'wallow' ),
 							'req' => '',
 							'sub' => array( 'wallow_google_font_body', 'wallow_google_font_post_title', 'wallow_google_font_post_content' )
 						),
@@ -265,7 +265,7 @@ function wallow_get_coa( $option = false ) {
 						array(
 							'group' => 'fonts',
 							'type' => 'chk',
-							'default' => 0,
+							'default' => 1,
 							'description' => __( 'for whole page', 'wallow' ),
 							'info' => '',
 							'req' => '',
@@ -275,7 +275,7 @@ function wallow_get_coa( $option = false ) {
 						array(
 							'group' => 'fonts',
 							'type' => 'chk',
-							'default' => 1,
+							'default' => 0,
 							'description' => __( 'for posts/pages title', 'wallow' ),
 							'info' => '',
 							'req' => '',
@@ -386,7 +386,7 @@ if ( !function_exists( 'wallow_get_opt' ) ) {
 	function wallow_get_opt( $opt ) {
 		global $wallow_opt;
 
-		if ( isset( $wallow_opt[$opt] ) ) return apply_filters( 'wallow_option_override', $wallow_opt[$opt], $opt );
+		if ( isset( $wallow_opt[$opt] ) ) return apply_filters( 'wallow_option_' . $opt, $wallow_opt[$opt], $opt );
 
 		$defopt = wallow_get_coa( $opt );
 
