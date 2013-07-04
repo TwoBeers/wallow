@@ -322,26 +322,6 @@ function wallow_get_coa( $option = false ) {
 							'info' => __( 'try disable animations if you encountered problems with javascript', 'wallow' ),
 							'req' => ''
 						),
-		'wallow_thickbox' =>
-						array(
-							'group' => 'other',
-							'type' => 'chk',
-							'default' => 0,
-							'description' => __( 'thickbox', 'wallow' ),
-							'info' => __( 'use thickbox for showing images and galleries', 'wallow' ),
-							'req' => 'wallow_jsani',
-							'sub' => array( 'wallow_thickbox_link_to_image' )
-						),
-		'wallow_thickbox_link_to_image' =>
-						array(
-							'group' => 'other',
-							'type' => 'chk',
-							'default' => 1,
-							'description' => __( 'gallery links', 'wallow' ),
-							'info' => __( 'force galleries to use links to image instead of links to attachment', 'wallow' ),
-							'req' => '',
-							'sub' => false
-						),
 		'wallow_custom_widgets' =>
 						array(
 							'group' => 'other',

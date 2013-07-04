@@ -34,13 +34,6 @@ wallowAnimations = {
 					this.widgets_style();
 					break;
 
-				case 'thickbox':
-					this.thickbox();
-					$('body').on('post-load', function(event){ //Jetpack Infinite Scroll trigger
-						wallowAnimations.thickbox();
-					});
-					break;
-
 				case 'resizevideo':
 					this.resize_video();
 					break;
@@ -162,17 +155,6 @@ wallowAnimations = {
 		// widget placement
 		$('#error404-widgets-area .widget:nth-child(odd)').css('clear', 'left');
 		$('#single-widgets-area .widget:nth-child(odd)').css('clear', 'left');
-
-	},
-
-	thickbox : function() {
-
-		//thickbox init
-		$('#content').find('.storycontent a img').parent('a[href$=".jpg"],a[href$=".png"],a[href$=".gif"]').addClass('thickbox');
-		$('#content').find('.storycontent .gallery').each(function() {
-			var $this = $(this);
-			$('a[href$=".jpg"],a[href$=".png"],a[href$=".gif"]',$this).attr('rel', $this.attr('id'));
-		});
 
 	},
 

@@ -31,10 +31,8 @@ add_action( 'template_redirect'					, 'wallow_scripts' );
 add_action( 'wp_enqueue_scripts'				, 'wallow_stylesheet' );
 add_action( 'template_redirect'					, 'wallow_allcat' );
 add_action( 'wp_print_styles'					, 'wallow_deregister_styles', 100 );
-add_action( 'wp_footer'							, 'wallow_init_scripts' );
 add_action( 'wp_head'							, 'wallow_custom_css' );
 add_action( 'admin_bar_menu'					, 'wallow_admin_bar_plus', 999 );
-add_action( 'comment_form_before'				, 'wallow_enqueue_comments_reply' );
 
 
 /* Custom actions - theme hooks */
@@ -54,20 +52,18 @@ add_action( 'wallow_hook_entry_before'			, 'wallow_navigate_attachments' );
 
 /* Custom filters - WP hooks */
 
+add_filter( 'use_default_gallery_style'			, '__return_false' );
+add_filter( 'img_caption_shortcode'				, 'wallow_img_caption_shortcode', 10, 3 );
 add_filter( 'embed_oembed_html'					, 'wallow_wmode_transparent', 10, 3);
 add_filter( 'the_title'							, 'wallow_titles_filter', 10, 2 );
 add_filter( 'excerpt_length'					, 'wallow_excerpt_length' );
 add_filter( 'excerpt_mblength'					, 'wallow_excerpt_length' );
 add_filter( 'excerpt_more'						, 'wallow_excerpt_more' );
 add_filter( 'the_content_more_link'				, 'wallow_more_link', 10, 2 );
-add_filter( 'post_gallery'						, 'wallow_gallery_shortcode', 10, 2 );
 add_filter( 'next_posts_link_attributes'		, 'wallow_next_posts_title' ); 
 add_filter( 'previous_posts_link_attributes'	, 'wallow_previous_posts_title' ); 
 add_filter( 'wp_title'							, 'wallow_filter_wp_title' );
 add_filter( 'body_class'						, 'wallow_body_classes' );
-add_filter( 'page_css_class'					, 'wallow_add_parent_class', 10, 4 );
-add_filter( 'wp_nav_menu_objects'				, 'wallow_add_menu_parent_class' );
-add_filter( 'wp_list_categories'				, 'wallow_wrap_categories_count' );
 
 
 /* get the theme options */
@@ -75,24 +71,9 @@ add_filter( 'wp_list_categories'				, 'wallow_wrap_categories_count' );
 $wallow_opt = get_option( 'wallow_options' );
 
 
-/* theme infos */
-
-function wallow_get_info( $field ) {
-	static $infos;
-
-	if ( !isset( $infos ) ) {
-
-		$infos['theme'] =			wp_get_theme( 'wallow' );
-		$infos['current_theme'] =	wp_get_theme();
-		$infos['version'] =			$infos['theme']? $infos['theme']['Version'] : '';
-
-	}
-
-	return $infos[$field];
-}
-
-
 /* load modules (accordingly to http://justintadlock.com/archives/2010/11/17/how-to-load-files-within-wordpress-themes) */
+
+require_once( 'lib/common.php' ); // load common functions
 
 require_once( 'lib/options.php' ); // load options
 
@@ -358,8 +339,6 @@ function wallow_get_js_modules() {
 		'resizevideo',
 	);
 
-	if ( wallow_get_opt( 'wallow_thickbox' ) ) $modules[] = 'thickbox';
-
 	$modules = implode( ',', $modules);
 
 	return  apply_filters( 'wallow_filter_js_modules', $modules );
@@ -372,10 +351,6 @@ function wallow_scripts(){
 
 	if ( wallow_is_mobile() ) return;
 
-	// thickbox
-	if ( wallow_get_opt( 'wallow_thickbox' ) )
-		wp_enqueue_script( 'thickbox' );
-
 	if ( wallow_get_opt( 'wallow_jsani' ) )
 		wp_enqueue_script( 'wallow-script', get_template_directory_uri() . '/js/wallowscript.min.js', array( 'jquery', 'hoverIntent' ), wallow_get_info( 'version' ), true  ); //wallow js
 
@@ -383,35 +358,6 @@ function wallow_scripts(){
 		'script_modules' => wallow_get_js_modules(),
 	);
 	wp_localize_script( 'wallow-script', 'wallow_l10n', $data );
-
-}
-
-
-// initialize scripts
-if ( !function_exists( 'wallow_init_scripts' ) ) {
-	function wallow_init_scripts(){
-
-?>
-	<script type="text/javascript">
-		/* <![CDATA[ */
-		(function(){
-			var c = document.body.className;
-			c = c.replace(/wlw-no-js/, 'wlw-js');
-			document.body.className = c;
-		})();
-		/* ]]> */
-	</script>
-<?php
-
-	}
-}
-
-
-//enqueue the 'comment-reply' script when needed
-function wallow_enqueue_comments_reply() {
-
-	if( get_option( 'thread_comments' ) )
-		wp_enqueue_script( 'comment-reply' );
 
 }
 
@@ -505,41 +451,14 @@ function wallow_get_the_thumb( $args = '' ) {
 }
 
 
-// page hierarchy
+// show page hierarchy
 if ( !function_exists( 'wallow_multipages' ) ) {
 	function wallow_multipages(){
-		global $post;
 
-		$args = array(
-			'post_type' => 'page',
-			'post_parent' => $post->ID,
-			'order' => 'ASC',
-			'orderby' => 'menu_order',
-			'numberposts' => 0
-			);
-
-		$childrens = get_posts($args); // retrieve the child pages
-
-		$the_parent_page = $post->post_parent; // retrieve the parent page
-
-		if ( ( $childrens ) || ( $the_parent_page ) ){ ?>
-			<?php
-			echo '<br />' . __( 'This page has hierarchy', 'wallow' ) . ' - ';
-			if ( $the_parent_page ) {
-				$the_parent_link = '<a href="' . get_permalink( $the_parent_page ) . '" title="' . get_the_title( $the_parent_page ) . '">' . get_the_title( $the_parent_page ) . '</a>';
-				echo __( 'Parent page: ', 'wallow' ) . $the_parent_link ; // echoes the parent
-			}
-			if ( ( $childrens ) && ( $the_parent_page ) ) { echo ' - '; } // if parent & child, echoes the separator
-			if ( $childrens ) {
-				$the_child_list = '';
-				foreach ( $childrens as $children ) {
-					$the_child_list[] = '<a href="' . get_permalink( $children ) . '" title="' . get_the_title( $children ) . '">' . get_the_title( $children ) . '</a>';
-				}
-				$the_child_list = implode( ', ' , $the_child_list );
-				echo __( 'Child pages: ', 'wallow' ) . $the_child_list; // echoes the childs
-			}
-			?>
-		<?php }
+		echo wallow_get_multipages( array(
+			'before'		=> '<br />' . __( 'This page has hierarchy', 'wallow' ) . ' - ',
+			'separator'		=> ' - ',
+		) );
 
 	}
 }
@@ -632,39 +551,9 @@ if ( !function_exists( 'wallow_navigate_comments' ) ) {
 function wallow_search_reminder() {
 	global $post;
 
-	$text = '';
-
-	if ( is_archive() ) {
-
-		$term = get_queried_object();
-		$title = '';
-		$type = '';
-		if ( is_category() || is_tag() || is_tax() ) {
-			if ( is_category() )	$type = __( 'Category', 'wallow' );
-			elseif ( is_tag() )		$type = __( 'Tag', 'wallow' );
-			elseif ( is_tax() )		$type = __( 'Taxonomy', 'wallow' );
-			$title = $term->name;
-		} elseif ( is_date() ) {
-			$type = __( 'Date', 'wallow' );
-			if ( is_day() ) {
-				$title = get_the_date();
-			} else if ( is_month() ) {
-				$title = single_month_title( ' ', false );
-			} else if ( is_year() ) {
-				$title = get_query_var( 'year' );
-			}
-		} elseif ( is_author() ) {
-			$type = __( 'Author', 'wallow' );
-			$title = $term->display_name;
-		}
-
-		$text = sprintf( __( '%s archive', 'wallow' ), get_bloginfo( 'name' ) ) . '<br>' . $type . ' : <span class="search-term">' . $title . '</span>';
-
-	} elseif ( is_search() ) {
-
-		$text = sprintf( __( 'Search results for &#8220;%s&#8221;', 'wallow' ), '<span class="search-term">' . esc_html( get_search_query() ) . '</span>' );
-
-	}
+	$text = wallow_get_search_reminder( array(
+		'archive_label'	=> sprintf( __( '%s archive', 'wallow' ), get_bloginfo( 'name' ) ) . '<br />%s: ',
+	) );
 
 	if ( $text ) {
 
@@ -687,84 +576,6 @@ function wallow_search_reminder() {
 	}
 
 	if ( is_author() ) echo wallow_author_badge( $post->post_author, 48 );
-
-}
-
-
-// print extra info for posts/pages
-if ( !function_exists( 'wallow_post_details' ) ) {
-	function wallow_post_details( $args = '' ) {
-		global $post;
-
-		$defaults = array(
-			'author'		=> 1,
-			'date'			=> 1,
-			'tags'			=> 1,
-			'categories'	=> 1,
-			'avatar_size'	=> 48,
-			'featured'		=> 0,
-			'echo'			=> 1,
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-
-		$tax_separator = apply_filters( 'wallow_filter_taxomony_separator', ', ' );
-
-		$output = '<ul class="post-details">';
-
-		if ( $args['featured'] &&  has_post_thumbnail( $post->ID ) )
-			$output .= '<li class="post-details-thumb">' . get_the_post_thumbnail( $post->ID, 'thumbnail') . '</li>';
-
-		if ( $args['author'] )
-			$output .= '<li>' . wallow_author_badge( $post->post_author, $args['avatar_size'] ) . '</li>';
-
-		if ( $args['categories'] )
-			$output .= '<li class="post-details-cats"><i class="icon-folder-close"></i> <span>' . __( 'Categories', 'boozurk' ) . ': </span>' . get_the_category_list( $tax_separator ) . '</li>';
-
-		if ( $args['tags'] )
-			$tags = get_the_tags() ? get_the_tag_list( '</span>', $tax_separator, '' ) : __( 'No Tags', 'boozurk' ) . '</span>';
-			$output .= '<li class="post-details-tags"><i class="icon-tags"></i> <span>' . __( 'Tags', 'boozurk' ) . ': ' . $tags . '</li>';
-
-		if ( $args['date'] )
-			$output .= '<li class="post-details-date"><i class="icon-time"></i> <span>' . __( 'Published', 'boozurk' ) . ': </span><a href="' . esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ) . '">' . get_the_time( get_option( 'date_format' ) ) . '</a></li>';
-
-		$output .= '</ul>';
-
-		if ( ! $args['echo'] )
-			return $output;
-
-		echo $output;
-
-	}
-}
-
-
-// get the author badge
-function wallow_author_badge( $author = '', $size ) {
-
-	if ( ! $author ) return;
-
-	$name = get_the_author_meta( 'nickname', $author ); // nickname
-
-	$avatar = get_avatar( $author, $size, 'Gravatar Logo', get_the_author_meta( 'user_nicename', $author ) . '-photo' ); // gravatar
-
-	$description = get_the_author_meta( 'description', $author ); // bio
-
-	$author_link = get_author_posts_url($author); // link to author posts
-
-	$author_net = ''; // author social networks
-	foreach ( array( 'twitter' => 'Twitter', 'facebook' => 'Facebook', 'googleplus' => 'Google+' ) as $s_key => $s_name ) {
-		if ( get_the_author_meta( $s_key, $author ) ) $author_net .= '<a target="_blank" class="url" title="' . esc_attr( sprintf( __('Follow %s on %s', 'wallow'), $name, $s_name ) ) . '" href="'.get_the_author_meta( $s_key, $author ).'"><img alt="' . $s_key . '" class="social-icon" width="24" height="24" src="' . get_template_directory_uri() . '/images/follow/' . $s_key . '.png" /></a>';
-	}
-
-	$output = '<li class="author-avatar">' . $avatar . '</li>';
-	$output .= '<li class="author-name"><a class="fn" href="' . $author_link . '" >' . $name . '</a></li>';
-	$output .= $description ? '<li class="author-description note">' . $description . '</li>' : '';
-	$output .= $author_net ? '<li class="author-social">' . $author_net . '</li>' : '';
-
-	$output = '<div class="tb-post-details tb-author-bio vcard"><ul>' . $output . '</ul></div>';
-
-	return apply_filters( 'wallow_filter_author_badge', $output );
 
 }
 
@@ -849,36 +660,31 @@ function wallow_nav_posts() {
 // attachments navigation
 if ( !function_exists( 'wallow_navigate_attachments' ) ) {
 	function wallow_navigate_attachments() {
-		global $post;
 
-		if ( is_attachment() && wp_attachment_is_image() ) {
-			$attachments = array_values( get_children( array( 'post_parent' => $post->post_parent, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => 'ASC', 'orderby' => 'menu_order ID' ) ) );
-			foreach ( $attachments as $k => $attachment ) {
-				if ( $attachment->ID == $post->ID )
-					break;
-			}
-			$nextk = $k + 1;
-			$prevk = $k - 1;
+		if ( ! is_attachment() || ! wp_attachment_is_image() ) return;
+
+		$attachments = wallow_get_adjacent_attachments();
+
+		if ( ! $attachments['prev'] && ! $attachments['next'] ) return;
 
 ?>
 	<div class="nav-single">
 
-		<?php if ( isset( $attachments[ $prevk ] ) ) { ?>
+		<?php if ( $attachments['prev'] ) { ?>
 			<span class="nav-previous ">
-				<a rel="prev" title="" href="<?php echo get_attachment_link( $attachments[ $prevk ]->ID ); ?>">&laquo; <?php echo wp_get_attachment_image( $attachments[ $prevk ]->ID, array( 70, 70 ) ); ?></a>
+				<a rel="prev" title="" href="<?php echo get_attachment_link( $attachments['prev']->ID ); ?>">&laquo; <?php echo wp_get_attachment_image( $attachments['prev']->ID, array( 70, 70 ) ); ?></a>
 			</span>
 		<?php } ?>
 
-		<?php if ( isset( $attachments[ $nextk ] ) ) { ?>
+		<?php if ( $attachments['next'] ) { ?>
 			<span class="nav-next">
-				<a rel="next" title="" href="<?php echo get_attachment_link( $attachments[ $nextk ]->ID ); ?>"><?php echo wp_get_attachment_image( $attachments[ $nextk ]->ID, array( 70, 70 ) ); ?> &raquo;</a>
+				<a rel="next" title="" href="<?php echo get_attachment_link( $attachments['next']->ID ); ?>"><?php echo wp_get_attachment_image( $attachments['next']->ID, array( 70, 70 ) ); ?> &raquo;</a>
 			</span>
 		<?php } ?>
 
 	</div><!-- #nav-single -->
 <?php
 
-		} 
 	}
 }
 
@@ -973,41 +779,6 @@ if ( !function_exists( 'wallow_default_widgets' ) ) {
 		}
 
 	}
-}
-
-
-// get the post format string
-if ( !function_exists( 'wallow_get_post_format' ) ) {
-	function wallow_get_post_format( $id ) {
-
-		if ( post_password_required() )
-			$format = 'protected';
-		else
-			$format = get_post_format( $id ) ;
-
-		return $format;
-
-	}
-}
-
-
-// add a fix for embed videos
-function wallow_wmode_transparent($html, $url = null, $attr = null) {
-
-	if ( strpos( $html, '<embed ' ) !== false ) {
-
-		$html = str_replace('</param><embed', '</param><param name="wmode" value="transparent"></param><embed', $html);
-		$html = str_replace('<embed ', '<embed wmode="transparent" ', $html);
-		return $html;
-
-	} elseif ( strpos ( $html, 'feature=oembed' ) !== false )
-
-		return str_replace( 'feature=oembed', 'feature=oembed&wmode=transparent', $html );
-
-	else
-
-		return $html;
-
 }
 
 
@@ -1148,146 +919,23 @@ function wallow_body_classes( $classes ) {
 }
 
 
-/**
- * Add parent class to wp_page_menu top parent list items
- */
-function wallow_add_parent_class( $css_class, $page, $depth, $args ) {
-
-	if ( ! empty( $args['has_children'] ) && $depth == 0 )
-		$css_class[] = 'menu-item-parent';
-
-	return $css_class;
-
-}
-
-
-/**
- * Add parent class to wp_nav_menu top parent list items
- */
-function wallow_add_menu_parent_class( $items ) {
-
-	$parents = array();
-	foreach ( $items as $item ) {
-		if ( $item->menu_item_parent && $item->menu_item_parent > 0 ) {
-			$parents[] = $item->menu_item_parent;
-		}
-	}
-
-	foreach ( $items as $item ) {
-		if ( in_array( $item->ID, $parents ) ) {
-			if ( ! $item->menu_item_parent )
-				$item->classes[] = 'menu-item-parent'; 
-		}
-	}
-
-	return $items;    
-}
-
-
-// wrap the categories count with a span
-function wallow_wrap_categories_count( $output ) {
-	$pattern = '/<\/a>\s(\(\d+\))/i';
-	$replacement = ' <span class="details">$1</span></a>';
-	return preg_replace( $pattern, $replacement, $output );
-}
-
-
-// The Gallery shortcode
-function wallow_gallery_shortcode( $null, $attr ) {
-
-	global $post;
-
-	static $instance = 0;
-	$instance++;
-
-	// We're trusting author input, so let's at least make sure it looks like a valid orderby statement
-	if ( isset( $attr['orderby'] ) ) {
-		$attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
-		if ( !$attr['orderby'] )
-			unset( $attr['orderby'] );
-	}
+// custom image caption
+function wallow_img_caption_shortcode( $deprecated, $attr, $content = null ) {
 
 	extract(shortcode_atts(array(
-		'order'      => 'ASC',
-		'orderby'    => 'menu_order ID',
-		'id'         => $post->ID,
-		'itemtag'    => 'dl',
-		'icontag'    => 'dt',
-		'captiontag' => 'dd',
-		'columns'    => 3,
-		'size'       => 'thumbnail',
-		'include'    => '',
-		'exclude'    => ''
+		'id'	=> '',
+		'align'	=> 'alignnone',
+		'width'	=> '',
+		'caption' => ''
 	), $attr));
 
-	if ( wallow_get_opt( 'wallow_thickbox_link_to_image' ) ) $attr['link'] = 'file';
+	if ( 1 > (int) $width || empty($caption) )
+		return $content;
 
-	$id = intval($id);
-	if ( 'RAND' == $order )
-		$orderby = 'none';
+	if ( $id ) $id = 'id="' . esc_attr($id) . '" ';
 
-	if ( !empty($include) ) {
-		$include = preg_replace( '/[^0-9,]+/', '', $include );
-		$_attachments = get_posts( array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
-
-		$attachments = array();
-		foreach ( $_attachments as $key => $val ) {
-			$attachments[$val->ID] = $_attachments[$key];
-		}
-	} elseif ( !empty($exclude) ) {
-		$exclude = preg_replace( '/[^0-9,]+/', '', $exclude );
-		$attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
-	} else {
-		$attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
-	}
-
-	if ( empty($attachments) )
-		return '';
-
-	if ( is_feed() ) {
-		$output = "\n";
-		foreach ( $attachments as $att_id => $attachment )
-			$output .= wp_get_attachment_link($att_id, $size, true) . "\n";
-		return $output;
-	}
-
-	$itemtag = tag_escape($itemtag);
-	$captiontag = tag_escape($captiontag);
-	$columns = intval($columns);
-	$itemwidth = $columns > 0 ? floor(100/$columns) : 100;
-	$float = is_rtl() ? 'right' : 'left';
-
-	$selector = "gallery-{$instance}";
-
-	$size_class = sanitize_html_class( $size );
-	$gallery_div = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class}'>";
-	$output = $gallery_div;
-
-	$i = 0;
-	foreach ( $attachments as $id => $attachment ) {
-		$link = isset($attr['link']) && 'file' == $attr['link'] ? wp_get_attachment_link($id, $size, false, false) : wp_get_attachment_link($id, $size, true, false);
-
-		$output .= "<{$itemtag} class='gallery-item'>";
-		$output .= "
-			<{$icontag} class='gallery-icon'>
-				$link
-			</{$icontag}>";
-		if ( $captiontag && trim($attachment->post_excerpt) ) {
-			$output .= "
-				<{$captiontag} class='wp-caption-text gallery-caption'>
-				" . wptexturize($attachment->post_excerpt) . "
-				</{$captiontag}>";
-		}
-		$output .= "</{$itemtag}>";
-		if ( $columns > 0 && ++$i % $columns == 0 )
-			$output .= '<br style="clear: both" />';
-	}
-
-	$output .= "
-			<br style='clear: both;' />
-		</div>\n";
-
-	return $output;
+	return '<div ' . $id . 'class="wp-caption ' . esc_attr($align) . '" style="width: ' . $width . 'px"><div class="wp-caption-inside">'
+	. do_shortcode( $content ) . '<div class="wp-caption-text">' . $caption . '</div></div></div>';
 
 }
 
