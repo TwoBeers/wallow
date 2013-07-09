@@ -556,20 +556,22 @@ class Wallow_Widget_Pop_Categories extends WP_Widget {
 
 /**
  * Social network widget class.
- * Social media services supported: Facebook, Twitter, Myspace, Youtube, LinkedIn, Del.icio.us, Digg, Flickr, Reddit, StumbleUpon, Technorati and Github.
- * Optional: RSS icon. 
  *
  */
-
 class Wallow_Widget_Social extends WP_Widget {
-	function Wallow_Widget_Social() {
-		$widget_ops = array(
-			'classname' => 'tb_social',
-			'description' => __("This widget lets visitors of your blog subscribe to it and follow you on popular social networks like Twitter, FaceBook etc.", "wallow"));
-		$control_ops = array( 'width' => 650);
 
-		$this->WP_Widget("wlw-social", __("Follow Me", "wallow"), $widget_ops, $control_ops);
+	function Wallow_Widget_Social() {
+
+		$widget_ops = array(
+			'classname'		=> 'tb_social',
+			'description'	=> __( 'This widget lets visitors of your blog to subscribe to it and follow you on popular social networks like Twitter, FaceBook etc.' , 'wallow' )
+		);
+		$control_ops = array( 'width' => 650 );
+
+		$this->WP_Widget( 'wlw-social', __( 'Follow Me', 'wallow' ), $widget_ops, $control_ops );
+
 		$this->follow_urls = array(
+			// SLUG => NAME
 			'blogger'		=> 'Blogger',
 			'blurb'			=> 'Blurb',
 			'delicious'		=> 'Delicious',
@@ -593,7 +595,6 @@ class Wallow_Widget_Social extends WP_Widget {
 			'reddit'		=> 'Reddit',
 			'renren'		=> 'Renren',
 			'scribd'		=> 'Scribd',
-			'sina'			=> 'Sina',
 			'slideshare'	=> 'SlideShare',
 			'stumbleupon'	=> 'StumbleUpon',
 			'soundcloud'	=> 'SoundCloud',
@@ -604,122 +605,213 @@ class Wallow_Widget_Social extends WP_Widget {
 			'ubuntuone'		=> 'Ubuntu One',
 			'vimeo'			=> 'Vimeo',
 			'vkontakte'		=> 'VKontakte',
+			'weibo'			=> 'Weibo',
 			'windowslive'	=> 'Windows Live',
 			'xing'			=> 'Xing',
 			'yfrog'			=> 'YFrog',
 			'youtube'		=> 'Youtube',
-			'rss'			=> 'RSS' );
-		}
-
-	function form($instance) {
-		$defaults = array("title" => __("Follow Me", "wallow"),
-			"icon_size" => '48px',
+			'mail'			=> 'mail',
+			'rss'			=> 'RSS'
 		);
-		foreach ($this->follow_urls as $follow_service => $service_name ) {
-			$defaults[$follow_service."_icon"] = $follow_service;
-			$defaults["show_".$follow_service] = false;
-		}
-		$instance = wp_parse_args((array)$instance, $defaults);
-?>
-	<div>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'wallow' ); ?>:</label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $instance['title']; ?>" />
-		</p>
 
-	<p><?php echo __( 'NOTE: Enter the <strong>full</strong> addresses ( with <em>http://</em> )', 'wallow' ); ?></p>
-<?php
-		foreach($this->follow_urls as $follow_service => $service_name ) {
-?> 
-		<div class="service-input">
-			<h2>
-				<input id="<?php echo $this->get_field_id( 'show_'.$follow_service); ?>" name="<?php echo $this->get_field_name( 'show_'.$follow_service); ?>" type="checkbox" <?php checked( $instance['show_'.$follow_service], 'on' ); ?>  class="checkbox" />
-				<img src="<?php echo get_template_directory_uri(); ?>/images/follow/<?php echo strtolower( $follow_service ); ?>.png" alt="<?php echo esc_attr( $follow_service ); ?>" />
-				<?php echo $service_name; ?>
-			</h2>
-<?php
-			if ($follow_service != 'RSS' ) {
-				$url_or_account = $follow_service;
-?>
-		<p>
-			<label for="<?php echo $this->get_field_id($follow_service.'_account' ); ?>">
-<?php
-				printf(__( 'Enter %1$s account link:', 'wallow' ), $service_name);
-?>
-			</label>
-			<input id="<?php echo $this->get_field_id($follow_service.'_account' ); ?>" name="<?php echo $this->get_field_name($follow_service.'_account' ); ?>" value="<?php if (isset($instance[$follow_service.'_account'])) echo $instance[$follow_service.'_account']; ?>" class="widefat" />
-		</p>
-
-<?php
-			}
-?>
-		</div>
-<?php
+		$this->defaults = array(
+			'title'		=> __( 'Follow Me', 'wallow' ),
+			'icon_size'	=> 48,
+		);
+		foreach ( $this->follow_urls as $follow_service => $service_name ) {
+			$this->defaults[$follow_service.'_account'] = '';
+			$this->defaults['show_'.$follow_service] = false;
 		}
-?>
-		<div class="clear" style="padding: 10px 0; border-top: 1px solid #DFDFDF; text-align: right;">
-			<label for="<?php echo $this->get_field_id( 'icon_size' ); ?>"><?php _e( 'Select your icon size', 'wallow' ); ?></label><br />
-			<select name="<?php echo $this->get_field_name( 'icon_size' ); ?>" id="<?php echo $this->get_field_id( 'icon_size' ); ?>" >
-<?php
-			$size_array = array ( '16px', '24px', '32px', '40px', '50px', '60px' );
-			foreach($size_array as $size) {
-?>
-				<option value="<?php echo $size; ?>" <?php if ($instance['icon_size'] == $size) { echo " selected "; } ?>><?php echo $size; ?></option>
-<?php
-			}
-?>
-			</select>
-		</div>
-	</div>
-<?php
+
+		$this->alert = array();
+
 	}
 
-	function update($new_instance, $old_instance) {
-		$instance = $old_instance;
-		$instance["title"] = strip_tags($new_instance["title"]);
-		$instance["icon_size"] = $new_instance["icon_size"];
 
-		foreach ($this->follow_urls as $follow_service => $service_name ) {
-			$instance['show_'.$follow_service] = $new_instance['show_'.$follow_service];
-			$instance[$follow_service.'_account'] = $new_instance[$follow_service.'_account'];
-		}
+	function flush_widget_cache() {
 
-		return $instance;
+		wp_cache_delete( 'tb_social', 'widget' );
+
 	}
+
 
 	function widget( $args, $instance ) {
+
+		$cache = wp_cache_get( 'tb_social', 'widget' );
+
+		if ( ! is_array( $cache ) )
+			$cache = array();
+
+		if ( isset( $cache[$args['widget_id']] ) ) {
+			echo $cache[$args['widget_id']];
+			return;
+		}
+
 		extract($args);
-		$title = apply_filters( 'widget_title', empty($instance['title']) ? '' : $instance['title']);
-		$icon_size = ( isset($instance['icon_size']) ) ? $instance['icon_size'] : '48px';
-		echo $before_widget;
-		if (!empty($title)) {
-			echo $before_title;
-			echo $title;
-			echo $after_title;
-		}
-?>
-	<div class="fix" style="text-align: center;">
-<?php
+
+		$instance = wp_parse_args( (array)$instance, $this->defaults );
+
+		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base);
+		$title = $title ? $before_title . $title . $after_title : '';
+
+		$icon_size = $instance['icon_size'];
+
+		$output = '';
+
 		foreach ($this->follow_urls as $follow_service => $service_name ) {
-		
-			$show = ( isset($instance['show_'.$follow_service]) ) ? $instance['show_'.$follow_service] : false;
-			$account = ( isset($instance[$follow_service.'_account']) ) ? $instance[$follow_service.'_account'] : '';
-			if ($follow_service == 'RSS' ) {
-				$account = get_bloginfo( 'rss2_url' );
+
+			$show = $instance['show_'.$follow_service];
+			$account = $instance[$follow_service.'_account'];
+			$prefix = __( 'Follow us on %s', 'wallow' );
+			$onclick = '';
+			$class = '';
+			$target = '_blank';
+			if ( $follow_service == 'rss' ) {
+				$account = $account? $account : get_bloginfo( 'rss2_url' );
+				$prefix = __( 'Keep updated with our RSS feed', 'wallow' );
 			}
-			if ($show && !empty($account)) {
-?>
-		<a href="<?php echo esc_url( $account ); ?>" target="_blank" class="social-icon" title="<?php echo esc_attr( $service_name );?>">
-			<img src="<?php echo get_template_directory_uri(); ?>/images/follow/<?php echo strtolower( $follow_service );?>.png" alt="<?php echo esc_attr( $follow_service );?>" style='width: <?php echo $icon_size;?>; height: <?php echo $icon_size;?>;' />
-		</a>
-<?php
+			if ( $follow_service == 'mail' ) {
+				$account = preg_replace( '/(.)(.)/', '$2$1', 'mailto:'.$account );
+				$prefix = __( 'Contact us', 'wallow' );
+				$class= ' hide-if-no-js';
+				$onclick = ' onclick="this.href=\'' . $account . '\'.replace(/(.)(.)/g, \'$2$1\');"';
+				$account = '#';
+				$target = '_self';
 			}
+
+			if ( $show && ! empty( $account ) ) {
+				$icon = '<img src="' . get_template_directory_uri() . '/images/follow/' . strtolower( $follow_service ) . '.png" alt="' . $follow_service . '" style="width: ' . $icon_size . 'px; height: ' . $icon_size . 'px;" />';
+				$output .= '<a target="' . $target . '" href="' . $account . '"' . $onclick . ' class="tb-social-icon' . $class . '" title="' . esc_attr( sprintf( $prefix, $service_name ) ) . '">' . $icon . '</a> ';
+			}
+
 		}
-?>
-	</div>
-<?php
-		echo $after_widget;
+
+		$output = $before_widget . $title . $output . $after_widget;
+
+		echo $output;
+
+		$cache[$args['widget_id']] = $output;
+		wp_cache_set( 'tb_social', $cache, 'widget' );
+
 	}
+
+
+	function update($new_instance, $old_instance) {
+
+		$instance = $old_instance;
+
+		$instance["title"] = strip_tags($new_instance["title"]);
+
+		$instance['icon_size'] = $new_instance['icon_size'];
+		if ( ! in_array( $instance['icon_size'], array ( '16', '24', '32', '48', '64' ) ) ) {
+			$instance['icon_size'] = $this->defaults['icon_size'];
+			$this->alert[] = 'icon_size';
+		}
+
+		$url_pattern = "/^(http|https):\/\//";
+		$email_pattern = "/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/";
+		foreach ($this->follow_urls as $follow_service => $service_name ) {
+
+			$instance['show_'.$follow_service] = $new_instance['show_'.$follow_service];
+			$instance[$follow_service.'_account'] = $new_instance[$follow_service.'_account'];
+
+			if ( $instance[$follow_service.'_account'] ) {
+
+				if( $follow_service == 'mail' )
+					preg_match($email_pattern, strtoupper( $instance[$follow_service.'_account'] ), $is_valid_url);
+				else
+					preg_match($url_pattern, $instance[$follow_service.'_account'], $is_valid_url);
+
+				if ( ! $is_valid_url ) {
+					$instance['show_'.$follow_service] = false;
+					$instance[$follow_service.'_account'] = '';
+					$this->alert[] = $follow_service;
+				}
+
+			}
+
+		}
+
+		$this->flush_widget_cache();
+
+		return $instance;
+
+	}
+
+
+	function field_class( $field ) {
+
+		if ( in_array( $field , $this->alert ) ) echo ' class="invalid"';
+
+	}
+
+
+	function form( $instance ) {
+
+		$instance = wp_parse_args( (array)$instance, $this->defaults );
+
+?>
+	<?php if ( $this->alert ) echo '<div class="error">' . __( 'Invalid value', 'wallow' ) . '</div>'?>
+
+	<p>
+		<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title', 'wallow' ); ?>:</label>
+		<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $instance['title']); ?>" />
+	</p>
+
+	<div class="services-wrap">
+
+		<p><?php echo __( 'NOTE: Enter the <strong>full</strong> addresses ( with <em>http://</em> )', 'wallow' ); ?></p>
+
+		<?php foreach( $this->follow_urls as $follow_service => $service_name ) { ?>
+
+		<div class="service-input">
+
+			<h2>
+				<input id="<?php echo $this->get_field_id( 'show_'.$follow_service ); ?>" name="<?php echo $this->get_field_name( 'show_'.$follow_service ); ?>" type="checkbox" <?php checked( $instance['show_'.$follow_service], 'on' ); ?>  class="checkbox" />
+				<img style="vertical-align:middle; width:32px; height:32px;" src="<?php echo get_template_directory_uri(); ?>/images/follow/<?php echo strtolower( $follow_service ); ?>.png" alt="<?php echo $follow_service; ?>" />
+				<?php echo $service_name; ?>
+			</h2>
+
+			<?php
+				if ( ( $follow_service != 'rss' ) && ( $follow_service != 'mail' ) )
+					$text = __( 'Enter your %1$s account link', 'wallow' );
+				elseif ( $follow_service == 'mail' )
+					$text = __( 'Enter email address', 'wallow' );
+				elseif ( $follow_service == 'rss' )
+					$text = __( 'Enter your feed service address. Leave it blank for using the default WordPress feed', 'wallow' );
+			?>
+			<p<?php $this->field_class( $follow_service ); ?>>
+				<label for="<?php echo $this->get_field_id( $follow_service.'_account' ); ?>"><?php printf( $text, $service_name ) ?>:</label>
+				<input type="text" id="<?php echo $this->get_field_id( $follow_service.'_account' ); ?>" name="<?php echo $this->get_field_name( $follow_service.'_account' ); ?>" value="<?php if ( isset( $instance[$follow_service.'_account'] ) ) echo $instance[$follow_service.'_account']; ?>" class="widefat" />
+			</p>
+
+		</div>
+
+		<?php } ?>
+
+		<div class="clear" style="padding: 10px 0; border-top: 1px solid #DFDFDF; text-align: right;">
+
+			<label for="<?php echo $this->get_field_id( 'icon_size' ); ?>"><?php _e( 'Select your icon size', 'wallow' ); ?>:</label><br />
+			<select name="<?php echo $this->get_field_name( 'icon_size' ); ?>" id="<?php echo $this->get_field_id( 'icon_size' ); ?>" >
+				<?php
+					$size_array = array ( '16', '24', '32', '48', '64' );
+					foreach($size_array as $size) {
+				?>
+					<option value="<?php echo $size; ?>" <?php selected( $instance['icon_size'], $size ); ?>><?php echo $size; ?>px</option>
+				<?php
+					}
+				?>
+			</select>
+
+		</div>
+
+	</div>
+
+	<?php if ( $this->alert ) echo '<div class="error">' . __( 'Invalid value', 'wallow' ) . '</div>'?>
+<?php
+
+	}
+
 }
 
 /**
@@ -935,7 +1027,7 @@ class Wallow_Widget_Share_This extends WP_Widget {
 		// LINK -> %1$s: title, %2$s: url, %3$s: image/thumbnail
 		'twitter' => array( 'Twitter', 'http://twitter.com/home?status=%1$s - %2$s' ),
 		'facebook' => array( 'Facebook', 'http://www.facebook.com/sharer.php?u=%2$s&t=%1$s' ),
-		'sina' => array( 'Sina', 'http://v.t.sina.com.cn/share/share.php?url=%2$s' ),
+		'weibo' => array( 'Weibo', 'http://v.t.sina.com.cn/share/share.php?url=%2$s' ),
 		'tencent' => array( 'Tencent', 'http://v.t.qq.com/share/share.php?url=%2$s&title=%1$s&pic=%3$s' ),
 		'qzone' => array( 'Qzone', 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2$s' ),
 		'reddit' => array( 'Reddit', 'http://reddit.com/submit?url=%2$s&title=%1$s' ),
@@ -976,7 +1068,7 @@ class Wallow_Widget_Share_This extends WP_Widget {
 		$outer = '';
 		foreach( $services as $key => $service ) {
 			$href = sprintf( $service[1], $pName, $pHref, $pPict );
-			if ( $instance[$key] ) $outer .= '<a class="share-item" rel="nofollow" target="_blank" id="wlw-' . $key . '" href="' . $href . '"><img src="' . get_template_directory_uri() . '/images/follow/' . strtolower( $key ) . '.png" width="' . $icon_size . '" height="' . $icon_size . '" alt="' . esc_attr( $service[0] ) . ' Button"  title="' . esc_attr( sprintf( __( 'Share with %s', 'wallow' ), $service[0] ) ) . '" /></a>';
+			if ( isset( $instance[$key] ) && $instance[$key] ) $outer .= '<a class="share-item" rel="nofollow" target="_blank" title="' . esc_attr( sprintf( __( 'Share with %s', 'wallow' ), $service[0] ) ) . '" id="wlw-' . $key . '" href="' . $href . '"><img src="' . get_template_directory_uri() . '/images/follow/' . strtolower( $key ) . '.png" width="' . $icon_size . '" height="' . $icon_size . '" alt="' . esc_attr( $service[0] ) . ' Button" /></a>';
 		}
 ?>
 		<?php echo $before_widget; ?>

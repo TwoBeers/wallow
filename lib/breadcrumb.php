@@ -34,7 +34,7 @@ class Wallow_Breadcrumb {
 		}
 
 		if ( $output )
-			echo '<div id="breadcrumb-wrap" class="fixfloat c_list">' . $output . '</div>';
+			echo '<div id="breadcrumb-wrap" class="fixfloat">' . $output . '</div>';
 
 	}
 

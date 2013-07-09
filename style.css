@@ -242,42 +242,37 @@ p {
 
 /* <---- Post classes */
 /* Comment classes ----> */
-#commentform #author,
-#commentform #email,
-#commentform #url,
-#commentform textarea,
-.post input[type="password"],
-.post input[type="text"],
-.post textarea {
+body input[type="password"],
+body input[type="text"],
+body select,
+body textarea {
 	border: 1px solid #aaa;
-	padding: .2em;
-	background:#fff url(images/input.jpg) left top repeat-x;
+	padding: 5px;
+	background:#f5f5f5;
 }
 
-#commentform #author:hover,
-#commentform #email:hover,
-#commentform #url:hover,
-#commentform textarea:hover,
-.post input[type="password"]:hover,
-.post input[type="text"]:hover,
-.post textarea:hover {
+body input[type="password"]:hover,
+body input[type="text"]:hover,
+body select:hover,
+body textarea:hover {
 	border: 1px solid #d54e21;
 }
 
-#commentform #author:focus,
-#commentform #email:focus,
-#commentform #url:focus,
-#commentform textarea:focus,
-.post input[type="password"]:focus,
-.post input[type="text"]:focus,
-.post textarea:focus {
+body input[type="password"]:focus,
+body input[type="text"]:focus,
+body select:focus,
+body textarea:focus {
 	border: 1px solid #0080BC;
 }
 
 #commentform textarea {
-	width: 100%;
+	display: block;
+	margin: 0 auto;
+	width: 99%;
+	max-width: 99%;
 }
 
+#commentlist li.comment,
 #commentlist {
 	list-style:none outside none;
 }
@@ -309,7 +304,7 @@ p {
 
 .comment_tools {
 	margin: 5px 0;
-	padding: 3px;
+	padding: 5px;
 	clear: both;
 }
 
@@ -321,11 +316,6 @@ ul.children {
 /* 
  * rules for this class are loaded by css/load-styles.php
  */
-}
-
-.form-allowed-tags {
-	color: #555; 
-	text-align: center;
 }
 
 /* <---- Comment classes */
@@ -678,10 +668,6 @@ br.fixfloat {
 	width: 48%;
 }
 
-.wp-pagenavi {
-	padding: 10px;
-}
-
 .search-reminder {
 	text-align: center;
 	text-shadow: 0 0 5px #000;
@@ -690,7 +676,9 @@ br.fixfloat {
 .search-term {
 	font-weight: bold;
 }
-
+#footer {
+	padding-bottom: 100px;
+}
 /* <---- Other classes */
 /* Gallery listing ----> */
 .gallery {
@@ -983,6 +971,35 @@ img.wp-post-image {
 	text-align: right;
 }
 
+/* Navigation
+----------------------------------------------------------*/
+.navigation-links.numeric-nav a,
+.navigation-links.numeric-nav span {
+	border: none;
+}
+.navigation-links.numeric-nav span.current {
+	background: none repeat scroll 0 0 #5F87AE;
+	border: 1px solid #89ADCF;
+	color: #fff;
+	margin-right: 4px;
+	padding: 3px 6px;
+}
+.navigation-links.numeric-nav a {
+	background:#ddd;
+	border:1px solid #ccc;
+	color:#666;
+	margin-right:4px;
+	padding:3px 6px;
+	text-align:center;
+	text-decoration:none;
+}
+.navigation-links.numeric-nav a:hover,
+.navigation-links.numeric-nav a:active {
+	border:1px solid #ccc;
+	background:#ccc;
+	color:#888;
+}
+
 /* TB Comment Tools
 ----------------------------------------------------------*/
 #tb-comment-tools-tags a {
@@ -997,21 +1014,34 @@ img.wp-post-image {
 	border: 1px solid #aaa;
 }
 
-.infinite-scroll .archive-navigation {
-	display: none;
-}
-
 /* WP Paginate
 ----------------------------------------------------------*/
 .archive-navigation .navigation,
 .navigate_comments .navigation {
 	padding: 5px;
 }
+.wp-paginate li {
+	padding: 0;
+	margin: 2px;
+}
+/* WP PageNavi
+----------------------------------------------------------*/
+.wp-pagenavi {
+	padding: 5px;
+}
 
-/* WP Paginate
+/* Jetpack
 ----------------------------------------------------------*/
 body .hentry .sharedaddy ul li {
 	border: none;
+}
+
+.infinite-scroll .archive-navigation {
+	display: none;
+}
+
+body .gcard {
+	z-index: 9999;
 }
 
 /* common */

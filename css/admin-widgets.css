@@ -6,16 +6,25 @@ div[id*=_wlw-] .widget-title {
 	background: url("../images/wlw18.png") no-repeat 5px center transparent;
 	padding-left: 24px;
 }
-.sw-service-input {
+.service-input {
 	float: left; 
 	width: 40%; 
 	margin: 0pt 5%;
 }
-.sw-service-input img {
+.service-input img {
 	vertical-align:middle; 
 	width:40px; 
 	height:40px;
 }
-.sw-service-input input[type="checkbox"] {
+.service-input input[type="checkbox"] {
 	vertical-align:middle; 
+}
+.service-input:nth-of-type(odd) {
+	clear: left;
+}
+.widget .widget-inside p.invalid {
+	border: 1px solid red;
+	margin-right: -5px;
+	margin-left: -5px;
+	padding: 4px;
 }

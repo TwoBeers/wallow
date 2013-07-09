@@ -176,7 +176,7 @@ function wallow_get_coa( $option = false ) {
 							'default' => 1,
 							'description' => __( 'navigation tool', 'wallow' ),
 							'info' => '',
-							'req' => 'wallow_qbar',
+							'req' => '',
 							'sub' => false
 						),
 		'wallow_qbar_show_avatar' => 
@@ -186,7 +186,7 @@ function wallow_get_coa( $option = false ) {
 							'default' => 1,
 							'description' => __( 'avatar', 'wallow' ),
 							'info' => '',
-							'req' => 'wallow_qbar',
+							'req' => '',
 							'sub' => false
 						),
 		'wallow_qbar_avatar' => 
@@ -206,7 +206,7 @@ function wallow_get_coa( $option = false ) {
 							'default' => 1,
 							'description' => __( 'date', 'wallow' ),
 							'info' => '',
-							'req' => 'wallow_qbar',
+							'req' => '',
 							'sub' => false
 						),
 		'wallow_primary_menu' =>

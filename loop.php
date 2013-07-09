@@ -20,8 +20,6 @@
 
 	} //end while ?>
 
-	<?php wallow_navigate_archives(); ?>
-
 <?php } else { ?>
 
 	<?php get_template_part( 'loop/post-none' ); ?>

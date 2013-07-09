@@ -47,6 +47,7 @@ add_action( 'wallow_hook_post_title_before'		, 'wallow_the_thumb' );
 add_action( 'wallow_hook_post_title_after'		, 'wallow_top_meta' );
 add_action( 'wallow_hook_entry_bottom'			, 'wallow_bottom_meta' );
 add_action( 'wallow_hook_content_bottom'		, 'wallow_nav_posts' );
+add_action( 'wallow_hook_content_bottom'		, 'wallow_navigate_archives' );
 add_action( 'wallow_hook_entry_before'			, 'wallow_navigate_attachments' );
 
 
@@ -64,6 +65,7 @@ add_filter( 'next_posts_link_attributes'		, 'wallow_next_posts_title' );
 add_filter( 'previous_posts_link_attributes'	, 'wallow_previous_posts_title' ); 
 add_filter( 'wp_title'							, 'wallow_filter_wp_title' );
 add_filter( 'body_class'						, 'wallow_body_classes' );
+add_filter( 'the_content'						, 'wallow_clear_float', 10 );
 
 
 /* get the theme options */
@@ -507,7 +509,6 @@ function wallow_primary_menu() {
 	<div id="primary_menu">
 		<div id="primary_menu-out">
 			<div id="primary_menu-in">
-				<div id="rss_imglink"><a href="<?php bloginfo( 'rss2_url' ); ?>" title="<?php _e( 'Syndicate this site using RSS 2.0', 'wallow' ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/rss.png" alt="rss img"/></a></div>
 				<?php
 					wp_nav_menu( array(
 						'menu_id' => 'mainmenu',
@@ -531,14 +532,13 @@ if ( !function_exists( 'wallow_navigate_comments' ) ) {
 		if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) {
 
 ?>
-	<div class="navigate_comments meta comment_tools">
+	<div class="navigation-links numeric-nav comments-navigation fixfloat">
 		<?php if(function_exists('wp_paginate_comments')) {
 			wp_paginate_comments();
 		} else {
 			paginate_comments_links();
 		} ?>
 	</div>
-	<br class="fixfloat" />
 <?php 
 
 		}
@@ -583,7 +583,9 @@ function wallow_search_reminder() {
 // archives pages navigation
 if ( !function_exists( 'wallow_navigate_archives' ) ) {
 	function wallow_navigate_archives() {
-		global $paged, $wp_query;
+		global $paged;
+
+		if ( !is_archive() && !is_search() && !is_home() ) return;
 
 		if ( !$paged ) $paged = 1;
 			$output = '';
@@ -593,7 +595,7 @@ if ( !function_exists( 'wallow_navigate_archives' ) ) {
 
 
 ?>
-	<div class="nav_pages archive-navigation">
+	<div class="nav_pages archive-navigation numeric-nav navigation-links">
 	<?php if ( function_exists( 'wp_pagenavi' ) ) { ?>
 
 		<?php wp_pagenavi(); ?>
@@ -617,11 +619,7 @@ if ( !function_exists( 'wallow_navigate_archives' ) ) {
 // displays page-links for paginated posts
 function wallow_link_pages() {
 
-?>
-	<div class="fixfloat">
-		<?php wp_link_pages( 'before=<div class="meta comment_tools fixfloat">' . __( 'Pages', 'wallow' ) . ':&after=</div>' ); ?>
-	</div>
-<?php
+	wp_link_pages( 'before=<div class="navigation-links numeric-nav multipages-navigation fixfloat">' . __( 'Pages', 'wallow' ) . ':&after=</div>' );
 
 }
 
@@ -649,8 +647,8 @@ function wallow_nav_posts() {
 
 	if ( ! is_single() || is_attachment() ) return;
 ?>
-	<div class="nav_pages">
-		<?php previous_post_link( '&laquo; %link' ) ?><?php next_post_link( ' | %link &raquo;' ) ?>
+	<div class="navigation-links single-navigation fixfloat">
+		<?php previous_post_link( '%link', '&laquo; %title' ) ?><?php next_post_link( ' | %link', '%title &raquo;' ) ?>
 	</div>
 <?php
 
@@ -747,10 +745,9 @@ function wallow_bottom_meta() {
 	if ( $links ) {
 
 ?>
-	<div class="meta comment_tools">
+	<div class="meta comment_tools fixfloat">
 		<?php echo $links; ?>
 	</div>
-	<br class="fixfloat" />
 <?php
 
 	}
@@ -951,6 +948,14 @@ function wallow_next_posts_title($content) {
 function wallow_previous_posts_title($content) {
 
 	return 'title="' . __( 'Newer Posts', 'wallow' ) . '"';
+
+}
+
+
+//clear any floats at the end of post content
+function wallow_clear_float( $content ) {
+
+	return $content . '<br class="fixfloat" />';
 
 }
 

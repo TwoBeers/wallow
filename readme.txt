@@ -46,7 +46,7 @@ PLUG AND PLAY:
 
 CHANGE LOG (FROM VERSION 0.50):
 	* native support for some plugins (see above)
-	* added TheHookAlliance hooks support
+	* added Theme Hook Alliance (https://github.com/zamoose/themehookalliance) hooks support
 	* new widgets
 	* code cleaned
 	* js optimized
