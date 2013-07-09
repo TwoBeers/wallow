@@ -369,7 +369,7 @@ header("Cache-Control: public, max-age=$expires_offset");
 }
 
 .body-clouds .hentry ul li {
-	border-left: 4px solid #333;
+	border-left: 4px solid #ddd;
 }
 
 .body-clouds .hentry,
@@ -435,13 +435,7 @@ header("Cache-Control: public, max-age=$expires_offset");
 	background: -ms-linear-gradient(left,rgba(0,0,0,0.7) 0,rgba(0,0,0,0.7) 100%);
 	background: linear-gradient(left,rgba(0,0,0,0.7) 0,rgba(0,0,0,0.7) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b3000000',endColorstr='#b3000000',GradientType=1);
-	bottom: 0;
-	left: 0;
 	color: #fff;
-	margin: 0;
-	padding: 0 0 5px;
-	position: absolute;
-	width: 100%;
 }
 
 .body-clouds .wp-caption:hover p.wp-caption-text {
@@ -452,6 +446,10 @@ header("Cache-Control: public, max-age=$expires_offset");
 	position: relative;
 	border-radius: 0;
 	border: 1px solid #fff;
+}
+
+.body-clouds h2.posts_date {
+	text-shadow: 0 0 5px #000;
 }
 
 <?php } ?>
@@ -1314,6 +1312,10 @@ header("Cache-Control: public, max-age=$expires_offset");
 	border: 10px solid #A9D6FF;
 }
 
+.body-water h2.posts_date {
+	text-shadow: 0 0 5px #000;
+}
+
 <?php } ?>
 
 /* sidebar */
@@ -2044,10 +2046,8 @@ header("Cache-Control: public, max-age=$expires_offset");
 }
 
 .quickbar-air #qb_right {
-	background: transparent url(../images/air/grey-s.png) right center no-repeat;
 	float: right;
 	height: 34px;
-	width: 13%;
 	padding: 10px 0;
 	text-align: center;
 	font-weight: bold;
@@ -2103,10 +2103,8 @@ header("Cache-Control: public, max-age=$expires_offset");
 }
 
 .quickbar-clouds #qb_right {
-	background: transparent url(../images/clouds/grey-s.png) right center no-repeat;
 	float: right;
 	height: 34px;
-	width: 13%;
 	padding: 10px 0;
 	text-align: center;
 	font-weight: bold;
@@ -2153,14 +2151,13 @@ header("Cache-Control: public, max-age=$expires_offset");
 }
 
 .quickbar-earth #micronav {
-	top: -4px;
+	top: 3px;
 	background: url(../images/earth/micronav.png) no-repeat scroll center -96px transparent;
 }
 
 .quickbar-earth #qb_center {
 	float: left;
 	height: 59px;
-	width: 82%;
 	padding-top: 10px;
 }
 
@@ -2172,11 +2169,9 @@ header("Cache-Control: public, max-age=$expires_offset");
 }
 
 .quickbar-earth #qb_right {
-	background: transparent url(../images/earth/grey-s.png) right center no-repeat;
 	float: right;
-	height: 27px;
-	width: 17%;
-	padding: 16px 0;
+	height: 40px;
+	padding: 10px 0;
 	text-align: center;
 	font-weight: bold;
 }
@@ -2195,12 +2190,22 @@ header("Cache-Control: public, max-age=$expires_offset");
 
 .quickbar-fire #quickbar {
 	color: #ccc;
-	margin: 0 0 10px;
+	margin: 10px 0 0 0;
 	padding: 0;
-	bottom: 0;
-	height: 56px;
-	width: 100%;
-	left: 0;
+	bottom: 10px;
+	height: 54px;
+	width: 96%;
+	left: 2%;
+	border-radius: 10px;
+	background: #414141; /* Old browsers */
+	background: -moz-linear-gradient(top,  #414141 0%, #5a5a5a 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#414141), color-stop(100%,#5a5a5a)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #414141 0%,#5a5a5a 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #414141 0%,#5a5a5a 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #414141 0%,#5a5a5a 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  #414141 0%,#5a5a5a 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#414141', endColorstr='#5a5a5a',GradientType=0 ); /* IE6-9 */
+	border: 1px solid #888;
 }
 
 .quickbar-fire #avatar_cont {
@@ -2221,25 +2226,16 @@ header("Cache-Control: public, max-age=$expires_offset");
 }
 
 .quickbar-fire #qb_center {
-	background: transparent url(../images/fire/qb.png) left top repeat-x;
 	float: left;
 	height: 56px;
-	width: 83%;
 }
 
 .quickbar-fire #qb_left {
-	background: transparent url(../images/fire/qb.png) left -112px no-repeat;
-	float: left;
-	height: 56px;
-	margin-left: 1%;
-	width: 2%;
 }
 
 .quickbar-fire #qb_right {
-	background: transparent url(../images/fire/qb.png) right -56px no-repeat;
-	float: left;
+	float: right;
 	height: 36px;
-	width: 13%;
 	padding: 10px 0;
 	text-align: center;
 	font-weight: bold;
@@ -2295,10 +2291,8 @@ header("Cache-Control: public, max-age=$expires_offset");
 }
 
 .quickbar-smoke #qb_right {
-	background: transparent url(../images/smoke/grey-s.png) right center no-repeat;
 	float: right;
 	height: 34px;
-	width: 13%;
 	padding: 10px 0;
 	text-align: center;
 	font-weight: bold;
@@ -2342,12 +2336,12 @@ header("Cache-Control: public, max-age=$expires_offset");
 
 .quickbar-water #micronav {
 	background: url(../images/water/micronav.png) no-repeat scroll center -96px transparent;
+	margin-top: -4px;
 }
 
 .quickbar-water #qb_center {
 	float: left;
 	height: 56px;
-	width: 81%;
 }
 
 .quickbar-water #qb_left {
@@ -2358,10 +2352,8 @@ header("Cache-Control: public, max-age=$expires_offset");
 }
 
 .quickbar-water #qb_right {
-	background: transparent url(../images/air/grey-s.png) right center no-repeat;
 	float: right;
 	height: 36px;
-	width: 16%;
 	padding: 10px 0;
 	text-align: center;
 	font-weight: bold;
@@ -2373,6 +2365,10 @@ header("Cache-Control: public, max-age=$expires_offset");
 
 .quickbar-water .footer_wig {
 	background: url("../images/water/menu_sep.png") no-repeat right top transparent;
+}
+
+.quickbar-water a {
+	color: #aaa;
 }
 
 <?php } ?>
@@ -2578,16 +2574,30 @@ header("Cache-Control: public, max-age=$expires_offset");
 	border-color: #888;
 	border-style: solid;
 	border-width: 1px;
-	background: #333 url("../images/fire/pop.jpg") left top no-repeat;
 	border-radius: 5px;
+	background: #5a5a5a; /* Old browsers */
+	background: -moz-linear-gradient(-45deg,  #5a5a5a 0%, #414141 30%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#5a5a5a), color-stop(30%,#414141)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg,  #5a5a5a 0%,#414141 30%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg,  #5a5a5a 0%,#414141 30%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg,  #5a5a5a 0%,#414141 30%); /* IE10+ */
+	background: linear-gradient(135deg,  #5a5a5a 0%,#414141 30%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a5a5a', endColorstr='#414141',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .popup-fire #mainmenu>li.page_item>ul.children,
 .popup-fire #mainmenu>li.menu-item>ul.sub-menu {
 	border: 1px solid #888;
-	background: #333 url(../images/fire/pop.jpg) left top no-repeat;
 	border-radius: 5px;
 	color: #ccc;
+	background: #5a5a5a; /* Old browsers */
+	background: -moz-linear-gradient(-45deg,  #5a5a5a 0%, #414141 30%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#5a5a5a), color-stop(30%,#414141)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg,  #5a5a5a 0%,#414141 30%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg,  #5a5a5a 0%,#414141 30%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg,  #5a5a5a 0%,#414141 30%); /* IE10+ */
+	background: linear-gradient(135deg,  #5a5a5a 0%,#414141 30%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5a5a5a', endColorstr='#414141',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .popup-fire #mainmenu ul.sub-menu,
@@ -2695,14 +2705,28 @@ header("Cache-Control: public, max-age=$expires_offset");
 	border-color: #fff;
 	border-style: double;
 	border-width: 3px;
-	background: #0080bc url("../images/water/pop.jpg") left top no-repeat;
+	background: #28e5f8; /* Old browsers */
+	background: -moz-linear-gradient(-45deg,  #28e5f8 0%, #0080bd 30%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#28e5f8), color-stop(30%,#0080bd)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg,  #28e5f8 0%,#0080bd 30%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg,  #28e5f8 0%,#0080bd 30%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg,  #28e5f8 0%,#0080bd 30%); /* IE10+ */
+	background: linear-gradient(135deg,  #28e5f8 0%,#0080bd 30%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#28e5f8', endColorstr='#0080bd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	border-radius: 5px;
 }
 
 .popup-water #mainmenu>li.page_item>ul.children,
 .popup-water #mainmenu>li.menu-item>ul.sub-menu {
 	border: 3px double #fff;
-	background: #0080bc url(../images/water/pop.jpg) left top no-repeat;
+	background: #28e5f8; /* Old browsers */
+	background: -moz-linear-gradient(-45deg,  #28e5f8 0%, #0080bd 30%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#28e5f8), color-stop(30%,#0080bd)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(-45deg,  #28e5f8 0%,#0080bd 30%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg,  #28e5f8 0%,#0080bd 30%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg,  #28e5f8 0%,#0080bd 30%); /* IE10+ */
+	background: linear-gradient(135deg,  #28e5f8 0%,#0080bd 30%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#28e5f8', endColorstr='#0080bd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 	border-radius: 5px;
 	color: #ccc;
 }

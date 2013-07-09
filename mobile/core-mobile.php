@@ -380,7 +380,7 @@ class Wallow_Mobile {
 
 		$output = '<div class="widget tb_post_details">';
 		$output .= apply_filters( 'wallow_mobile_filter_seztitle', __( 'Post details', 'wallow' ) );
-		$output .= '<div class="widget-body">' . wallow_post_details( array( 'echo' => 0 ) ) . '</div></div>';
+		$output .= '<div class="widget-body">' . wallow_post_details( array( 'echo' => 0, 'fields' => array( 'author', 'categories', 'tags', 'date' ) ) ) . '</div></div>';
 
 		echo $output;
 

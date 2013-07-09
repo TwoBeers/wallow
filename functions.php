@@ -27,7 +27,7 @@
 /* Custom actions - WP hooks */
 
 add_action( 'after_setup_theme'					, 'wallow_setup' );
-add_action( 'template_redirect'					, 'wallow_scripts' );
+add_action( 'wp_enqueue_scripts'				, 'wallow_scripts' );
 add_action( 'wp_enqueue_scripts'				, 'wallow_stylesheet' );
 add_action( 'template_redirect'					, 'wallow_allcat' );
 add_action( 'wp_print_styles'					, 'wallow_deregister_styles', 100 );
@@ -508,13 +508,13 @@ function wallow_primary_menu() {
 		<div id="primary_menu-out">
 			<div id="primary_menu-in">
 				<div id="rss_imglink"><a href="<?php bloginfo( 'rss2_url' ); ?>" title="<?php _e( 'Syndicate this site using RSS 2.0', 'wallow' ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/images/rss.png" alt="rss img"/></a></div>
-					<?php
-						wp_nav_menu( array(
-							'menu_id' => 'mainmenu',
-							'fallback_cb' => 'wallow_pages_menu',
-							'theme_location' => 'primary'
-						) );
-					?>
+				<?php
+					wp_nav_menu( array(
+						'menu_id' => 'mainmenu',
+						'fallback_cb' => 'wallow_pages_menu',
+						'theme_location' => 'primary'
+					) );
+				?>
 				<br class="fixfloat" />
 			</div>
 		</div>
@@ -701,24 +701,25 @@ function wallow_the_thumb() {
 // displays meta info (author,tags,comments,etc..)
 function wallow_top_meta() {
 
-	if ( ! is_page() ) {
-
 ?>
 	<div class="meta">
-		<?php _e( 'by', 'wallow' ); ?> <?php the_author() ?> &#8212; <?php _e( 'Categories', 'wallow' ); ?>: <?php the_category( ', ' ) ?> &#8212; <?php the_tags( __( 'Tags: ', 'wallow' ), ', ', ' &#8212; '); ?> <?php comments_popup_link( __( 'Leave a comment', 'wallow'), __( '1 Comment', 'wallow' ), __( '% Comments', 'wallow' )); // number of comments?> <?php edit_post_link( __( 'Edit', 'wallow' ), ' &#8212; ' ); ?>
+
+		<?php
+			if ( ! is_page() || get_comments_number() )
+				wallow_post_details( array(
+					'fields'				=> is_page() ? array( 'comments' ) : array( 'author', 'categories', 'tags', 'comments' ),
+					'author_label'			=> __( 'by %s', 'wallow' ),
+					'format'				=> 'div',
+				) );
+		?>
+
+		<?php edit_post_link( __( 'Edit', 'wallow' ), '' ); ?>
+
+		<?php if ( is_page() ) wallow_multipages(); ?>
+
 	</div>
 <?php
 
-	} else {
-
-?>
-	<div class="meta">
-		<?php if ( comments_open()) { comments_popup_link( __( 'Leave a comment', 'wallow' ), __( '1 Comment', 'wallow' ), __( '% Comments', 'wallow' ) ); }; ?> <?php edit_post_link( __( 'Edit', 'wallow' ), ' &#8212; ' ); ?>
-		<?php wallow_multipages(); ?>
-	</div>
-<?php
-
-	}
 }
 
 

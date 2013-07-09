@@ -519,7 +519,7 @@ class Wallow_Widget_Pop_Categories extends WP_Widget {
 		wp_list_categories(apply_filters( 'wallow_widget_pop_categories_args', $cat_args));
 
 ?>
-			<li class="tb_allcat" style="text-align: right;margin-top:12px;"><a title="<?php esc_attr_e( 'View all categories', 'wallow' ); ?>" href="<?php  echo home_url(); ?>/?allcat=y"><?php _e( 'View all', 'wallow' ); ?></a></li>
+			<li class="tb_allcat"><a title="<?php esc_attr_e( 'View all categories', 'wallow' ); ?>" href="<?php  echo home_url(); ?>/?allcat=y">[...]</a></li>
 		</ul>
 <?php
 		echo $after_widget;

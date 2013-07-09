@@ -32,11 +32,26 @@ THEME SPECIAL FUNCTIONS:
 	* Posts and pages thumbanils support
 	* Custom header: use your favorite image as header home link
 
+PLUG AND PLAY:
+	Native support for some plugins. You just have to install and activate them.
+	Supported plugins:
+	* WP-PageNavi (http://wordpress.org/extend/plugins/wp-pagenavi/)
+	* WP-Paginate (http://wordpress.org/extend/plugins/wp-paginate/)
+	* WP Multibyte Patch (http://wordpress.org/extend/plugins/wp-multibyte-patch/)
+	* TB Chat Post (https://github.com/TwoBeers/tb-chat-post)
+	* Breadcrumb NavXT (http://wordpress.org/extend/plugins/breadcrumb-navxt/)
+	* Yoast Breadcrumbs (http://wordpress.org/extend/plugins/breadcrumbs/ or http://wordpress.org/plugins/wordpress-seo/)
+	* TB Comment Tools (https://github.com/TwoBeers/tb-comment-tools)
+	* Jetpack (http://wordpress.org/plugins/jetpack/ or http://wordpress.org/plugins/slimjetpack/)
+
 CHANGE LOG (FROM VERSION 0.50):
-	* added a ton of new options
+	* native support for some plugins (see above)
+	* added TheHookAlliance hooks support
 	* new widgets
 	* code cleaned
 	* js optimized
+	* removed compatibility with versions of WordPress prior to 3.4
+	* removed Thickbox feature
 
 CHANGE LOG (FROM VERSION 0.46.5):
 	* Fixed print.css link

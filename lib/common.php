@@ -9,8 +9,18 @@
  */
 
 
+/* Custom actions - WP hooks */
+
 add_action( 'comment_form_before'				, 'wallow_enqueue_comments_reply' );
-add_action( 'wp_footer'							, 'wallow_init_scripts' );
+
+
+/* Custom actions - theme hooks */
+
+add_action( 'wallow_hook_body_top'				, 'wallow_init_scripts' );
+
+
+/* Custom filters - WP hooks */
+
 add_filter( 'page_css_class'					, 'wallow_add_parent_class', 10, 4 );
 add_filter( 'wp_nav_menu_objects'				, 'wallow_add_menu_parent_class' );
 add_filter( 'wp_list_categories'				, 'wallow_wrap_categories_count' );
@@ -164,55 +174,84 @@ if ( !function_exists( 'wallow_post_details' ) ) {
 	function wallow_post_details( $args = '' ) {
 
 		$defaults = array(
-			'id'				=> 0,
-			'featured'			=> 0,
-			'author'			=> 1,
-			'categories'		=> 1,
-			'tags'				=> 1,
-			'date'				=> 1,
-			'author_label'		=> '',
-			'categories_label'	=> __( 'Categories', 'wallow' ). ': ',
-			'tags_label'		=> __( 'Tags', 'wallow' ). ': ',
-			'date_label'		=> __( 'Published', 'wallow' ). ': ',
-			'avatar_size'		=> 48,
-			'separator'			=> apply_filters( 'wallow_filter_taxomony_separator', ', ' ),
-			'class'				=> '',
-			'echo'				=> 1,
+			'id'					=> 0,
+			'fields'				=> array( 'featured', 'author', 'categories', 'tags', 'date', 'comments' ),
+			'featured_label'		=> '',
+			'author_label'			=> '',
+			'categories_label'		=> __( 'Categories', 'wallow' ). ': ',
+			'tags_label'			=> __( 'Tags', 'wallow' ). ': ',
+			'date_label'			=> __( 'Published', 'wallow' ). ': ',
+			'comments_label'		=> __( 'Comments', 'wallow' ). ': ',
+			'featured_class'		=> 'thumb',
+			'author_class'			=> 'author',
+			'categories_class'		=> 'cats',
+			'tags_class'			=> 'tags',
+			'date_class'			=> 'date',
+			'comments_class'		=> 'comments',
+			'avatar_size'			=> 48,
+			'taxomony_separator'	=> apply_filters( 'wallow_filter_taxomony_separator', ', ' ),
+			'class'					=> '',
+			'format'				=> 'ul',
+			'echo'					=> 1,
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 
-		extract( $args, EXTR_SKIP );
+		foreach ( array( 'author_label', 'categories_label', 'tags_label', 'date_label', 'comments_label' ) as $label ) {
+			$args[$label] = $args[$label] ? '<span class="label">' . $args[$label] . '</span>' : $args[$label];
+		}
 
-		$id = intval( $id );
-		$post = get_post( $id );
+		$args['id'] = intval( $args['id'] );
+		$post = get_post( $args['id'] );
 
-		$class = $class ? ' '. esc_attr( $class ) : '';
+		$args['class'] = $args['class'] ? ' '. esc_attr( $args['class'] ) : '';
 
-		$output = '<ul class="post-details' . $class . '">';
+		$details = array();
 
-		if ( $featured &&  has_post_thumbnail( $post->ID ) )
-			$output .= '<li class="post-details-thumb">' . get_the_post_thumbnail( $post->ID, 'thumbnail') . '</li>';
+		foreach ( (array)$args['fields'] as $field ) {
 
-		if ( $author )
-			if ( $author_label )
-				$output .= '<li><span class="label">' . $author_label . '</span>' . get_the_author_meta( 'nickname', $post->post_author ) . '</li>';
-			else
-				$output .= '<li>' . wallow_author_badge( $post->post_author, $avatar_size ) . '</li>';
+			if ( $field == 'featured' )
+				$details[$field] = has_post_thumbnail( $post->ID ) ? get_the_post_thumbnail( $post->ID, 'thumbnail') : apply_filters( 'wallow_filter_details_featured', '' );
 
-		if ( $categories )
-			$output .= '<li class="post-details-cats"><span class="label">' . $categories_label . '</span>' . get_the_category_list( $separator, '', $post->ID ) . '</li>';
+			elseif ( $field == 'author' ) {
+				if ( $args['author_label'] )
+					$details[$field] = get_the_author_meta( 'nickname', $post->post_author );
+				else
+					$details[$field] = wallow_author_badge( $post->post_author, $args['avatar_size'] );
+			}
 
-		if ( $tags )
-			$tags = has_tag( '', $post->ID ) ? '</span>' . get_the_tags( '', $separator, '', $post->ID ) : __( 'No Tags', 'wallow' ) . '</span>';
-			$output .= '<li class="post-details-tags"><span class="label">' . $tags_label . $tags . '</li>';
+			elseif ( $field == 'categories' )
+				$details[$field] = get_the_category_list( $args['taxomony_separator'], '', $post->ID );
 
-		if ( $date )
-			$output .= '<li class="post-details-date"><span class="label">' . $date_label . '</span><a href="' . esc_url( get_day_link( get_the_time( 'Y', $post->ID ), get_the_time( 'm', $post->ID ), get_the_time( 'd', $post->ID ) ) ) . '">' . get_the_time( get_option( 'date_format' ), $post->ID ) . '</a></li>';
+			elseif ( $field == 'tags' )
+				$details[$field] = has_tag( '', $post->ID ) ? get_the_tag_list( '', $args['taxomony_separator'], '', $post->ID ) : __( 'No Tags', 'wallow' );
 
-		$output .= '</ul>';
+			elseif ( $field == 'date' )
+				$details[$field] = '<a href="' . esc_url( get_day_link( get_the_time( 'Y', $post->ID ), get_the_time( 'm', $post->ID ), get_the_time( 'd', $post->ID ) ) ) . '">' . get_the_time( get_option( 'date_format' ), $post->ID ) . '</a>';
 
-		if ( ! $echo )
+			elseif ( $field == 'comments' )
+				$details[$field] = wallow_get_comments_link();
+
+		}
+
+		if ( $args['format'] == 'array' )
+			return $details;
+
+		if ( $args['format'] == 'div' )
+			$tag = array( 'out' => 'div', 'in' => 'div' );
+		else
+			$tag = array( 'out' => 'ul', 'in' => 'li' );
+
+		$output = '<' . $tag['out'] . ' class="post-details' . $args['class'] . '">';
+
+		foreach ( $details as $key => $value ) {
+			$text = ( strpos( $args[$key . '_label'], '%s' ) === false ) ? $args[$key . '_label'] . $value : sprintf( $args[$key . '_label'], $value );
+			$output .= '<' . $tag['in'] . ' class="post-details-' . $args[$key . '_class'] . '">' . $text . '</' . $tag['in'] . '>';
+		}
+
+		$output .= '</' . $tag['out'] . '>';
+
+		if ( ! $args['echo'] )
 			return $output;
 
 		echo $output;
@@ -246,9 +285,64 @@ function wallow_author_badge( $author = '', $size = 32 ) {
 	$output .= $description ? '<li class="author-description note">' . $description . '</li>' : '';
 	$output .= $author_net ? '<li class="author-social">' . $author_net . '</li>' : '';
 
-	$output = '<div class="tb-post-details tb-author-bio vcard"><ul>' . $output . '</ul></div>';
+	$output = '<div class="tb-author-bio vcard"><ul>' . $output . '</ul></div>';
 
 	return apply_filters( 'wallow_filter_author_badge', $output );
+
+}
+
+
+// Displays the link to the comments
+function wallow_get_comments_link( $args = '' ) {
+
+	$defaults = array(
+		'zero'		=> false,
+		'one'		=> false,
+		'more'		=> false,
+		'css_class'	=> '',
+		'none'		=> false,
+		'before'	=> '',
+		'after'		=> '',
+		'id'		=> false,
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract($args, EXTR_SKIP);
+
+	if ( false === $zero )	$zero	= __( 'Leave a Comment', 'wallow' );
+	if ( false === $one )	$one	= __( '1 Comment', 'wallow' );
+	if ( false === $more )	$more	= __( '% Comments', 'wallow' );
+	if ( false === $none )	$none	= __( 'Comments Off', 'wallow' );
+	$id = ( $id ) ? (int)$id : get_the_ID();
+	$css_class = ( ! empty( $css_class ) ) ? ' class="' . esc_attr( $css_class ) . '"' : '';
+
+	$number = get_comments_number( $id );
+
+	if ( 0 == $number && !comments_open() && !pings_open() ) {
+
+		$output = $none ? $before . '<span' . $css_class . '>' . $none . '</span>' . $after : '';
+
+	} elseif ( post_password_required() ) {
+
+		$output = $before . __( 'Enter your password to view comments', 'wallow' ) . $after;
+
+	} else {
+
+		$label = wallow_get_opt( 'wallow_cust_comrep' ) ? '#comments' : '#respond';
+		$href = ( 0 == $number ) ? get_permalink() . $label : get_comments_link();
+		$title = esc_attr( sprintf( __( 'Comment on %s', 'wallow'), the_title_attribute( array( 'echo' => 0 ) ) ) );
+
+		if ( $number > 1 )
+			$text = str_replace( '%', number_format_i18n( $number ), $more );
+		elseif ( $number == 0 )
+			$text = $zero;
+		else
+			$text = $one;
+
+		$output = $before . '<a' . $css_class . ' href="' . esc_url( $href ) . '" title="' . $title . '">' . $text . '</a>' . $after;
+
+	}
+
+	return apply_filters( 'wallow_get_comments_link' , $output );
 
 }
 

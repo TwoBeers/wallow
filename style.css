@@ -1,7 +1,7 @@
 /*
 Theme Name: Wallow
 Theme URI: http://www.twobeers.net/annunci/wallow
-Description: Multistyle theme from TwoBeers. Use one of the six default styles or mix them to get your personal one. Wallow has a lot of features, like five built-in new widgets, the quickbar (a fixed bar for your most important widgets always on top), customizable menu, background and header, widgetized sidebar.
+Description: Multistyle theme from TwoBeers. Use one of the six default styles or mix them to get your personal one. Wallow has a lot of features, like new usefull widgets, the quickbar (a fixed bar for your most important widgets always on top), customizable menu, background and header, widgetized sidebar.
 Version: 0.60
 Tags: flexible-width, two-columns, theme-options, translation-ready, right-sidebar, custom-background, custom-menu, custom-header, black, blue, orange, dark, light
 Author: TwoBeers Crew
@@ -76,7 +76,7 @@ ol#comments li p {
 }
 
 ul {
-	list-style:none outside none;
+	list-style: disc inside none;
 }
 
 table {
@@ -104,6 +104,10 @@ fieldset {
 legend {
 	font-size:0.9em;
 	padding:3px;
+}
+
+select {
+	max-width: 100%;
 }
 
 #content img {
@@ -161,10 +165,6 @@ p {
 	padding-top:5px;
 }
 
-.footer_wig ul li:before {
-	content: "» ";
-}
-
 .footer_wig ul {
 	margin:0px;
 	padding:0px;
@@ -201,11 +201,23 @@ p {
 
 .meta,
 .comment-meta,
-.reply{
+.reply {
 	font-size: .9em;
 	font-weight: normal;
 	letter-spacing: 0;
 	padding-bottom: 5px;
+}
+
+.meta div {
+	display: inline;
+}
+
+.meta .post-details div + div:before {
+	content:" \2014  ";
+}
+
+.meta .post-details + .post-edit-link:before {
+	content:" \2014  ";
 }
 
 .storytitle {
@@ -222,6 +234,7 @@ p {
 .storycontent {
 	margin: 30px 0;
 	clear: both;
+	font-size:1.2em;
 }
 
 .storycontent p {
@@ -341,6 +354,7 @@ ul.children {
 	float: left;
 	margin: 5px 0;
 	padding: 2px 10px;
+	list-style: none;
 }
 
 #mainmenu > li.page_item > a,
@@ -369,11 +383,6 @@ ul.children {
 #mainmenu ul.sub-menu li {
 	margin: 0 0 0 10px;
 	padding: 5px 0 0;
-}
-
-#mainmenu ul.children li:before,
-#mainmenu ul.sub-menu li:before {
-	content: "» ";
 }
 
 #mainmenu .children li > div,
@@ -427,11 +436,10 @@ ul.children {
 
 #primary-sidebar .widgettitle {
 	font-weight: bold;
-	text-transform: lowercase;
 }
 
-#primary-sidebar .widget li:before {
-	content: "» ";
+#single-widgets-area .widget li {
+	border: none;
 }
 
 #primary-sidebar .widget ul ul {
@@ -503,12 +511,8 @@ ul.with-thumbs img {
 	padding: 0;
 }
 
-.tb-author-bio li:before {
-	content: '' !important;
-}
-
 .tb-author-bio li {
-	border: none !important;
+	list-style: none;
 }
 
 .tb-author-bio .author-avatar {
@@ -521,13 +525,23 @@ ul.with-thumbs img {
 }
 
 #single-widgets-area .widget {
-	width: 49%;
 	float: left;
+	margin: 0 0.9% 10px;
+	width: 48%;
 }
 
 #error404-widgets-area .widget {
 	width: 49%;
 	float: left;
+}
+
+.social-like .lc-user-name {
+	display: none;
+}
+
+.social-like li {
+	list-style: none;
+	display: inline;
 }
 
 /* <---- widget classes */
@@ -597,7 +611,6 @@ ul.with-thumbs img {
 }
 
 #content {
-	font-size:1.2em;
 	margin:20px 0 20px 20px;
 	padding:5px 10px;
 }
@@ -671,6 +684,7 @@ br.fixfloat {
 
 .search-reminder {
 	text-align: center;
+	text-shadow: 0 0 5px #000;
 }
 
 .search-term {
@@ -826,18 +840,19 @@ img.wp-post-image {
 /* <---- Captions & aligment */
 /* micronav ----> */
 #micronav {
-	width: 48px;
+	width: 64px;
 	height: 48px;
 	position: relative;
-	float: left;
+	float: right;
 	margin-top: -7px;
-	margin-left: -48px;
+	margin-right: 5px;
+	margin-left: 10px;
 }
 
 #micronav .prev a,
 #micronav .next a {
 	display: block;
-	width: 16px;
+	width: 22px;
 	height: 48px;
 	position: absolute;
 }
@@ -851,32 +866,38 @@ img.wp-post-image {
 #micronav .next a {
 	top: 0;
 	right: 0;
-	background-position: -32px 0;
+	background-position: -42px 0;
 }
 
-#micronav .up a,
-#micronav .home a,
-#micronav .down a {
+#micronav .home a {
 	display: block;
-	width: 16px;
-	height: 16px;
+	width: 28px;
+	height: 25px;
 	position: absolute;
 	left: 16px;
+}
+#micronav .up a,
+#micronav .down a {
+	display: block;
+	width: 12px;
+	height: 11px;
+	position: absolute;
+	left: 26px;
 }
 
 #micronav .up a {
 	top: 0;
-	background-position: -16px 0;
+	background-position: -26px 0;
 }
 
 #micronav .home a {
-	top: 16px;
-	background-position: -16px -16px;
+	top: 11px;
+	background-position: -16px -11px;
 }
 
 #micronav .down a {
-	top: 32px;
-	background-position: -16px -32px;
+	top: 36px;
+	background-position: -26px -36px;
 }
 
 #micronav .prev a:hover {
@@ -884,19 +905,19 @@ img.wp-post-image {
 }
 
 #micronav .next a:hover {
-	background-position: -32px -48px;
+	background-position: -42px -48px;
 }
 
 #micronav .up a:hover {
-	background-position: -16px -48px;
+	background-position: -26px -48px;
 }
 
 #micronav .home a:hover {
-	background-position: -16px -64px;
+	background-position: -16px -59px;
 }
 
 #micronav .down a:hover {
-	background-position: -16px -80px;
+	background-position: -26px -84px;
 }
 
 /* <---- micronav */
@@ -978,6 +999,19 @@ img.wp-post-image {
 
 .infinite-scroll .archive-navigation {
 	display: none;
+}
+
+/* WP Paginate
+----------------------------------------------------------*/
+.archive-navigation .navigation,
+.navigate_comments .navigation {
+	padding: 5px;
+}
+
+/* WP Paginate
+----------------------------------------------------------*/
+body .hentry .sharedaddy ul li {
+	border: none;
 }
 
 /* common */
