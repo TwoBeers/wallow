@@ -161,7 +161,7 @@ header("Cache-Control: public, max-age=$expires_offset");
 	border-top: 2px groove #fff;
 }
 
-.body-air .post ul li {
+.body-air .storycontent ul li {
 	border-left: 4px solid #333;
 }
 
@@ -642,11 +642,11 @@ header("Cache-Control: public, max-age=$expires_offset");
 	border-width: 1px;
 }
 
-.body-earth .post ul li {
+.body-earth .storycontent ul li {
 	border-left: 4px solid #3f2715;
 }
 
-.body-earth .post {
+.body-earth .hentry {
 	margin-bottom: 2em;
 }
 
@@ -865,7 +865,7 @@ header("Cache-Control: public, max-age=$expires_offset");
 	text-align: center;
 }
 
-.body-fire .post ul li {
+.body-fire .storycontent ul li {
 	border-left: 4px solid #333;
 }
 
@@ -1275,7 +1275,7 @@ header("Cache-Control: public, max-age=$expires_offset");
 	width: 105%;
 }
 
-.body-water .post ul li {
+.body-water .storycontent ul li {
 	border-left: 4px solid #333;
 }
 
@@ -2237,7 +2237,6 @@ header("Cache-Control: public, max-age=$expires_offset");
 	background: -o-linear-gradient(top,  #414141 0%,#5a5a5a 100%); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top,  #414141 0%,#5a5a5a 100%); /* IE10+ */
 	background: linear-gradient(to bottom,  #414141 0%,#5a5a5a 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#414141', endColorstr='#5a5a5a',GradientType=0 ); /* IE6-9 */
 	border: 1px solid #888;
 }
 

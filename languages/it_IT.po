@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Wallow v0.60\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2013-07-03 09:27:20+0000\n"
+"PO-Revision-Date: 2013-07-10 09:14:13+0000\n"
 "Last-Translator: TwoBeers Crew <light@twobeers.net>\n"
 "Language-Team: Twobeers Crew <translations@twobeers.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,26 +21,24 @@ msgstr ""
 "X-Textdomain-Support: yes"
 
 #: comments.php:27
-#: functions.php:821
-#: functions.php:829
+#: lib/common.php:313
 #@ wallow
 msgid "% Comments"
 msgstr "% commenti"
 
-#: functions.php:947
+#: functions.php:808
 #: lib/options.php:86
 #@ wallow
 msgid "(no title)"
 msgstr "(senza titolo)"
 
 #: comments.php:27
-#: functions.php:821
-#: functions.php:829
+#: lib/common.php:312
 #@ wallow
 msgid "1 Comment"
 msgstr "1 commento"
 
-#: functions.php:494
+#: functions.php:473
 #@ wallow
 msgid "This page has hierarchy"
 msgstr "Questa pagina ha una gerarchia"
@@ -71,27 +69,27 @@ msgstr "Tutti i diritti riservati"
 msgid "Appearance"
 msgstr "Aspetto"
 
-#: lib/widgets.php:1355
+#: lib/widgets.php:1447
 #@ wallow
 msgid "Archives"
 msgstr "Archivi"
 
 #: allcat.php:25
-#: functions.php:821
-#: lib/widgets.php:1083
-#: lib/widgets.php:1172
+#: lib/common.php:181
+#: lib/widgets.php:1175
+#: lib/widgets.php:1264
 #@ wallow
 msgid "Categories"
 msgstr "Categorie"
 
-#: functions.php:610
-#: lib/widgets.php:816
+#: lib/common.php:136
+#: lib/widgets.php:908
 #: mobile/core-mobile.php:301
 #@ wallow
 msgid "Category"
 msgstr "Categoria"
 
-#: functions.php:506
+#: lib/common.php:57
 #@ wallow
 msgid "Child pages: "
 msgstr "Pagine discendenti: "
@@ -102,6 +100,7 @@ msgstr "Pagine discendenti: "
 msgid "Comment authors <strong>must</strong> use a name and a valid e-mail in order to use this widget. Check the <a href=\"%1$s\">Discussion settings</a>"
 msgstr "Per poter utilizzare questo widget gli autori dei commenti <strong>devono</strong> usare un nome e una e-mail valida. Controlla le <a href=\"%1$s\">Impostazioni discussione</a>"
 
+#: lib/common.php:184
 #: lib/widgets.php:453
 #: mobile/comments-mobile.php:21
 #@ wallow
@@ -113,8 +112,7 @@ msgstr "Commenti"
 msgid "Default style = fire"
 msgstr "Stile predefinito = fuoco"
 
-#: functions.php:821
-#: functions.php:829
+#: functions.php:726
 #@ wallow
 msgid "Edit"
 msgstr "Modifica"
@@ -152,9 +150,7 @@ msgstr "Attivit&agrave; recente"
 msgid "Latest comment authors"
 msgstr "Commentatori più recenti"
 
-#: functions.php:821
-#: functions.php:829
-#: functions.php:852
+#: functions.php:750
 #: mobile/core-mobile.php:361
 #@ wallow
 msgid "Leave a comment"
@@ -165,13 +161,13 @@ msgstr "Lascia un commento"
 msgid "Leave a feedback"
 msgstr "Lascia un feedback"
 
-#: functions.php:161
+#: functions.php:144
 #@ wallow
 msgid "Main Navigation Menu"
 msgstr "Menu di navigazione principale"
 
-#: functions.php:700
-#: functions.php:1224
+#: functions.php:606
+#: functions.php:962
 #@ wallow
 msgid "Newer Posts"
 msgstr "Articoli più recenti"
@@ -181,8 +177,8 @@ msgstr "Articoli più recenti"
 msgid "No Comments"
 msgstr "Nessun commento"
 
-#: functions.php:698
-#: functions.php:1217
+#: functions.php:604
+#: functions.php:955
 #@ wallow
 msgid "Older Posts"
 msgstr "Articoli più vecchi"
@@ -197,7 +193,7 @@ msgstr "Impostazioni salvate."
 msgid "Page not found"
 msgstr "Pagina non trovata."
 
-#: functions.php:730
+#: functions.php:634
 #: mobile/loop-front-page-mobile.php:23
 #: mobile/loop-page-mobile.php:8
 #: mobile/loop-single-mobile.php:24
@@ -205,17 +201,17 @@ msgstr "Pagina non trovata."
 msgid "Pages"
 msgstr "Pagine"
 
-#: functions.php:497
+#: lib/common.php:56
 #@ wallow
 msgid "Parent page: "
-msgstr "Pagina madre:"
+msgstr "Pagina madre: "
 
 #: mobile/core-mobile.php:359
 #@ wallow
 msgid "Say It!"
 msgstr "Dillo!"
 
-#: functions.php:632
+#: lib/common.php:116
 #: mobile/core-mobile.php:323
 #, php-format
 #@ wallow
@@ -229,7 +225,7 @@ msgstr "Seleziona uno degli stili preassemblati o mischiali per creare il tuo st
 
 #: lib/widgets.php:168
 #: lib/widgets.php:282
-#: lib/widgets.php:838
+#: lib/widgets.php:930
 #@ wallow
 msgid "Show post thumbnails"
 msgstr "Mostra miniature articoli"
@@ -258,21 +254,11 @@ msgstr "Nessun articolo risponde ai criteri di ricerca impostati."
 msgid "Sorry, you're looking for something that isn't here"
 msgstr "Spiacente, stai cercando qualcosa che non esiste"
 
-#: functions.php:558
-#@ wallow
-msgid "Syndicate this site using RSS 2.0"
-msgstr "Abbonati a questo sito usando RSS 2.0"
-
-#: functions.php:611
+#: lib/common.php:137
 #: mobile/core-mobile.php:302
 #@ wallow
 msgid "Tag"
 msgstr "Tag"
-
-#: functions.php:821
-#@ wallow
-msgid "Tags: "
-msgstr "Tag:"
 
 #: lib/widgets.php:296
 #@ wallow
@@ -289,7 +275,7 @@ msgstr "Gli articoli con i commenti più recenti"
 msgid "The most commented posts on your site"
 msgstr "Gli articoli più commentati di questo sito"
 
-#: functions.php:289
+#: functions.php:284
 #: lib/admin.php:23
 #: lib/admin.php:24
 #: lib/admin.php:258
@@ -297,7 +283,7 @@ msgstr "Gli articoli più commentati di questo sito"
 msgid "Theme Options"
 msgstr "Opzioni tema"
 
-#: functions.php:849
+#: functions.php:747
 #@ wallow
 msgid "TrackBack URL"
 msgstr "TrackBack URL"
@@ -316,11 +302,6 @@ msgstr "Aggiorna opzioni"
 #@ wallow
 msgid "User quick links"
 msgstr "Link rapidi utente"
-
-#: lib/widgets.php:522
-#@ wallow
-msgid "View all"
-msgstr "Mostra tutti"
 
 #: lib/widgets.php:522
 #@ wallow
@@ -348,7 +329,7 @@ msgstr "Prova a:"
 msgid "Your Profile"
 msgstr "Il tuo profilo"
 
-#: functions.php:139
+#: functions.php:122
 #@ wallow
 msgid "air"
 msgstr "aria"
@@ -359,12 +340,7 @@ msgstr "aria"
 msgid "avatar"
 msgstr "avatar"
 
-#: functions.php:821
-#@ wallow
-msgid "by"
-msgstr "di"
-
-#: functions.php:143
+#: functions.php:126
 #@ wallow
 msgid "clouds"
 msgstr "nuvole"
@@ -386,12 +362,12 @@ msgstr "predefinito: \"Benvenuto %s\" , dove %s è il nome dell'utente"
 msgid "drag here your favorite widgets"
 msgstr "trascina qui i tuoi widgets preferiti"
 
-#: functions.php:141
+#: functions.php:124
 #@ wallow
 msgid "earth"
 msgstr "terra"
 
-#: functions.php:138
+#: functions.php:121
 #@ wallow
 msgid "fire"
 msgstr "fuoco"
@@ -427,12 +403,12 @@ msgstr "quickbar"
 msgid "sidebar"
 msgstr "barra laterale"
 
-#: functions.php:142
+#: functions.php:125
 #@ wallow
 msgid "smoke"
 msgstr "fumo"
 
-#: functions.php:140
+#: functions.php:123
 #@ wallow
 msgid "water"
 msgstr "acqua"
@@ -600,11 +576,6 @@ msgstr "dimensione caratteri"
 msgid "Google web font"
 msgstr "Google web font"
 
-#: lib/options.php:260
-#@ wallow
-msgid "Copy and paste <a href=\"http://www.google.com/webfonts\" target=\"_blank\"><strong>Google web font</strong></a> name here. Example: <code>Architects Daughter</code>"
-msgstr "Copia e incolla qui il nome della <a href=\"http://www.google.com/webfonts\" target=\"_blank\"><strong>Google web font</strong></a>. Ad esempio: <code>Architects Daughter</code>"
-
 #: lib/options.php:269
 #@ wallow
 msgid "for whole page"
@@ -647,50 +618,30 @@ msgstr "prova a disabilitare le animazioni se riscontri dei problemi con javascr
 
 #: lib/options.php:330
 #@ wallow
-msgid "thickbox"
-msgstr "thickbox"
-
-#: lib/options.php:331
-#@ wallow
-msgid "use thickbox for showing images and galleries"
-msgstr "usa thickbox per viualizzare immagini e gallerie"
-
-#: lib/options.php:340
-#@ wallow
-msgid "gallery links"
-msgstr "collegamenti nelle gallerie"
-
-#: lib/options.php:341
-#@ wallow
-msgid "force galleries to use links to image instead of links to attachment"
-msgstr "forza le gallerie ad utilizzare il collegamento alle immagini anzichè agli allegati"
-
-#: lib/options.php:350
-#@ wallow
 msgid "custom widgets"
 msgstr "widget personalizzati"
 
-#: lib/options.php:351
+#: lib/options.php:331
 #@ wallow
 msgid "add a lot of new usefull widgets"
 msgstr "aggiugi un sacco di widget utili"
 
-#: lib/options.php:359
+#: lib/options.php:339
 #@ wallow
 msgid "custom CSS code"
 msgstr "codice CSS personalizzato"
 
-#: lib/options.php:360
+#: lib/options.php:340
 #@ wallow
 msgid "<strong>For advanced users only</strong>: paste here your custom css code. it will be added after the defatult style"
 msgstr "<strong>Solo per utenti esperti</strong>: incolla qui il tuo codice css personslizzato, che verrà aggiunto allo stile di predefinito"
 
-#: lib/options.php:368
+#: lib/options.php:348
 #@ wallow
 msgid "theme credits"
 msgstr "crediti del tema"
 
-#: lib/options.php:369
+#: lib/options.php:349
 #@ wallow
 msgid "please, don't hide theme credits. TwoBeers.net's authors reserve themselfs to give support only to those who recognize TwoBeers work, keeping TwoBeers.net credits visible on their site."
 msgstr "per favore non nascondete i crediti del tema."
@@ -776,13 +727,15 @@ msgstr "Rispondi a %s"
 msgid "Mobile Widget Area"
 msgstr "Area Widget Mobile"
 
-#: lib/widgets.php:1087
-#: lib/widgets.php:1168
+#: lib/common.php:182
+#: lib/widgets.php:1179
+#: lib/widgets.php:1260
 #@ wallow
 msgid "Tags"
 msgstr "Tag"
 
-#: lib/widgets.php:1086
+#: lib/common.php:227
+#: lib/widgets.php:1178
 #@ wallow
 msgid "No Tags"
 msgstr "Nessuna tag"
@@ -851,45 +804,45 @@ msgstr "Ci sono parecchi link sparsi per la pagina, magari uno di questi potrebb
 msgid "Perhaps using the search form will help too..."
 msgstr "Forse il modulo di ricerca potrebbe esserti utile..."
 
-#: functions.php:612
+#: lib/common.php:138
 #: mobile/core-mobile.php:303
 #@ wallow
 msgid "Taxonomy"
 msgstr "Tassonomia"
 
-#: functions.php:615
-#: lib/widgets.php:1164
+#: lib/common.php:143
+#: lib/widgets.php:1256
 #: mobile/core-mobile.php:306
 #@ wallow
 msgid "Date"
 msgstr "Data"
 
-#: functions.php:624
-#: lib/widgets.php:1147
+#: lib/common.php:154
+#: lib/widgets.php:1239
 #: mobile/core-mobile.php:315
 #@ wallow
 msgid "Author"
 msgstr "Autore"
 
-#: functions.php:628
+#: functions.php:567
 #, php-format
 #@ wallow
 msgid "%s archive"
 msgstr "Archivio di %s"
 
-#: functions.php:676
+#: lib/common.php:280
 #, php-format
 #@ wallow
 msgid "Follow %s on %s"
 msgstr "Segui %s su %s"
 
-#: functions.php:846
+#: functions.php:744
 #, php-format
 #@ wallow
 msgid "%s feed for comments on this post"
 msgstr "%s feed per i commenti su questo articolo"
 
-#: functions.php:948
+#: functions.php:809
 #@ wallow
 msgid "Post"
 msgstr "Articolo"
@@ -952,21 +905,21 @@ msgstr "Articoli Popolari"
 #: lib/widgets.php:391
 #: lib/widgets.php:477
 #: lib/widgets.php:544
-#: lib/widgets.php:626
-#: lib/widgets.php:811
-#: lib/widgets.php:884
-#: lib/widgets.php:920
-#: lib/widgets.php:1021
-#: lib/widgets.php:1138
-#: lib/widgets.php:1280
-#: lib/widgets.php:1359
+#: lib/widgets.php:757
+#: lib/widgets.php:903
+#: lib/widgets.php:976
+#: lib/widgets.php:1012
+#: lib/widgets.php:1113
+#: lib/widgets.php:1230
+#: lib/widgets.php:1372
+#: lib/widgets.php:1451
 #@ wallow
 msgid "Title"
 msgstr "Titolo"
 
 #: lib/widgets.php:162
 #: lib/widgets.php:276
-#: lib/widgets.php:833
+#: lib/widgets.php:925
 #@ wallow
 msgid "Number of posts to show"
 msgstr "Nureo di articoli da visualizzare"
@@ -992,284 +945,274 @@ msgstr "Categorie Popolari"
 msgid "Number of categories to show"
 msgstr "Numero di categorie da visualizzare"
 
-#: lib/widgets.php:568
-#@ wallow
-msgid "This widget lets visitors of your blog subscribe to it and follow you on popular social networks like Twitter, FaceBook etc."
-msgstr "Questo widget da la possibilità ai lettori di seguirti sui principale social network, come Twitter, FaceBook, etc"
-
 #: lib/widgets.php:571
-#: lib/widgets.php:615
+#: lib/widgets.php:618
 #@ wallow
 msgid "Follow Me"
 msgstr "Seguimi"
 
-#: lib/widgets.php:630
+#: lib/widgets.php:763
 #@ wallow
 msgid "NOTE: Enter the <strong>full</strong> addresses ( with <em>http://</em> )"
 msgstr "Nota: inserisci il titolo <strong>completo</strong> ( con <em>http://</em> )"
 
-#: lib/widgets.php:647
-#, php-format
-#@ wallow
-msgid "Enter %1$s account link:"
-msgstr "Inserisci il link a %1$s"
-
-#: lib/widgets.php:661
+#: lib/widgets.php:794
 #@ wallow
 msgid "Select your icon size"
 msgstr "Seleziona la dimensione delle icone"
 
-#: lib/widgets.php:732
+#: lib/widgets.php:824
 #@ wallow
 msgid "The most recent posts in a single category"
 msgstr "Gli articoli più recenti nella singola categoria"
 
-#: lib/widgets.php:733
+#: lib/widgets.php:825
 #@ wallow
 msgid "Recent Posts in Category"
 msgstr "Articoli recenti nella Categoria"
 
-#: lib/widgets.php:757
+#: lib/widgets.php:849
 #, php-format
 #@ wallow
 msgid "Recent Posts in %s"
 msgstr "Articoli Recenti in %s"
 
-#: lib/widgets.php:851
+#: lib/widgets.php:943
 #@ wallow
 msgid "Display image details. It's visible ONLY in single attachments"
 msgstr "Visualizza i dettagli dell'immagine. E' visibile SOLAMENTE nei singoli articoli"
 
-#: lib/widgets.php:852
-#: lib/widgets.php:917
+#: lib/widgets.php:944
+#: lib/widgets.php:1009
 #@ wallow
 msgid "Image details"
 msgstr "Dettagli immagine"
 
-#: lib/widgets.php:879
+#: lib/widgets.php:971
 #@ wallow
 msgid "Width"
 msgstr "Larghezza"
 
-#: lib/widgets.php:880
+#: lib/widgets.php:972
 #@ wallow
 msgid "Height"
 msgstr "Altezza"
 
-#: lib/widgets.php:881
+#: lib/widgets.php:973
 #@ wallow
 msgid "Date Taken"
 msgstr "Scattata il"
 
-#: lib/widgets.php:882
+#: lib/widgets.php:974
 #@ wallow
 msgid "Copyright"
 msgstr "Copyright"
 
-#: lib/widgets.php:883
+#: lib/widgets.php:975
 #@ wallow
 msgid "Credit"
 msgstr "Crediti"
 
-#: lib/widgets.php:885
+#: lib/widgets.php:977
 #@ wallow
 msgid "Caption"
 msgstr "Etichetta"
 
-#: lib/widgets.php:886
+#: lib/widgets.php:978
 #@ wallow
 msgid "Camera"
 msgstr "Fotocamera"
 
-#: lib/widgets.php:887
+#: lib/widgets.php:979
 #@ wallow
 msgid "Focal Length"
 msgstr "Lunghezza Focale"
 
-#: lib/widgets.php:888
+#: lib/widgets.php:980
 #@ wallow
 msgid "Aperture"
 msgstr "Apertura"
 
-#: lib/widgets.php:889
+#: lib/widgets.php:981
 #@ wallow
 msgid "ISO"
 msgstr "ISO"
 
-#: lib/widgets.php:890
+#: lib/widgets.php:982
 #@ wallow
 msgid "Shutter Speed"
 msgstr "Velocità Otturatore"
 
-#: lib/widgets.php:890
+#: lib/widgets.php:982
 #, php-format
 #@ wallow
 msgid "%s seconds"
 msgstr "%s secondi"
 
-#: lib/widgets.php:953
+#: lib/widgets.php:1045
 #@ wallow
 msgid "Show some popular sharing services links. It's visible ONLY in single posts, pages and attachments"
 msgstr "Visualizza alcuni dei principali servizi di condivisione. E' visibile SOLAMENTE nei singoli articoli"
 
-#: lib/widgets.php:954
-#: lib/widgets.php:1009
+#: lib/widgets.php:1046
+#: lib/widgets.php:1101
 #@ wallow
 msgid "Share this"
 msgstr "Condividi questo"
 
-#: lib/widgets.php:979
+#: lib/widgets.php:1071
 #, php-format
 #@ wallow
 msgid "Share with %s"
 msgstr "Condividi con %s"
 
-#: lib/widgets.php:1025
+#: lib/widgets.php:1117
 #@ wallow
 msgid "Select icon size"
 msgstr "Seleziona la dimensione delle icone"
 
-#: lib/widgets.php:1049
+#: lib/widgets.php:1141
 #@ wallow
 msgid "Show some details and links related to the current post. It's visible ONLY in single posts"
 msgstr "Visualizza alcuni dettagli e collegamenti relativi all'articolo corrente. E' visibile SOLAMENTE nei singoli articoli"
 
-#: lib/widgets.php:1050
-#: lib/widgets.php:1128
+#: lib/widgets.php:1142
+#: lib/widgets.php:1220
 #: mobile/core-mobile.php:382
 #@ wallow
 msgid "Post details"
 msgstr "Dettagli dell'articolo"
 
-#: lib/widgets.php:1090
+#: lib/common.php:183
+#: lib/widgets.php:1182
 #@ wallow
 msgid "Published"
 msgstr "Pubblicato"
 
-#: lib/widgets.php:1143
+#: lib/widgets.php:1235
 #@ wallow
 msgid "Thumbnail"
 msgstr "Miniatura"
 
-#: lib/widgets.php:1150
+#: lib/widgets.php:1242
 #@ wallow
 msgid "Select avatar size"
 msgstr "Seleziona la dimensione dell'avatar"
 
-#: lib/widgets.php:1187
+#: lib/widgets.php:1279
 #@ wallow
 msgid "The most recent comments"
 msgstr "I commenti più recenti"
 
-#: lib/widgets.php:1188
+#: lib/widgets.php:1280
 #@ wallow
 msgid "Recent Comments (Enhanced)"
 msgstr "Commenti Recenti (Potenziato)"
 
-#: lib/widgets.php:1229
+#: lib/widgets.php:1321
 #@ wallow
 msgid "Recent Comments"
 msgstr "Commenti Recenti"
 
 #. translators: comments widget: 1: comment author, 2: post link
-#: lib/widgets.php:1248
+#: lib/widgets.php:1340
 #, php-format
 #@ wallow
 msgctxt "widgets"
 msgid "%1$s on %2$s"
 msgstr "%1$s in %2$s"
 
-#: lib/widgets.php:1283
+#: lib/widgets.php:1375
 #@ wallow
 msgid "Number of comments to show"
 msgstr "Numero di commenti da visualizzare"
 
-#: lib/widgets.php:1287
+#: lib/widgets.php:1379
 #@ wallow
 msgid "Show excerpt"
 msgstr "Visualizza il riassunto"
 
-#: lib/widgets.php:1299
+#: lib/widgets.php:1391
 #@ wallow
 msgid "Show archives in a cleaner way"
 msgstr "Visualizza gli archivi in maniera semplice e compatta"
 
-#: lib/widgets.php:1300
+#: lib/widgets.php:1392
 #@ wallow
 msgid "Clean Archives"
 msgstr "Archivi Semplici"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "jan"
 msgstr "gen"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "feb"
 msgstr "feb"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "mar"
 msgstr "mar"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "apr"
 msgstr "apr"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "may"
 msgstr "mag"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "jun"
 msgstr "giu"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "jul"
 msgstr "lug"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "aug"
 msgstr "ago"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "sep"
 msgstr "set"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "oct"
 msgstr "ott"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "nov"
 msgstr "nov"
 
-#: lib/widgets.php:1323
+#: lib/widgets.php:1415
 #@ wallow
 msgid "dec"
 msgstr "dic"
 
-#: lib/widgets.php:1363
+#: lib/widgets.php:1455
 #@ wallow
 msgid "Select month style"
 msgstr "Seleziona lo stile del mese"
 
-#: lib/widgets.php:1365
+#: lib/widgets.php:1457
 #@ wallow
 msgid "number"
 msgstr "numero"
 
-#: lib/widgets.php:1366
+#: lib/widgets.php:1458
 #@ wallow
 msgid "acronym"
 msgstr "acronimo"
@@ -1290,8 +1233,83 @@ msgstr "Utilizza %s e %s"
 msgid "Visit theme authors homepage"
 msgstr "Visita il sito degli autori del tema"
 
-#: functions.php:855
+#: functions.php:753
 #@ wallow
 msgid "Comments closed"
 msgstr "Commenti chiusi"
+
+#: functions.php:721
+#, php-format
+#@ wallow
+msgid "by %s"
+msgstr "di %s"
+
+#: lib/common.php:311
+#@ wallow
+msgid "Leave a Comment"
+msgstr "Lascia un Commento"
+
+#: lib/common.php:314
+#@ wallow
+msgid "Comments Off"
+msgstr "Commenti disabilitati"
+
+#: lib/common.php:326
+#@ wallow
+msgid "Enter your password to view comments"
+msgstr "Inserisci la password per vedere i commenti"
+
+#: lib/common.php:332
+#, php-format
+#@ wallow
+msgid "Comment on %s"
+msgstr "Commenti su %s"
+
+#: lib/options.php:260
+#@ wallow
+msgid "Copy and paste <a href=\"http://www.google.com/webfonts\" target=\"_blank\"><strong>Google web font</strong></a> name here. Example: <code>Open Sans</code>"
+msgstr "Copia e incolla qui il nome della <a href=\"http://www.google.com/webfonts\" target=\"_blank\"><strong>Google web font</strong></a>. Esempio: <code>Open Sans</code>"
+
+#: lib/widgets.php:567
+#@ wallow
+msgid "This widget lets visitors of your blog to subscribe to it and follow you on popular social networks like Twitter, FaceBook etc."
+msgstr "Questo widget permette ai tuoi visitatori di iscriversi e seguirti sui più popolari social network, come Twitter, Facebook ecc"
+
+#: lib/widgets.php:665
+#, php-format
+#@ wallow
+msgid "Follow us on %s"
+msgstr "Seguici su %s"
+
+#: lib/widgets.php:671
+#@ wallow
+msgid "Keep updated with our RSS feed"
+msgstr "Resta aggiornato con i nostri feed RSS"
+
+#: lib/widgets.php:675
+#@ wallow
+msgid "Contact us"
+msgstr "Contattaci"
+
+#: lib/widgets.php:754
+#: lib/widgets.php:810
+#@ wallow
+msgid "Invalid value"
+msgstr "Valore non valido"
+
+#: lib/widgets.php:777
+#, php-format
+#@ wallow
+msgid "Enter your %1$s account link"
+msgstr "Inserisci il link al tuo account su %1$s"
+
+#: lib/widgets.php:779
+#@ wallow
+msgid "Enter email address"
+msgstr "Inserisci l'indirizzo email"
+
+#: lib/widgets.php:781
+#@ wallow
+msgid "Enter your feed service address. Leave it blank for using the default WordPress feed"
+msgstr "Inserisci l'indirizzo del tuo feed RSS. Lascialo vuoto se vuoi usare i feed predefiniti di WordPress"
 

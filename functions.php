@@ -233,6 +233,18 @@ if ( !function_exists( 'wallow_header_style' ) ) {
 <?php } ?>
 
 		</style>
+		<!-- InternetExplorer really sucks! -->
+		<!--[if lte IE 8]>
+		<style type="text/css">
+			.storycontent img.size-full,
+			.storycontent img.size-large,
+			.widget img.size-full,
+			.widget img.size-large,
+			.gallery img {
+				width:auto;
+			}
+		</style>
+		<![endif]-->
 <?php
 
 	}

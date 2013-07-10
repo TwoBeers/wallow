@@ -107,7 +107,7 @@ legend {
 }
 
 select {
-	max-width: 100%;
+	max-width: 90%;
 }
 
 #content img {
@@ -188,15 +188,16 @@ p {
 
 /* <---- Quickbar classes */
 /* Post classes ----> */
-.post {
+.hentry {
 	position:relative;
 	margin-bottom:3em;
 }
 
-.post ol,
-.post ul {
+.storycontent ol,
+.storycontent ul {
 	padding:0 0 0 27px;
 	margin: 0px;
+	list-style: none;
 }
 
 .meta,
@@ -446,15 +447,7 @@ ul.children {
 }
 
 #primary-sidebar select {
-	font-family:inherit;
-	font-size:inherit;
-	font-size-adjust:inherit;
-	font-stretch:inherit;
-	font-style:inherit;
-	font-variant:inherit;
-	font-weight:normal;
-	line-height:inherit;
-	max-width:100%;
+	max-width:90%;
 }
 
 .widget {
