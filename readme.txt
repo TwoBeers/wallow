@@ -52,6 +52,7 @@ CHANGE LOG (FROM VERSION 0.50):
 	* js optimized
 	* removed compatibility with versions of WordPress prior to 3.4
 	* removed Thickbox feature
+	* qr thumbnails
 
 CHANGE LOG (FROM VERSION 0.46.5):
 	* Fixed print.css link

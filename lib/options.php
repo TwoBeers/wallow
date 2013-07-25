@@ -145,7 +145,7 @@ function wallow_get_coa( $option = false ) {
 							'description' => __( 'posts thumbnail', 'wallow' ),
 							'info' => '',
 							'req' => '',
-							'sub' => array( 'wallow_pthumb_size' )
+							'sub' => array( 'wallow_pthumb_size', 'wallow_pthumb_qrcode' )
 						),
 		'wallow_pthumb_size' =>
 						array(
@@ -155,6 +155,16 @@ function wallow_get_coa( $option = false ) {
 							'options' => array( 64, 96, 120, 150 ),
 							'options_readable' => array( '64px', '96px', '120px', '150px' ),
 							'description' => __( 'thumbnail size', 'wallow' ),
+							'info' => '',
+							'req' => '',
+							'sub' => false
+						),
+		'wallow_pthumb_qrcode' => 
+						array(
+							'group' => 'quickbar',
+							'type' => 'chk',
+							'default' => 0,
+							'description' => __( 'use qr code', 'wallow' ),
 							'info' => '',
 							'req' => '',
 							'sub' => false

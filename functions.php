@@ -454,7 +454,9 @@ function wallow_get_the_thumb( $args = '' ) {
 
 	$output = '';
 
-	if ( has_post_thumbnail( $args['id'] ) )
+	if ( wallow_get_opt( 'wallow_pthumb_qrcode' ) )
+		$output = '<img class="feaured-image qrcode ' . $args['class'] . '" src="http://chart.apis.google.com/chart?cht=qr&chs=' . $args['width'] . 'x' . $args['height'] . '&chl=' . urlencode( home_url() . '/?p=' . $args['id'] ) . '&chld=L|0" alt="thumbnail" />';
+	elseif ( has_post_thumbnail( $args['id'] ) )
 		$output = get_the_post_thumbnail( $args['id'], array( $args['width'], $args['height'] ), array( 'class' => $args['class'] ) );
 
 	if ( $output && $args['linked'] )
