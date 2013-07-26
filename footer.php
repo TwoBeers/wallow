@@ -28,7 +28,7 @@
 			<div id="credits" class="fixfloat">
 				&copy; <?php echo date("Y"); ?>  <strong><?php bloginfo( 'name' ); ?></strong> <?php _e( 'All rights reserved', 'wallow' ); ?>
 				<?php wallow_hook_change_view(); ?>
-				<?php if ( wallow_get_opt( 'wallow_tbcred' ) ) { ?> - Powered by <a href="http://wordpress.org"><strong>WordPress</strong></a> and <a title="v<?php echo wallow_get_info( 'version' ); ?>" href="http://www.twobeers.net/"><strong>Wallow</strong></a><?php } ?> - <?php _e( 'Have fun!', 'wallow' ); ?>
+				<?php if ( wallow_get_opt( 'wallow_tbcred' ) ) { ?> - Powered by <a href="http://wordpress.org"><strong>WordPress</strong></a> and <a title="v<?php echo esc_attr( wallow_get_info( 'version' ) ); ?>" href="http://www.twobeers.net/"><strong>Wallow</strong></a><?php } ?> - <?php _e( 'Have fun!', 'wallow' ); ?>
 			</div>
 
 			<!-- <?php echo get_num_queries(); ?> queries. <?php timer_stop(1); ?> seconds. -->

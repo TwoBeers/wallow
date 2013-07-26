@@ -26,7 +26,7 @@
 			<p id="themecredits">
 				<?php echo sprintf( __('Powered by %s and %s','wallow'), '<a target="_blank" href="http://wordpress.org/" title="WordPress">WordPress</a>', '<a target="_blank" href="http://www.twobeers.net/" title="' . esc_attr( __( 'Visit theme authors homepage','wallow' ) ) . ' @ twobeers.net">wallow</a>') ; ?>
 			</p>
-			<?php wp_loginout(); wp_register( ' | ', '' ); ?><?php echo ' | <a href="' . home_url() . '?mobile_override=desktop">'. __( 'Desktop View', 'wallow' ) .'</a>'; ?>
+			<?php wp_loginout(); wp_register( ' | ', '' ); ?><?php echo ' | <a href="' . esc_url( home_url() . '?mobile_override=desktop' ) . '">'. __( 'Desktop View', 'wallow' ) .'</a>'; ?>
 </div>
 		<?php wp_footer(); ?>
 

@@ -72,8 +72,8 @@ class Wallow_Quickbar {
 		$is_archive = ( is_archive() || is_search() || is_home() ) && ! wallow_is_allcat();
 
 		if ( $is_post ) {
-			$next = get_next_post()? '<a title="' . sprintf( __( 'Next Post', 'wallow' ) . ': %s', get_the_title( get_next_post() ) ) . '" href="' . get_permalink( get_next_post() ) . '">&nbsp;</a>' : '';
-			$prev = get_previous_post()? '<a title="' . sprintf( __( 'Previous Post', 'wallow' ) . ': %s', get_the_title( get_previous_post() ) ) . '" href="' . get_permalink( get_previous_post() ) . '">&nbsp;</a>' : '';
+			$next = get_next_post()? '<a title="' . esc_attr( sprintf( __( 'Next Post', 'wallow' ) . ': %s', get_the_title( get_next_post() ) ) ) . '" href="' . esc_url( get_permalink( get_next_post() ) ) . '">&nbsp;</a>' : '';
+			$prev = get_previous_post()? '<a title="' . esc_attr( sprintf( __( 'Previous Post', 'wallow' ) . ': %s', get_the_title( get_previous_post() ) ) ) . '" href="' . esc_url( get_permalink( get_previous_post() ) ) . '">&nbsp;</a>' : '';
 		} elseif ( $is_archive ) {
 			$prev = get_next_posts_link()? get_next_posts_link('&nbsp;') : '';
 			$next = get_previous_posts_link()? get_previous_posts_link('&nbsp;') : '';
@@ -86,9 +86,9 @@ class Wallow_Quickbar {
 	<div id="micronav">
 		<div class="next archive-navigation"><?php echo $next; ?></div>
 		<div class="prev archive-navigation"><?php echo $prev; ?></div>
-		<div class="home"><a title="<?php _e( 'Home', 'wallow' ); ?>" href="<?php echo home_url(); ?>">&nbsp;</a></div>
-		<div class="up"><a title="<?php _e( 'Top', 'wallow' ); ?>" href="#">&nbsp;</a></div>
-		<div class="down"><a title="<?php _e( 'Bottom', 'wallow' ); ?>" href="#credits">&nbsp;</a></div>
+		<div class="home"><a title="<?php esc_attr_e( 'Home', 'wallow' ); ?>" href="<?php echo esc_url( home_url() ); ?>">&nbsp;</a></div>
+		<div class="up"><a title="<?php esc_attr_e( 'Top', 'wallow' ); ?>" href="#">&nbsp;</a></div>
+		<div class="down"><a title="<?php esc_attr_e( 'Bottom', 'wallow' ); ?>" href="#credits">&nbsp;</a></div>
 	</div>
 <?php
 

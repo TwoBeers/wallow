@@ -232,7 +232,7 @@ class Wallow_Widget_Latest_Commented_Posts extends WP_Widget {
 					} else {
 						$the_thumb = '';
 					}
-					$output .=  '<li>' . ' <a href="' . get_permalink( $post->ID ) . '" title="' .  esc_attr( get_the_title( $post->ID ) ) . '">' . $the_thumb . get_the_title( $post->ID ) . '</a></li>';
+					$output .=  '<li>' . ' <a href="' . esc_url( get_permalink( $post->ID ) ) . '" title="' .  esc_attr( get_the_title( $post->ID ) ) . '">' . $the_thumb . get_the_title( $post->ID ) . '</a></li>';
 					$post_array[] = $comment->comment_post_ID;
 					if ( ++$counter >= $number ) break;
 				}
@@ -519,7 +519,7 @@ class Wallow_Widget_Pop_Categories extends WP_Widget {
 		wp_list_categories(apply_filters( 'wallow_widget_pop_categories_args', $cat_args));
 
 ?>
-			<li class="tb_allcat"><a title="<?php esc_attr_e( 'View all categories', 'wallow' ); ?>" href="<?php  echo home_url(); ?>/?allcat=y">[...]</a></li>
+			<li class="tb_allcat"><a title="<?php esc_attr_e( 'View all categories', 'wallow' ); ?>" href="<?php echo esc_url( home_url() ); ?>/?allcat=y">[...]</a></li>
 		</ul>
 <?php
 		echo $after_widget;
@@ -680,7 +680,7 @@ class Wallow_Widget_Social extends WP_Widget {
 			}
 
 			if ( $show && ! empty( $account ) ) {
-				$icon = '<img src="' . get_template_directory_uri() . '/images/follow/' . strtolower( $follow_service ) . '.png" alt="' . $follow_service . '" style="width: ' . $icon_size . 'px; height: ' . $icon_size . 'px;" />';
+				$icon = '<img src="' . esc_url( get_template_directory_uri() . '/images/follow/' . strtolower( $follow_service ) . '.png' ) . '" alt="' . $follow_service . '" style="width: ' . $icon_size . 'px; height: ' . $icon_size . 'px;" />';
 				$output .= '<a target="' . $target . '" href="' . $account . '"' . $onclick . ' class="tb-social-icon' . $class . '" title="' . esc_attr( sprintf( $prefix, $service_name ) ) . '">' . $icon . '</a> ';
 			}
 
@@ -768,7 +768,7 @@ class Wallow_Widget_Social extends WP_Widget {
 
 			<h2>
 				<input id="<?php echo $this->get_field_id( 'show_'.$follow_service ); ?>" name="<?php echo $this->get_field_name( 'show_'.$follow_service ); ?>" type="checkbox" <?php checked( $instance['show_'.$follow_service], 'on' ); ?>  class="checkbox" />
-				<img style="vertical-align:middle; width:32px; height:32px;" src="<?php echo get_template_directory_uri(); ?>/images/follow/<?php echo strtolower( $follow_service ); ?>.png" alt="<?php echo $follow_service; ?>" />
+				<img style="vertical-align:middle; width:32px; height:32px;" src="<?php echo esc_url( get_template_directory_uri() . '/images/follow/' . strtolower( $follow_service ) . '.png' ); ?>" alt="<?php echo esc_attr( $follow_service ); ?>" />
 				<?php echo $service_name; ?>
 			</h2>
 
@@ -847,7 +847,7 @@ class Wallow_Widget_Recent_Posts extends WP_Widget {
 		$use_thumbs = ( !isset($instance['thumb']) || $thumb = (int) $instance['thumb'] ) ? 1 : 0;
 		$category = isset( $instance['category']) ? absint($instance['category'] ) : '';
 		$title = apply_filters( 'widget_title', empty($instance['title']) ? __( 'Recent Posts in %s', 'wallow' ) : $instance['title'], $instance, $this->id_base);
-		$title = sprintf( $title, '<a href="' . get_category_link( $category ) . '">' . get_cat_name( $category ) . '</a>' );
+		$title = sprintf( $title, '<a href="' . esc_url( get_category_link( $category ) ) . '">' . get_cat_name( $category ) . '</a>' );
 		if ( ! $number = absint( $instance['number'] ) )
  			$number = 10;
 
@@ -1068,7 +1068,7 @@ class Wallow_Widget_Share_This extends WP_Widget {
 		$outer = '';
 		foreach( $services as $key => $service ) {
 			$href = sprintf( $service[1], $pName, $pHref, $pPict );
-			if ( isset( $instance[$key] ) && $instance[$key] ) $outer .= '<a class="share-item" rel="nofollow" target="_blank" title="' . esc_attr( sprintf( __( 'Share with %s', 'wallow' ), $service[0] ) ) . '" id="wlw-' . $key . '" href="' . $href . '"><img src="' . get_template_directory_uri() . '/images/follow/' . strtolower( $key ) . '.png" width="' . $icon_size . '" height="' . $icon_size . '" alt="' . esc_attr( $service[0] ) . ' Button" /></a>';
+			if ( isset( $instance[$key] ) && $instance[$key] ) $outer .= '<a class="share-item" rel="nofollow" target="_blank" title="' . esc_attr( sprintf( __( 'Share with %s', 'wallow' ), $service[0] ) ) . '" id="wlw-' . $key . '" href="' . $href . '"><img src="' . esc_url( get_template_directory_uri() . '/images/follow/' . strtolower( $key ) . '.png' ) . '" width="' . $icon_size . '" height="' . $icon_size . '" alt="' . esc_attr( $service[0] ) . ' Button" /></a>';
 		}
 ?>
 		<?php echo $before_widget; ?>
@@ -1179,7 +1179,7 @@ class Wallow_Widget_Post_Details extends WP_Widget {
 			$output .= '<li class="post-details-tags"><i class="icon-tags"></i> <span>' . __( 'Tags', 'wallow' ) . ': ' . $tags . '</li>';
 
 		if ( $args['date'] )
-			$output .= '<li class="post-details-date"><i class="icon-time"></i> <span>' . __( 'Published', 'wallow' ) . ': </span><a href="' . get_day_link(get_the_time('Y'), get_the_time('m'), get_the_time('d')) . '">' . get_the_time( get_option( 'date_format' ) ) . '</a></li>';
+			$output .= '<li class="post-details-date"><i class="icon-time"></i> <span>' . __( 'Published', 'wallow' ) . ': </span><a href="' . esc_url( get_day_link( get_the_time( 'Y' ), get_the_time( 'm' ), get_the_time( 'd' ) ) ) . '">' . get_the_time( get_option( 'date_format' ) ) . '</a></li>';
 
 		$output .= '</ul>';
 
@@ -1419,11 +1419,11 @@ class Wallow_Widget_Clean_Archives extends WP_Widget {
 		?>
 		<ul class="clean-archives">
 		<?php foreach ( $years as $year ) {
-			echo '<li><a class="year-link" href="' . get_year_link( $year->year ) . '">' . $year->year . '</a>';
+			echo '<li><a class="year-link" href="' . esc_url( get_year_link( $year->year ) ) . '">' . $year->year . '</a>';
 			
 			for ( $month = 1; $month <= 12; $month++ ) {
 				if ( (int) $wpdb->get_var( "SELECT COUNT(ID) FROM $wpdb->posts WHERE post_type = 'post' AND post_status = 'publish' AND year(post_date) = '$year->year' AND month(post_date) = '$month'" ) > 0 ) {
-					echo '<a class="month-link" href="' . get_month_link( $year->year, $month ) . '">' . $months_short[$month] . '</a>';
+					echo '<a class="month-link" href="' . esc_url( get_month_link( $year->year, $month ) ) . '">' . $months_short[$month] . '</a>';
 				}
 			}
 			

@@ -302,7 +302,7 @@ if ( !function_exists( 'wallow_edit_options' ) ) {
 							$wallow_use_theme_set['1'] = __( 'custom...', 'wallow' );
 							foreach ($wallow_use_theme_set as $wallow_use_theme_set_value => $wallow_use_theme_set_option) {
 								$wallow_use_theme_set_selected = ($wallow_use_theme_set_value == $wallow_opt['wallow_theme_set']) ? ' checked="checked"' : '';
-								echo '<label><input type="radio" name="wallow_options[wallow_theme_set]" title="' . $wallow_use_theme_set_option . '" value="' . $wallow_use_theme_set_value . '" ' . $wallow_use_theme_set_selected . ' onchange="wallowOptions.changePreview(\'\',\'' . $wallow_use_theme_set_value . '\'); wallowOptions.toggleMixer(\'' . $wallow_use_theme_set_value . '\'); return false;">' . $wallow_use_theme_set_option . '</label>';
+								echo '<label><input type="radio" name="wallow_options[wallow_theme_set]" title="' . esc_attr( $wallow_use_theme_set_option ) . '" value="' . $wallow_use_theme_set_value . '" ' . $wallow_use_theme_set_selected . ' onchange="wallowOptions.changePreview(\'\',\'' . $wallow_use_theme_set_value . '\'); wallowOptions.toggleMixer(\'' . $wallow_use_theme_set_value . '\'); return false;">' . $wallow_use_theme_set_option . '</label>';
 								}
 							?>
 						</div>
@@ -391,7 +391,7 @@ if ( !function_exists( 'wallow_edit_options' ) ) {
 
 						<input type="hidden" name="wallow_options[hidden_opt]" value="default" />
 
-						<input class="button-primary" type="submit" name="Submit" value="<?php _e( 'Update Options' , 'wallow' ); ?>" />
+						<input class="button-primary" type="submit" name="Submit" value="<?php esc_attr_e( 'Update Options' , 'wallow' ); ?>" />
 
 						<a href="themes.php?page=tb_wallow_functions" target="_self"><?php _e( 'Undo Changes' , 'wallow' ); ?></a>
 						|
@@ -463,7 +463,7 @@ if ( !function_exists( 'wallow_print_the_option' ) ) {
 
 				if ( $is_top ) {
 					$output .= '<span class="column-nam">' . $val['description'] . '</span>';
-					$output .= ' <input name="wallow_options[' . $key . ']" value="' . wallow_get_opt( $key ) . '" type="text" />';
+					$output .= ' <input name="wallow_options[' . $key . ']" value="' . esc_attr( wallow_get_opt( $key ) ) . '" type="text" />';
 					if ( $val['req'] != '' ) {
 						$req = wallow_get_coa( $val['req']);
 						$output .= '<div class="column-req"><u>' . __('requires','wallow') . ': ' . $req['description'] . '</u></div>';
@@ -471,7 +471,7 @@ if ( !function_exists( 'wallow_print_the_option' ) ) {
 					$output .= '<div class="column-des">' . $val['info'] . '</div>';
 				} else {
 					$output .= '<span class="wlw-sub-opt-nam">' . $val['description'] . '</span> :';
-					$output .= ' <input name="wallow_options[' . $key . ']" value="' . wallow_get_opt( $key ) . '" type="text" />';
+					$output .= ' <input name="wallow_options[' . $key . ']" value="' . esc_attr( wallow_get_opt( $key ) ) . '" type="text" />';
 					if ( $val['info'] != '' ) $output .= ' - <span class="wlw-sub-opt-des">' . $val['info'] . '</span>';
 				}
 				break;
@@ -480,7 +480,7 @@ if ( !function_exists( 'wallow_print_the_option' ) ) {
 
 				if ( $is_top ) {
 					$output .= '<span class="column-nam">' . $val['description'] . '</span>';
-					$output .= ' <textarea name="wallow_options[' . $key . ']">' . wallow_get_opt( $key ) . '</textarea>';
+					$output .= ' <textarea name="wallow_options[' . $key . ']">' . esc_textarea( wallow_get_opt( $key ) ) . '</textarea>';
 					if ( $val['req'] != '' ) {
 						$req = wallow_get_coa( $val['req']);
 						$output .= '<div class="column-req"><u>' . __('requires','wallow') . ': ' . $req['description'] . '</u></div>';
@@ -538,7 +538,7 @@ if ( !function_exists( 'wallow_print_the_option' ) ) {
 			case "col":
 				if ( $is_top ) {
 					$output .= '<span class="column-nam">' . $val['description'] . '</span>';
-					$output .= ' <input class="wlw-color" id="wlw-color-' . $key . '" type="text" name="wallow_options[' . $key . ']" value="' . wallow_get_opt( $key ) . '" data-default-color="' . $val['default'] . '" />';
+					$output .= ' <input class="wlw-color" id="wlw-color-' . $key . '" type="text" name="wallow_options[' . $key . ']" value="' . esc_attr( wallow_get_opt( $key ) ) . '" data-default-color="' . $val['default'] . '" />';
 					$output .= '<span class="description hide-if-js">' . __( 'Default' , 'wallow' ) . ': ' . $val['default'] . '</span>';
 					if ( $val['req'] != '' ) {
 						$req = wallow_get_coa( $val['req']);
@@ -547,7 +547,7 @@ if ( !function_exists( 'wallow_print_the_option' ) ) {
 					$output .= '<div class="column-des">' . $val['info'] . '</div>';
 				} else {
 					$output .= '<span class="wlw-sub-opt-nam">' . $val['description'] . '</span> :';
-					$output .= ' <input class="wlw-color" id="wlw-color-' . $key . '" type="text" name="wallow_options[' . $key . ']" value="' . wallow_get_opt( $key ) . '" data-default-color="' . $val['default'] . '" />';
+					$output .= ' <input class="wlw-color" id="wlw-color-' . $key . '" type="text" name="wallow_options[' . $key . ']" value="' . esc_attr( wallow_get_opt( $key ) ) . '" data-default-color="' . $val['default'] . '" />';
 					$output .= ' <span class="description hide-if-js">' . __( 'Default' , 'wallow' ) . ': ' . $val['default'] . '</span>';
 					if ( $val['info'] != '' ) $output .= ' - <span class="wlw-sub-opt-des">' . $val['info'] . '</span>';
 				}
@@ -575,7 +575,7 @@ function wallow_get_theme_multi_options( $element ){
 
 	foreach ( $variants as $slug => $description ) {
 
-		echo '<label><input type="radio" name="wallow_options[' . $element . ']" title="' . $description . '" value="' . $slug . '" ' . checked( $slug, $current, false ) . ' onchange="wallowOptions.changePreview(\'' . $element . '\',\'' . $slug . '\'); return false;">' . $description . '</label>';
+		echo '<label><input type="radio" name="wallow_options[' . $element . ']" title="' . esc_attr( $description ) . '" value="' . $slug . '" ' . checked( $slug, $current, false ) . ' onchange="wallowOptions.changePreview(\'' . $element . '\',\'' . $slug . '\'); return false;">' . $description . '</label>';
 
 	}
 

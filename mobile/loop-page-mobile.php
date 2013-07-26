@@ -23,7 +23,7 @@
 			<ul class="tbm-group">
 				<?php 
 				foreach ( $tbm_sub_pages as $tbm_children ) {
-					echo '<li class="outset"><a href="' . get_permalink( $tbm_children ) . '" title="' . esc_attr( strip_tags( get_the_title( $tbm_children ) ) ) . '">' . get_the_title( $tbm_children ) . '</a></li>';
+					echo '<li class="outset"><a href="' . esc_url( get_permalink( $tbm_children ) ) . '" title="' . esc_attr( strip_tags( get_the_title( $tbm_children ) ) ) . '">' . get_the_title( $tbm_children ) . '</a></li>';
 				}
 				?>
 			</ul>

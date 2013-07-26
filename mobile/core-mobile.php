@@ -266,7 +266,7 @@ class Wallow_Mobile {
 				<ul class="tbm-group">
 					<?php 
 					foreach ( $sub_pages as $children ) {
-						echo '<li class="outset"><a href="' . get_permalink( $children ) . '" title="' . esc_attr( strip_tags( get_the_title( $children ) ) ) . '">' . get_the_title( $children ) . '</a></li>';
+						echo '<li class="outset"><a href="' . esc_url( get_permalink( $children ) ) . '" title="' . esc_attr( strip_tags( get_the_title( $children ) ) ) . '">' . get_the_title( $children ) . '</a></li>';
 					}
 					?>
 				</ul>
@@ -280,7 +280,7 @@ class Wallow_Mobile {
 			?>
 				<?php echo apply_filters( 'wallow_mobile_filter_seztitle', __( 'Parent page', 'wallow' ) ); ?>
 				<ul class="tbm-group">
-						<li class="outset"><a href="<?php echo get_permalink( $parent_page ); ?>" title="<?php echo esc_attr( strip_tags( get_the_title( $parent_page ) ) ); ?>"><?php echo get_the_title( $parent_page ); ?></a></li>
+						<li class="outset"><a href="<?php echo esc_url( get_permalink( $parent_page ) ); ?>" title="<?php echo esc_attr( strip_tags( get_the_title( $parent_page ) ) ); ?>"><?php echo get_the_title( $parent_page ); ?></a></li>
 				</ul>
 			<?php
 		}
@@ -369,7 +369,7 @@ class Wallow_Mobile {
 
 	function change_view_link() {
 
-		echo '<span class="hide_if_print"> - <a href="' . add_query_arg( 'mobile_override', 'mobile' ) . '">'. __('Mobile View','wallow') .'</a></span>';
+		echo '<span class="hide_if_print"> - <a href="' . esc_url( add_query_arg( 'mobile_override', 'mobile' ) ) . '">'. __('Mobile View','wallow') .'</a></span>';
 
 	}
 
@@ -445,7 +445,7 @@ class Wallow_Mobile {
 	// Add specific CSS class to body by filter
 	function body_classes( $classes ) {
 
-		$classes[] = $this->get_option( 'wallow_mobile_css_color' );
+		$classes[] = esc_attr( $this->get_option( 'wallow_mobile_css_color' ) );
 
 		return $classes;
 

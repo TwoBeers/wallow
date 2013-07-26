@@ -34,7 +34,7 @@ get_header(); ?>
 					<?php if ( wp_attachment_is_image() ) { ?>
 
 							<div class="att_content">
-								<a class="bz-view-full-size" href="<?php echo wp_get_attachment_url(); ?>" title="<?php esc_attr_e( 'View full size','wallow' ) ; ?>" rel="attachment"><?php echo wp_get_attachment_image( $post->ID, 'large', false, array( 'class' => 'size-full') ); ?></a>
+								<a class="bz-view-full-size" href="<?php echo esc_url( wp_get_attachment_url() ); ?>" title="<?php esc_attr_e( 'View full size','wallow' ) ; ?>" rel="attachment"><?php echo wp_get_attachment_image( $post->ID, 'large', false, array( 'class' => 'size-full') ); ?></a>
 								<?php if ( !empty( $post->post_excerpt ) ) the_excerpt(); ?>
 							</div>
 

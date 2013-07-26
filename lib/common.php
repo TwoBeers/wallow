@@ -83,7 +83,7 @@ if ( !function_exists( 'wallow_get_multipages' ) ) {
 			$output .= $before;
 
 			if ( $parent )
-				$output .= $parent_label . '<a href="' . get_permalink( $parent ) . '" title="' . esc_attr( strip_tags( get_the_title( $parent ) ) ) . '">' . get_the_title( $parent ) . '</a>';
+				$output .= $parent_label . '<a href="' . esc_url( get_permalink( $parent ) ) . '" title="' . esc_attr( strip_tags( get_the_title( $parent ) ) ) . '">' . get_the_title( $parent ) . '</a>';
 
 			if ( $childs && $parent )
 				$output .= $separator;
@@ -91,7 +91,7 @@ if ( !function_exists( 'wallow_get_multipages' ) ) {
 			if ( $childs ) {
 				$_childs = array();
 				foreach ( $childs as $child ) {
-					$_childs[] = '<a href="' . get_permalink( $child ) . '" title="' . esc_attr( strip_tags( get_the_title( $child ) ) ) . '">' . get_the_title( $child ) . '</a>';
+					$_childs[] = '<a href="' . esc_url( get_permalink( $child ) ) . '" title="' . esc_attr( strip_tags( get_the_title( $child ) ) ) . '">' . get_the_title( $child ) . '</a>';
 				}
 				$_childs = implode( ', ' , $_childs );
 				$output .= $childs_label . $_childs;
@@ -273,11 +273,11 @@ function wallow_author_badge( $author = '', $size = 32 ) {
 
 	$description = get_the_author_meta( 'description', $author ); // bio
 
-	$author_link = get_author_posts_url($author); // link to author posts
+	$author_link = esc_url( get_author_posts_url( $author ) ); // link to author posts
 
 	$author_net = ''; // author social networks
 	foreach ( array( 'twitter' => 'Twitter', 'facebook' => 'Facebook', 'googleplus' => 'Google+' ) as $s_key => $s_name ) {
-		if ( get_the_author_meta( $s_key, $author ) ) $author_net .= '<a target="_blank" class="url" title="' . esc_attr( sprintf( __('Follow %s on %s', 'wallow'), $name, $s_name ) ) . '" href="'.get_the_author_meta( $s_key, $author ).'"><img alt="' . $s_key . '" class="social-icon" width="24" height="24" src="' . get_template_directory_uri() . '/images/follow/' . $s_key . '.png" /></a>';
+		if ( get_the_author_meta( $s_key, $author ) ) $author_net .= '<a target="_blank" class="url" title="' . esc_attr( sprintf( __('Follow %s on %s', 'wallow'), $name, $s_name ) ) . '" href="' . esc_url( get_the_author_meta( $s_key, $author ) ) . '"><img alt="' . esc_attr( $s_key ) . '" class="social-icon" width="24" height="24" src="' . esc_url( get_template_directory_uri() . '/images/follow/' . $s_key . '.png' ) . '" /></a>';
 	}
 
 	$output = '<li class="author-avatar">' . $avatar . '</li>';
@@ -338,7 +338,7 @@ function wallow_get_comments_link( $args = '' ) {
 		else
 			$text = $one;
 
-		$output = $before . '<a' . $css_class . ' href="' . esc_url( $href ) . '" title="' . $title . '">' . $text . '</a>' . $after;
+		$output = $before . '<a' . $css_class . ' href="' . esc_url( $href ) . '" title="' . esc_attr( $title ) . '">' . $text . '</a>' . $after;
 
 	}
 

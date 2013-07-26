@@ -259,7 +259,7 @@ if ( !function_exists( 'wallow_custom_css' ) ) {
 
 ?>
 	<style type="text/css">
-		<?php echo wallow_get_opt( 'wallow_custom_css' ); ?>
+		<?php echo strip_tags( wallow_get_opt( 'wallow_custom_css' ) ); ?>
 	</style>
 <?php
 
@@ -444,8 +444,8 @@ function wallow_get_the_thumb( $args = '' ) {
 
 	$defaults = array(
 		'id'		=> $post->ID,
-		'width'		=> wallow_get_opt( 'wallow_pthumb_size' ),
-		'height'	=> wallow_get_opt( 'wallow_pthumb_size' ),
+		'width'		=> (int)wallow_get_opt( 'wallow_pthumb_size' ),
+		'height'	=> (int)wallow_get_opt( 'wallow_pthumb_size' ),
 		'class'		=> '',
 		'linked'	=> 0,
 	);
@@ -460,7 +460,7 @@ function wallow_get_the_thumb( $args = '' ) {
 		$output = get_the_post_thumbnail( $args['id'], array( $args['width'], $args['height'] ), array( 'class' => $args['class'] ) );
 
 	if ( $output && $args['linked'] )
-		$output = '<a href="' . get_permalink( $args['id'] ) . '" rel="bookmark">' . $output . '</a>';
+		$output = '<a href="' . esc_url( get_permalink( $args['id'] ) ) . '" rel="bookmark">' . $output . '</a>';
 
 	return apply_filters( 'wallow_filter_get_the_thumb', $output );
 
@@ -499,11 +499,11 @@ function wallow_get_header() {
 	$output = '';
 
 	if ( get_header_image() ) {
-		$output .= '<a href="' . home_url() . '/"><img src="' . get_header_image() . '" alt="' . get_bloginfo( 'name' ) . '" title="' . get_bloginfo( 'name' ) . '" /></a>' . "\n";
+		$output .= '<a href="' . esc_url( home_url() ) . '/"><img src="' . esc_url( get_header_image() ) . '" alt="' . esc_attr( get_bloginfo( 'name' ) ) . '" title="' . esc_attr( get_bloginfo( 'name' ) ) . '" /></a>' . "\n";
 		$output .= '<h1 class="hidden">' . get_bloginfo( 'name' ) . '</h1>' . "\n";
 		$output .= '<span class="description hidden">' . get_bloginfo( 'description' ) . '</span>';
 	} else {
-		$output .= '<h1><a href="' . home_url() . '/">' . get_bloginfo( 'name' ) . '</a></h1>' . "\n";
+		$output .= '<h1><a href="' . esc_url( home_url() ) . '/">' . get_bloginfo( 'name' ) . '</a></h1>' . "\n";
 		$output .= '<div class="description">' . get_bloginfo( 'description' ) . '</div>';
 	}
 
@@ -684,13 +684,13 @@ if ( !function_exists( 'wallow_navigate_attachments' ) ) {
 
 		<?php if ( $attachments['prev'] ) { ?>
 			<span class="nav-previous ">
-				<a rel="prev" title="" href="<?php echo get_attachment_link( $attachments['prev']->ID ); ?>">&laquo; <?php echo wp_get_attachment_image( $attachments['prev']->ID, array( 70, 70 ) ); ?></a>
+				<a rel="prev" href="<?php echo esc_url( get_attachment_link( $attachments['prev']->ID ) ); ?>">&laquo; <?php echo wp_get_attachment_image( $attachments['prev']->ID, array( 70, 70 ) ); ?></a>
 			</span>
 		<?php } ?>
 
 		<?php if ( $attachments['next'] ) { ?>
 			<span class="nav-next">
-				<a rel="next" title="" href="<?php echo get_attachment_link( $attachments['next']->ID ); ?>"><?php echo wp_get_attachment_image( $attachments['next']->ID, array( 70, 70 ) ); ?> &raquo;</a>
+				<a rel="next" href="<?php echo esc_url( get_attachment_link( $attachments['next']->ID ) ); ?>"><?php echo wp_get_attachment_image( $attachments['next']->ID, array( 70, 70 ) ); ?> &raquo;</a>
 			</span>
 		<?php } ?>
 
@@ -746,10 +746,10 @@ function wallow_bottom_meta() {
 		$links[] = '<a href="' . esc_url( get_post_comments_feed_link() ) . '">' . sprintf( __( '%s feed for comments on this post', 'wallow' ), '<abbr title="Really Simple Syndication">RSS</abbr>' ) . '</a>';
 
 	if ( pings_open() )
-		$links[] = '<a href="' . get_trackback_url() . '" rel="trackback">' . __( 'TrackBack URL', 'wallow' ) . '</a>';
+		$links[] = '<a href="' . esc_url( get_trackback_url() ) . '" rel="trackback">' . __( 'TrackBack URL', 'wallow' ) . '</a>';
 
 	if ( comments_open() && is_singular() )
-		$links[] = '<a href="#postcomment" title="' . __( 'Leave a comment', 'wallow' ) . '">' . __( 'Leave a comment', 'wallow' ) . '</a>';
+		$links[] = '<a href="#postcomment" title="' . esc_attr__( 'Leave a comment', 'wallow' ) . '">' . __( 'Leave a comment', 'wallow' ) . '</a>';
 
 	if ( !comments_open() && is_single() )
 		$links[] = '<span>' . __( 'Comments closed', 'wallow' ) . '</span>';
@@ -811,7 +811,7 @@ function wallow_titles_filter( $title, $id = null ) {
 		$postdata = array( get_post_format( $id )? get_post_format_string( get_post_format( $id ) ): __( 'Post', 'wallow' ), get_the_time( get_option( 'date_format' ), $id ), $id );
 		$codes = array( '%f', '%d', '%n' );
 
-		return str_replace( $codes, $postdata, wallow_get_opt( 'wallow_blank_title_text' ) );
+		return str_replace( $codes, $postdata, strip_tags( wallow_get_opt( 'wallow_blank_title_text' ) ) );
 
 	} else
 
@@ -834,10 +834,10 @@ function wallow_excerpt_more( $more ) {
 	if ( is_admin() || wallow_get_opt( 'wallow_excerpt_more_txt' ) == '' ) return $more;
 
 	if ( wallow_get_opt( 'wallow_excerpt_more_txt' ) )
-		$more = wallow_get_opt( 'wallow_excerpt_more_txt' );
+		$more = strip_tags( wallow_get_opt( 'wallow_excerpt_more_txt' ) );
 
 	if ( wallow_get_opt( 'wallow_excerpt_more_link' ) )
-		$more = '<a href="' . get_permalink() . '">' . $more . '</a>';
+		$more = '<a href="' . esc_url( get_permalink() ) . '">' . $more . '</a>';
 
 	return $more;
 
@@ -849,7 +849,7 @@ function wallow_more_link( $more_link, $more_link_text ) {
 
 	if ( wallow_get_opt( 'wallow_more_tag' ) && !is_admin() ) {
 
-		$text = str_replace ( '%t', get_the_title(), wallow_get_opt( 'wallow_more_tag' ) );
+		$text = str_replace ( '%t', get_the_title(), strip_tags( wallow_get_opt( 'wallow_more_tag' ) ) );
 
 		return str_replace( $more_link_text, $text, $more_link );
 
@@ -912,12 +912,12 @@ function wallow_body_classes( $classes ) {
 
 	}
 
-	$classes[] = 'body-' . $genlook;
-	$classes[] = 'sidebar-' . $sidebar;
-	$classes[] = 'menu-' . $menu;
-	$classes[] = 'quickbar-' . $quickbar;
-	$classes[] = 'popup-' . $popup;
-	$classes[] = 'avatar-' . $avatar;
+	$classes[] = esc_attr( 'body-' . $genlook );
+	$classes[] = esc_attr( 'sidebar-' . $sidebar );
+	$classes[] = esc_attr( 'menu-' . $menu );
+	$classes[] = esc_attr( 'quickbar-' . $quickbar );
+	$classes[] = esc_attr( 'popup-' . $popup );
+	$classes[] = esc_attr( 'avatar-' . $avatar );
 
 
 	$classes[] = 'wlw-no-js';
@@ -954,14 +954,14 @@ function wallow_img_caption_shortcode( $deprecated, $attr, $content = null ) {
 
 function wallow_next_posts_title($content) {
 
-	return 'title="' . __( 'Older Posts', 'wallow' ) . '"';
+	return 'title="' . esc_attr__( 'Older Posts', 'wallow' ) . '"';
 
 }
 
 
 function wallow_previous_posts_title($content) {
 
-	return 'title="' . __( 'Newer Posts', 'wallow' ) . '"';
+	return 'title="' . esc_attr__( 'Newer Posts', 'wallow' ) . '"';
 
 }
 

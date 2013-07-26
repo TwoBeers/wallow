@@ -317,7 +317,7 @@ function wallow_get_coa( $option = false ) {
 							'type' => 'opt',
 							'default' => 'light',
 							'options' => array( 'light', 'dark' ),
-							'options_readable' => array( '<img src="' . get_template_directory_uri() . '/images/mobile-light.png" alt="light" />', '<img src="' . get_template_directory_uri() . '/images/mobile-dark.png" alt="dark" />' ),
+							'options_readable' => array( '<img src="' . esc_url( get_template_directory_uri() . '/images/mobile-light.png' ) . '" alt="light" />', '<img src="' . esc_url( get_template_directory_uri() . '/images/mobile-dark.png' ) . '" alt="dark" />' ),
 							'description' => __( 'colors', 'wallow' ),
 							'info' => __( "", 'wallow' ),
 							'req' => '',
