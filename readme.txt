@@ -1,7 +1,7 @@
 ﻿Wallow WordPress theme
 
 Version:
-	0.60
+	0.61
 
 Project page:
 	http://www.twobeers.net/annunci/wallow
