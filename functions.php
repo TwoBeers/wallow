@@ -740,7 +740,7 @@ function wallow_bottom_meta() {
 
 	if ( ! is_singular() ) return;
 
-	$links = '';
+	$links = array();
 
 	if ( comments_open() && is_singular() )
 		$links[] = '<a href="' . esc_url( get_post_comments_feed_link() ) . '">' . sprintf( __( '%s feed for comments on this post', 'wallow' ), '<abbr title="Really Simple Syndication">RSS</abbr>' ) . '</a>';
